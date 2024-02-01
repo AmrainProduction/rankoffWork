@@ -1,0 +1,167 @@
+
+.burgerMenuBtn {
+    display: none;
+}
+
+.menu {
+    display: none;
+}
+
+input[type="search"]::-webkit-search-cancel-button {
+    display: none;
+}
+
+a {
+    text-decoration: none;
+    color: #c4b8d9;
+    transition: ease-out 0.5s;
+}
+
+a:hover {
+    text-decoration: none;
+    color: #6b5b8d;
+    transition: ease-out 0.5s;
+}
+
+.active {
+    color: #8C6899;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+    -webkit-text-fill-color: #c4b8d9;
+    transition: background-color 5000s ease-in-out 0s;
+}
+
+.navbar li, ul {
+    list-style-type: none;
+    display: inline;
+    text-decoration: none;
+    width: 100%;
+}
+
+.navLink li{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-left: 10px;
+    padding-right: 10px;
+    color: #918aa9;
+}
+
+.navbar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    height: 80px;
+    width: 100%;
+    font-size: calc(8px + 3 * (100vw / 1000));
+}
+
+.AppLogo {
+    height: 90%;
+    width: auto;
+}
+
+.logoLink {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    width: 100%;
+    height: 100%;
+}
+
+.contentLinks {
+    display: flex;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+.navLink {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    font-size: calc(8px + 3 * (100vw / 1000));
+    border-right: 1px solid #52515b;
+}
+
+.navLink:hover {
+    background: #584669;
+}
+
+@media (max-width: 992px) {
+    .navbar {
+        display: flex;
+        height: 50px;
+        width: 100%;
+        font-size: calc(10px + 3 * (100vw / 1000));
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .navLink {
+        padding: 0;
+    }
+}
+
+@media (max-width: 767px) {
+    li, ul {
+        padding: 0;
+    }
+
+    .navbar {
+        display: flex;
+        flex-flow: wrap;
+        min-height: 40px;
+        height: auto;
+        width: 100%;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .logoLink {
+        width: 50px;
+        height: 100%;
+        padding: 0 5px 0 5px;
+    }
+
+    .AppLogo {
+        height: 40px;
+    }
+
+    .navLink {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 40px;
+        width: 100%;
+        padding: 0;
+        border-right: 1px solid #52515b;
+    }
+
+    .contentLinks {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+    }
+}
+
+@media (max-width: 380px) {
+    .navbar {
+        font-size: calc(8px + 3 * (100vw / 1000));
+    }
+
+}

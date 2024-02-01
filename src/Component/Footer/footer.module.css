@@ -1,0 +1,76 @@
+.wrapperFooter {
+    display: grid;
+    justify-content: center;
+    align-items: flex-end;
+    margin-top: 3px;
+    background: #433d50;
+    color: white;
+    min-height: 60px;
+    height: auto;
+    width: 100%;
+    grid-template-rows: 100%;
+    grid-template-columns: 50% 50%;
+    grid-template-areas: 'titleFooter wrapperLinks';
+}
+
+.wrapperLogoRankoff {
+    grid-area: wrapperLogoRankoff;
+    display: none;
+    justify-content: center;
+    align-items: flex-end;
+    width: 100%;
+    height: 100%;
+}
+
+.logoRankoff {
+    height: 60px;
+    padding-top: 10px;
+}
+
+.titleFooter {
+    grid-area: titleFooter;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    padding-left: 10px;
+    color: #918aa9;
+}
+
+.wrapperLinks {
+    grid-area: wrapperLinks;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+.links {
+    grid-area: wrapperLinks;
+    display: block;
+    justify-content: flex-end;
+    width: auto;
+    height: 100%;
+    padding: 5px 10px 5px 5px;
+}
+
+.link {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100px;
+    color: #918aa9;
+}
+
+.nameLink {
+    margin-right: 5px;
+}
+
+.imgLink {
+    height: 20px;
+    width: auto;
+    filter: invert(44%) sepia(8%) saturate(931%) hue-rotate(213deg) brightness(88%) contrast(79%);
+}
+

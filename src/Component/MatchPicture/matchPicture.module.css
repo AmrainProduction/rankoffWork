@@ -1,0 +1,277 @@
+@font-face {
+    font-family: "DrukCyrMedium";
+    src: url("../../Fonts/DrukCyr-Medium.eot");
+    src: url("../../Fonts/DrukCyr-Medium.eot?#iefix") format("embedded-opentype"),
+    url("../../Fonts/DrukCyr-Medium.woff") format("woff"),
+    url("../../Fonts/DrukCyr-Medium.ttf") format("truetype");
+    font-style: normal;
+    font-weight: 500;
+}
+
+@font-face {
+    font-family: "Mazzard M";
+    src: url("../../Fonts/Mazzard/MazzardM-SemiBold.eot");
+    src: url("../../Fonts/Mazzard/MazzardM-SemiBold.eot?#iefix") format("embedded-opentype"),
+    url("../../Fonts/Mazzard/MazzardM-SemiBold.woff") format("woff"),
+    url("../../Fonts/Mazzard/MazzardM-SemiBold.ttf") format("truetype");
+    font-style: normal;
+    font-weight: 500;
+}
+
+
+.wrapperMatchResult {
+    font-family: "Mazzard M", sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    height: 100%;
+    width: 100%;
+    /*max-width: 1470px;*/
+    z-index: 20;
+    position: relative;
+}
+
+.wrapperMatchResult img {
+    height: auto;
+    width: 100%;
+}
+
+.bgImg {
+    height: auto;
+    width: 100%;
+}
+
+.wrapperMenu {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    height: 150px;
+    background: #584669;
+    margin-bottom: 10px;
+    padding: 5px;
+}
+
+.btnSaveAsImage {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 3px;
+    background: #7B6592;
+    height: 20px;
+    width: 200px;
+    cursor: pointer;
+    color: white;
+}
+
+.btnSaveAsImage:hover {
+    background: #615073;
+}
+
+.listMatches {
+    display: block;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 2px;
+    overflow-y: scroll;
+    border-radius: 3px;
+    width: 300px;
+    height: 140px;
+    background: #7B6592;
+    color: white;
+    margin-left: 10px;
+}
+
+.match {
+    background: #6a5783;
+    margin-bottom: 2px;
+    padding: 5px;
+    cursor: pointer;
+    transition: all 0.5s;
+}
+
+.match:hover {
+    background: #56476b;
+}
+
+.wrapperNameTeams {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 6%;
+    padding-left: 16%;
+    padding-right: 16%;
+    top: 24%;
+    position: absolute;
+}
+
+.NameTeam1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    height: 100%;
+    /*font-size: calc(36px + 3 * (100vw / 1000));*/
+    font-size: clamp(9px, 2.5vw, 36px);
+    width: 32.2%;
+}
+
+.NameTeam2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    height: 100%;
+    /*font-size: calc(36px + 3 * (100vw / 1000));*/
+    font-size: clamp(9px, 2.5vw, 36px);
+    width: 32.2%;
+}
+
+.wrapperLogoTeams {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 38.9%;
+    padding-left: 16%;
+    padding-right: 16%;
+    top: 32.6%;
+    position: absolute;
+}
+
+.logoTeam1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 32.2%;
+    height: 100%;
+    padding-bottom: 3%;
+}
+
+.logoTeam2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 32.2%;
+    height: 100%;
+    padding-bottom: 3%;
+}
+
+.logoTeam1 img {
+    height: 80%;
+    width: auto;
+}
+
+.logoTeam2 img {
+    height: 80%;
+    width: auto;
+}
+
+.score {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    /*font-size: calc(240px + 3 * (100vw / 1000));*/
+    font-size: clamp(10px, 20vw, 300px);
+    font-family: "DrukCyrMedium", sans-serif;
+}
+
+.wrapperMaps {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 26%;
+    top: 73%;
+    position: absolute;
+}
+
+.maps {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 70%;
+}
+
+.wrapperMap {
+    display: block;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+    width: calc(30% - 10px);
+    margin: 0.7%;
+}
+
+.nameMap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: clamp(1px, 1.5vw, 40px);
+    color: white;
+}
+
+.wrapperLogoMap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: auto;
+    height: 100%;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    position: relative;
+}
+.blackBG {
+    opacity: 0.4;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    position: absolute;
+}
+
+.scoreMap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    color: white;
+    font-size: clamp(1px, 2.5vw, 40px);
+    z-index: 10;
+    position: absolute;
+}
+
+.wrapperPickTeam {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: auto;
+    color: white;
+    padding-top: 0.5%;
+}
+
+.pickTeam {
+    font-size: clamp(1px, 1vw, 18px);
+}
+
+.pickLogoTeam img {
+    padding: 2px 5px;
+    height: 25px;
+    width: auto;
+}
+
+.pickLogoTeam img {
+    height: clamp(1px, 3vw, 35px);
+    width: auto;
+}
+
+.empty {
+    height: clamp(1px, 3vw, 35px);
+}
+
+
+

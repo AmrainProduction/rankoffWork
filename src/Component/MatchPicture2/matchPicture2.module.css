@@ -1,0 +1,692 @@
+@font-face {
+    font-family: "DrukCyrMedium";
+    src: url("../../Fonts/DrukCyr-Medium.eot");
+    src: url("../../Fonts/DrukCyr-Medium.eot?#iefix") format("embedded-opentype"),
+    url("../../Fonts/DrukCyr-Medium.woff") format("woff"),
+    url("../../Fonts/DrukCyr-Medium.ttf") format("truetype");
+    font-style: normal;
+    font-weight: 500;
+}
+
+@font-face {
+    font-family: "Mazzard M";
+    src: url("../../Fonts/Mazzard/MazzardM-SemiBold.eot");
+    src: url("../../Fonts/Mazzard/MazzardM-SemiBold.eot?#iefix") format("embedded-opentype"),
+    url("../../Fonts/Mazzard/MazzardM-SemiBold.woff") format("woff"),
+    url("../../Fonts/Mazzard/MazzardM-SemiBold.ttf") format("truetype");
+    font-style: normal;
+    font-weight: 500;
+}
+
+
+.wrapperMatchResult {
+    font-family: "Mazzard M", sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    height: 100%;
+    width: 100%;
+    z-index: 20;
+    position: relative;
+}
+
+.wrapperMatchResult img {
+    height: auto;
+    width: 100%;
+}
+
+.bgImg {
+    height: auto;
+    width: 100%;
+}
+
+.wrapperMenu {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 150px;
+    background: #584669;
+    margin-bottom: 10px;
+    padding: 5px;
+}
+
+.wrapperLogo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: auto;
+    height: 100%;
+}
+
+.wrapperLogo img {
+    height: 70%;
+    width: auto;
+}
+
+.btnSaveAsImage {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 3px;
+    background: #7B6592;
+    height: 40px;
+    width: 160px;
+    cursor: pointer;
+    color: white;
+}
+
+.btnSaveAsImage:hover {
+    background: #615073;
+}
+
+.menu {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+.wrapperListMatches {
+    display: block;
+    width: 300px;
+    height: 140px;
+    margin-right: 10px;
+    margin-left: 10px;
+    padding: 2px;
+}
+
+.titleBox {
+    width: 100%;
+    height: 20px;
+    color: white;
+}
+
+.listMatches {
+    display: block;
+    overflow-y: scroll;
+    border-radius: 3px;
+    width: 100%;
+    height: 120px;
+    background: #7B6592;
+    color: white;
+}
+
+.match {
+    background: #6a5783;
+    margin-bottom: 2px;
+    padding: 5px;
+    cursor: pointer;
+    transition: all 0.5s;
+}
+
+.match:hover {
+    background: #56476b;
+}
+
+.wrapperMain {
+    display: flex;
+    height: 100%;
+    width: 100%;
+    padding: 3.4%;
+    position: absolute;
+}
+
+.main {
+    display: block;
+    height: 100%;
+    width: 100%;
+}
+
+.btnSaveAsImage {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 3px;
+    background: #7B6592;
+    height: 20px;
+    width: 200px;
+    cursor: pointer;
+    color: white;
+}
+
+.btnSaveAsImage:hover {
+    background: #615073;
+}
+
+.wrapperTopSection {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 24.5%;
+    top: 3.8%;
+    position: absolute;
+}
+
+.wrapperLeftTopSection {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    width: 52.3%;
+    height: 100%;
+    margin-left: 2.18%;
+    border-radius: 15px;
+    background: #bf3652;
+}
+
+.wrapperTextMatchResult {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    flex-flow: column;
+    height: 100%;
+    width: 32%;
+    color: white;
+}
+
+.textMatchResult {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    font-family: "DrukCyrMedium", sans-serif;
+    font-size: clamp(10px, 4vw, 80px);
+}
+
+.rankoff {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    font-size: clamp(10px, 1vw, 20px);
+}
+
+.wrapperTeamAndScore {
+    font-family: 'Mazzard M', sans-serif;
+    display: block;
+    width: 68%;
+    height: 100%;
+}
+
+.teamAndScore {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 46%;
+    color: white;
+    margin-top: 8%;
+}
+
+.nameTour {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    font-size: 15px;
+    color: white;
+    margin-top: 1%;
+}
+
+.dateMatch {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    font-size: 12px;
+    color: white;
+    margin-top: 0.5%;
+}
+
+.wrapperTeamLogo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 33%;
+}
+
+.wrapperTeamLogo img{
+    height: 100%;
+    width: auto;
+}
+
+.totalScore {
+    font-family: "DrukCyrMedium", sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 2%;
+    font-size: clamp(10px, 7vw, 120px);
+    height: 100%;
+    width: 33%;
+}
+
+.wrapperRightTopSection {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 42.3%;
+    margin-right: 2.18%;
+    height: 100%;
+    padding: 0 0.5%;
+    border-radius: 15px;
+    background: #231b20;
+}
+
+.wrapperMap {
+    display: block;
+    height: 90%;
+    width: calc(22% - 2%);
+    margin: 1%;
+    border-radius: 8px;
+    overflow: hidden;
+    color: white;
+}
+
+.scoreMap {
+    font-family: 'Mazzard M', sans-serif;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 20%;
+    width: 100%;
+    background: #0e0e0e;
+}
+
+.scoreMap img {
+    height: 60%;
+    width: auto;
+}
+
+.totalScoreMap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: auto;
+    font-size: clamp(5px, 1.5vw, 20px);
+}
+
+.imgMap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60%;
+    width: 100%;
+    position: relative;
+}
+
+.imgMap img{
+    height: 100%;
+    width: auto;
+}
+
+.mapColor {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    opacity: 0.4;
+    background: #0e0e0e;
+}
+
+.pickMap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 20%;
+    width: 100%;
+    padding: 2%;
+    font-size: clamp(5px, 1vw, 13px);
+    background: #0e0e0e;
+}
+
+.scoreForMap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    color: white;
+    font-size: 35px;
+}
+
+.wrapperScoreForMap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    top: 15%;
+    z-index: 10;
+    position: absolute;
+}
+
+.wrapperScoreForMap img {
+    height: 60%;
+    width: auto;
+}
+
+.pickMapTeam {
+    font-family: "Mazzard M", sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    width: 100%;
+    height: 100%;
+    top: 5%;
+    z-index: 10;
+    position: absolute;
+    color: white;
+    font-size: 15px;
+}
+
+.pickMapTeam img {
+    height: 25%;
+    width: auto;
+}
+
+.wrapperMiddleSection {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 32.1%;
+    top: 30.2%;
+    padding-left: 2.18%;
+    padding-right: 2.18%;
+    position: absolute;
+}
+
+.wrapperBottomSection {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 32.1%;
+    padding-left: 2.18%;
+    padding-right: 2.18%;
+    top: 64.2%;
+    position: absolute;
+}
+
+.middleSection {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    border-radius: 15px;
+    overflow: hidden;
+    background: #0e0e0e;
+}
+
+.bottomSection {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    border-radius: 15px;
+    overflow: hidden;
+    background: #0e0e0e;
+}
+
+.leftMiddleSection {
+    font-family: "DrukCyrMedium", sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 10%;
+    height: 100%;
+    color: white;
+}
+
+.playersSection {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    width: 42%;
+    padding-bottom: 1px;
+    height: 100%;
+    position: relative;
+}
+
+.wrapperPlayersTeamLogo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.wrapperPlayersTeamLogo img {
+    height: auto;
+    width: 90%;
+    opacity: 0.8;
+}
+
+.wrapperPlayersTeamLogoBG {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 42%;
+    position: absolute;
+    overflow: hidden;
+    border-bottom-left-radius: 20px;
+    z-index: 2;
+}
+
+.scoreColor {
+    height: 100%;
+    width: 100%;
+    background: radial-gradient(at bottom, #0e0e0e 20%, transparent 75%);
+}
+
+.wrapperPlayersTeam {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    height: 20%;
+    bottom: -0.5%;
+    width: 120%;
+    z-index: 11;
+    position: absolute;
+    color: white;
+    font-size: clamp(10px, 2.5vw, 40px);
+    padding-bottom: 1%;
+    background: linear-gradient(to top, #0e0e0e 2%, transparent 100%);
+}
+
+.wrapperPlayers {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    width: 98%;
+    height: 100%;
+    position: absolute;
+    z-index: 10;
+}
+
+.wrapperPlayers img {
+    width: 30%;
+    height: auto;
+}
+
+.player1 {
+    left: 0;
+    position: absolute;
+    z-index: 1;
+}
+
+.player2 {
+    left: 17%;
+    position: absolute;
+    z-index: 2;
+}
+
+.player3 {
+    position: absolute;
+    z-index: 3;
+}
+
+.player4 {
+    right: 17%;
+    position: absolute;
+    z-index: 2;
+}
+
+.player5 {
+    right: 0;
+    position: absolute;
+    z-index: 1;
+}
+
+.rightMiddleSection {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    width: 58%;
+    height: 100%;
+    padding: 1%;
+    z-index: 20;
+}
+
+.titleLineTable {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    height: calc(22% - 10px);
+    width: 100%;
+    border-radius: 5px;
+    background: #302e31;
+    color: #ffffff;
+    grid-template-columns: 28% repeat(9, 8%);
+    grid-template-areas: 'startCell cell1 cell2 cell3 cell4 cell5 cell6 cell7 cell8 endCell';
+    overflow: hidden;
+}
+
+.rowTable {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    height: calc(18% - 10px);
+    width: 100%;
+    background: #242325;
+    color: white;
+    border-radius: 5px;
+    grid-template-columns: 28% repeat(9, 8%);
+    grid-template-areas: 'startCell cell1 cell2 cell3 cell4 cell5 cell6 cell7 cell8 endCell';
+    font-size: 16px;
+    overflow: hidden;
+}
+
+.startCell {
+    grid-area: startCell;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    height: 100%;
+    padding-left: 5%;
+    margin-right: 5px;
+}
+
+.dataFlagPlayer {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    height: 100%;
+    width: 40px;
+    max-width: 40px;
+    min-width: 40px;
+}
+
+.cell1 {
+    grid-area: cell1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    margin-right: 5px;
+}
+
+.cell2 {
+    grid-area: cell2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    margin-right: 5px;
+}
+
+.cell3 {
+    grid-area: cell3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    margin-right: 5px;
+}
+
+.cell4 {
+    grid-area: cell4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    margin-right: 5px;
+}
+
+.cell5 {
+    grid-area: cell5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    margin-right: 5px;
+}
+
+.cell6 {
+    grid-area: cell6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    margin-right: 5px;
+}
+
+.cell7 {
+    grid-area: cell7;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    margin-right: 5px;
+}
+
+
+.cell8 {
+    grid-area: cell8;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    margin-right: 5px;
+}
+
+.endCell {
+    grid-area: endCell;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+
+
+
+

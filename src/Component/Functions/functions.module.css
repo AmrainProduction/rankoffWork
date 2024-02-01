@@ -1,0 +1,48 @@
+.wrapperContent {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    background: #584669;
+    grid-template-columns: 40% 60%;
+}
+
+.wrapperListCommands {
+    display: block;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    background: #584669;
+    padding: 5px;
+}
+
+.wrapperOutputRes {
+    display: block;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    background: #413749;
+    color: white;
+}
+
+.wrapperElement {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: auto;
+    padding: 5px;
+    background: #8C6899;
+    color: white;
+    margin-bottom: 5px;
+    cursor: pointer;
+    transition: all 0.4s;
+}
+
+.wrapperElement:hover {
+    background: #6b5175;
+}
+

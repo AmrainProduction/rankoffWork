@@ -1,0 +1,91 @@
+.App {
+  /*font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;*/
+  /*font-family: 'Roboto', sans-serif;*/
+  /*font-family: Bahnschrift, sans-serif;*/
+  font-family: Arial, sans-serif;
+  /*font-family: 'Noto Sans', sans-serif;*/
+  height: 100%;
+  width: 100%;
+  min-height: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+.wrapperBgLink {
+  height: 100%;
+  width: 100%;
+  z-index: 1;
+  min-height: 100%;
+  position: absolute;
+  cursor: pointer;
+}
+
+.header {
+  width: 100%;
+  background: #433d50;
+  position: fixed;
+  z-index: 99;
+}
+
+.main {
+  padding: 0 0 5px 0;
+  height: 100%;
+  min-height: 1200px;
+  max-width: 100%;
+  /*max-width: 1046px;*/
+  margin: 0 auto;
+  position: relative;
+  z-index: 90;
+  background: #433d50;
+}
+
+.footer {
+  width: 100%;
+  height: auto;
+  z-index: 99;
+}
+
+.wrapperErrorPage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  height: 500px;
+  color: #31293a;
+  font-size: 22px;
+}
+
+.wrapperErrorPage a{
+  color: #31293a;
+  transition: ease-in-out 1s;
+}
+
+.btnHome {
+  justify-content: center;
+  align-items: center;
+  padding: 3px;
+  width: auto;
+  height: 10px;
+  background: #5a4d6b;
+  border-radius: 5px;
+  transition: ease-in-out 1s;
+}
+
+.wrapperErrorPage a:hover{
+  color: #463b52;
+  font-size: 20px;
+}
+
+.btnHome:hover {
+  background: #6a5783;
+}
+
+@media (max-width: 767px) {
+
+  /*.main {*/
+  /*  padding: 80px 5px 5px 5px;*/
+  /*}*/
+}
+
+

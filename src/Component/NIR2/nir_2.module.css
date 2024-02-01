@@ -1,0 +1,144 @@
+.wrapperDiagram {
+    display: block;
+    height: 100%;
+    width: 100%;
+    text-align: center;
+    color: black;
+    overflow: hidden;
+    background: white;
+    padding: 5px;
+    /*background: #584669;*/
+}
+
+.btnSaveImage {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 3px;
+    background: #7B6592;
+    height: 20px;
+    width: 200px;
+    cursor: pointer;
+    color: white;
+    margin-bottom: 20px;
+}
+
+.winSandstone {
+    display: block;
+    width: 100%;
+    padding: 15px 0 15px 0;
+    background: white;
+    margin-bottom: 100px;
+    position: relative;
+    /*background: red;*/
+}
+
+.countMaps {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    padding-left: 155px;
+    font-size: 26px;
+}
+
+.diagram {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 15px 15px 0 0;
+}
+
+.diagram2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    top: 6.6%;
+    padding: 15px 15px 0 0;
+    position: absolute;
+}
+
+.wrapperCurrentRank {
+    padding-left: 10px;
+    padding-bottom: 5px;
+    width: 100%;
+    height: auto;
+    font-size: calc(10px + 3 * (100vw / 1000));
+    color: #B596E1FF;
+    border-bottom: 1px solid #433d50;
+}
+
+.statsWindowTooltip {
+    display: block;
+    align-items: flex-end;
+    text-decoration: none;
+    padding: 10px 15px;
+    border-radius: 3px;
+    color: white;
+    font-size: 15px;
+    background: #cfb9e1;
+    text-align: left;
+}
+
+.logoTeam {
+    height: 30%;
+    width: auto;
+    z-index: 2;
+}
+
+.wrapperRoster {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    width: 100%;
+    height: 100%;
+    margin-bottom: 5px;
+}
+
+.wrapperPlayer {
+    display: block;
+    text-align: center;
+    align-items: center;
+    width: 65px;
+    height: 100%;
+}
+
+.wrapperPlayer:not(:last-child) {
+    margin-right: 2px;
+}
+
+.wrapperLogo {
+    display: block;
+    text-align: center;
+    align-items: center;
+    overflow: hidden;
+    position: relative;
+    height: 50px;
+    background: #584669;
+}
+
+.logoPlayer {
+    padding-top: 2px;
+    height: 80px;
+    width: auto;
+}
+
+.nickname {
+    width: 100%;
+    padding: 0 2px;
+    background: #8870a9;
+    font-size: calc(5px + 3 * (100vw / 1000));
+}
+
+@media (max-width: 767px) {
+    .wrapperPlayer {
+        width: 50px;
+    }
+
+    .nickname {
+        font-size: calc(7px + 3 * (100vw / 1000));
+    }
+
+}
