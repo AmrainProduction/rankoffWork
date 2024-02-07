@@ -167,6 +167,7 @@ const PictureResult2 = (props) => {
 
             matchMaps.push({
                 "map": el.map + ".jpg",
+                "name": el.map,
                 "mapPickTeam": el.map_pick,
                 "mapPick": (el.team1_logo.indexOf(`${el.map_pick.replace(/\s/g, "")}`) >= 0 ? el.team1_logo : el.team2_logo.indexOf(`${el.map_pick.replace(/\s/g, "")}`) >= 0 ? el.team2_logo : 'Decider'),
                 "scoreT1": el.total_r_team1,
@@ -508,7 +509,7 @@ const PictureResult2 = (props) => {
                 rating: players[0].t2p5_rating,
             }
         }
-
+console.log(matchMaps)
         return (
             <div className={classes.wrapperMatchResult}>
                 <div className={classes.wrapperTopSection}>
@@ -545,7 +546,7 @@ const PictureResult2 = (props) => {
                                 <div key={index} className={classes.wrapperMap}>
                                     <div className={classes.scoreMap}>
                                         <img src={`/images/LogoTeams/${e.team1Logo}`} alt="/"/>
-                                        <div className={classes.totalScoreMap}>10:8</div>
+                                        <div className={classes.totalScoreMap}>{e.scoreT1}:{e.scoreT2}</div>
                                         <img src={`/images/LogoTeams/${e.team2Logo}`} alt="/"/>
                                     </div>
                                     <div className={classes.imgMap}>
@@ -553,7 +554,13 @@ const PictureResult2 = (props) => {
                                         <div className={classes.mapColor}></div>
                                     </div>
                                     <div className={classes.pickMap}>
-                                        {e.mapPickTeam}
+                                        <div className={classes.mapTeamPick}>
+                                            <img src={`/images/LogoTeams/${e.mapPick === 'Decider' ? e.team2Logo : e.mapPick}`} alt="/" style={{
+                                                opacity: e.mapPick === 'Decider' ? "0" : "1"
+                                            }} />
+                                        </div>
+                                        <div className={classes.mapName}>{e.name === "Zone9" ? "Zone 9" : e.name}</div>
+                                        <div className={classes.mapName}>{e.mapPickTeam}</div>
                                     </div>
                                 </div>
                             )
@@ -611,8 +618,7 @@ const PictureResult2 = (props) => {
                             }>
                                 <div className={classes.startCell}>
                                     <div className={classes.dataFlagPlayer}>
-                                        <CountryFlagPlayer nickname={players[0].t1p1} width={'20px'}
-                                                           height={'13px'} margin={'0 0 0 5px'}/>
+                                        <CountryFlagPlayer nickname={players[0].t1p1} />
                                     </div>
                                     {players[0].t1p1}
                                 </div>
@@ -662,8 +668,7 @@ const PictureResult2 = (props) => {
                             }>
                                 <div className={classes.startCell}>
                                     <div className={classes.dataFlagPlayer}>
-                                        <CountryFlagPlayer nickname={players[0].t1p2} width={'20px'}
-                                                           height={'13px'} margin={'0 0 0 5px'}/>
+                                        <CountryFlagPlayer nickname={players[0].t1p2} />
                                     </div>
                                     {players[0].t1p2}</div>
                                 <div className={classes.cell1}>{players[0].t1p2_k}</div>
@@ -712,8 +717,7 @@ const PictureResult2 = (props) => {
                             }>
                                 <div className={classes.startCell}>
                                     <div className={classes.dataFlagPlayer}>
-                                        <CountryFlagPlayer nickname={players[0].t1p3} width={'20px'}
-                                                           height={'13px'} margin={'0 0 0 5px'}/>
+                                        <CountryFlagPlayer nickname={players[0].t1p3} />
                                     </div>
                                     {players[0].t1p3}</div>
                                 <div className={classes.cell1}>{players[0].t1p3_k}</div>
@@ -762,8 +766,7 @@ const PictureResult2 = (props) => {
                             }>
                                 <div className={classes.startCell}>
                                     <div className={classes.dataFlagPlayer}>
-                                        <CountryFlagPlayer nickname={players[0].t1p4} width={'20px'}
-                                                           height={'13px'} margin={'0 0 0 5px'}/>
+                                        <CountryFlagPlayer nickname={players[0].t1p4} />
                                     </div>
                                     {players[0].t1p4}</div>
                                 <div className={classes.cell1}>{players[0].t1p4_k}</div>
@@ -812,8 +815,7 @@ const PictureResult2 = (props) => {
                             }>
                                 <div className={classes.startCell}>
                                     <div className={classes.dataFlagPlayer}>
-                                        <CountryFlagPlayer nickname={players[0].t1p5} width={'20px'}
-                                                           height={'13px'} margin={'0 0 0 5px'}/>
+                                        <CountryFlagPlayer nickname={players[0].t1p5} />
                                     </div>
                                     {players[0].t1p5}</div>
                                 <div className={classes.cell1}>{players[0].t1p5_k}</div>
@@ -908,8 +910,7 @@ const PictureResult2 = (props) => {
                             }>
                                 <div className={classes.startCell}>
                                     <div className={classes.dataFlagPlayer}>
-                                        <CountryFlagPlayer nickname={players[0].t2p1} width={'20px'}
-                                                           height={'13px'} margin={'0 0 0 5px'}/>
+                                        <CountryFlagPlayer nickname={players[0].t2p1} />
                                     </div>
                                     {players[0].t2p1}
                                 </div>
@@ -959,8 +960,7 @@ const PictureResult2 = (props) => {
                             }>
                                 <div className={classes.startCell}>
                                     <div className={classes.dataFlagPlayer}>
-                                        <CountryFlagPlayer nickname={players[0].t2p2} width={'20px'}
-                                                           height={'13px'} margin={'0 0 0 5px'}/>
+                                        <CountryFlagPlayer nickname={players[0].t2p2} />
                                     </div>
                                     {players[0].t2p2}</div>
                                 <div className={classes.cell1}>{players[0].t2p2_k}</div>
@@ -1009,8 +1009,7 @@ const PictureResult2 = (props) => {
                             }>
                                 <div className={classes.startCell}>
                                     <div className={classes.dataFlagPlayer}>
-                                        <CountryFlagPlayer nickname={players[0].t2p3} width={'20px'}
-                                                           height={'13px'} margin={'0 0 0 5px'}/>
+                                        <CountryFlagPlayer nickname={players[0].t2p3} />
                                     </div>
                                     {players[0].t2p3}</div>
                                 <div className={classes.cell1}>{players[0].t2p3_k}</div>
@@ -1059,8 +1058,7 @@ const PictureResult2 = (props) => {
                             }>
                                 <div className={classes.startCell}>
                                     <div className={classes.dataFlagPlayer}>
-                                        <CountryFlagPlayer nickname={players[0].t2p4} width={'20px'}
-                                                           height={'13px'} margin={'0 0 0 5px'}/>
+                                        <CountryFlagPlayer nickname={players[0].t2p4} />
                                     </div>
                                     {players[0].t2p4}</div>
                                 <div className={classes.cell1}>{players[0].t2p4_k}</div>
@@ -1109,8 +1107,7 @@ const PictureResult2 = (props) => {
                             }>
                                 <div className={classes.startCell}>
                                     <div className={classes.dataFlagPlayer}>
-                                        <CountryFlagPlayer nickname={players[0].t2p5} width={'20px'}
-                                                           height={'13px'} margin={'0 0 0 5px'}/>
+                                        <CountryFlagPlayer nickname={players[0].t2p5} />
                                     </div>
                                     {players[0].t2p5}</div>
                                 <div className={classes.cell1}>{players[0].t2p5_k}</div>

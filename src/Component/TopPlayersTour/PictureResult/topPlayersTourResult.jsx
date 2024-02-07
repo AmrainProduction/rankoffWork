@@ -385,7 +385,7 @@ const TopPlayersTourResult = (props) => {
         return (
             <div className={classes.wrapperTopResult}>
                 <div className={classes.wrapperTourInfo}>
-                <div className={classes.nameTour}>{players_tournaments[0].name_tour}</div>
+                <div className={classes.nameTour}>{players_tournaments[0].name_tour} [GROUP STAGE]</div>
                 <div className={classes.nameTour}></div>
                 <div className={classes.logoTour}>
                     <img src={`/images/LogoAndBannerTour/${players_tournaments[0].logo_tour}`} alt="/"/>

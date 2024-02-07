@@ -1,0 +1,21 @@
+{
+  "files": {
+    "main.css": "/static/css/main.008a2279.css",
+    "main.js": "/static/js/main.abb00df0.js",
+    "static/media/ArtegraSans-Bold.ttf": "/static/media/ArtegraSans-Bold.da44aa68938af12c8c37.ttf",
+    "static/media/DrukCyr-Medium.eot": "/static/media/DrukCyr-Medium.d3ed9c1ccf57848ea1ad.eot",
+    "static/media/DrukCyr-Medium.ttf": "/static/media/DrukCyr-Medium.8d002b52be6529b27cc2.ttf",
+    "static/media/MazzardM-SemiBold.eot": "/static/media/MazzardM-SemiBold.ecd0114af84529105fa7.eot",
+    "static/media/MazzardM-SemiBold.ttf": "/static/media/MazzardM-SemiBold.5f7ecc3ab0ec32c6ec5f.ttf",
+    "static/media/DrukCyr-Medium.woff": "/static/media/DrukCyr-Medium.ab77ac3851b47c2d2e9a.woff",
+    "static/media/MazzardM-SemiBold.woff": "/static/media/MazzardM-SemiBold.6d64bfd5768b045af7c6.woff",
+    "static/media/marsek-demi-webfont.woff": "/static/media/marsek-demi-webfont.c8eae89ba35a187a073c.woff",
+    "static/media/marsek-demi-webfont.woff2": "/static/media/marsek-demi-webfont.7ca31594c29432707ea7.woff2",
+    "static/media/logo.svg": "/static/media/logo.182725c1ea6691dac66e3a941382345d.svg",
+    "index.html": "/index.html"
+  },
+  "entrypoints": [
+    "static/css/main.008a2279.css",
+    "static/js/main.abb00df0.js"
+  ]
+}

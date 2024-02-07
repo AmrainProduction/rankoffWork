@@ -4,6 +4,8 @@ import {toJpeg, toPng} from 'html-to-image';
 import {useGetTournamentsQuery} from "../../store/api/apiSlice";
 import PictureResult from "./PictureResult/topPlayersTourResult";
 import TopPlayersTourResult from "./PictureResult/topPlayersTourResult";
+import logo from "../../logo.svg";
+import PictureResult2 from "../MatchPicture2/PictureResult/pictureResult2";
 
 const TopPlayersTour = () => {
 
@@ -44,25 +46,33 @@ const TopPlayersTour = () => {
     return (
         <>
             <div className={classes.wrapperMenu}>
-                <button className={classes.btnSaveAsImage} onClick={onButtonClick}>
-                    Save as image
-                </button>
-                <div className={classes.listMatches}>
-                    {toursID.map((e, index) => {
-                        return (
-                            <div key={index} className={classes.match} onClick={() => {
-                                setChoiceMatch(e)
-                            }}>
-                                {e}
-                            </div>
-                        )
-                    })}
+                <div className={classes.wrapperLogo}>
+                    <img src={logo} alt="logo"/>
+                </div>
+                <div className={classes.menu}>
+                    <div className={classes.wrapperListMatches}>
+                        <div className={classes.titleBox}>Выбор матча:</div>
+                        <div className={classes.listMatches}>
+                            {toursID.map((e, index) => {
+                                return (
+                                    <div key={index} className={classes.match} onClick={() => {
+                                        setChoiceMatch(e)
+                                    }}>
+                                        {e}
+                                    </div>
+                                )
+                            })}
+                        </div>
+                    </div>
+
+                    <div className={classes.btnSaveAsImage} onClick={onButtonClick}>
+                        Скачать
+                    </div>
                 </div>
             </div>
             <div className={classes.wrapperPicture}  ref={ref}>
                 {choiceMatch.length > 0 ? <TopPlayersTourResult name={choiceMatch}/> : ''}
             </div>
-
         </>
     );
 };

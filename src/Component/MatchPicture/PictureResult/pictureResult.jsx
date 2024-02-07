@@ -108,21 +108,3 @@ const PictureResult = (props) => {
 };
 
 export default PictureResult;
-// {matchMaps.map((e, index) => {
-//     return (
-// <div key={index} className={classes.wrapperMap}>
-//     <div className={classes.nameMap}>Breeze</div>
-//     <div className={classes.wrapperLogoMap}>
-//         <img src={`/images/LogoMaps/${e.map}`} className={classes.logoMap} alt="/"/>
-//         <div className={classes.blackBG}></div>
-//         <div className={classes.scoreMap}>{e.scoreT1}:{e.scoreT2}</div>
-//     </div>
-//     <div className={classes.wrapperPickTeam}>
-//         <div className={classes.pickTeam}>{e.mapPickTeam === "Decider" ? <div style={{padding: "14% 0"}}>Decider</div> : `Picked by ${e.mapPickTeam}`}</div>
-//         <div className={classes.pickLogoTeam}>
-//             {e.mapPick === "Decider" ? "" : <img src={`/images/LogoTeams/${e.mapPick}`} alt="/"/>}
-//         </div>
-//     </div>
-// </div>
-// )
-// })}

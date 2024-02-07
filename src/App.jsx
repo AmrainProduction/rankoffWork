@@ -26,6 +26,7 @@ import TopPlayersRGG from "./Component/RGGTournament/RGGTopPlayers/topPlayersRGG
 import TopMinorPlayers from "./Component/TopMinorPlayers/topMinorPlayers";
 import TopPlayersTour from "./Component/TopPlayersTour/topPlayersTour";
 import RankoffPredicts from "./Component/RankoffPredicts/rankoffPredicts";
+import PlayersTourMVP from "./Component/PlayersTourMVP/playersTourMVP";
 
 const router = createBrowserRouter(createRoutesFromElements(
     <Route path='/' element={<Layout/>} errorElement={<ErrorPage/>}>
@@ -33,6 +34,7 @@ const router = createBrowserRouter(createRoutesFromElements(
         <Route path='functions' element={<Functions/>}/>
         <Route path='RESULT_MATCH' element={<MatchPicture2/>}/>
         <Route path='TOP_PLAYERS_TOUR' element={<TopPlayersTour/>}/>
+        <Route path='MVP_PLAYER_TOUR' element={<PlayersTourMVP/>}/>
         <Route path='PREDICT' element={<RankoffPredicts/>}/>
         <Route path='nir' element={<Nir2/>}/>
         <Route path='nir2' element={<Nir21/>}/>
@@ -49,8 +51,8 @@ const router = createBrowserRouter(createRoutesFromElements(
 function App() {
 
     useEffect(() => {
-        window.scrollTo(0, 0);
-    }, []);
+        window.scrollTo(0, 0)
+    }, [])
 
     return (
         <RouterProvider router={router}/>

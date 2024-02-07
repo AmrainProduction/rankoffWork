@@ -92,9 +92,9 @@ const MatchPicture2 = () => {
                         </div>
                     </div>
 
-                    <button className={classes.btnSaveAsImage} onClick={onButtonClick}>
-                        Save as image
-                    </button>
+                    <div className={classes.btnSaveAsImage} onClick={onButtonClick}>
+                        Скачать
+                    </div>
                 </div>
             </div>
             <div className={classes.wrapperPicture} ref={ref}>
