@@ -361,17 +361,6 @@ const PlayerMVPResult = (props) => {
         logo_team_opponent = 0
     })
 
-    // statsMvpPlayer?.map(e => {
-    //     kd_p += e.kd_p
-    //     kpr_p += e.kpr_p
-    //     dpr_p += e.dpr_p
-    //     impact_p += e.impact_p
-    //     rating += e.rating
-    //     k += e.k
-    //     a += e.a
-    //     d += e.d
-    // })
-
     totalStatsPlayer[0] = {
         "name": nameP,
         "nickname": nickname,

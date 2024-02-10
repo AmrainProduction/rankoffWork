@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.008a2279.css",
-    "main.js": "/static/js/main.abb00df0.js",
+    "main.css": "/static/css/main.620a3786.css",
+    "main.js": "/static/js/main.c30e4783.js",
     "static/media/ArtegraSans-Bold.ttf": "/static/media/ArtegraSans-Bold.da44aa68938af12c8c37.ttf",
     "static/media/DrukCyr-Medium.eot": "/static/media/DrukCyr-Medium.d3ed9c1ccf57848ea1ad.eot",
     "static/media/DrukCyr-Medium.ttf": "/static/media/DrukCyr-Medium.8d002b52be6529b27cc2.ttf",
@@ -15,7 +15,7 @@
     "index.html": "/index.html"
   },
   "entrypoints": [
-    "static/css/main.008a2279.css",
-    "static/js/main.abb00df0.js"
+    "static/css/main.620a3786.css",
+    "static/js/main.c30e4783.js"
   ]
 }

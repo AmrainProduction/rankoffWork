@@ -431,85 +431,85 @@ const PictureResult2 = (props) => {
         let max = []
         let maxRating = 0
 
-        if (players[0].t1p1_rating > maxRating) {
+        if(t1p1_rating > maxRating) {
             max[0] = {
                 player: t1p1,
-                rating: players[0].t1p1_rating,
+                rating: t1p1_rating,
             }
 
-            maxRating = players[0].t1p1_rating
+            maxRating = t1p1_rating
         }
-        if (players[0].t1p2_rating > maxRating) {
+        if (t1p2_rating > maxRating) {
             max[0] = {
                 player: t1p2,
-                rating: players[0].t1p2_rating,
+                rating: t1p2_rating,
             }
 
-            maxRating = players[0].t1p2_rating
+            maxRating = t1p2_rating
         }
-        if (players[0].t1p3_rating > maxRating) {
+        if (t1p3_rating > maxRating) {
             max[0] = {
                 player: t1p3,
-                rating: players[0].t1p3_rating,
+                rating: t1p3_rating,
             }
 
-            maxRating = players[0].t1p3_rating
+            maxRating = t1p3_rating
         }
-        if (players[0].t1p4_rating > maxRating) {
+        if (t1p4_rating > maxRating) {
             max[0] = {
                 player: t1p4,
-                rating: players[0].t1p4_rating,
+                rating: t1p4_rating,
             }
 
-            maxRating = players[0].t1p4_rating
+            maxRating = t1p4_rating
         }
-        if (players[0].t1p5_rating > maxRating) {
+        if (t1p5_rating > maxRating) {
             max[0] = {
                 player: t1p5,
-                rating: players[0].t1p5_rating,
+                rating: t1p5_rating,
             }
 
-            maxRating = players[0].t1p5_rating
+            maxRating = t1p5_rating
         }
-        if (players[0].t2p1_rating > maxRating) {
+        if (t2p1_rating > maxRating) {
             max[0] = {
                 player: t2p1,
-                rating: players[0].t2p1_rating,
+                rating: t2p1_rating,
             }
 
-            maxRating = players[0].t2p1_rating
+            maxRating = t2p1_rating
         }
-        if (players[0].t2p2_rating > maxRating) {
+        if (t2p2_rating > maxRating) {
             max[0] = {
                 player: t2p2,
-                rating: players[0].t2p2_rating,
+                rating: t2p2_rating,
             }
 
-            maxRating = players[0].t2p2_rating
+            maxRating = t2p2_rating
         }
-        if (players[0].t2p3_rating > maxRating) {
+        if (t2p3_rating > maxRating) {
             max[0] = {
                 player: t2p3,
-                rating: players[0].t2p3_rating,
+                rating: t2p3_rating,
             }
 
-            maxRating = players[0].t2p3_rating
+            maxRating = t2p3_rating
         }
-        if (players[0].t2p4_rating > maxRating) {
+        if (t2p4_rating > maxRating) {
             max[0] = {
                 player: t2p4,
-                rating: players[0].t2p4_rating,
+                rating: t2p4_rating,
             }
 
-            maxRating = players[0].t2p4_rating
+            maxRating = t2p4_rating
         }
-        if (players[0].t2p5_rating > maxRating) {
+        if (t2p5_rating > maxRating) {
             max[0] = {
                 player: t2p5,
-                rating: players[0].t2p5_rating,
+                rating: t2p5_rating,
             }
         }
-console.log(matchMaps)
+
         return (
             <div className={classes.wrapperMatchResult}>
                 <div className={classes.wrapperTopSection}>

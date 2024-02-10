@@ -51,7 +51,7 @@ const TopPlayersTour = () => {
                 </div>
                 <div className={classes.menu}>
                     <div className={classes.wrapperListMatches}>
-                        <div className={classes.titleBox}>Выбор матча:</div>
+                        <div className={classes.titleBox}>Выбор турнира:</div>
                         <div className={classes.listMatches}>
                             {toursID.map((e, index) => {
                                 return (
