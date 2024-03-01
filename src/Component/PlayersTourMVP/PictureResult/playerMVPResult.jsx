@@ -70,7 +70,6 @@ const PlayerMVPResult = (props) => {
     let personal_d = 0
 
 
-
     playerInfo?.data?.map(e => {
         player_id = e.player_id
         nameP = e.name
@@ -130,7 +129,7 @@ const PlayerMVPResult = (props) => {
                     k += match.t1p1_k
                     a += match.t1p1_a
                     d += match.t1p1_d
-                     count++
+                    count++
                 }
 
                 if (match.t1p2 === nickname) {
@@ -143,7 +142,7 @@ const PlayerMVPResult = (props) => {
                     k += match.t1p2_k
                     a += match.t1p2_a
                     d += match.t1p2_d
-                     count++
+                    count++
                 }
 
                 if (match.t1p3 === nickname) {
@@ -156,7 +155,7 @@ const PlayerMVPResult = (props) => {
                     k += match.t1p3_k
                     a += match.t1p3_a
                     d += match.t1p3_d
-                     count++
+                    count++
                 }
 
                 if (match.t1p4 === nickname) {
@@ -169,7 +168,7 @@ const PlayerMVPResult = (props) => {
                     k += match.t1p4_k
                     a += match.t1p4_a
                     d += match.t1p4_d
-                     count++
+                    count++
                 }
 
                 if (match.t1p5 === nickname) {
@@ -182,7 +181,7 @@ const PlayerMVPResult = (props) => {
                     k += match.t1p5_k
                     a += match.t1p5_a
                     d += match.t1p5_d
-                     count++
+                    count++
                 }
 
 
@@ -222,7 +221,7 @@ const PlayerMVPResult = (props) => {
                     k += match.t2p1_k
                     a += match.t2p1_a
                     d += match.t2p1_d
-                     count++
+                    count++
                 }
 
                 if (match.t2p2 === nickname) {
@@ -235,7 +234,7 @@ const PlayerMVPResult = (props) => {
                     k += match.t2p2_k
                     a += match.t2p2_a
                     d += match.t2p2_d
-                     count++
+                    count++
                 }
 
                 if (match.t2p3 === nickname) {
@@ -248,7 +247,7 @@ const PlayerMVPResult = (props) => {
                     k += match.t2p3_k
                     a += match.t2p3_a
                     d += match.t2p3_d
-                     count++
+                    count++
                 }
 
                 if (match.t2p4 === nickname) {
@@ -261,7 +260,7 @@ const PlayerMVPResult = (props) => {
                     k += match.t2p4_k
                     a += match.t2p4_a
                     d += match.t2p4_d
-                     count++
+                    count++
                 }
 
                 if (match.t2p5 === nickname) {
@@ -274,7 +273,7 @@ const PlayerMVPResult = (props) => {
                     k += match.t2p5_k
                     a += match.t2p5_a
                     d += match.t2p5_d
-                     count++
+                    count++
                 }
 
 
@@ -332,8 +331,8 @@ const PlayerMVPResult = (props) => {
                 "logo_team": logo_team,
                 "team_opponent": team_opponent,
                 "logo_team_opponent": logo_team_opponent,
-                "scoreWin": (count_1_win + count_2_win) ,
-                "scoreLose": (count_1_lose + count_2_lose) ,
+                "scoreWin": (count_1_win + count_2_win),
+                "scoreLose": (count_1_lose + count_2_lose),
             }
         }
 
@@ -383,7 +382,7 @@ const PlayerMVPResult = (props) => {
                     <div className={classes.titleBanner}>
                         <img src={`/images/DataInImage/MVP_banner_title.svg`} alt="/"/>
                     </div>
-                    <div className={classes.nameTour}>{statsMvpPlayer[0]?.name_tour} [GROUP STAGE]</div>
+                    <div className={classes.nameTour}>{statsMvpPlayer[0]?.name_tour}</div>
                     <div className={classes.tableStats}>
                         <div className={classes.rowTitleTable}>
                             <div className={classes.opponent}>Match</div>
@@ -400,7 +399,13 @@ const PlayerMVPResult = (props) => {
                             return (
                                 <div key={index} className={classes.rowTable}>
                                     <div className={classes.opponent}>
-                                        {e.scoreWin + " : " + e.scoreLose}
+                                        <span style={{
+                                            color: e.scoreWin >= e.scoreLose ?  "#7bc551" : "#cc5656",
+                                            marginRight: "5%"
+                                        }}>{e.scoreWin}</span>:
+                                        <span style={{
+                                            marginLeft: "5%"
+                                        }}>{e.scoreLose}</span>
                                         <img src={`/images/LogoTeams/${e.logo_team_opponent}`} alt="/"/>
                                     </div>
                                     <div className={classes.dateMatch}>{e.date_match}</div>
@@ -443,25 +448,25 @@ const PlayerMVPResult = (props) => {
                             <div className={classes.a}>{totalStatsPlayer[0]?.a}</div>
                             <div className={classes.d}>{totalStatsPlayer[0]?.d}</div>
                             <div className={classes.kd} style={
-                                        {
-                                            color: totalStatsPlayer[0]?.kd_p < 0.9 ? "#cc5656" : totalStatsPlayer[0]?.kd_p > 1.05 ? "#7bc551" : "#b29936"
-                                        }
-                                    }>{totalStatsPlayer[0]?.kd_p}</div>
+                                {
+                                    color: totalStatsPlayer[0]?.kd_p < 0.9 ? "#cc5656" : totalStatsPlayer[0]?.kd_p > 1.05 ? "#7bc551" : "#b29936"
+                                }
+                            }>{totalStatsPlayer[0]?.kd_p}</div>
                             <div className={classes.kpr} style={
-                                        {
-                                            color: totalStatsPlayer[0]?.kpr_p < 0.60 ? "#cc5656" : totalStatsPlayer[0]?.kpr_p > 0.65 ? totalStatsPlayer[0]?.kpr_p > 0.70 ? "#7bc551" : "#b29936" : "#b29936"
-                                        }
-                                    }>{totalStatsPlayer[0]?.kpr_p}</div>
+                                {
+                                    color: totalStatsPlayer[0]?.kpr_p < 0.60 ? "#cc5656" : totalStatsPlayer[0]?.kpr_p > 0.65 ? totalStatsPlayer[0]?.kpr_p > 0.70 ? "#7bc551" : "#b29936" : "#b29936"
+                                }
+                            }>{totalStatsPlayer[0]?.kpr_p}</div>
                             <div className={classes.impact} style={
-                                        {
-                                            color: totalStatsPlayer[0]?.impact_p < 1 ? "#cc5656" : totalStatsPlayer[0]?.impact_p > 1 ? totalStatsPlayer[0]?.impact_p >= 1.15 ? "#7bc551" : "#b29936" : "#b29936"
-                                        }
-                                    }>{totalStatsPlayer[0]?.impact_p}</div>
+                                {
+                                    color: totalStatsPlayer[0]?.impact_p < 1 ? "#cc5656" : totalStatsPlayer[0]?.impact_p > 1 ? totalStatsPlayer[0]?.impact_p >= 1.15 ? "#7bc551" : "#b29936" : "#b29936"
+                                }
+                            }>{totalStatsPlayer[0]?.impact_p}</div>
                             <div className={classes.rating} style={
-                                        {
-                                            color: totalStatsPlayer[0]?.rating < 1 ? "#cc5656" : totalStatsPlayer[0]?.rating > 1 ? totalStatsPlayer[0]?.rating >= 1.10 ? "#7bc551" : "#b29936" : "#b29936"
-                                        }
-                                    }>{totalStatsPlayer[0]?.rating}</div>
+                                {
+                                    color: totalStatsPlayer[0]?.rating < 1 ? "#cc5656" : totalStatsPlayer[0]?.rating > 1 ? totalStatsPlayer[0]?.rating >= 1.10 ? "#7bc551" : "#b29936" : "#b29936"
+                                }
+                            }>{totalStatsPlayer[0]?.rating}</div>
                         </div>
                     </div>
                     <div className={classes.player}>

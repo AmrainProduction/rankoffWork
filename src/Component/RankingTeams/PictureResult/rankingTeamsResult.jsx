@@ -1,0 +1,173 @@
+import React, {useState} from 'react';
+import classes from "../rankingTeams.module.css";
+import {
+    useGetCurrentRankingTeamsQuery,
+    useGetMatchesByNameTourQuery,
+    useGetMatchesQuery,
+    useGetPlayersQuery, useGetRankingTeamsQuery,
+    useGetTeamsTournamentsByNameQuery, useGetTournamentByNameQuery
+} from "../../../store/api/apiSlice";
+import CountryFlagPlayer from "../../../Function/countryFlagPlayer";
+import CountryFlagTeam from "../../../Function/countryFlagTeam";
+
+const RankingTeamsResult = (props) => {
+    let date = props.date
+
+    //получаем рейтинг за выбранную дату
+    const rankingsTeam = useGetCurrentRankingTeamsQuery({date})
+
+    // подсчет разницы положения каждой команды, поднялась она или опустилась в топе и на сколько
+
+    const teamsTours = useGetRankingTeamsQuery()
+
+
+    let arrAllDates = []
+
+
+    if (teamsTours.data) {
+        if (teamsTours.data.length > 0) {
+
+            // получаем массив всех дат турниров
+
+            teamsTours.data.map(e => {
+                if (e.points_team !== null) {
+                    arrAllDates.push(e.end_date)
+                }
+            })
+
+            // убираем повторяющиеся даты, оставляем уникальные
+
+            arrAllDates = arrAllDates.filter((item, index) => {
+                return arrAllDates.indexOf(item) === index
+            });
+
+            arrAllDates = arrAllDates.filter(e => e <= (date))
+
+            date = arrAllDates[1] //берем предыдущую дату от самой последней для посчета разницы положения команд в топе
+
+        }
+    }
+
+    //функция подсчета показателя смещения команды в топе
+
+    let penultimateDateRankingsTeam = useGetCurrentRankingTeamsQuery({date})
+
+    const diffPositionTeam = (positionTeam1, team1, id) => {
+        let diff
+        if (penultimateDateRankingsTeam.data) {
+            if (penultimateDateRankingsTeam.data.length > 0) {
+
+                return (
+                    penultimateDateRankingsTeam.data.filter(team => team.name_team === team1 && team.team_id === id).map((e, index) => {
+
+                        diff = e.position_team - positionTeam1
+
+                        if (diff > 0) {
+                            return <div key={index} style={{
+                                background: "linear-gradient(to left, #398535FF 1%, transparent 100%)",
+                            }}>+{diff}</div>
+                        } else if (diff < 0) {
+                            return <div key={index} style={{
+                                background: "linear-gradient(to left, #853535FF 1%, transparent 100%)"
+                            }}>{diff}</div>
+                        } else {
+                            return <div key={index}></div>
+                        }
+                    })
+                )
+            }
+        }
+
+    }
+
+
+    if (teamsTours.data && rankingsTeam.data) {
+        if (teamsTours.data.length > 0 && rankingsTeam.data.length > 0) {
+
+            let objDate = new Date(rankingsTeam.data[0].end_date).toLocaleString("en-us", {month: "long"})
+
+            objDate = +(rankingsTeam.data[0].end_date.slice(8)) + " " + objDate + ", " + rankingsTeam.data[0].end_date.slice(0, 4)
+
+            return (
+                <div className={classes.wrapperTopResult}>
+                    <div className={classes.nameTour}>{"world ranking on " + objDate}</div>
+                    <div className={classes.topResult}>
+                        <div className={classes.wrapperPlayerTitle}>
+                            <div className={classes.playerTitle}>
+                                <div className={classes.dataNumberPlayerTitle}>#</div>
+                                <div className={classes.wrapperTeam}>Team</div>
+                                <div className={classes.dataRoster}>Roster</div>
+                                <div className={classes.dataPoints}>Points</div>
+                                <div className={classes.dataDiffPosition}></div>
+                            </div>
+                        </div>
+                        {rankingsTeam.data.map((e, index) => {
+                            let diffPos = diffPositionTeam(e.position_team, e.name_team, e.team_id)
+                            if (index < 10) {
+                                return (
+                                    <div key={index} className={classes.wrapperPlayer}>
+                                        <div className={classes.player}>
+                                            <div className={classes.dataNumberPlayerTitle}>{++index}</div>
+                                            <div className={classes.wrapperTeam}>
+                                                <div className={classes.logoTeam}>
+                                                    <img src={`/images/LogoTeams/${e.logo_team}`} alt="/"/>
+                                                </div>
+                                                <div className={classes.dataNameTeam}>
+                                                    <div className={classes.dataFlagTeamCountry}>
+                                                        <CountryFlagTeam p1={e.player1} p2={e.player2} p3={e.player3}
+                                                                         p4={e.player4} p5={e.player5} mode="team"/>
+                                                    </div>
+                                                    {e.name_team}
+                                                </div>
+                                            </div>
+
+                                            <div className={classes.dataRoster}>
+                                                <div className={classes.playerRoster}>
+                                                    <img src={`/images/LogoPlayers/${e.logo_player1 === "PlayerDefaultLogo.png" ? "PlayerDefaultLogoRanking.png" : e.logo_player1}`}
+                                                         onError={(event) => event.target.setAttribute("src", "/images/LogoPlayers/PlayerDefaultLogoRanking.png")}
+                                                         alt="/"/>
+                                                    <div className={classes.nicknamePlayerRoster}>{e.player1}</div>
+                                                </div>
+                                                <div className={classes.playerRoster}>
+                                                     <img src={`/images/LogoPlayers/${e.logo_player2 === "PlayerDefaultLogo.png" ? "PlayerDefaultLogoRanking.png" : e.logo_player2}`}
+                                                         onError={(event) => event.target.setAttribute("src", "/images/LogoPlayers/PlayerDefaultLogoRanking.png")}
+                                                         alt="/"/>
+                                                    <div className={classes.nicknamePlayerRoster}>{e.player2}</div>
+                                                </div>
+                                                <div className={classes.playerRoster}>
+                                                     <img src={`/images/LogoPlayers/${e.logo_player3 === "PlayerDefaultLogo.png" ? "PlayerDefaultLogoRanking.png" : e.logo_player3}`}
+                                                         onError={(event) => event.target.setAttribute("src", "/images/LogoPlayers/PlayerDefaultLogoRanking.png")}
+                                                         alt="/"/>
+                                                    <div className={classes.nicknamePlayerRoster}>{e.player3}</div>
+                                                </div>
+                                                <div className={classes.playerRoster}>
+                                                     <img src={`/images/LogoPlayers/${e.logo_player4 === "PlayerDefaultLogo.png" ? "PlayerDefaultLogoRanking.png" : e.logo_player4}`}
+                                                         onError={(event) => event.target.setAttribute("src", "/images/LogoPlayers/PlayerDefaultLogoRanking.png")}
+                                                         alt="/"/>
+                                                    <div className={classes.nicknamePlayerRoster}>{e.player4}</div>
+                                                </div>
+                                                <div className={classes.playerRoster}>
+                                                    <img src={`/images/LogoPlayers/${e.logo_player5 === "PlayerDefaultLogo.png" ? "PlayerDefaultLogoRanking.png" : e.logo_player5}`}
+                                                         onError={(event) => event.target.setAttribute("src", "/images/LogoPlayers/PlayerDefaultLogoRanking.png")}
+                                                         alt="/"/>
+                                                    <div className={classes.nicknamePlayerRoster}>{e.player5}</div>
+                                                </div>
+                                            </div>
+                                            <div className={classes.dataPoints}>{e.points_team}</div>
+                                            <div className={classes.dataDiffPosition}>{diffPos}</div>
+                                        </div>
+                                    </div>
+                                )
+                            }
+                        })}
+                    </div>
+                    <img src={`/images/DataInImage/Ranking_teams_banner.png`} className={classes.bgImg} alt="/"/>
+                </div>
+            )
+        }
+    }
+
+
+}
+
+export default RankingTeamsResult;

@@ -66,23 +66,38 @@ const TopPlayersTourResultML = (props) => {
 
     sortMatches = allMatches?.data?.filter(e => e.name_tour_for_sort === name)
 
-    if(props.stage && props.stage.length > 0) {
-        if(props.stage === "group") {
+    if (props.stage && props.stage.length > 0) {
+        if (props.stage === "group") {
             sortByStageMatches = allShortMatches?.data?.filter(e => e.name_stage.toLowerCase().includes(props.stage))
+
+            sortByStageMatches?.map(e => {
+                sortMatches?.map((e2, index) => {
+                    if (e.name_match_for_sort === e2.name_match_for_sort) {
+                        nececssaryMatches[index] = e2
+                    }
+                })
+            })
         }
 
-        if(props.stage === "playoff") {
+        if (props.stage === "playoff") {
             sortByStageMatches = allShortMatches?.data?.filter(e => e.name_stage.toLowerCase().includes(props.stage))
+
+            sortByStageMatches?.map(e => {
+                sortMatches?.map((e2, index) => {
+                    if (e.name_match_for_sort === e2.name_match_for_sort) {
+                        nececssaryMatches[index] = e2
+                    }
+                })
+            })
         }
+
+        if (props.stage === "full") {
+            nececssaryMatches =  allMatches?.data?.filter(e => e.name_tour_for_sort === name)
+        }
+
+    } else {
+        nececssaryMatches =  allMatches?.data?.filter(e => e.name_tour_for_sort === name)
     }
-
-    sortByStageMatches?.map(e => {
-        sortMatches?.map((e2, index) => {
-            if(e.name_match_for_sort === e2.name_match_for_sort) {
-                nececssaryMatches[index] = e2
-            }
-        })
-    })
 
     allPlayers?.data?.map((player, index) => {
         player_id = player.player_id
@@ -324,7 +339,7 @@ const TopPlayersTourResultML = (props) => {
                 "l_rounds": rounds_lose,
                 "w_maps": (count_1_win + count_2_win),
                 "l_maps": (count_1_lose + count_2_lose),
-                "WL": Math.round((((count_1_win + count_2_win) === 0 ? 0 : (count_1_win + count_2_win))/((count_1_lose + count_2_lose) === 0 ? 1 : (count_1_lose + count_2_lose))) * 100) / 100,
+                "WL": Math.round((((count_1_win + count_2_win) === 0 ? 0 : (count_1_win + count_2_win)) / ((count_1_lose + count_2_lose) === 0 ? 1 : (count_1_lose + count_2_lose))) * 100) / 100,
                 "maps": maps_all,
                 "rm": maps_all,
                 "team": team,
@@ -431,11 +446,16 @@ const TopPlayersTourResultML = (props) => {
                             return (
                                 <div key={index} className={classes.wrapperPlayer}>
                                     <div className={classes.player}>
-                                        <div className={classes.dataNumberPlayerTitle}>{++index}<span className={classes.separator1}></span></div>
-                                        <div className={classes.dataNicknamePlayerNickname}>{e.nickname}<span className={classes.separator2}></span></div>
-                                        <div className={classes.dataPlayerK}>{e.k}<span className={classes.separator3}></span></div>
-                                        <div className={classes.dataPlayerD}>{e.d}<span className={classes.separator4}></span></div>
-                                        <div className={classes.dataPlayerA}>{e.a}<span className={classes.separator5}></span></div>
+                                        <div className={classes.dataNumberPlayerTitle}>{++index}<span
+                                            className={classes.separator1}></span></div>
+                                        <div className={classes.dataNicknamePlayerNickname}>{e.nickname}<span
+                                            className={classes.separator2}></span></div>
+                                        <div className={classes.dataPlayerK}>{e.k}<span
+                                            className={classes.separator3}></span></div>
+                                        <div className={classes.dataPlayerD}>{e.d}<span
+                                            className={classes.separator4}></span></div>
+                                        <div className={classes.dataPlayerA}>{e.a}<span
+                                            className={classes.separator5}></span></div>
                                         <div className={classes.dataPlayerDiff} style={
                                             {
                                                 color: (e.k - e.d) < 0 ? "#e02b25" : "#4ae025"
@@ -446,13 +466,14 @@ const TopPlayersTourResultML = (props) => {
                                                 color: e.kd_p < 0.9 ? "#e02b25" : e.kd_p > 1.05 ? "#4ae025" : "#e0c725"
                                             }
                                         }>{e.kd_p}
-                                        <span className={classes.separator7}></span></div>
+                                            <span className={classes.separator7}></span></div>
                                         <div className={classes.dataPlayerKpr} style={
                                             {
                                                 color: e.kpr_p < 0.60 ? "#e02b25" : e.kpr_p > 0.65 ? e.kpr_p > 0.70 ? "#4ae025" : "#e0c725" : "#e0c725"
                                             }
                                         }>{e.kpr_p}<span className={classes.separator8}></span></div>
-                                        <div className={classes.dataPlayerMaps}>{e.maps}<span className={classes.separator9}></span></div>
+                                        <div className={classes.dataPlayerMaps}>{e.maps}<span
+                                            className={classes.separator9}></span></div>
                                         <div className={classes.dataPlayerW_rounds} style={
                                             {
                                                 color: e.WL >= 1 ? "#4ae025" : "#e02b25"
@@ -474,7 +495,7 @@ const TopPlayersTourResultML = (props) => {
                         }
                     })}
                 </div>
-                <img src={`/images/DataInImage/TOP_PLAYERS_TOUR_MOBLIVE.png`} className={classes.bgImg} alt="/"/>
+                <img src={`/images/DataInImage/TOP_PLAYERS_TOUR_MOBLIVE2.png`} className={classes.bgImg} alt="/"/>
             </div>
         )
     }

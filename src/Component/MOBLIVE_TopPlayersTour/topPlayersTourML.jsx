@@ -56,6 +56,11 @@ const TopPlayersTourML = () => {
                         <div className={classes.titleBox}>Выбор стадии:</div>
                         <div className={classes.listMatches}>
                             <div className={classes.match} onClick={() => {
+                                setChoiceStage("full")
+                            }}>
+                                Full
+                            </div>
+                            <div className={classes.match} onClick={() => {
                                 setChoiceStage("playoff")
                             }}>
                                 Play-off Stage

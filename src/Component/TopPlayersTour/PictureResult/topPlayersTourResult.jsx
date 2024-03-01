@@ -3,7 +3,7 @@ import classes from "../topPlayersTour.module.css";
 import {
     useGetMatchesByNameTourQuery,
     useGetMatchesQuery,
-    useGetPlayersQuery,
+    useGetPlayersQuery, useGetShortMatchesByTournamentQuery,
     useGetTeamsTournamentsByNameQuery, useGetTournamentByNameQuery
 } from "../../../store/api/apiSlice";
 import CountryFlagPlayer from "../../../Function/countryFlagPlayer";
@@ -12,14 +12,18 @@ import CurrentTeamPlayer from "../../../Function/currentTeamPlayer";
 const TopPlayersTourResult = (props) => {
 
     const name = props.name
+    const stage = (props.stage === "playoff" ? "PLAYOFF" : props.stage === "group" ? "GROUP STAGE" : "")
 
     const allPlayers = useGetPlayersQuery()
     const allMatches = useGetMatchesQuery()
+    const allShortMatches = useGetShortMatchesByTournamentQuery({name})
     const teamsTour = useGetTeamsTournamentsByNameQuery({name})
     const tourInfo = useGetTournamentByNameQuery({name})
 
     let players_tournaments = []
     let sortMatches = []
+    let sortByStageMatches = []
+    let nececssaryMatches = []
 
     let name_tour_sort
     let name_tour
@@ -61,7 +65,39 @@ const TopPlayersTourResult = (props) => {
     let maps_lose = 0
 
     sortMatches = allMatches?.data?.filter(e => e.name_tour_for_sort === name)
-// sortMatches = allMatches?.data
+
+    if (props.stage && props.stage.length > 0) {
+        if (props.stage === "group") {
+            sortByStageMatches = allShortMatches?.data?.filter(e => e.name_stage.toLowerCase().includes(props.stage))
+
+            sortByStageMatches?.map(e => {
+                sortMatches?.map((e2, index) => {
+                    if (e.name_match_for_sort === e2.name_match_for_sort) {
+                        nececssaryMatches[index] = e2
+                    }
+                })
+            })
+        }
+
+        if (props.stage === "playoff") {
+            sortByStageMatches = allShortMatches?.data?.filter(e => e.name_stage.toLowerCase().includes(props.stage))
+
+            sortByStageMatches?.map(e => {
+                sortMatches?.map((e2, index) => {
+                    if (e.name_match_for_sort === e2.name_match_for_sort) {
+                        nececssaryMatches[index] = e2
+                    }
+                })
+            })
+        }
+
+        if (props.stage === "full") {
+            nececssaryMatches =  allMatches?.data?.filter(e => e.name_tour_for_sort === name)
+        }
+
+    } else {
+        nececssaryMatches =  allMatches?.data?.filter(e => e.name_tour_for_sort === name)
+    }
 
     allPlayers?.data?.map((player, index) => {
         player_id = player.player_id
@@ -71,20 +107,20 @@ const TopPlayersTourResult = (props) => {
         country_flag = player.country_flag
 
         teamsTour?.data?.map(e => {
-            if(player.team === e.name_team && e.name_tour_sort === name) {
+            if (player.team === e.name_team && e.name_tour_sort === name) {
                 position_team = e.position_team
             }
         })
 
         tourInfo?.data?.map(e => {
-            if(e.name_tour_sort === name) {
+            if (e.name_tour_sort === name) {
                 date_tour = e.date_tour
                 end_date_tour = e.date_end
                 logo_tour = e.logo_tour
             }
         })
 
-        sortMatches?.map((match, indexMatch) => {
+        nececssaryMatches?.map((match, indexMatch) => {
 
             //----------сбор общей информации о трунире------------------------------
 
@@ -301,6 +337,9 @@ const TopPlayersTourResult = (props) => {
                 "d": d,
                 "w_rounds": rounds_win,
                 "l_rounds": rounds_lose,
+                "w_maps": (count_1_win + count_2_win),
+                "l_maps": (count_1_lose + count_2_lose),
+                "WL": Math.round((((count_1_win + count_2_win) === 0 ? 0 : (count_1_win + count_2_win)) / ((count_1_lose + count_2_lose) === 0 ? 1 : (count_1_lose + count_2_lose))) * 100) / 100,
                 "maps": maps_all,
                 "rm": maps_all,
                 "team": team,
@@ -357,7 +396,7 @@ const TopPlayersTourResult = (props) => {
 
     let divider = 2
 
-    while(max_maps > 1) {
+    while (max_maps > 1) {
 
         tempArr = []
 
@@ -366,7 +405,7 @@ const TopPlayersTourResult = (props) => {
         divider += 0.04
 
         players_tournaments.map(e => {
-            if(e.maps >= max_maps) {
+            if (e.maps >= max_maps) {
                 tempArr.push(e)
             }
         })
@@ -385,7 +424,7 @@ const TopPlayersTourResult = (props) => {
         return (
             <div className={classes.wrapperTopResult}>
                 <div className={classes.wrapperTourInfo}>
-                <div className={classes.nameTour}>{players_tournaments[0].name_tour} [GROUP STAGE]</div>
+                <div className={classes.nameTour}>{players_tournaments[0].name_tour.toUpperCase()} {stage ? "[" + stage + "]" : ""}</div>
                 <div className={classes.nameTour}></div>
                 <div className={classes.logoTour}>
                     <img src={`/images/LogoAndBannerTour/${players_tournaments[0].logo_tour}`} alt="/"/>

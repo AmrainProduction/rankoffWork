@@ -28,6 +28,7 @@ import TopPlayersTour from "./Component/TopPlayersTour/topPlayersTour";
 import RankoffPredicts from "./Component/RankoffPredicts/rankoffPredicts";
 import PlayersTourMVP from "./Component/PlayersTourMVP/playersTourMVP";
 import TopPlayersTourML from "./Component/MOBLIVE_TopPlayersTour/topPlayersTourML";
+import RankingTeams from "./Component/RankingTeams/rankingTeams";
 
 const router = createBrowserRouter(createRoutesFromElements(
     <Route path='/' element={<Layout/>} errorElement={<ErrorPage/>}>
@@ -35,9 +36,9 @@ const router = createBrowserRouter(createRoutesFromElements(
         <Route path='functions' element={<Functions/>}/>
         <Route path='RESULT_MATCH' element={<MatchPicture2/>}/>
         <Route path='TOP_PLAYERS_TOUR' element={<TopPlayersTour/>}/>
-        <Route path='TOP_PLAYERS_TOUR_ML' element={<TopPlayersTourML/>}/>
         <Route path='MVP_PLAYER_TOUR' element={<PlayersTourMVP/>}/>
         <Route path='PREDICT' element={<RankoffPredicts/>}/>
+        <Route path='RANKING_TEAMS' element={<RankingTeams/>}/>
         <Route path='nir' element={<Nir2/>}/>
         <Route path='nir2' element={<Nir21/>}/>
         <Route path='topYearPlayers' element={<TopYearPlayers/>}/>
@@ -55,6 +56,7 @@ function App() {
     useEffect(() => {
         window.scrollTo(0, 0)
     }, [])
+
 
     return (
         <RouterProvider router={router}/>

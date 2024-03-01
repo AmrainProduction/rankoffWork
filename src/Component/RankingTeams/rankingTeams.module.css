@@ -1,0 +1,346 @@
+@font-face {
+    font-family: "DrukCyrMedium";
+    src: url("../../Fonts/DrukCyr-Medium.eot");
+    src: url("../../Fonts/DrukCyr-Medium.eot?#iefix") format("embedded-opentype"),
+    url("../../Fonts/DrukCyr-Medium.woff") format("woff"),
+    url("../../Fonts/DrukCyr-Medium.ttf") format("truetype");
+    font-style: normal;
+    font-weight: 500;
+}
+
+@font-face {
+    font-family: "Mazzard M";
+    src: url("../../Fonts/Mazzard/MazzardM-SemiBold.eot");
+    src: url("../../Fonts/Mazzard/MazzardM-SemiBold.eot?#iefix") format("embedded-opentype"),
+    url("../../Fonts/Mazzard/MazzardM-SemiBold.woff") format("woff"),
+    url("../../Fonts/Mazzard/MazzardM-SemiBold.ttf") format("truetype");
+    font-style: normal;
+    font-weight: 500;
+}
+
+.bgImg {
+    height: auto;
+    width: 100%;
+}
+
+.wrapperMenu {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 100%;
+    height: 15%;
+    background: #584669;
+    margin-bottom: 10px;
+    padding: 5px;
+}
+
+.wrapperLogo {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 10%;
+    height: 100%;
+}
+
+.wrapperLogo img {
+    height: auto;
+    width: 100%;
+}
+
+.menu {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    height: 100%;
+    width: 60%;
+}
+
+.wrapperListMatches {
+    display: block;
+    width: 100%;
+    height: 100%;
+    margin-right: 2%;
+    margin-left: 2%;
+    padding: 2px;
+}
+
+.titleBox {
+    width: 100%;
+    height: auto;
+    padding: 1% 0;
+    color: white;
+}
+
+.listMatches {
+    display: block;
+    overflow-y: scroll;
+    border-radius: 3px;
+    width: 100%;
+    min-width: 150px;
+    height: 120px;
+    background: #7B6592;
+    color: white;
+}
+
+.match {
+    background: #6a5783;
+    margin-bottom: 2px;
+    padding: 5px;
+    cursor: pointer;
+    transition: all 0.5s;
+}
+
+.match:hover {
+    background: #56476b;
+}
+
+.btnSaveAsImage {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 3px;
+    padding: 1%;
+    background: #6a5783;
+    height: 120px;
+    width: 100%;
+    cursor: pointer;
+    color: white;
+}
+
+.btnSaveAsImage:hover {
+    background: #615073;
+}
+
+.wrapperTopResult {
+    font-family: "DrukCyrMedium", sans-serif;
+    display: block;
+    justify-content: center;
+    align-items: flex-start;
+    height: 100%;
+    width: 100%;
+    z-index: 20;
+    position: relative;
+}
+
+.wrapperTopResult img {
+    height: auto;
+    width: 100%;
+}
+
+.wrapperTourInfo {
+    display: flex;
+    align-items: flex-end;
+    top: 1%;
+    height: 12%;
+    width: 100%;
+    position: absolute;
+}
+
+.nameTour {
+    font-family: "Century Gothic", sans-serif;
+    width: 100%;
+    height: 2%;
+    padding-left: 49.4%;
+    top: 11.4%;
+    color: #eee9ec;
+    font-size: clamp(9px, 1.5vw, 36px);
+    position: absolute;
+}
+
+.topResult {
+    top: 15%;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+}
+
+.wrapperPlayerTitle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 2%;
+    top: 14.35%;
+    margin-bottom: 5px;
+}
+
+
+.playerTitle {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    color: white;
+    height: 100%;
+    font-size: clamp(9px, 1vw, 36px);
+    width: 93%;
+    /*background: #403459;*/
+    border-radius: 0.4vw;
+    background: #e61655;
+}
+
+.playerTitle div {
+    font-family: "Mazzard M", sans-serif;
+    font-size: clamp(9px, 1.1vw, 36px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.playerTitle div:not(:last-child) {
+    margin-right: 5px;
+}
+
+
+.wrapperPlayer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 7.6%;
+    top: 14.35%;
+    margin-bottom: 7px;
+    font-family: "Mazzard M", sans-serif;
+}
+
+
+.player {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    color: white;
+    height: 100%;
+    width: 93%;
+    border-radius: 0.4vw;
+    background: #1c1c1c;
+    overflow: hidden;
+}
+
+.wrapperPlayer div:not(:last-child) {
+    margin-right: 5px;
+}
+
+.dataNumberPlayerTitle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 5%;
+    font-size: clamp(9px, 1.5vw, 36px);
+}
+
+.wrapperTeam {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    height: 100%;
+    width: 22%;
+    font-size: clamp(9px, 1.5vw, 36px);
+}
+
+.dataRoster {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    height: 100%;
+    width: 58%;
+    position: relative;
+}
+
+.dataPoints {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 10%;
+    font-size: clamp(9px, 1.5vw, 36px);
+}
+
+.dataDiffPosition {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 5%;
+    font-size: clamp(9px, 1.5vw, 36px);
+}
+
+.dataDiffPosition div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    /*color: #853535;*/
+}
+
+.logoTeam {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 30%;
+}
+
+.dataNameTeam {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    height: 100%;
+    width: 70%;
+}
+
+.dataFlagTeamCountry {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    margin-right: 10%;
+    width: 10%;
+}
+
+.dataPlayerMaps {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 6%;
+}
+
+.logoTeam img {
+    height: 60%;
+    width: auto;
+}
+
+.playerRoster {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 18%;
+    padding-top: 4%;
+}
+
+.nicknamePlayerRoster {
+    font-family: "HelveticaNeueCyr", sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    height: 40%;
+    bottom: 0;
+    width: 20%;
+    background: linear-gradient(to top, #1c1c1c 10%, transparent 100%);
+    font-size: clamp(4px, 1.3vw, 20px);
+    position: absolute;
+}
+
+.playerRoster img {
+    height: 180%;
+    width: auto;
+}
+
+
+
+
+
+
+

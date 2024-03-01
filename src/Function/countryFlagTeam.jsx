@@ -17,9 +17,9 @@ const CountryFlagTeam = (props) => {
         }
     } else if (props.mode === "team") {
         style = {
-            marginLeft: "5px",
+            marginLeft: "5%",
             width: "auto",
-            height: "10px",
+            height: "14%",
         }
     }
 
