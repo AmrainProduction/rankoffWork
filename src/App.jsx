@@ -27,13 +27,13 @@ import TopMinorPlayers from "./Component/TopMinorPlayers/topMinorPlayers";
 import TopPlayersTour from "./Component/TopPlayersTour/topPlayersTour";
 import RankoffPredicts from "./Component/RankoffPredicts/rankoffPredicts";
 import PlayersTourMVP from "./Component/PlayersTourMVP/playersTourMVP";
-import TopPlayersTourML from "./Component/MOBLIVE_TopPlayersTour/topPlayersTourML";
 import RankingTeams from "./Component/RankingTeams/rankingTeams";
+import EmojiTeams from "./Component/EmojiTeams/emojiTeams";
 
 const router = createBrowserRouter(createRoutesFromElements(
     <Route path='/' element={<Layout/>} errorElement={<ErrorPage/>}>
         <Route index element={<MatchPicture2/>}/>
-        <Route path='functions' element={<Functions/>}/>
+        <Route path='FUNCTIONS' element={<Functions/>}/>
         <Route path='RESULT_MATCH' element={<MatchPicture2/>}/>
         <Route path='TOP_PLAYERS_TOUR' element={<TopPlayersTour/>}/>
         <Route path='MVP_PLAYER_TOUR' element={<PlayersTourMVP/>}/>
@@ -48,6 +48,7 @@ const router = createBrowserRouter(createRoutesFromElements(
         <Route path='RGG_RESULT_MATCH' element={<ResultMatchRGG/>}/>
         <Route path='RGG_PREMATCH' element={<PrematchStatsTeams/>}/>
         <Route path='RGG_TOP_TOUR' element={<TopPlayersRGG/>}/>
+        <Route path='EMOJI' element={<EmojiTeams/>}/>
     </Route>
 ))
 
@@ -56,6 +57,33 @@ function App() {
     useEffect(() => {
         window.scrollTo(0, 0)
     }, [])
+
+    // let arrP = []
+    // let arrT = []
+    //
+    // const {data} = useGetPlayersQuery()
+    //
+    // data?.map(e => {
+    //     arrP.push({
+    //         "logo": e.logo_player,
+    //         "nickname": e.nickname,
+    //         "player_id": e.player_id,
+    //     })
+    // })
+    //
+    // console.log(arrP)
+
+    // const teams = useGetTeamsQuery()
+    //
+    // teams?.data?.map(e => {
+    //     arrT.push({
+    //         "name": e.name_team,
+    //         "logo": e.logo_team,
+    //         "id": e.team_id,
+    //     })
+    // })
+    //
+    // console.log(arrT)
 
 
     return (

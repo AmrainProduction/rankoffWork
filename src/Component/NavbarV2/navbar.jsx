@@ -11,7 +11,7 @@ const Navbar = () => {
                     <img src={logo1} className='AppLogo' alt="logo"/>
                 </NavLink>
                 {/*<NavLink to={'functions'} className='navLink'>*/}
-                {/*    <li>Functions</li>*/}
+                {/*    <li>AllFunctions</li>*/}
                 {/*</NavLink>*/}
                 {/*<NavLink to={'MatchResult'} className='navLink'>*/}
                 {/*    <li>Match Result</li>*/}

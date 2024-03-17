@@ -11,6 +11,7 @@ import CurrentTeamPlayer from "../../../Function/currentTeamPlayer";
 
 const PlayerMVPResult = (props) => {
 
+    const choiceStage = props.stage
     const name = props.player.nickname
     const nickname = props.player.nickname
     const id = props.player.player_id
@@ -382,7 +383,8 @@ const PlayerMVPResult = (props) => {
                     <div className={classes.titleBanner}>
                         <img src={`/images/DataInImage/MVP_banner_title.svg`} alt="/"/>
                     </div>
-                    <div className={classes.nameTour}>{statsMvpPlayer[0]?.name_tour}</div>
+                    <div
+                        className={classes.nameTour}>{statsMvpPlayer[0]?.name_tour.toUpperCase()} {choiceStage.length > 0 ? "[" + choiceStage.toUpperCase() + "]" : ""}</div>
                     <div className={classes.tableStats}>
                         <div className={classes.rowTitleTable}>
                             <div className={classes.opponent}>Match</div>
@@ -400,7 +402,7 @@ const PlayerMVPResult = (props) => {
                                 <div key={index} className={classes.rowTable}>
                                     <div className={classes.opponent}>
                                         <span style={{
-                                            color: e.scoreWin >= e.scoreLose ?  "#7bc551" : "#cc5656",
+                                            color: e.scoreWin >= e.scoreLose ? "#7bc551" : "#cc5656",
                                             marginRight: "5%"
                                         }}>{e.scoreWin}</span>:
                                         <span style={{

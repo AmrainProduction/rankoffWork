@@ -10,6 +10,7 @@ const PlayersTourMVP = () => {
     const listTours = useGetTournamentsQuery()
 
     const [choiceTour, setChoiceTour] = useState([])
+    const [choiceStage, setChoiceStage] = useState([])
 
     let name = choiceTour
 
@@ -103,6 +104,28 @@ const PlayersTourMVP = () => {
                 </div>
                 <div className={classes.menu}>
                     <div className={classes.wrapperListMatches}>
+                        <div className={classes.titleBox}>Выбор стадии:</div>
+                        <div className={classes.listMatches}>
+                            <div className={classes.match} onClick={() => {
+                                setChoiceStage("")
+                            }}>
+                                Full
+                            </div>
+                            <div className={classes.match} onClick={() => {
+                                setChoiceStage("playoff stage")
+                            }}>
+                                Play-off Stage
+                            </div>
+                            <div className={classes.match} onClick={() => {
+                                setChoiceStage("group stage")
+                            }}>
+                                Group Stage
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className={classes.wrapperListMatches}>
+                        <div className={classes.titleBox}>Выбор игрока:</div>
                         <div className={classes.listMatches}>
                             {players?.map((e, index) => {
                                 return (
@@ -117,6 +140,7 @@ const PlayersTourMVP = () => {
                     </div>
 
                     <div className={classes.wrapperListMatches}>
+                        <div className={classes.titleBox}>Выбор матча:</div>
                         <div className={classes.listMatches}>
                             {toursID.map((e, index) => {
                                 return (
@@ -136,7 +160,8 @@ const PlayersTourMVP = () => {
                 </div>
             </div>
             <div className={classes.wrapperPicture} ref={ref}>
-                {(choiceTour.length > 0 && choicePlayer?.nickname?.length > 0) ? <PlayerMVPResult name={choiceTour} player={choicePlayer}/> : ""}
+                {(choiceTour.length > 0 && choicePlayer?.nickname?.length > 0) ?
+                    <PlayerMVPResult name={choiceTour} player={choicePlayer} stage={choiceStage}/> : ""}
             </div>
 
         </>

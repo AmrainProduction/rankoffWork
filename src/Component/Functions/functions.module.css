@@ -4,6 +4,7 @@
     align-items: center;
     height: 100%;
     width: 100%;
+    padding: 1%;
     background: #584669;
     grid-template-columns: 40% 60%;
 }
@@ -15,7 +16,7 @@
     height: 100%;
     width: 100%;
     background: #584669;
-    padding: 5px;
+    padding: 0 1% 0 0;
 }
 
 .wrapperOutputRes {
@@ -24,6 +25,7 @@
     align-items: center;
     height: 100%;
     width: 100%;
+    padding: 1%;
     background: #413749;
     color: white;
 }
@@ -45,4 +47,68 @@
 .wrapperElement:hover {
     background: #6b5175;
 }
+
+.wrapperStatsPlayersTour {
+    display: block;
+}
+
+.listTours {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 1%;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    max-width: 100%;
+    height: 30px;
+    margin-bottom: 1%;
+    background: #584669;
+}
+
+.actionButtons {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 1%;
+    height: 30px;
+    margin-bottom: 1%;
+    background: #584669;
+}
+
+.resultCommand {
+    display: flex;
+    height: 100%;
+    padding: 1%;
+    width: 100%;
+    overflow: hidden;
+    background: #584669;
+}
+
+.tour {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 1%;
+    padding: 0.2% 2%;
+    width: auto;
+    height: auto;
+    cursor: pointer;
+    background: #8C6899;
+}
+
+.tour:hover {
+    background: #6b5175;
+}
+
+.listTours::-webkit-scrollbar {
+    width: 0; /* в основном для вертикальных полос прокрутки */
+    height: 8px; /* в основном для горизонтальных полос прокрутки */
+}
+.listTours::-webkit-scrollbar-thumb { /* плашка-бегунок */
+    background: #8c77a4;
+}
+.listTours::-webkit-scrollbar-track { /* фон */
+    background: #6f617c;
+}
+
 

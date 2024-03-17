@@ -559,7 +559,7 @@ const PictureResult2 = (props) => {
                                                 opacity: e.mapPick === 'Decider' ? "0" : "1"
                                             }} />
                                         </div>
-                                        <div className={classes.mapName}>{e.name === "Zone9" ? "Zone 9" : e.name}</div>
+                                        <div className={classes.mapName}>{e.name.replace(/(\D)(\d)/, "$1 $2")}</div>
                                         <div className={classes.mapName}>{e.mapPickTeam}</div>
                                     </div>
                                 </div>

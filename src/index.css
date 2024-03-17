@@ -66,14 +66,21 @@ body::-webkit-scrollbar{
   background: #867b9a;
 }
 
+/*::-webkit-scrollbar-thumb {*/
+/*  -webkit-border-radius: 0;*/
+/*  border-radius: 0;*/
+/*  background: #584669;*/
+/*}*/
+
+/*::-webkit-scrollbar{*/
+/*  width: 8px;*/
+/*  height: 100%;*/
+/*  background: #867b9a;*/
+/*}*/
+
 @media (max-width: 1045px) {
   ::-webkit-scrollbar{
     width: 0;
     height: 0;
   }
 }
-
-/*div.App {*/
-/*  min-height: 100%;*/
-/*  overflow: hidden;*/
-/*}*/
