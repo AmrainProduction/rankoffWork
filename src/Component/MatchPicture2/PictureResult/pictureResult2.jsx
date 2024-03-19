@@ -16,6 +16,17 @@ const PictureResult2 = (props) => {
 
     let count = 0
 
+    let t1p1_nickname
+    let t1p2_nickname
+    let t1p3_nickname
+    let t1p4_nickname
+    let t1p5_nickname
+    let t2p1_nickname
+    let t2p2_nickname
+    let t2p3_nickname
+    let t2p4_nickname
+    let t2p5_nickname
+
     let scoreT1 = 0
     let scoreT2 = 0
     let dateMatch
@@ -186,7 +197,18 @@ const PictureResult2 = (props) => {
 
             allRounds = (el.total_r_team1 + el.total_r_team2)
             count++
-            if (el.t1p1) {
+            t1p1_nickname = t1p1
+            t1p2_nickname = t1p2
+            t1p3_nickname = t1p3
+            t1p4_nickname = t1p4
+            t1p5_nickname = t1p5
+            t2p1_nickname = t2p1
+            t2p2_nickname = t2p2
+            t2p3_nickname = t2p3
+            t2p4_nickname = t2p4
+            t2p5_nickname = t2p5
+
+            if (el.t1p1 && (el.t1p1 === t1p1_nickname)) {
                 t1p1 = el.t1p1
                 t1p1_logo = el.t1p1_logo
                 t1p1_k += el.t1p1_k
@@ -198,8 +220,20 @@ const PictureResult2 = (props) => {
                 t1p1_impact += el.t1p1_impact
                 t1p1_rating += el.t1p1_rating
                 t1p1_count_maps += 1
+            } else {
+                t1p1 = el.t1p1
+                t1p1_logo = el.t1p1_logo
+                t1p1_k = el.t1p1_k
+                t1p1_a = el.t1p1_a
+                t1p1_d = el.t1p1_d
+                t1p1_kd = el.t1p1_kd
+                t1p1_dpr = (el.t1p1_d / allRounds)
+                t1p1_kpr = (el.t1p1_k / allRounds)
+                t1p1_impact = el.t1p1_impact
+                t1p1_rating = el.t1p1_rating
+                t1p1_count_maps = 1
             }
-            if (el.t1p2) {
+            if (el.t1p2 && (el.t1p2 === t1p2_nickname)) {
                 t1p2 = el.t1p2
                 t1p2_logo = el.t1p2_logo
                 t1p2_k += el.t1p2_k
@@ -211,8 +245,20 @@ const PictureResult2 = (props) => {
                 t1p2_impact += el.t1p2_impact
                 t1p2_rating += el.t1p2_rating
                 t1p2_count_maps += 1
+            } else {
+                t1p2 = el.t1p2
+                t1p2_logo = el.t1p2_logo
+                t1p2_k = el.t1p2_k
+                t1p2_a = el.t1p2_a
+                t1p2_d = el.t1p2_d
+                t1p2_kd = el.t1p2_kd
+                t1p2_dpr = (el.t1p2_d / allRounds)
+                t1p2_kpr = (el.t1p2_k / allRounds)
+                t1p2_impact = el.t1p2_impact
+                t1p2_rating = el.t1p2_rating
+                t1p2_count_maps = 1
             }
-            if (el.t1p3) {
+            if (el.t1p3 && (el.t1p3 === t1p3_nickname)) {
                 t1p3 = el.t1p3
                 t1p3_logo = el.t1p3_logo
                 t1p3_k += el.t1p3_k
@@ -224,8 +270,20 @@ const PictureResult2 = (props) => {
                 t1p3_impact += el.t1p3_impact
                 t1p3_rating += el.t1p3_rating
                 t1p3_count_maps += 1
+            } else {
+                t1p3 = el.t1p3
+                t1p3_logo = el.t1p3_logo
+                t1p3_k = el.t1p3_k
+                t1p3_a = el.t1p3_a
+                t1p3_d = el.t1p3_d
+                t1p3_kd = el.t1p3_kd
+                t1p3_dpr = (el.t1p3_d / allRounds)
+                t1p3_kpr = (el.t1p3_k / allRounds)
+                t1p3_impact = el.t1p3_impact
+                t1p3_rating = el.t1p3_rating
+                t1p3_count_maps = 1
             }
-            if (el.t1p4) {
+            if (el.t1p4 && (el.t1p4 === t1p4_nickname)) {
                 t1p4 = el.t1p4
                 t1p4_logo = el.t1p4_logo
                 t1p4_k += el.t1p4_k
@@ -237,8 +295,20 @@ const PictureResult2 = (props) => {
                 t1p4_impact += el.t1p4_impact
                 t1p4_rating += el.t1p4_rating
                 t1p4_count_maps += 1
+            } else {
+                t1p4 = el.t1p4
+                t1p4_logo = el.t1p4_logo
+                t1p4_k = el.t1p4_k
+                t1p4_a = el.t1p4_a
+                t1p4_d = el.t1p4_d
+                t1p4_kd = el.t1p4_kd
+                t1p4_dpr = (el.t1p4_d / allRounds)
+                t1p4_kpr = (el.t1p4_k / allRounds)
+                t1p4_impact = el.t1p4_impact
+                t1p4_rating = el.t1p4_rating
+                t1p4_count_maps = 1
             }
-            if (el.t1p5) {
+            if (el.t1p5 && (el.t1p5 === t1p5_nickname)) {
                 t1p5 = el.t1p5
                 t1p5_logo = el.t1p5_logo
                 t1p5_k += el.t1p5_k
@@ -250,9 +320,21 @@ const PictureResult2 = (props) => {
                 t1p5_impact += el.t1p5_impact
                 t1p5_rating += el.t1p5_rating
                 t1p5_count_maps += 1
+            } else {
+                t1p5 = el.t1p5
+                t1p5_logo = el.t1p5_logo
+                t1p5_k = el.t1p5_k
+                t1p5_a = el.t1p5_a
+                t1p5_d = el.t1p5_d
+                t1p5_kd = el.t1p5_kd
+                t1p5_dpr = (el.t1p5_d / allRounds)
+                t1p5_kpr = (el.t1p5_k / allRounds)
+                t1p5_impact = el.t1p5_impact
+                t1p5_rating = el.t1p5_rating
+                t1p5_count_maps = 1
             }
 
-            if (el.t2p1) {
+            if (el.t2p1 && (el.t2p1 === t2p1_nickname)) {
                 t2p1 = el.t2p1
                 t2p1_logo = el.t2p1_logo
                 t2p1_k += el.t2p1_k
@@ -264,8 +346,20 @@ const PictureResult2 = (props) => {
                 t2p1_impact += el.t2p1_impact
                 t2p1_rating += el.t2p1_rating
                 t2p1_count_maps += 1
+            } else {
+                t2p1 = el.t2p1
+                t2p1_logo = el.t2p1_logo
+                t2p1_k = el.t2p1_k
+                t2p1_a = el.t2p1_a
+                t2p1_d = el.t2p1_d
+                t2p1_kd = el.t2p1_kd
+                t2p1_dpr = (el.t2p1_d / allRounds)
+                t2p1_kpr = (el.t2p1_k / allRounds)
+                t2p1_impact = el.t2p1_impact
+                t2p1_rating = el.t2p1_rating
+                t2p1_count_maps = 1
             }
-            if (el.t2p2) {
+            if (el.t2p2 && (el.t2p2 === t2p2_nickname)) {
                 t2p2 = el.t2p2
                 t2p2_logo = el.t2p2_logo
                 t2p2_k += el.t2p2_k
@@ -277,8 +371,20 @@ const PictureResult2 = (props) => {
                 t2p2_impact += el.t2p2_impact
                 t2p2_rating += el.t2p2_rating
                 t2p2_count_maps += 1
+            } else {
+                t2p2 = el.t2p2
+                t2p2_logo = el.t2p2_logo
+                t2p2_k = el.t2p2_k
+                t2p2_a = el.t2p2_a
+                t2p2_d = el.t2p2_d
+                t2p2_kd = el.t2p2_kd
+                t2p2_dpr = (el.t2p2_d / allRounds)
+                t2p2_kpr = (el.t2p2_k / allRounds)
+                t2p2_impact = el.t2p2_impact
+                t2p2_rating = el.t2p2_rating
+                t2p2_count_maps = 1
             }
-            if (el.t2p3) {
+            if (el.t2p3 && (el.t2p3 === t2p3_nickname)) {
                 t2p3 = el.t2p3
                 t2p3_logo = el.t2p3_logo
                 t2p3_k += el.t2p3_k
@@ -290,9 +396,21 @@ const PictureResult2 = (props) => {
                 t2p3_impact += el.t2p3_impact
                 t2p3_rating += el.t2p3_rating
                 t2p3_count_maps += 1
+            } else {
+                t2p3 = el.t2p3
+                t2p3_logo = el.t2p3_logo
+                t2p3_k = el.t2p3_k
+                t2p3_a = el.t2p3_a
+                t2p3_d = el.t2p3_d
+                t2p3_kd = el.t2p3_kd
+                t2p3_dpr = (el.t2p3_d / allRounds)
+                t2p3_kpr = (el.t2p3_k / allRounds)
+                t2p3_impact = el.t2p3_impact
+                t2p3_rating = el.t2p3_rating
+                t2p3_count_maps = 1
             }
 
-            if (el.t2p4) {
+            if (el.t2p4 && (el.t2p4 === t2p4_nickname)) {
                 t2p4 = el.t2p4
                 t2p4_logo = el.t2p4_logo
                 t2p4_k += el.t2p4_k
@@ -304,8 +422,20 @@ const PictureResult2 = (props) => {
                 t2p4_impact += el.t2p4_impact
                 t2p4_rating += el.t2p4_rating
                 t2p4_count_maps += 1
+            } else {
+                t2p4 = el.t2p4
+                t2p4_logo = el.t2p4_logo
+                t2p4_k = el.t2p4_k
+                t2p4_a = el.t2p4_a
+                t2p4_d = el.t2p4_d
+                t2p4_kd = el.t2p4_kd
+                t2p4_dpr = (el.t2p4_d / allRounds)
+                t2p4_kpr = (el.t2p4_k / allRounds)
+                t2p4_impact = el.t2p4_impact
+                t2p4_rating = el.t2p4_rating
+                t2p4_count_maps = 1
             }
-            if (el.t2p5) {
+            if (el.t2p5 && (el.t2p5 === t2p5_nickname)) {
                 t2p5 = el.t2p5
                 t2p5_logo = el.t2p5_logo
                 t2p5_k += el.t2p5_k
@@ -317,6 +447,18 @@ const PictureResult2 = (props) => {
                 t2p5_impact += el.t2p5_impact
                 t2p5_rating += el.t2p5_rating
                 t2p5_count_maps += 1
+            } else {
+                t2p5 = el.t2p5
+                t2p5_logo = el.t2p5_logo
+                t2p5_k = el.t2p5_k
+                t2p5_a = el.t2p5_a
+                t2p5_d = el.t2p5_d
+                t2p5_kd = el.t2p5_kd
+                t2p5_dpr = (el.t2p5_d / allRounds)
+                t2p5_kpr = (el.t2p5_k / allRounds)
+                t2p5_impact = el.t2p5_impact
+                t2p5_rating = el.t2p5_rating
+                t2p5_count_maps = 1
             }
         })
 
