@@ -66,6 +66,30 @@ const StatsPlayersNecessaryTour = () => {
     let maps_win = 0
     let maps_lose = 0
 
+    const normalizeRating = (rating) => {
+        if(rating > 2) {
+            return rating = 2
+        } else {
+            return rating
+        }
+    }
+
+    const normalizeImpact = (impact) => {
+        if(impact > 2) {
+            return impact = 2
+        } else {
+            return impact
+        }
+    }
+
+    const normalizeKD = (kd) => {
+        if(kd > 3) {
+            return kd = 3
+        } else {
+            return kd
+        }
+    }
+
     sortMatches = allMatches?.data
 
     //получем массив игроков с турнира
@@ -193,9 +217,9 @@ const StatsPlayersNecessaryTour = () => {
 
             if ((match.t1p1 === nickname && match.t1p1_id === player_id)) {
                 logo_player = match.t1p1_logo
-                rating += match.t1p1_rating
-                impact_p += match.t1p1_impact
-                kd_p += match.t1p1_kd
+                rating += normalizeRating(match.t1p1_rating)
+                impact_p += normalizeImpact(match.t1p1_impact)
+                kd_p += normalizeKD(match.t1p1_kd)
                 kpr_p += (match.t1p1_k / (match.total_r_team1 + match.total_r_team2))
                 dpr_p += (match.t1p1_d / (match.total_r_team1 + match.total_r_team2))
                 k += match.t1p1_k
@@ -205,9 +229,9 @@ const StatsPlayersNecessaryTour = () => {
 
             if ((match.t1p2 === nickname && match.t1p2_id === player_id)) {
                 logo_player = match.t1p2_logo
-                rating += match.t1p2_rating
-                impact_p += match.t1p2_impact
-                kd_p += match.t1p2_kd
+                rating += normalizeRating(match.t1p2_rating)
+                impact_p += normalizeImpact(match.t1p2_impact)
+                kd_p += normalizeKD(match.t1p2_kd)
                 kpr_p += (match.t1p2_k / (match.total_r_team1 + match.total_r_team2))
                 dpr_p += (match.t1p2_d / (match.total_r_team1 + match.total_r_team2))
                 k += match.t1p2_k
@@ -218,9 +242,9 @@ const StatsPlayersNecessaryTour = () => {
             if ((match.t1p3 === nickname && match.t1p3_id === player_id)) {
 
                 logo_player = match.t1p3_logo
-                rating += match.t1p3_rating
-                impact_p += match.t1p3_impact
-                kd_p += match.t1p3_kd
+                rating += normalizeRating(match.t1p3_rating)
+                impact_p += normalizeImpact(match.t1p3_impact)
+                kd_p += normalizeKD(match.t1p3_kd)
                 kpr_p += (match.t1p3_k / (match.total_r_team1 + match.total_r_team2))
                 dpr_p += (match.t1p3_d / (match.total_r_team1 + match.total_r_team2))
                 k += match.t1p3_k
@@ -230,9 +254,9 @@ const StatsPlayersNecessaryTour = () => {
 
             if ((match.t1p4 === nickname && match.t1p4_id === player_id)) {
                 logo_player = match.t1p4_logo
-                rating += match.t1p4_rating
-                impact_p += match.t1p4_impact
-                kd_p += match.t1p4_kd
+                rating += normalizeRating(match.t1p4_rating)
+                impact_p += normalizeImpact(match.t1p4_impact)
+                kd_p += normalizeKD(match.t1p4_kd)
                 kpr_p += (match.t1p4_k / (match.total_r_team1 + match.total_r_team2))
                 dpr_p += (match.t1p4_d / (match.total_r_team1 + match.total_r_team2))
                 k += match.t1p4_k
@@ -242,9 +266,9 @@ const StatsPlayersNecessaryTour = () => {
 
             if ((match.t1p5 === nickname && match.t1p5_id === player_id)) {
                 logo_player = match.t1p5_logo
-                rating += match.t1p5_rating
-                impact_p += match.t1p5_impact
-                kd_p += match.t1p5_kd
+                rating += normalizeRating(match.t1p5_rating)
+                impact_p += normalizeImpact(match.t1p5_impact)
+                kd_p += normalizeKD(match.t1p5_kd)
                 kpr_p += (match.t1p5_k / (match.total_r_team1 + match.total_r_team2))
                 dpr_p += (match.t1p5_d / (match.total_r_team1 + match.total_r_team2))
                 k += match.t1p5_k
@@ -278,9 +302,9 @@ const StatsPlayersNecessaryTour = () => {
 
             if ((match.t2p1 === nickname && match.t2p1_id === player_id)) {
                 logo_player = match.t2p1_logo
-                rating += match.t2p1_rating
-                impact_p += match.t2p1_impact
-                kd_p += match.t2p1_kd
+                rating += normalizeRating(match.t2p1_rating)
+                impact_p += normalizeImpact(match.t2p1_impact)
+                kd_p += normalizeKD(match.t2p1_kd)
                 kpr_p += (match.t2p1_k / (match.total_r_team1 + match.total_r_team2))
                 dpr_p += (match.t2p1_d / (match.total_r_team1 + match.total_r_team2))
                 k += match.t2p1_k
@@ -290,9 +314,9 @@ const StatsPlayersNecessaryTour = () => {
 
             if ((match.t2p2 === nickname && match.t2p2_id === player_id)) {
                 logo_player = match.t2p2_logo
-                rating += match.t2p2_rating
-                impact_p += match.t2p2_impact
-                kd_p += match.t2p2_kd
+                rating += normalizeRating(match.t2p2_rating)
+                impact_p += normalizeImpact(match.t2p2_impact)
+                kd_p += normalizeKD(match.t2p2_kd)
                 kpr_p += (match.t2p2_k / (match.total_r_team1 + match.total_r_team2))
                 dpr_p += (match.t2p2_d / (match.total_r_team1 + match.total_r_team2))
                 k += match.t2p2_k
@@ -302,9 +326,9 @@ const StatsPlayersNecessaryTour = () => {
 
             if ((match.t2p3 === nickname && match.t2p3_id === player_id)) {
                 logo_player = match.t2p3_logo
-                rating += match.t2p3_rating
-                impact_p += match.t2p3_impact
-                kd_p += match.t2p3_kd
+                rating += normalizeRating(match.t2p3_rating)
+                impact_p += normalizeImpact(match.t2p3_impact)
+                kd_p += normalizeKD(match.t2p3_kd)
                 kpr_p += (match.t2p3_k / (match.total_r_team1 + match.total_r_team2))
                 dpr_p += (match.t2p3_d / (match.total_r_team1 + match.total_r_team2))
                 k += match.t2p3_k
@@ -314,9 +338,9 @@ const StatsPlayersNecessaryTour = () => {
 
             if ((match.t2p4 === nickname && match.t2p4_id === player_id)) {
                 logo_player = match.t2p4_logo
-                rating += match.t2p4_rating
-                impact_p += match.t2p4_impact
-                kd_p += match.t2p4_kd
+                rating += normalizeRating(match.t2p4_rating)
+                impact_p += normalizeImpact(match.t2p4_impact)
+                kd_p += normalizeKD(match.t2p4_kd)
                 kpr_p += (match.t2p4_k / (match.total_r_team1 + match.total_r_team2))
                 dpr_p += (match.t2p4_d / (match.total_r_team1 + match.total_r_team2))
                 k += match.t2p4_k
@@ -326,9 +350,9 @@ const StatsPlayersNecessaryTour = () => {
 
             if ((match.t2p5 === nickname && match.t2p5_id === player_id)) {
                 logo_player = match.t2p5_logo
-                rating += match.t2p5_rating
-                impact_p += match.t2p5_impact
-                kd_p += match.t2p5_kd
+                rating += normalizeRating(match.t2p5_rating)
+                impact_p += normalizeImpact(match.t2p5_impact)
+                kd_p += normalizeKD(match.t2p5_kd)
                 kpr_p += (match.t2p5_k / (match.total_r_team1 + match.total_r_team2))
                 dpr_p += (match.t2p5_d / (match.total_r_team1 + match.total_r_team2))
                 k += match.t2p5_k
@@ -368,8 +392,8 @@ const StatsPlayersNecessaryTour = () => {
                 "surname": surname,
                 "country_flag": country_flag,
                 "kd_p": Math.round(kd_p * 100) / 100,
-                "kpr_p": Math.round(kpr_p * 100) / 100,
-                "dpr_p": Math.round(dpr_p * 100) / 100,
+                "kpr_p": Math.round((k / (rounds_win + rounds_lose))  * 100) / 100,
+                "dpr_p": Math.round((d / (rounds_win + rounds_lose)) * 100) / 100,
                 "impact_p": Math.round(impact_p * 100) / 100,
                 "rating": Math.round(rating * 100) / 100,
                 "k": k,
@@ -385,37 +409,7 @@ const StatsPlayersNecessaryTour = () => {
                 "position_team": position_team,
             })
 
-            // name_tour_sort = "ERROR"
 
-            // query += "INSERT INTO players_tournaments (`id`, `name_tour_sort`, `name_tour`, `date_tour`, `end_date_tour`, `logo_tour`, `logo_player`, `player_id`, `name`, `nickname`, `surname`, `country_flag`, `kd_p`, `kpr_p`, `dpr_p`, `impact_p`, `rating`, `k`, `a`, `d`, `w_rounds`, `l_rounds`, `maps`, `rm`, `team`, `logo_team`, `team_id`, `position_team`) VALUES ("
-            //     + `'` + `${name_tour_sort}` + `'` + ','
-            //     + `'` + `${name_tour}` + `'` + ','
-            //     + `'` + `${date_tour}` + `'` + ','
-            //     + `'` + `${end_date_tour}` + `'` + ','
-            //     + `'` + `${logo_tour}` + `'` + ','
-            //     + `'` + `${logo_player}` + `'` + ','
-            //     + player_id + ','
-            //     + `'` + `${nameP}` + `'` + ','
-            //     + `'` + `${nickname}` + `'` + ','
-            //     + `'` + `${surname}` + `'` + ','
-            //     + `'` + `${country_flag}` + `'` + ','
-            //     + (Math.round(kd_p * 100) / 100) + ','
-            //     + (Math.round(kpr_p * 100) / 100) + ','
-            //     + (Math.round(dpr_p * 100) / 100) + ','
-            //     + (Math.round(impact_p * 100) / 100) + ','
-            //     + (Math.round(rating * 100) / 100) + ','
-            //     + k + ','
-            //     + a + ','
-            //     + d + ','
-            //     + rounds_win + ','
-            //     + rounds_lose + ','
-            //     + maps_all + ','
-            //     + maps_all + ','
-            //     + `'` + `${team}` + `'` + ','
-            //     + `'` + `${logo_team}` + `'` + ','
-            //     + team_id + ','
-            //     + `'` + `${position_team}` + `'`
-            //     + "); \n"
         }
 
         kd_p = 0
@@ -503,7 +497,7 @@ const StatsPlayersNecessaryTour = () => {
             + `'` + `${e.nickname}` + `'` + ','
             + `'` + `${e.surname}` + `'` + ','
             + `'` + `${e.country_flag}` + `'` + ','
-            + (Math.round(e.kd_p * 100) / 100) + ','
+            + (Math.round((e.k / e.d) * 100) / 100) + ','
             + (Math.round(e.kpr_p * 100) / 100) + ','
             + (Math.round(e.dpr_p * 100) / 100) + ','
             + (Math.round(e.impact_p * 100) / 100) + ','

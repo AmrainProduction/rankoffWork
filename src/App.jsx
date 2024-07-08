@@ -29,10 +29,12 @@ import RankoffPredicts from "./Component/RankoffPredicts/rankoffPredicts";
 import PlayersTourMVP from "./Component/PlayersTourMVP/playersTourMVP";
 import RankingTeams from "./Component/RankingTeams/rankingTeams";
 import EmojiTeams from "./Component/EmojiTeams/emojiTeams";
+import TopPlayersByTours from "./Component/TopPlayersByTours/topPlayersByTours";
 
 const router = createBrowserRouter(createRoutesFromElements(
     <Route path='/' element={<Layout/>} errorElement={<ErrorPage/>}>
-        <Route index element={<MatchPicture2/>}/>
+        <Route index element={<ErrorPage/>}/>
+        <Route path='MATCHES' element={<MatchPicture2/>}/>
         <Route path='FUNCTIONS' element={<Functions/>}/>
         <Route path='RESULT_MATCH' element={<MatchPicture2/>}/>
         <Route path='TOP_PLAYERS_TOUR' element={<TopPlayersTour/>}/>
@@ -44,11 +46,12 @@ const router = createBrowserRouter(createRoutesFromElements(
         <Route path='topYearPlayers' element={<TopYearPlayers/>}/>
         <Route path='topYearTeams' element={<TopYearTeams/>}/>
         <Route path='topMinorPlayers' element={<TopMinorPlayers/>}/>
-        <Route path='NOOBS_RESULT_MATCH' element={<ResultMatchNoobs/>}/>
         <Route path='RGG_RESULT_MATCH' element={<ResultMatchRGG/>}/>
+        <Route path='NOOBS_MATCH_RESULT' element={<ResultMatchNoobs/>}/>
         <Route path='RGG_PREMATCH' element={<PrematchStatsTeams/>}/>
         <Route path='RGG_TOP_TOUR' element={<TopPlayersRGG/>}/>
         <Route path='EMOJI' element={<EmojiTeams/>}/>
+        <Route path='TOP' element={<TopPlayersByTours/>}/> // за несколько турниров сразу, надо в коде менять за какие
     </Route>
 ))
 
@@ -64,11 +67,12 @@ function App() {
     // const {data} = useGetPlayersQuery()
     //
     // data?.map(e => {
-    //     arrP.push({
-    //         "logo": e.logo_player,
-    //         "nickname": e.nickname,
-    //         "player_id": e.player_id,
-    //     })
+    //         arrP.push({
+    //             "logo": e.logo_player,
+    //             "nickname": e.nickname,
+    //             "player_id": e.player_id,
+    //         })
+    //
     // })
     //
     // console.log(arrP)
@@ -84,7 +88,6 @@ function App() {
     // })
     //
     // console.log(arrT)
-
 
     return (
         <RouterProvider router={router}/>

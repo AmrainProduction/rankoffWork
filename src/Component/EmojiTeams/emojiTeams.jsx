@@ -60,9 +60,9 @@ const EmojiTeams = () => {
                     </div>
                 </div>
             </div>
-            <div className={classes.wrapperPicture} ref={ref}>
+            <div className={classes.wrapperPicture} >
                 {choiceTeam.length > 0 ?
-                    <EmojiTeamsResult team={choiceTeam}/> : ""}
+                    <EmojiTeamsResult team={choiceTeam} test={ref}/> : ""}
             </div>
 
         </>

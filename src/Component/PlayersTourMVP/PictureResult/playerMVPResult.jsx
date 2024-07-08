@@ -8,6 +8,9 @@ import {
 } from "../../../store/api/apiSlice";
 import CountryFlagPlayer from "../../../Function/countryFlagPlayer";
 import CurrentTeamPlayer from "../../../Function/currentTeamPlayer";
+import normalizeRating from "../../Functions/AllFunctions/normalizeRating";
+import normalizeImpact from "../../Functions/AllFunctions/normalizeImpact";
+import normalizeKD from "../../Functions/AllFunctions/normalizeKD";
 
 const PlayerMVPResult = (props) => {
 
@@ -69,6 +72,7 @@ const PlayerMVPResult = (props) => {
     let personal_k = 0
     let personal_a = 0
     let personal_d = 0
+    let personal_all_r = 0
 
 
     playerInfo?.data?.map(e => {
@@ -122,9 +126,9 @@ const PlayerMVPResult = (props) => {
 
                 if (match.t1p1 === nickname) {
                     logo_player = match.t1p1_logo
-                    rating += match.t1p1_rating
-                    impact_p += match.t1p1_impact
-                    kd_p += match.t1p1_kd
+                    rating += normalizeRating(match.t1p1_rating)
+                    impact_p += normalizeImpact(( match.t1p1_impact))
+                    kd_p += normalizeKD(match.t1p1_kd)
                     kpr_p += (match.t1p1_k / (match.total_r_team1 + match.total_r_team2))
                     dpr_p += (match.t1p1_d / (match.total_r_team1 + match.total_r_team2))
                     k += match.t1p1_k
@@ -135,9 +139,9 @@ const PlayerMVPResult = (props) => {
 
                 if (match.t1p2 === nickname) {
                     logo_player = match.t1p2_logo
-                    rating += match.t1p2_rating
-                    impact_p += match.t1p2_impact
-                    kd_p += match.t1p2_kd
+                    rating += normalizeRating(match.t1p2_rating)
+                    impact_p += normalizeImpact(match.t1p2_impact)
+                    kd_p += normalizeKD(match.t1p2_kd)
                     kpr_p += (match.t1p2_k / (match.total_r_team1 + match.total_r_team2))
                     dpr_p += (match.t1p2_d / (match.total_r_team1 + match.total_r_team2))
                     k += match.t1p2_k
@@ -148,9 +152,9 @@ const PlayerMVPResult = (props) => {
 
                 if (match.t1p3 === nickname) {
                     logo_player = match.t1p3_logo
-                    rating += match.t1p3_rating
-                    impact_p += match.t1p3_impact
-                    kd_p += match.t1p3_kd
+                    rating += normalizeRating(match.t1p3_rating)
+                    impact_p += normalizeImpact(match.t1p3_impact)
+                    kd_p += normalizeKD(match.t1p3_kd)
                     kpr_p += (match.t1p3_k / (match.total_r_team1 + match.total_r_team2))
                     dpr_p += (match.t1p3_d / (match.total_r_team1 + match.total_r_team2))
                     k += match.t1p3_k
@@ -161,9 +165,9 @@ const PlayerMVPResult = (props) => {
 
                 if (match.t1p4 === nickname) {
                     logo_player = match.t1p4_logo
-                    rating += match.t1p4_rating
-                    impact_p += match.t1p4_impact
-                    kd_p += match.t1p4_kd
+                    rating += normalizeRating(match.t1p4_rating)
+                    impact_p += normalizeImpact(match.t1p4_impact)
+                    kd_p += normalizeKD(match.t1p4_kd)
                     kpr_p += (match.t1p4_k / (match.total_r_team1 + match.total_r_team2))
                     dpr_p += (match.t1p4_d / (match.total_r_team1 + match.total_r_team2))
                     k += match.t1p4_k
@@ -174,9 +178,9 @@ const PlayerMVPResult = (props) => {
 
                 if (match.t1p5 === nickname) {
                     logo_player = match.t1p5_logo
-                    rating += match.t1p5_rating
-                    impact_p += match.t1p5_impact
-                    kd_p += match.t1p5_kd
+                    rating += normalizeRating(match.t1p5_rating)
+                    impact_p += normalizeImpact(match.t1p5_impact)
+                    kd_p += normalizeKD(match.t1p5_kd)
                     kpr_p += (match.t1p5_k / (match.total_r_team1 + match.total_r_team2))
                     dpr_p += (match.t1p5_d / (match.total_r_team1 + match.total_r_team2))
                     k += match.t1p5_k
@@ -214,9 +218,9 @@ const PlayerMVPResult = (props) => {
 
                 if (match.t2p1 === nickname) {
                     logo_player = match.t2p1_logo
-                    rating += match.t2p1_rating
-                    impact_p += match.t2p1_impact
-                    kd_p += match.t2p1_kd
+                    rating += normalizeRating(match.t2p1_rating)
+                    impact_p += normalizeImpact(match.t2p1_impact)
+                    kd_p += normalizeKD(match.t2p1_kd)
                     kpr_p += (match.t2p1_k / (match.total_r_team1 + match.total_r_team2))
                     dpr_p += (match.t2p1_d / (match.total_r_team1 + match.total_r_team2))
                     k += match.t2p1_k
@@ -227,9 +231,9 @@ const PlayerMVPResult = (props) => {
 
                 if (match.t2p2 === nickname) {
                     logo_player = match.t2p2_logo
-                    rating += match.t2p2_rating
-                    impact_p += match.t2p2_impact
-                    kd_p += match.t2p2_kd
+                    rating += normalizeRating(match.t2p2_rating)
+                    impact_p += normalizeImpact(match.t2p2_impact)
+                    kd_p += normalizeKD(match.t2p2_kd)
                     kpr_p += (match.t2p2_k / (match.total_r_team1 + match.total_r_team2))
                     dpr_p += (match.t2p2_d / (match.total_r_team1 + match.total_r_team2))
                     k += match.t2p2_k
@@ -240,9 +244,9 @@ const PlayerMVPResult = (props) => {
 
                 if (match.t2p3 === nickname) {
                     logo_player = match.t2p3_logo
-                    rating += match.t2p3_rating
-                    impact_p += match.t2p3_impact
-                    kd_p += match.t2p3_kd
+                    rating += normalizeRating(match.t2p3_rating)
+                    impact_p += normalizeImpact(match.t2p3_impact)
+                    kd_p += normalizeKD(match.t2p3_kd)
                     kpr_p += (match.t2p3_k / (match.total_r_team1 + match.total_r_team2))
                     dpr_p += (match.t2p3_d / (match.total_r_team1 + match.total_r_team2))
                     k += match.t2p3_k
@@ -253,9 +257,9 @@ const PlayerMVPResult = (props) => {
 
                 if (match.t2p4 === nickname) {
                     logo_player = match.t2p4_logo
-                    rating += match.t2p4_rating
-                    impact_p += match.t2p4_impact
-                    kd_p += match.t2p4_kd
+                    rating += normalizeRating(match.t2p4_rating)
+                    impact_p += normalizeImpact(match.t2p4_impact)
+                    kd_p += normalizeKD(match.t2p4_kd)
                     kpr_p += (match.t2p4_k / (match.total_r_team1 + match.total_r_team2))
                     dpr_p += (match.t2p4_d / (match.total_r_team1 + match.total_r_team2))
                     k += match.t2p4_k
@@ -266,9 +270,9 @@ const PlayerMVPResult = (props) => {
 
                 if (match.t2p5 === nickname) {
                     logo_player = match.t2p5_logo
-                    rating += match.t2p5_rating
-                    impact_p += match.t2p5_impact
-                    kd_p += match.t2p5_kd
+                    rating += normalizeRating( match.t2p5_rating)
+                    impact_p += normalizeImpact(match.t2p5_impact)
+                    kd_p += normalizeKD( match.t2p5_kd)
                     kpr_p += (match.t2p5_k / (match.total_r_team1 + match.total_r_team2))
                     dpr_p += (match.t2p5_d / (match.total_r_team1 + match.total_r_team2))
                     k += match.t2p5_k
@@ -299,6 +303,7 @@ const PlayerMVPResult = (props) => {
             personal_k += k
             personal_a += a
             personal_d += d
+            personal_all_r += rounds_win + rounds_lose
 
             rating = rating / maps_all
             impact_p = impact_p / maps_all
@@ -316,9 +321,9 @@ const PlayerMVPResult = (props) => {
                 "nickname": nickname,
                 "surname": surname,
                 "country_flag": country_flag,
-                "kd_p": Math.round(kd_p * 100) / 100,
-                "kpr_p": Math.round(kpr_p * 100) / 100,
-                "dpr_p": Math.round(dpr_p * 100) / 100,
+                "kd_p": Math.round((k/d) * 100) / 100,
+                "kpr_p": Math.round((k / (rounds_win + rounds_lose)) * 100) / 100,
+                "dpr_p": Math.round((d / (rounds_win + rounds_lose)) * 100) / 100,
                 "impact_p": Math.round(impact_p * 100) / 100,
                 "rating": Math.round(rating * 100) / 100,
                 "k": k,
@@ -366,9 +371,9 @@ const PlayerMVPResult = (props) => {
         "nickname": nickname,
         "surname": surname,
         "country_flag": country_flag,
-        "kd_p": Math.round((personal_kd_p / count) * 100) / 100,
-        "kpr_p": Math.round((personal_kpr_p / count) * 100) / 100,
-        "dpr_p": Math.round((personal_dpr_p / count) * 100) / 100,
+        "kd_p": Math.round((personal_k/personal_d) * 100) / 100,
+        "kpr_p": Math.round((personal_k / personal_all_r) * 100) / 100,
+        "dpr_p": Math.round((personal_d / personal_all_r) * 100) / 100,
         "impact_p": Math.round((personal_impact_p / count) * 100) / 100,
         "rating": Math.round((personal_rating / count) * 100) / 100,
         "k": personal_k,

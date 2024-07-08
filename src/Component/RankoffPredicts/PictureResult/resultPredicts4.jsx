@@ -5,6 +5,63 @@ import {WhoWinPredict} from "../../../Function/whoWinPredict";
 const ResultPredicts4 = (props) => {
     return (
         <div className={classes.wrapperTopResult}>
+            <div className={classes.wrapperInfoMatches}>
+                <div className={classes.infoMatches}>
+                    {props.matches[0].date.replaceAll("-", ".")}
+                </div>
+            </div>
+            <div className={classes.wrapperPredictorsName}>
+                <div className={classes.predictorsName}>
+                    {props.photos[0]}
+                </div>
+                <div className={classes.predictorsName}>
+                    {props.photos[1]}
+                </div>
+                <div className={classes.predictorsName}>
+                    {props.photos[2]}
+                </div>
+                <div className={classes.predictorsName}>
+                    {props.photos[3]}
+                </div>
+                <div className={classes.predictorsName}>
+                    {props.photos[4]}
+                </div>
+                <div className={classes.predictorsName}>
+                    {props.photos[5]}
+                </div>
+                <div className={classes.predictorsName}>
+                    {props.photos[6]}
+                </div>
+                <div className={classes.predictorsName}>
+                    {props.photos[7]}
+                </div>
+            </div>
+            <div className={classes.wrapperPredictors}>
+                <div className={classes.predictorPhoto}>
+                    <img src={`/images/Predictors/${props.photos[0] + ".jpg"}`} alt="/"/>
+                </div>
+                <div className={classes.predictorPhoto}>
+                    <img src={`/images/Predictors/${props.photos[1] + ".jpg"}`} alt="/"/>
+                </div>
+                <div className={classes.predictorPhoto}>
+                    <img src={`/images/Predictors/${props.photos[2] + ".jpg"}`} alt="/"/>
+                </div>
+                <div className={classes.predictorPhoto}>
+                    <img src={`/images/Predictors/${props.photos[3] + ".jpg"}`} alt="/"/>
+                </div>
+                <div className={classes.predictorPhoto}>
+                    <img src={`/images/Predictors/${props.photos[4] + ".jpg"}`} alt="/"/>
+                </div>
+                <div className={classes.predictorPhoto}>
+                    <img src={`/images/Predictors/${props.photos[5] + ".jpg"}`} alt="/"/>
+                </div>
+                <div className={classes.predictorPhoto}>
+                    <img src={`/images/Predictors/${props.photos[6] + ".jpg"}`} alt="/"/>
+                </div>
+                <div className={classes.predictorPhoto}>
+                    <img src={`/images/Predictors/${props.photos[7] + ".jpg"}`} alt="/"/>
+                </div>
+            </div>
             <div className={classes.wrapperPickTeams}>
                 <div className={classes.pickTeamItem} style={{
                     background: WhoWinPredict(props.matches[0], props.p1)
@@ -177,7 +234,7 @@ const ResultPredicts4 = (props) => {
                 </div>
             </div>
 
-            <img src={`/images/DataInImage/new_predicts_banner_4.png`} className={classes.bgImg} alt="/"/>
+            <img src={`/images/DataInImage/predicts_banner_2024_4.png`} className={classes.bgImg} alt="/"/>
         </div>
     );
 };

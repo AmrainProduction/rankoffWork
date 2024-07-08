@@ -110,27 +110,26 @@
 }
 
 .wrapperPicture {
-    /*margin: 0 auto;*/
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100%;
     width: 100%;
-    max-height: 80px;
-    max-width: 80px;
+    padding: 2%;
 }
 
 .wrapperTopResult {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: auto;
-    width: auto;
     position: relative;
+    height: 80px;
+    width: 80px;
 }
 
 .wrapperTopResult img {
     height: 100%;
     width: 100%;
+    padding: 5% 5%;
 }
 

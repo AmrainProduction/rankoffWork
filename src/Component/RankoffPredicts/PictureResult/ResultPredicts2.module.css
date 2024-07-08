@@ -1,11 +1,12 @@
 .wrapperTopResult {
-    font-family: "DrukCyrMedium", sans-serif;
+    font-family: "Mazzard M", sans-serif;
     display: block;
     justify-content: center;
     align-items: flex-start;
     height: 100%;
     width: 100%;
     z-index: 20;
+    color: white;
     position: relative;
 }
 
@@ -14,15 +15,47 @@
     width: 100%;
 }
 
+.wrapperInfoMatches {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    height: 8.3%;
+    top: 10.6%;
+    padding: 0 0 0 61%;
+    position: absolute;
+}
+
+.wrapperPredictors {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    height: 19.2%;
+    top: 23.8%;
+    padding: 0 5.2%;
+    position: absolute;
+}
+
+.wrapperPredictorsName {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    height: 5%;
+    top: 43.3%;
+    padding: 0 5.2%;
+    position: absolute;
+}
+
 .wrapperPickTeams {
     display: flex;
     justify-content: flex-start;
     align-items: center;
     width: 100%;
-    height: 19.5%;
-    top: 51.2%;
-    padding-left: 3%;
-    padding-right: 3%;
+    height: 19.2%;
+    top: 50.4%;
+    padding: 0 5.2%;
     position: absolute;
 }
 
@@ -31,11 +64,18 @@
     justify-content: flex-start;
     align-items: center;
     width: 100%;
-    height: 19.5%;
-    top: 74.8%;
-    padding-left: 3%;
-    padding-right: 3%;
+    height: 19.2%;
+    top: 73.7%;
+    padding: 0 5.2%;
     position: absolute;
+}
+
+.wrapperPredictorsName div:not(:last-child) {
+    margin-right: 1.8%;
+}
+
+.wrapperPredictors div:not(:last-child) {
+    margin-right: 1.8%;
 }
 
 .wrapperPickTeams div:not(:last-child) {
@@ -46,17 +86,56 @@
     margin-right: 1.8%;
 }
 
+.infoMatches {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30%;
+    padding: 0.5%;
+    height: 100%;
+    font-size: clamp(0.1vw, 2.2vw, 2.2vw);
+}
+
+.predictorPhoto {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.predictorPhoto img {
+    width: auto;
+    height: 100%;
+    border-radius: 16%;
+}
+
+.predictorsName {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 11%;
+    padding: 0.5%;
+    height: 100%;
+    font-size: clamp(0.1vw, 1.5vw, 1.5vw);
+}
+
 .pickTeamItem {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 12.5%;
+    width: 11%;
     padding: 0.5%;
     height: 100%;
-    border: 0.25vw solid white;
+    border-radius: 16%;
+    background: #15161A;
 }
 
 .pickTeamItem img {
     height: 90%;
     width: auto;
 }
+
+
+

@@ -17,9 +17,41 @@ const CountryFlagTeam = (props) => {
         }
     } else if (props.mode === "team") {
         style = {
-            marginLeft: "5%",
+            marginLeft: "5px",
             width: "auto",
-            height: "14%",
+            height: "10px",
+        }
+    } else if (props.mode === "flag") {
+        style = {
+            marginLeft: "5px",
+            width: "auto",
+            height: "9px",
+        }
+
+        if (props.flag !== "Europe" && props.flag !== "SouthAmerica" && props.flag !== "Asia") {
+            return (
+                <img style={style} src={`${findFlagUrlByCountryName(`${props.flag}`)}`}
+                     alt={`${props.flag}`} title={`${props.flag}`}/>
+            )
+        } else if (props.flag === "Europe") {
+            return (
+                <img style={style} src={"/images/RegionsFlags/Europe.svg"}
+                     alt={`${props.flag}`} title={`${props.flag}`}/>
+            )
+        } else if (props.flag === "SouthAmerica") {
+            return (
+                <img style={style} src={"/images/RegionsFlags/SouthAmerica.svg"}
+                     alt={`${props.flag}`} title={`${props.flag}`}/>
+            )
+        } else if (props.flag === "Asia") {
+            return (
+                <img style={style} src={"/images/RegionsFlags/Asia.svg"}
+                     alt={`${props.flag}`} title={`${props.flag}`}/>
+            )
+        } else {
+            return (
+                <div></div>
+            )
         }
     }
 
@@ -37,7 +69,7 @@ const CountryFlagTeam = (props) => {
         for (let i = 0; i < data.length; i++) {
             if (data[i].nickname === props.p1 || data[i].nickname === props.p2 || data[i].nickname === props.p3 || data[i].nickname === props.p4 || data[i].nickname === props.p5) {
                 if (data[i].country_flag) {
-                    countries.push(data[i].country_flag)
+                    countries.push(data[i].country_flag.replace(" ", ""))
                 }
             }
         }
@@ -52,12 +84,13 @@ const CountryFlagTeam = (props) => {
                 return countries.indexOf(item) === index
             })
 
-
             countries.map(e1 => {
                 let temp = eval(`countCountries.${e1}`)
+
                 if (temp > max && temp >= 3) {
                     max = temp
                     nameCountry = e1
+
                 } else if (temp < 3 && (e1 === 'Kazakhstan' || e1 === 'Russia' || e1 === 'Ukraine' || e1 === 'Georgia' || e1 === 'Moldova' || e1 === 'Belarus' || e1 === 'Czech Republic' || e1 === 'Denmark' || e1 === 'Finland'
                     || e1 === 'France' || e1 === 'Germany' || e1 === 'Hungary' || e1 === 'Norway' || e1 === 'Poland' || e1 === 'Portugal' || e1 === 'Sweden' || e1 === 'United Kingdom')) {
                     countDifferentCountryEU++
@@ -69,11 +102,13 @@ const CountryFlagTeam = (props) => {
                     if (countDifferentCountrySA >= 3) {
                         nameCountry = "SouthAmerica"
                     }
-                } else if (temp < 3 && (e1 === 'China' || e1 === 'Mongolia')) {
+                } else if (temp < 3 && (e1 === 'China' || e1 === 'Mongolia' || e1 === 'South Korea')) {
                     countDifferentCountryAsia++
                     if (countDifferentCountryAsia >= 3) {
                         nameCountry = "Asia"
                     }
+                } else if (temp < 3 && (countDifferentCountryEU > countDifferentCountryAsia || countDifferentCountryEU > countDifferentCountrySA)) {
+                    nameCountry = "Europe"
                 }
             })
         }

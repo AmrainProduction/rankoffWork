@@ -59,6 +59,30 @@ const AllStatsPlayersLastTour = () => {
     let nickname
     let query = ''
 
+    const normalizeRating = (rating) => {
+        if(rating > 2) {
+            return rating = 2
+        } else {
+            return rating
+        }
+    }
+
+    const normalizeImpact = (impact) => {
+        if(impact > 2) {
+            return impact = 2
+        } else {
+            return impact
+        }
+    }
+
+    const normalizeKD = (kd) => {
+        if(kd > 3) {
+            return kd = 3
+        } else {
+            return kd
+        }
+    }
+
     if (playersData.data && matchesData.data && playersData.data.length > 0 && matchesData.data.length > 0) {
 
         if (playersFromTour.data && playersFromTour.data.length > 0) {
@@ -117,9 +141,9 @@ const AllStatsPlayersLastTour = () => {
                 if ((matches.t2p1_id === player_id && matches.t2p1 === nickname) || (matches.t2p2_id === player_id && matches.t2p2 === nickname) || (matches.t2p3_id === player_id && matches.t2p3 === nickname) || (matches.t2p4_id === player_id && matches.t2p4 === nickname) || (matches.t2p5_id === player_id && matches.t2p5 === nickname) || (matches.t1p1_id === player_id && matches.t1p1 === nickname) || (matches.t1p2_id === player_id && matches.t1p2 === nickname) || (matches.t1p3_id === player_id && matches.t1p3 === nickname) || (matches.t1p4_id === player_id && matches.t1p4 === nickname) || (matches.t1p5_id === player_id && matches.t1p5 === nickname)) {
                     rounds += (matches.total_r_team1 + matches.total_r_team2)
                     if (matches.t1p1 === nickname && matches.t1p1_id === player_id) {
-                        rating += matches.t1p1_rating
-                        impact += matches.t1p1_impact
-                        kd += matches.t1p1_kd
+                        rating += normalizeRating(matches.t1p1_rating)
+                        impact += normalizeImpact(matches.t1p1_impact)
+                        kd += normalizeKD(matches.t1p1_kd)
                         kpr += matches.t1p1_k / (matches.total_r_team1 + matches.total_r_team2)
                         dpr += matches.t1p1_d / (matches.total_r_team1 + matches.total_r_team2)
                         k += matches.t1p1_k
@@ -127,9 +151,9 @@ const AllStatsPlayersLastTour = () => {
                         d += matches.t1p1_d
                     }
                     if (matches.t1p2 === nickname && matches.t1p2_id === player_id) {
-                        rating += matches.t1p2_rating
-                        impact += matches.t1p2_impact
-                        kd += matches.t1p2_kd
+                        rating += normalizeRating(matches.t1p2_rating)
+                        impact += normalizeImpact(matches.t1p2_impact)
+                        kd += normalizeKD(matches.t1p2_kd)
                         kpr += matches.t1p2_k / (matches.total_r_team1 + matches.total_r_team2)
                         dpr += matches.t1p2_d / (matches.total_r_team1 + matches.total_r_team2)
                         k += matches.t1p2_k
@@ -137,9 +161,9 @@ const AllStatsPlayersLastTour = () => {
                         d += matches.t1p2_d
                     }
                     if (matches.t1p3 === nickname && matches.t1p3_id === player_id) {
-                        rating += matches.t1p3_rating
-                        impact += matches.t1p3_impact
-                        kd += matches.t1p3_kd
+                        rating += normalizeRating(matches.t1p3_rating)
+                        impact += normalizeImpact(matches.t1p3_impact)
+                        kd += normalizeKD(matches.t1p3_kd)
                         kpr += matches.t1p3_k / (matches.total_r_team1 + matches.total_r_team2)
                         dpr += matches.t1p3_d / (matches.total_r_team1 + matches.total_r_team2)
                         k += matches.t1p3_k
@@ -147,9 +171,9 @@ const AllStatsPlayersLastTour = () => {
                         d += matches.t1p3_d
                     }
                     if (matches.t1p4 === nickname && matches.t1p4_id === player_id) {
-                        rating += matches.t1p4_rating
-                        impact += matches.t1p4_impact
-                        kd += matches.t1p4_kd
+                        rating += normalizeRating(matches.t1p4_rating)
+                        impact += normalizeImpact(matches.t1p4_impact)
+                        kd += normalizeKD(matches.t1p4_kd)
                         kpr += matches.t1p4_k / (matches.total_r_team1 + matches.total_r_team2)
                         dpr += matches.t1p4_d / (matches.total_r_team1 + matches.total_r_team2)
                         k += matches.t1p4_k
@@ -157,9 +181,9 @@ const AllStatsPlayersLastTour = () => {
                         d += matches.t1p4_d
                     }
                     if (matches.t1p5 === nickname && matches.t1p5_id === player_id) {
-                        rating += matches.t1p5_rating
-                        impact += matches.t1p5_impact
-                        kd += matches.t1p5_kd
+                        rating += normalizeRating(matches.t1p5_rating)
+                        impact += normalizeImpact(matches.t1p5_impact)
+                        kd += normalizeKD(matches.t1p5_kd)
                         kpr += matches.t1p5_k / (matches.total_r_team1 + matches.total_r_team2)
                         dpr += matches.t1p5_d / (matches.total_r_team1 + matches.total_r_team2)
                         k += matches.t1p5_k
@@ -167,9 +191,9 @@ const AllStatsPlayersLastTour = () => {
                         d += matches.t1p5_d
                     }
                     if (matches.t2p1 === nickname && matches.t2p1_id === player_id) {
-                        rating += matches.t2p1_rating
-                        impact += matches.t2p1_impact
-                        kd += matches.t2p1_kd
+                        rating += normalizeRating(matches.t2p1_rating)
+                        impact += normalizeImpact(matches.t2p1_impact)
+                        kd += normalizeKD(matches.t2p1_kd)
                         kpr += matches.t2p1_k / (matches.total_r_team1 + matches.total_r_team2)
                         dpr += matches.t2p1_d / (matches.total_r_team1 + matches.total_r_team2)
                         k += matches.t2p1_k
@@ -177,9 +201,9 @@ const AllStatsPlayersLastTour = () => {
                         d += matches.t2p1_d
                     }
                     if (matches.t2p2 === nickname && matches.t2p2_id === player_id) {
-                        rating += matches.t2p2_rating
-                        impact += matches.t2p2_impact
-                        kd += matches.t2p2_kd
+                        rating += normalizeRating(matches.t2p2_rating)
+                        impact += normalizeImpact(matches.t2p2_impact)
+                        kd += normalizeKD(matches.t2p2_kd)
                         kpr += matches.t2p2_k / (matches.total_r_team1 + matches.total_r_team2)
                         dpr += matches.t2p2_d / (matches.total_r_team1 + matches.total_r_team2)
                         k += matches.t2p2_k
@@ -187,9 +211,9 @@ const AllStatsPlayersLastTour = () => {
                         d += matches.t2p2_d
                     }
                     if (matches.t2p3 === nickname && matches.t2p3_id === player_id) {
-                        rating += matches.t2p3_rating
-                        impact += matches.t2p3_impact
-                        kd += matches.t2p3_kd
+                        rating += normalizeRating(matches.t2p3_rating)
+                        impact += normalizeImpact(matches.t2p3_impact)
+                        kd += normalizeKD(matches.t2p3_kd)
                         kpr += matches.t2p3_k / (matches.total_r_team1 + matches.total_r_team2)
                         dpr += matches.t2p3_d / (matches.total_r_team1 + matches.total_r_team2)
                         k += matches.t2p3_k
@@ -197,9 +221,9 @@ const AllStatsPlayersLastTour = () => {
                         d += matches.t2p3_d
                     }
                     if (matches.t2p4 === nickname && matches.t2p4_id === player_id) {
-                        rating += matches.t2p4_rating
-                        impact += matches.t2p4_impact
-                        kd += matches.t2p4_kd
+                        rating += normalizeRating(matches.t2p4_rating)
+                        impact += normalizeImpact(matches.t2p4_impact)
+                        kd += normalizeKD(matches.t2p4_kd)
                         kpr += matches.t2p4_k / (matches.total_r_team1 + matches.total_r_team2)
                         dpr += matches.t2p4_d / (matches.total_r_team1 + matches.total_r_team2)
                         k += matches.t2p4_k
@@ -207,9 +231,9 @@ const AllStatsPlayersLastTour = () => {
                         d += matches.t2p4_d
                     }
                     if (matches.t2p5 === nickname && matches.t2p5_id === player_id) {
-                        rating += matches.t2p5_rating
-                        impact += matches.t2p5_impact
-                        kd += matches.t2p5_kd
+                        rating += normalizeRating(matches.t2p5_rating)
+                        impact += normalizeImpact(matches.t2p5_impact)
+                        kd += normalizeKD(matches.t2p5_kd)
                         kpr += matches.t2p5_k / (matches.total_r_team1 + matches.total_r_team2)
                         dpr += matches.t2p5_d / (matches.total_r_team1 + matches.total_r_team2)
                         k += matches.t2p5_k
@@ -226,9 +250,9 @@ const AllStatsPlayersLastTour = () => {
 
             rating = Math.round((rating / maps)* 100) / 100
             impact = Math.round((impact / maps)* 100) / 100
-            kd = Math.round((kd / maps)* 100) / 100
-            kpr = Math.round((kpr / maps)* 100) / 100
-            dpr = Math.round((dpr / maps)* 100) / 100
+            kd = Math.round((k / d)* 100) / 100
+            kpr = Math.round((k / (rounds_w + rounds_l))* 100) / 100
+            dpr = Math.round((d / (rounds_w + rounds_l))* 100) / 100
             rm = rating + maps
 
             csv[index] =
@@ -288,7 +312,7 @@ const AllStatsPlayersLastTour = () => {
         })
 
         // console.log(csv)
-        console.log(query)
+        // console.log(query)
     }
 
     return (

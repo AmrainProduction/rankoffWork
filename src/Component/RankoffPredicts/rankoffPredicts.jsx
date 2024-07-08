@@ -18,7 +18,6 @@ const RankoffPredicts = () => {
 
     const listMatches = useGetShortMatchQuery()
 
-
     const [date, setDate] = useState([])
 
     const [choiceMatch, setChoiceMatch] = useState([])
@@ -71,6 +70,7 @@ const RankoffPredicts = () => {
     let dates = []
     let matchesDate = []
     let matchesID = []
+    let predictorsPhotos = ["Andrey Gears", "Postanova", "itsnone", "rower", "Zadrot", "RAF", "oneday", "ggromovvvv"]
 
     if (listMatches.data && listMatches.data.length > 0) {
         listMatches.data.map((e) => {
@@ -92,6 +92,8 @@ const RankoffPredicts = () => {
                     score_t1: e.total_score_match_t1,
                     score_t2: e.total_score_match_t2,
                     match_id: e.name_match_for_sort,
+                    format: e.format,
+                    date: e.date_match,
                 })
             }
         })
@@ -236,16 +238,22 @@ const RankoffPredicts = () => {
             </div>
             {(choiceMatch.length > 0 ? matchesDate.filter(e => e.match_id === choiceMatch) : matchesDate.reverse()).map((e, index) => {
                 if (index < 5) {
-                    console.log(choiceMatch.length)
                     return (
                         <div key={index} className={classes.wrapperPredicters}>
                             <div className={classes.choicePredicter}>
-                                <div className={classes.name}>Notch</div>
+                                <div className={classes.name}>Gears</div>
                                 <div className={classes.wrapperTeams}>
                                     <div className={classes.team} onClick={() => {
                                         index === 0 ? setChoicePredicter1(e.logo_t1) : index === 1 ? setChoicePredicter21(e.logo_t1) : index === 2 ? setChoicePredicter31(e.logo_t1) : index === 3 ? setChoicePredicter41(e.logo_t1) : index === 4 ? setChoicePredicter51(e.logo_t1) : setChoicePredicter51(e.logo_t1)
                                     }}>
                                         <img src={`/images/LogoTeams/${e.logo_t1}`} alt="/"/>
+                                    </div>
+                                    <div className={classes.team} style={{
+                                        display: e.format !== "BO2" ? "none" : "flex"
+                                    }} onClick={() => {
+                                        index === 0 ? setChoicePredicter1("DrawScore.svg") : index === 1 ? setChoicePredicter21("DrawScore.svg") : index === 2 ? setChoicePredicter31("DrawScore.svg") : index === 3 ? setChoicePredicter41("DrawScore.svg") : index === 4 ? setChoicePredicter51("DrawScore.svg") : setChoicePredicter51("DrawScore.svg")
+                                    }}>
+                                        <img src={`/images/LogoTeams/DrawScore.svg`} alt="/"/>
                                     </div>
                                     <div className={classes.team} onClick={() => {
                                         index === 0 ? setChoicePredicter1(e.logo_t2) : index === 1 ? setChoicePredicter21(e.logo_t2) : index === 2 ? setChoicePredicter31(e.logo_t2) : index === 3 ? setChoicePredicter41(e.logo_t2) : index === 4 ? setChoicePredicter51(e.logo_t2) : setChoicePredicter51(e.logo_t2)
@@ -262,6 +270,13 @@ const RankoffPredicts = () => {
                                     }}>
                                         <img src={`/images/LogoTeams/${e.logo_t1}`} alt="/"/>
                                     </div>
+                                    <div className={classes.team} style={{
+                                        display: e.format !== "BO2" ? "none" : "flex"
+                                    }} onClick={() => {
+                                        index === 0 ? setChoicePredicter2("DrawScore.svg") : index === 1 ? setChoicePredicter22("DrawScore.svg") : index === 2 ? setChoicePredicter32("DrawScore.svg") : index === 3 ? setChoicePredicter42("DrawScore.svg") : index === 4 ? setChoicePredicter52("DrawScore.svg") : setChoicePredicter52("DrawScore.svg")
+                                    }}>
+                                        <img src={`/images/LogoTeams/DrawScore.svg`} alt="/"/>
+                                    </div>
                                     <div className={classes.team} onClick={() => {
                                         index === 0 ? setChoicePredicter2(e.logo_t2) : index === 1 ? setChoicePredicter22(e.logo_t2) : index === 2 ? setChoicePredicter32(e.logo_t2) : index === 3 ? setChoicePredicter42(e.logo_t2) : index === 4 ? setChoicePredicter52(e.logo_t2) : setChoicePredicter52(e.logo_t2)
                                     }}>
@@ -270,12 +285,19 @@ const RankoffPredicts = () => {
                                 </div>
                             </div>
                             <div className={classes.choicePredicter}>
-                                <div className={classes.name}>MonleaR</div>
+                                <div className={classes.name}>itsnone</div>
                                 <div className={classes.wrapperTeams}>
                                     <div className={classes.team} onClick={() => {
                                         index === 0 ? setChoicePredicter3(e.logo_t1) : index === 1 ? setChoicePredicter23(e.logo_t1) : index === 2 ? setChoicePredicter33(e.logo_t1) : index === 3 ? setChoicePredicter43(e.logo_t1) : index === 4 ? setChoicePredicter53(e.logo_t1) : setChoicePredicter53(e.logo_t1)
                                     }}>
                                         <img src={`/images/LogoTeams/${e.logo_t1}`} alt="/"/>
+                                    </div>
+                                    <div className={classes.team} style={{
+                                        display: e.format !== "BO2" ? "none" : "flex"
+                                    }} onClick={() => {
+                                        index === 0 ? setChoicePredicter3("DrawScore.svg") : index === 1 ? setChoicePredicter23("DrawScore.svg") : index === 2 ? setChoicePredicter33("DrawScore.svg") : index === 3 ? setChoicePredicter43("DrawScore.svg") : index === 4 ? setChoicePredicter53("DrawScore.svg") : setChoicePredicter53("DrawScore.svg")
+                                    }}>
+                                        <img src={`/images/LogoTeams/DrawScore.svg`} alt="/"/>
                                     </div>
                                     <div className={classes.team} onClick={() => {
                                         index === 0 ? setChoicePredicter3(e.logo_t2) : index === 1 ? setChoicePredicter23(e.logo_t2) : index === 2 ? setChoicePredicter33(e.logo_t2) : index === 3 ? setChoicePredicter43(e.logo_t2) : index === 4 ? setChoicePredicter53(e.logo_t2) : setChoicePredicter53(e.logo_t2)
@@ -292,6 +314,13 @@ const RankoffPredicts = () => {
                                     }}>
                                         <img src={`/images/LogoTeams/${e.logo_t1}`} alt="/"/>
                                     </div>
+                                    <div className={classes.team} style={{
+                                        display: e.format !== "BO2" ? "none" : "flex"
+                                    }} onClick={() => {
+                                        index === 0 ? setChoicePredicter4("DrawScore.svg") : index === 1 ? setChoicePredicter24("DrawScore.svg") : index === 2 ? setChoicePredicter34("DrawScore.svg") : index === 3 ? setChoicePredicter44("DrawScore.svg") : index === 4 ? setChoicePredicter54("DrawScore.svg") : setChoicePredicter54("DrawScore.svg")
+                                    }}>
+                                        <img src={`/images/LogoTeams/DrawScore.svg`} alt="/"/>
+                                    </div>
                                     <div className={classes.team} onClick={() => {
                                         index === 0 ? setChoicePredicter4(e.logo_t2) : index === 1 ? setChoicePredicter24(e.logo_t2) : index === 2 ? setChoicePredicter34(e.logo_t2) : index === 3 ? setChoicePredicter44(e.logo_t2) : index === 4 ? setChoicePredicter54(e.logo_t2) : setChoicePredicter54(e.logo_t2)
                                     }}>
@@ -307,6 +336,13 @@ const RankoffPredicts = () => {
                                     }}>
                                         <img src={`/images/LogoTeams/${e.logo_t1}`} alt="/"/>
                                     </div>
+                                    <div className={classes.team} style={{
+                                        display: e.format !== "BO2" ? "none" : "flex"
+                                    }} onClick={() => {
+                                        index === 0 ? setChoicePredicter5("DrawScore.svg") : index === 1 ? setChoicePredicter25("DrawScore.svg") : index === 2 ? setChoicePredicter35("DrawScore.svg") : index === 3 ? setChoicePredicter45("DrawScore.svg") : index === 4 ? setChoicePredicter55("DrawScore.svg") : setChoicePredicter55("DrawScore.svg")
+                                    }}>
+                                        <img src={`/images/LogoTeams/DrawScore.svg`} alt="/"/>
+                                    </div>
                                     <div className={classes.team} onClick={() => {
                                         index === 0 ? setChoicePredicter5(e.logo_t2) : index === 1 ? setChoicePredicter25(e.logo_t2) : index === 2 ? setChoicePredicter35(e.logo_t2) : index === 3 ? setChoicePredicter45(e.logo_t2) : index === 4 ? setChoicePredicter55(e.logo_t2) : setChoicePredicter55(e.logo_t2)
                                     }}>
@@ -315,12 +351,19 @@ const RankoffPredicts = () => {
                                 </div>
                             </div>
                             <div className={classes.choicePredicter}>
-                                <div className={classes.name}>raffee</div>
+                                <div className={classes.name}>RAF</div>
                                 <div className={classes.wrapperTeams}>
                                     <div className={classes.team} onClick={() => {
                                         index === 0 ? setChoicePredicter6(e.logo_t1) : index === 1 ? setChoicePredicter26(e.logo_t1) : index === 2 ? setChoicePredicter36(e.logo_t1) : index === 3 ? setChoicePredicter46(e.logo_t1) : index === 4 ? setChoicePredicter56(e.logo_t1) : setChoicePredicter56(e.logo_t1)
                                     }}>
                                         <img src={`/images/LogoTeams/${e.logo_t1}`} alt="/"/>
+                                    </div>
+                                    <div className={classes.team} style={{
+                                        display: e.format !== "BO2" ? "none" : "flex"
+                                    }} onClick={() => {
+                                        index === 0 ? setChoicePredicter6("DrawScore.svg") : index === 1 ? setChoicePredicter26("DrawScore.svg") : index === 2 ? setChoicePredicter36("DrawScore.svg") : index === 3 ? setChoicePredicter46("DrawScore.svg") : index === 4 ? setChoicePredicter56("DrawScore.svg") : setChoicePredicter56("DrawScore.svg")
+                                    }}>
+                                        <img src={`/images/LogoTeams/DrawScore.svg`} alt="/"/>
                                     </div>
                                     <div className={classes.team} onClick={() => {
                                         index === 0 ? setChoicePredicter6(e.logo_t2) : index === 1 ? setChoicePredicter26(e.logo_t2) : index === 2 ? setChoicePredicter36(e.logo_t2) : index === 3 ? setChoicePredicter46(e.logo_t2) : index === 4 ? setChoicePredicter56(e.logo_t2) : setChoicePredicter56(e.logo_t2)
@@ -337,6 +380,13 @@ const RankoffPredicts = () => {
                                     }}>
                                         <img src={`/images/LogoTeams/${e.logo_t1}`} alt="/"/>
                                     </div>
+                                    <div className={classes.team} style={{
+                                        display: e.format !== "BO2" ? "none" : "flex"
+                                    }} onClick={() => {
+                                        index === 0 ? setChoicePredicter7("DrawScore.svg") : index === 1 ? setChoicePredicter27("DrawScore.svg") : index === 2 ? setChoicePredicter37("DrawScore.svg") : index === 3 ? setChoicePredicter47("DrawScore.svg") : index === 4 ? setChoicePredicter57("DrawScore.svg") : setChoicePredicter57("DrawScore.svg")
+                                    }}>
+                                        <img src={`/images/LogoTeams/DrawScore.svg`} alt="/"/>
+                                    </div>
                                     <div className={classes.team} onClick={() => {
                                         index === 0 ? setChoicePredicter7(e.logo_t2) : index === 1 ? setChoicePredicter27(e.logo_t2) : index === 2 ? setChoicePredicter37(e.logo_t2) : index === 3 ? setChoicePredicter47(e.logo_t2) : index === 4 ? setChoicePredicter57(e.logo_t2) : setChoicePredicter57(e.logo_t2)
                                     }}>
@@ -347,10 +397,17 @@ const RankoffPredicts = () => {
                             <div className={classes.choicePredicter}>
                                 <div className={classes.name}>ggromovvvv</div>
                                 <div className={classes.wrapperTeams}>
-                                    <div className={classes.team} onClick={() => {
+                                    <div className={classes.team}  onClick={() => {
                                         index === 0 ? setChoicePredicter8(e.logo_t1) : index === 1 ? setChoicePredicter28(e.logo_t1) : index === 2 ? setChoicePredicter38(e.logo_t1) : index === 3 ? setChoicePredicter48(e.logo_t1) : index === 4 ? setChoicePredicter58(e.logo_t1) : setChoicePredicter58(e.logo_t1)
                                     }}>
                                         <img src={`/images/LogoTeams/${e.logo_t1}`} alt="/"/>
+                                    </div>
+                                    <div className={classes.team} style={{
+                                        display: e.format !== "BO2" ? "none" : "flex"
+                                    }} onClick={() => {
+                                        index === 0 ? setChoicePredicter8("DrawScore.svg") : index === 1 ? setChoicePredicter28("DrawScore.svg") : index === 2 ? setChoicePredicter38("DrawScore.svg") : index === 3 ? setChoicePredicter48("DrawScore.svg") : index === 4 ? setChoicePredicter58("DrawScore.svg") : setChoicePredicter58("DrawScore.svg")
+                                    }}>
+                                        <img src={`/images/LogoTeams/DrawScore.svg`} alt="/"/>
                                     </div>
                                     <div className={classes.team} onClick={() => {
                                         index === 0 ? setChoicePredicter8(e.logo_t2) : index === 1 ? setChoicePredicter28(e.logo_t2) : index === 2 ? setChoicePredicter38(e.logo_t2) : index === 3 ? setChoicePredicter48(e.logo_t2) : index === 4 ? setChoicePredicter58(e.logo_t2) : setChoicePredicter58(e.logo_t2)
@@ -366,22 +423,22 @@ const RankoffPredicts = () => {
 
             <div ref={ref}>
                 {choiceMatch.length > 0 ?
-                    <ResultPredicts matches={matchesDate} p1={choicePredicter1} p2={choicePredicter2}
+                    <ResultPredicts photos={predictorsPhotos} matches={matchesDate} p1={choicePredicter1} p2={choicePredicter2}
                                     p3={choicePredicter3} p4={choicePredicter4} p5={choicePredicter5}
                                     p6={choicePredicter6} p7={choicePredicter7}
                                     p8={choicePredicter8}/> : matchesDate.length === 1 ?
-                        <ResultPredicts matches={matchesDate} p1={choicePredicter1} p2={choicePredicter2}
+                        <ResultPredicts photos={predictorsPhotos} matches={matchesDate} p1={choicePredicter1} p2={choicePredicter2}
                                         p3={choicePredicter3} p4={choicePredicter4} p5={choicePredicter5}
                                         p6={choicePredicter6} p7={choicePredicter7} p8={choicePredicter8}/> :
                         matchesDate.length === 2 ?
-                            <ResultPredicts2 matches={matchesDate} p1={choicePredicter1} p2={choicePredicter2}
+                            <ResultPredicts2 photos={predictorsPhotos} matches={matchesDate} p1={choicePredicter1} p2={choicePredicter2}
                                              p3={choicePredicter3} p4={choicePredicter4} p5={choicePredicter5}
                                              p6={choicePredicter6} p7={choicePredicter7} p8={choicePredicter8}
                                              p21={choicePredicter21} p22={choicePredicter22}
                                              p23={choicePredicter23} p24={choicePredicter24} p25={choicePredicter25}
                                              p26={choicePredicter26} p27={choicePredicter27} p28={choicePredicter28}/> :
                             matchesDate.length === 3 ?
-                                <ResultPredicts3 matches={matchesDate} p1={choicePredicter1} p2={choicePredicter2}
+                                <ResultPredicts3 photos={predictorsPhotos} matches={matchesDate} p1={choicePredicter1} p2={choicePredicter2}
                                                  p3={choicePredicter3} p4={choicePredicter4} p5={choicePredicter5}
                                                  p6={choicePredicter6} p7={choicePredicter7} p8={choicePredicter8}
                                                  p21={choicePredicter21} p22={choicePredicter22}
@@ -392,7 +449,7 @@ const RankoffPredicts = () => {
                                                  p36={choicePredicter36} p37={choicePredicter37}
                                                  p38={choicePredicter38}/> :
                                 matchesDate.length === 4 ?
-                                    <ResultPredicts4 matches={matchesDate} p1={choicePredicter1} p2={choicePredicter2}
+                                    <ResultPredicts4 photos={predictorsPhotos} matches={matchesDate} p1={choicePredicter1} p2={choicePredicter2}
                                                      p3={choicePredicter3} p4={choicePredicter4} p5={choicePredicter5}
                                                      p6={choicePredicter6} p7={choicePredicter7} p8={choicePredicter8}
                                                      p21={choicePredicter21} p22={choicePredicter22}
@@ -411,7 +468,7 @@ const RankoffPredicts = () => {
                                                      p46={choicePredicter46} p47={choicePredicter47}
                                                      p48={choicePredicter48}/> :
                                     matchesDate.length >= 5 ?
-                                        <ResultPredicts5 matches={matchesDate} p1={choicePredicter1}
+                                        <ResultPredicts5 photos={predictorsPhotos} matches={matchesDate} p1={choicePredicter1}
                                                          p2={choicePredicter2}
                                                          p3={choicePredicter3} p4={choicePredicter4}
                                                          p5={choicePredicter5}
