@@ -175,6 +175,7 @@
     height: 100%;
     border-radius: 16%;
     background: #15161A;
+    border: 2px solid #fff;
 }
 
 .pickTeamItem img {

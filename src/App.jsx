@@ -30,6 +30,7 @@ import PlayersTourMVP from "./Component/PlayersTourMVP/playersTourMVP";
 import RankingTeams from "./Component/RankingTeams/rankingTeams";
 import EmojiTeams from "./Component/EmojiTeams/emojiTeams";
 import TopPlayersByTours from "./Component/TopPlayersByTours/topPlayersByTours";
+import MatchesDay from "./Component/MatchesDay/matchesDay";
 
 const router = createBrowserRouter(createRoutesFromElements(
     <Route path='/' element={<Layout/>} errorElement={<ErrorPage/>}>
@@ -40,6 +41,7 @@ const router = createBrowserRouter(createRoutesFromElements(
         <Route path='TOP_PLAYERS_TOUR' element={<TopPlayersTour/>}/>
         <Route path='MVP_PLAYER_TOUR' element={<PlayersTourMVP/>}/>
         <Route path='PREDICT' element={<RankoffPredicts/>}/>
+        <Route path='MACTHESDAY' element={<MatchesDay/>}/>
         <Route path='RANKING_TEAMS' element={<RankingTeams/>}/>
         <Route path='nir' element={<Nir2/>}/>
         <Route path='nir2' element={<Nir21/>}/>
