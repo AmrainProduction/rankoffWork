@@ -160,7 +160,7 @@
     height: 100%;
     margin-left: 2.18%;
     border-radius: clamp(3px, 1.2vw, 15px);
-    background: #bf3652;
+    background: #E41242;
 }
 
 .wrapperTextMatchResult {
@@ -260,7 +260,7 @@
     height: 100%;
     padding: 0 0.5%;
     border-radius: clamp(3px, 1.2vw, 15px);
-    background: #231b20;
+    background: #0e0e0e;
 }
 
 .wrapperMap {
@@ -280,7 +280,7 @@
     align-items: center;
     height: 20%;
     width: 100%;
-    background: #0e0e0e;
+    background: #242325;
 }
 
 .scoreMap img {
@@ -320,7 +320,7 @@
     position: absolute;
     opacity: 0.4;
     color: white;
-    background: #0e0e0e;
+    background: #242325;
 }
 
 .mapTeamPick {
@@ -345,7 +345,7 @@
     height: auto;
     width: 100%;
     color: white;
-    background: #0e0e0e;
+    background: #242325;
 }
 
 .pickMap {
@@ -358,7 +358,7 @@
     width: 100%;
     padding: 2%;
     font-size: clamp(2px, 1vw, 14px);
-    background: #0e0e0e;
+    background: #242325;
     position: relative;
     overflow: hidden;
 }
@@ -385,7 +385,7 @@
     align-items: center;
     width: 100%;
     height: 32.1%;
-    top: 30.2%;
+    top: 31.2%;
     padding-left: 2.18%;
     padding-right: 2.18%;
     position: absolute;
@@ -399,7 +399,7 @@
     height: 32.1%;
     padding-left: 2.18%;
     padding-right: 2.18%;
-    top: 64.2%;
+    top: 65.2%;
     position: absolute;
 }
 

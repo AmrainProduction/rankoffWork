@@ -8,6 +8,9 @@ import {
     useGetTournamentsQuery
 } from "../../../store/api/apiSlice";
 import {useState} from "react";
+import normalizeRating from "./normalizeRating";
+import normalizeImpact from "./normalizeImpact";
+import normalizeKD from "./normalizeKD";
 
 const StatsPlayersNecessaryTour = () => {
     const tours = useGetTournamentsQuery()
@@ -65,30 +68,6 @@ const StatsPlayersNecessaryTour = () => {
     let maps_all = 0
     let maps_win = 0
     let maps_lose = 0
-
-    const normalizeRating = (rating) => {
-        if(rating > 2) {
-            return rating = 2
-        } else {
-            return rating
-        }
-    }
-
-    const normalizeImpact = (impact) => {
-        if(impact > 2) {
-            return impact = 2
-        } else {
-            return impact
-        }
-    }
-
-    const normalizeKD = (kd) => {
-        if(kd > 3) {
-            return kd = 3
-        } else {
-            return kd
-        }
-    }
 
     sortMatches = allMatches?.data
 
@@ -457,7 +436,7 @@ const StatsPlayersNecessaryTour = () => {
         }
     })
 
-    let divider = 2
+    let divider = 3
 
     while (max_maps > 1) {
 

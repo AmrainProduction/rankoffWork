@@ -19,8 +19,10 @@ const MatchesDay = () => {
     const listMatches = useGetShortMatchQuery()
 
     const [date, setDate] = useState([])
+    const [today, setToday] = useState([])
 
     const [choiceMatch, setChoiceMatch] = useState([])
+    const [matches, setMatches] = useState([])
 
     let dates = []
     let matchesData = []
@@ -49,7 +51,7 @@ const MatchesDay = () => {
                     format: e.format,
                     date: e.date_match,
                     stage: e.name_stage,
-                    time: e.time_match.slice(0,-3),
+                    time: e.time_match.slice(0, -3),
                 })
             }
         })
@@ -76,6 +78,31 @@ const MatchesDay = () => {
             })
     }, [ref])
 
+    const onButtonTodayClick = () => {
+        const date = new Date()
+
+        const year = date.getFullYear();
+        let month = date.getMonth() + 1;
+        let day = date.getDate();
+
+        month = month < 10 ? '0' + month : month;
+        day = day < 10 ? '0' + day : day;
+
+        let res = `${year}-${month}-${day}`;
+
+        setDate(res)
+        setChoiceMatch([])
+    }
+
+
+    useEffect(() => {
+        if (choiceMatch.length > 0) {
+            setMatches(matchesData.filter(e => e.match_id === choiceMatch))
+        } else {
+            setMatches(matchesData.reverse())
+        }
+    }, [choiceMatch])
+
     return (
         <>
             <div className={classes.wrapperMenu}>
@@ -88,6 +115,7 @@ const MatchesDay = () => {
                             return (
                                 <div key={index} className={classes.match} onClick={() => {
                                     setChoiceMatch(e)
+                                    setMatches(e)
                                 }}>
                                     {e}
                                 </div>
@@ -107,19 +135,25 @@ const MatchesDay = () => {
                             )
                         })}
                     </div>
-                    <button className={classes.btnSaveAsImage} onClick={onButtonClick}>
-                        Save as image
-                    </button>
+                    <div className={classes.wrapperButtons}>
+                        <button className={classes.btnSaveAsImage} onClick={onButtonTodayClick}>
+                            today
+                        </button>
+                        <button className={classes.btnSaveAsImage} onClick={onButtonClick}>
+                            Save as image
+                        </button>
+                    </div>
                 </div>
             </div>
 
             <div ref={ref}>
-                {choiceMatch.length > 0 ? <OneMatch matches={matchesData}/> :
-                    matchesData.length === 1 ? <OneMatch matches={matchesData}/> :
-                    matchesData.length === 2 ? <TwoMatches matches={matchesData}/> :
-                    matchesData.length === 3 ? <ThreeMatches matches={matchesData}/> :
-                    matchesData.length === 4 ? <FourMatches matches={matchesData}/> :
-                    matchesData.length === 5 ? <FiveMatches matches={matchesData}/> : <OneMatch matches={matchesData}/>
+                {
+                    matches.length === 1 ? <OneMatch matches={matches}/> :
+                        matches.length === 2 ? <TwoMatches matches={matches}/> :
+                            matches.length === 3 ? <ThreeMatches matches={matches}/> :
+                                matches.length === 4 ? <FourMatches matches={matches}/> :
+                                    matches.length === 5 ? <FiveMatches matches={matches}/> :
+                                        <OneMatch matches={matches}/>
                 }
             </div>
 

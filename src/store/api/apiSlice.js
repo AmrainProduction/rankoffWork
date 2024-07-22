@@ -110,6 +110,18 @@ export const apiSlice = createApi({
         getTop20Players: build.query({
             query: ({name}) => `tourPlayers/Top20Players/${name}`,
         }),
+        getPlayersPoints: build.query({
+            query: () => `PlayersPoints`,
+        }),
+        getTeamsPoints: build.query({
+            query: () => `TeamsPoints`,
+        }),
+        getTransferToTeamsPoints: build.query({
+            query: ({id, name}) => `TransferPoints/To/${id}/${name}`,
+        }),
+        getTransferTeamsPoints: build.query({
+            query: () => `TransferPoints`,
+        }),
         getBackgroundAdvertisement: build.query({
             query: () => `backgroundAdvertisement`,
         }),
@@ -160,6 +172,10 @@ export const {
     useGetAwardsPlayersByNickQuery,
     useGetTournamentsLastQuery,
     useGetLastTopTeamQuery,
+    useGetPlayersPointsQuery,
+    useGetTransferToTeamsPointsQuery,
+    useGetTransferTeamsPointsQuery,
+    useGetTeamsPointsQuery,
     useGetLastTopTeamPlayersQuery,
     useGetTeamsTournamentsQuery,
     useGetTeamsTournamentsByNameQuery,

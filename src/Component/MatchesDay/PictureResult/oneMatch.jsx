@@ -6,18 +6,22 @@ const OneMatch = (props) => {
         <div className={classes.wrapperTopResult}>
             <div className={classes.wrapperInfoMatch}>
                 <div className={classes.infoMatches}>
-                    {props.matches[0]?.date.replaceAll("-", ".")}
+                    {props.matches[0]?.date?.replaceAll("-", ".")}
                 </div>
             </div>
             <div className={classes.wrapperMatch1}>
                 <div className={classes.match}>
                     <div className={classes.leftHalf}>
                         <div className={classes.teamLogo}>
-                            <img src={`/images/LogoTeams/${props.matches.length > 0 ? props.matches[0].logo_t1 : "teamDefaults.svg"}`} alt="/"/>
+                            <img
+                                src={`/images/LogoTeams/${props.matches.length > 0 ? props.matches[0].logo_t1 : "teamDefaults.svg"}`}
+                                alt="/"/>
                         </div>
                         <div className={classes.VS}>VS</div>
                         <div className={classes.teamLogo}>
-                            <img src={`/images/LogoTeams/${props.matches.length > 0 ? props.matches[0].logo_t2 : "teamDefaults.svg"}`} alt="/"/>
+                            <img
+                                src={`/images/LogoTeams/${props.matches.length > 0 ? props.matches[0].logo_t2 : "teamDefaults.svg"}`}
+                                alt="/"/>
                         </div>
                     </div>
                     <div className={classes.rightHalf}>
@@ -36,7 +40,7 @@ const OneMatch = (props) => {
             </div>
             <img src={`/images/DataInImage/matches_day_1.png`} alt="/"/>
         </div>
-    );
-};
+    )
+}
 
 export default OneMatch;

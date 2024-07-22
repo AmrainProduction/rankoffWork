@@ -18,8 +18,12 @@
     font-weight: 500;
 }
 
+.wrapperPicture {
+    min-height: 100%;
+}
+
 .bgImg {
-    height: auto;
+    height: 2000px;
     width: 100%;
 }
 
@@ -186,7 +190,7 @@
     width: 93%;
     /*background: #403459;*/
     border-radius: 0.4vw;
-    background: #e61655;
+    background: #E41242;
 }
 
 .playerTitle div {

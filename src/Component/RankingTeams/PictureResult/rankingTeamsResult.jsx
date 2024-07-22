@@ -161,7 +161,7 @@ const RankingTeamsResult = (props) => {
                             }
                         })}
                     </div>
-                    <img src={`/images/DataInImage/Ranking_teams_banner.png`} className={classes.bgImg} alt="/"/>
+                    <img src={`/images/DataInImage/Ranking_teams_banner2.png`} className={classes.bgImg} alt="/"/>
                 </div>
             )
         }

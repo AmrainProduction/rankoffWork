@@ -386,7 +386,7 @@ const PlayerMVPResult = (props) => {
             <div className={classes.wrapperTopResult}>
                 <div className={classes.wrapperMain}>
                     <div className={classes.titleBanner}>
-                        <img src={`/images/DataInImage/MVP_banner_title.svg`} alt="/"/>
+                        <img src={`/images/DataInImage/MVP_banner_title_White.svg`} alt="/"/>
                     </div>
                     <div
                         className={classes.nameTour}>{statsMvpPlayer[0]?.name_tour.toUpperCase()} {choiceStage.length > 0 ? "[" + choiceStage.toUpperCase() + "]" : ""}</div>
@@ -482,14 +482,14 @@ const PlayerMVPResult = (props) => {
                     <div className={classes.nickname}>{statsMvpPlayer[0]?.nickname.toUpperCase()}</div>
                     <div className={classes.name}>{statsMvpPlayer[0]?.name + " " + statsMvpPlayer[0]?.surname}</div>
                     <div className={classes.leftPictureMVP}>
-                        <img src={`/images/DataInImage/MVP_banner_left_part_picture.svg`} alt="/"/>
+                        <img src={`/images/DataInImage/MVP_banner_left_part_picture2.svg`} alt="/"/>
                     </div>
                     <div className={classes.gradient}></div>
                     <div className={classes.backLogoPlayer}>
                         <img src={`/images/LogoTeams/${statsMvpPlayer[0]?.logo_team}`} alt="/"/>
                     </div>
                 </div>
-                <img src={`/images/DataInImage/MVP_banner.png`} className={classes.bgImg} alt="/"/>
+                <img src={`/images/DataInImage/MVP_banner2.png`} className={classes.bgImg} alt="/"/>
             </div>
         )
     }

@@ -96,7 +96,8 @@ const TopPlayersTourResult = (props) => {
                                                 // e.name_tour_for_sort === "WinlineEpicStandoff2Season9ClosedQuals_22_04_24" ||
                                                 e.name_tour_for_sort === "WinlineEpicStandoff2Season9_25_04_24" ||
                                                 // e.name_tour_for_sort === "WinlineEpicStandoff2Season10CloseQuals_27_05_24" ||
-                                                e.name_tour_for_sort === "WinlineEpicStandoff2Season10_30_05_24"
+                                                e.name_tour_for_sort === "WinlineEpicStandoff2Season10_30_05_24" ||
+                                                e.name_tour_for_sort === "WinlineEpicStandoff2Major_10_07_24"
     )
 
 
@@ -332,7 +333,7 @@ const TopPlayersTourResult = (props) => {
                 "kpr_p": Math.round(kpr_p * 100) / 100,
                 "dpr_p": Math.round(dpr_p * 100) / 100,
                 "impact_p": Math.round(impact_p * 100) / 100,
-                "rating": Math.round(rating * 100) / 100,
+                "rating": Math.round(rating * 1000) / 1000,
                 "k": k,
                 "a": a,
                 "d": d,
@@ -395,7 +396,7 @@ const TopPlayersTourResult = (props) => {
         }
     })
 
-    let divider = 1.8
+    let divider = 2
 
     while (max_maps > 1) {
 
@@ -426,10 +427,7 @@ const TopPlayersTourResult = (props) => {
         return (
             <div className={classes.wrapperTopResult}>
                 <div className={classes.wrapperTourInfo}>
-                <div className={classes.nameTour}>{"Топ игроков за все турниры с начала 2024 года"}</div>
-                <div className={classes.logoTour}>
-                    {/*<img src={`/images/LogoAndBannerTour/${players_tournaments[0].logo_tour}`} alt="/"/>*/}
-                </div>
+                <div className={classes.nameTour}>{"ТОП ИГРОКОВ ЗА ПЕРВОЕ ПОЛУГОДИЕ 2024 ГОДА"}</div>
                 </div>
                 <div className={classes.topResult}>
                     <div className={classes.wrapperPlayerTitle}>
@@ -493,7 +491,7 @@ const TopPlayersTourResult = (props) => {
                                             {
                                                 background: e.rating < 1 ? "#854141" : e.rating > 1 ? e.rating >= 1.10 ? "#528347" : "#a29747" : "#a29747"
                                             }
-                                        }>{e.rating}</div>
+                                        }>{Math.round(e.rating * 100) / 100}</div>
                                         <div className={classes.dataPlayerW_rounds}>{e.w_rounds}</div>
                                         <div className={classes.dataPlayerL_rounds}>{e.l_rounds}</div>
                                         <div className={classes.dataPlayerMaps}>{e.maps}</div>
@@ -503,7 +501,7 @@ const TopPlayersTourResult = (props) => {
                         }
                     })}
                 </div>
-                <img src={`/images/DataInImage/TOP_PLAYERS_TOUR_V3.png`} className={classes.bgImg} alt="/"/>
+                <img src={`/images/DataInImage/TOP_PLAYERS_TOUR_V4.png`} className={classes.bgImg} alt="/"/>
             </div>
         )
     }

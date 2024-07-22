@@ -1295,7 +1295,7 @@ const PictureResult2 = (props) => {
                     </div>
                 </div>
 
-                <img src={`/images/DataInImage/RESULT_MATCH.png`} className={classes.bgImg} alt="/"/>
+                <img src={`/images/DataInImage/RESULT_MATCH2.png`} className={classes.bgImg} alt="/"/>
             </div>
         )
     }

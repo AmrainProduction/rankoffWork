@@ -525,7 +525,7 @@ const TopPlayersTourResult = (props) => {
                         }
                     })}
                 </div>
-                <img src={`/images/DataInImage/TOP_PLAYERS_TOUR_V3.png`} className={classes.bgImg} alt="/"/>
+                <img src={`/images/DataInImage/TOP_PLAYERS_TOUR_V4.png`} className={classes.bgImg} alt="/"/>
             </div>
         )
     }

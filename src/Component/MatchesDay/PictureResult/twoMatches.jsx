@@ -6,7 +6,7 @@ const TwoMatches = (props) => {
         <div className={classes.wrapperTopResult}>
             <div className={classes.wrapperInfoMatch}>
                 <div className={classes.infoMatches}>
-                    {props.matches[0]?.date.replaceAll("-", ".")}
+                    {props.matches[0]?.date?.replaceAll("-", ".")}
                 </div>
             </div>
             <div className={classes.wrapperMatch1}>

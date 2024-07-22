@@ -7,6 +7,9 @@ import {
     useGetTournamentsQuery
 } from "../../../store/api/apiSlice";
 import {useState} from "react";
+import normalizeRating from "./normalizeRating";
+import normalizeImpact from "./normalizeImpact";
+import normalizeKD from "./normalizeKD";
 
 const AllStatsPlayersLastTour = () => {
     const tours = useGetTournamentsQuery()
@@ -58,30 +61,6 @@ const AllStatsPlayersLastTour = () => {
     let link_discord
     let nickname
     let query = ''
-
-    const normalizeRating = (rating) => {
-        if(rating > 2) {
-            return rating = 2
-        } else {
-            return rating
-        }
-    }
-
-    const normalizeImpact = (impact) => {
-        if(impact > 2) {
-            return impact = 2
-        } else {
-            return impact
-        }
-    }
-
-    const normalizeKD = (kd) => {
-        if(kd > 3) {
-            return kd = 3
-        } else {
-            return kd
-        }
-    }
 
     if (playersData.data && matchesData.data && playersData.data.length > 0 && matchesData.data.length > 0) {
 
