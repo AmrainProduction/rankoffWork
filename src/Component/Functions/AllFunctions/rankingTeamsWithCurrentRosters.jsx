@@ -8,14 +8,14 @@ import {
 } from "../../../store/api/apiSlice";
 import CalculateCurrentPlayerPoints from "../../../Function/calculateCurrentPlayerPoints";
 import CalculateCurrentTeamPoints from "../../../Function/calculateCurrentTeamPoints";
-import PlayerPointsApproved from "../../../Function/playerPointsApproved";
 import GetCurrentDate from "../../../Function/getCurrentDate";
-import CountryFlagTeam from "../../../Function/countryFlagTeam";
 import WhatCountryTeam from "../../../Function/whatCountryTeam";
+import classes from "../functions.module.css";
 
 const RankingTeamsWithCurrentRosters = () => {
 
 
+    let res
     let teams = []
     let players = []
     let ranking = []
@@ -140,12 +140,24 @@ const RankingTeamsWithCurrentRosters = () => {
             e.position_team = index + 1
         })
 
-        console.log(ranking)
-
+        res = JSON.stringify(ranking)
 
         return (
-            <div>
-
+            <div className={classes.wrapperStatsPlayersTour}>
+                <div className={classes.actionButtons}>
+                    <div className={classes.tour} onClick={e => {
+                        navigator.clipboard.writeText(res.length > 0 ? res : "").then(() => {
+                            console.log('Copy good')
+                        }, () => {
+                            console.log('Fail copy')
+                        })
+                    }}>
+                        Copy
+                    </div>
+                </div>
+                <div className={classes.resultCommand}>
+                    {res.length > 0 ? res : ""}
+                </div>
             </div>
         );
     }

@@ -10,6 +10,8 @@ import CalculateRankingPointsPlayers from "./AllFunctions/calculateRankingPoints
 import CalculateCurrentPlayerPoints from "../../Function/calculateCurrentPlayerPoints";
 import RankingTeamsWhereRostersFromLastTour from "./AllFunctions/rankingTeamsWhereRostersFromLastTour";
 import RankingTeamsWithCurrentRosters from "./AllFunctions/rankingTeamsWithCurrentRosters";
+import AllPlayers from "./AllFunctions/allPlayers";
+import AllTeams from "./AllFunctions/allTeams";
 
 const Functions = () => {
 
@@ -19,17 +21,17 @@ const Functions = () => {
     return (
         <div className={classes.wrapperContent}>
             <div className={classes.wrapperListCommands}>
-                <div className={classes.wrapperElement} onClick={e => {
+                <div className={classes.wrapperElement} onClick={() => {
                     setChoiceFunc('StatsPlayersFromNecessaryTour')
                 }}>
                     Статистика всех игроков выбранного турнира
                 </div>
-                <div className={classes.wrapperElement} onClick={e => {
+                <div className={classes.wrapperElement} onClick={() => {
                     setChoiceFunc('StatsTeamsNecessaryTour')
                 }}>
                     Статистика всех команд выбранного турнира
                 </div>
-                <div className={classes.wrapperElement} onClick={e => {
+                <div className={classes.wrapperElement} onClick={() => {
                     setChoiceFunc('AllStatsPlayersLastTour')
                 }}>
                     Статистика игроков с последнего турнира за все время
@@ -39,19 +41,50 @@ const Functions = () => {
                 }}>
                     Текущие команды игроков согласно информации о составах команд
                 </div>
-                <div className={classes.wrapperElement} onClick={e => {
+                <div className={classes.wrapperElement} onClick={() => {
                     setChoiceFunc('RosterTeamFromNecessaryTour')
                 }}>
                     Ростеры всех команд с выбранного турнира
                 </div>
+                <div className={classes.wrapperElement} onClick={() => {
+                    setChoiceFunc('AllPlayersList')
+                }}>
+                    Список всех игроков
+                </div>
+                <div className={classes.wrapperElement} onClick={() => {
+                    setChoiceFunc('AllTeamsList')
+                }}>
+                    Список всех команд
+                </div>
+                <div className={classes.wrapperElement} onClick={() => {
+                    setChoiceFunc('CalculateRankingPointsPlayers')
+                }}>
+                    Начислить игрокам очки за выбранный турнир
+                </div>
+                <div className={classes.wrapperElement} onClick={() => {
+                    setChoiceFunc('CalculateRankingPointsTeams')
+                }}>
+                    Начислить командам очки за выбранный турнир
+                </div>
+                <div className={classes.wrapperElement} onClick={() => {
+                    setChoiceFunc('RankingTeamsWithCurrentRosters')
+                }}>
+                    Обновить мировой рейтинг команд
+                </div>
             </div>
-            <RankingTeamsWithCurrentRosters/>
+
             <div className={classes.wrapperOutputRes}>
                 {choiceFunc === 'AllStatsPlayersLastTour' ? <AllStatsPlayersLastTour/> :
                     choiceFunc === 'StatsPlayersFromNecessaryTour' ? <StatsPlayersNecessaryTour/> :
                         choiceFunc === 'StatsTeamsNecessaryTour' ? <StatsTeamsNecessaryTour/> :
                             choiceFunc === 'CurrentTeamsPlayers' ? <CurrentTeamsPlayers/> :
-                                choiceFunc === 'RosterTeamFromNecessaryTour' ? <RosterTeamFromNecessaryTour/> : ""}
+                                choiceFunc === 'RosterTeamFromNecessaryTour' ? <RosterTeamFromNecessaryTour/> :
+                                    choiceFunc === 'AllPlayersList' ? <AllPlayers/> :
+                                        choiceFunc === 'AllTeamsList' ? <AllTeams/> :
+                                            choiceFunc === 'CalculateRankingPointsPlayers' ? <CalculateRankingPointsPlayers/> :
+                                                choiceFunc === 'CalculateRankingPointsTeams' ? <CalculateRankingPointsTeams/> :
+                                                    choiceFunc === 'RankingTeamsWithCurrentRosters' ? <RankingTeamsWithCurrentRosters/> :
+                                            ""}
             </div>
         </div>
     );
