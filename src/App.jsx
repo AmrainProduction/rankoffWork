@@ -38,13 +38,6 @@ import RankingTeams from "./Component/RankingTeams/rankingTeams"
 import EmojiTeams from "./Component/EmojiTeams/emojiTeams"
 import TopPlayersByTours from "./Component/TopPlayersByTours/topPlayersByTours"
 import MatchesDay from "./Component/MatchesDay/matchesDay"
-import TopPlayersByToursLong from "./Component/TopPlayersByToursLong/topPlayersByToursLong"
-import PlayerPointsApproved from "./Function/playerPointsApproved"
-import {coreModule} from "@reduxjs/toolkit/query"
-import GetCurrentDate from "./Function/getCurrentDate";
-import CurrentCoefficientPoints from "./Function/currentCoefficientPoints";
-import CalculateCurrentPlayerPoints from "./Function/calculateCurrentPlayerPoints";
-import CalculateCurrentTeamPoints from "./Function/calculateCurrentTeamPoints";
 
 const router = createBrowserRouter(createRoutesFromElements(
     <Route path='/' element={<Layout/>} errorElement={<ErrorPage/>}>

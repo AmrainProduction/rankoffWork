@@ -91,6 +91,7 @@
     margin-right: 1%;
     padding: 0.2% 2%;
     width: auto;
+    min-width: max-content;
     height: auto;
     cursor: pointer;
     background: #8C6899;

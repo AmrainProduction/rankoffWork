@@ -12,6 +12,7 @@ import RankingTeamsWhereRostersFromLastTour from "./AllFunctions/rankingTeamsWhe
 import RankingTeamsWithCurrentRosters from "./AllFunctions/rankingTeamsWithCurrentRosters";
 import AllPlayers from "./AllFunctions/allPlayers";
 import AllTeams from "./AllFunctions/allTeams";
+import GiveAwardsPlayersAndTeams from "./AllFunctions/giveAwardsPlayersAndTeams";
 
 const Functions = () => {
 
@@ -47,6 +48,11 @@ const Functions = () => {
                     Ростеры всех команд с выбранного турнира
                 </div>
                 <div className={classes.wrapperElement} onClick={() => {
+                    setChoiceFunc('GiveAwardsPlayersAndTeams')
+                }}>
+                    Выдать награды игрокам и командам
+                </div>
+                <div className={classes.wrapperElement} onClick={() => {
                     setChoiceFunc('AllPlayersList')
                 }}>
                     Список всех игроков
@@ -79,12 +85,13 @@ const Functions = () => {
                         choiceFunc === 'StatsTeamsNecessaryTour' ? <StatsTeamsNecessaryTour/> :
                             choiceFunc === 'CurrentTeamsPlayers' ? <CurrentTeamsPlayers/> :
                                 choiceFunc === 'RosterTeamFromNecessaryTour' ? <RosterTeamFromNecessaryTour/> :
-                                    choiceFunc === 'AllPlayersList' ? <AllPlayers/> :
-                                        choiceFunc === 'AllTeamsList' ? <AllTeams/> :
-                                            choiceFunc === 'CalculateRankingPointsPlayers' ? <CalculateRankingPointsPlayers/> :
-                                                choiceFunc === 'CalculateRankingPointsTeams' ? <CalculateRankingPointsTeams/> :
-                                                    choiceFunc === 'RankingTeamsWithCurrentRosters' ? <RankingTeamsWithCurrentRosters/> :
-                                            ""}
+                                    choiceFunc === 'GiveAwardsPlayersAndTeams' ? <GiveAwardsPlayersAndTeams/> :
+                                        choiceFunc === 'AllPlayersList' ? <AllPlayers/> :
+                                            choiceFunc === 'AllTeamsList' ? <AllTeams/> :
+                                                choiceFunc === 'CalculateRankingPointsPlayers' ? <CalculateRankingPointsPlayers/> :
+                                                    choiceFunc === 'CalculateRankingPointsTeams' ? <CalculateRankingPointsTeams/> :
+                                                        choiceFunc === 'RankingTeamsWithCurrentRosters' ? <RankingTeamsWithCurrentRosters/> :
+                                                            ""}
             </div>
         </div>
     );
