@@ -13,6 +13,7 @@ import TwoMatches from "./PictureResult/twoMatches";
 import ThreeMatches from "./PictureResult/threeMatches";
 import FourMatches from "./PictureResult/fourMatches";
 import FiveMatches from "./PictureResult/fiveMatches";
+import SixMatches from "./PictureResult/sixMatches";
 
 const MatchesDay = () => {
 
@@ -153,7 +154,8 @@ const MatchesDay = () => {
                             matches.length === 3 ? <ThreeMatches matches={matches}/> :
                                 matches.length === 4 ? <FourMatches matches={matches}/> :
                                     matches.length === 5 ? <FiveMatches matches={matches}/> :
-                                        <OneMatch matches={matches}/>
+                                        matches.length === 6 ? <SixMatches matches={matches}/> :
+                                        ""
                 }
             </div>
 

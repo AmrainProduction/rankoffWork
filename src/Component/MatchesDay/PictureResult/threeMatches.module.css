@@ -15,48 +15,32 @@
     width: 100%;
 }
 
+.wrapperMatches {
+    display: block;
+    height: 100%;
+    width: 100%;
+    padding-top: 3.4%;
+    position: absolute;
+}
+
 .wrapperInfoMatch {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 5.9%;
     width: 100%;
-    top: 4.6%;
+    margin-bottom: 6%;
     padding: 0 0 0 41%;
-    position: absolute;
 }
 
-.wrapperMatch1 {
+.wrapperMatch {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 24.6%;
     width: 100%;
-    top: 15.8%;
+    margin-bottom: 2.5%;
     padding: 0 2.8%;
-    position: absolute;
-}
-
-.wrapperMatch2 {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 24.6%;
-    width: 100%;
-    top: 43.4%;
-    padding: 0 2.8%;
-    position: absolute;
-}
-
-.wrapperMatch3 {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 24.6%;
-    width: 100%;
-    top: 70.9%;
-    padding: 0 2.8%;
-    position: absolute;
 }
 
 .infoMatches {

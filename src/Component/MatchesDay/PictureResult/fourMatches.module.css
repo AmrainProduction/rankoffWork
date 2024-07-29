@@ -15,59 +15,32 @@
     width: 100%;
 }
 
+.wrapperMatches {
+    display: block;
+    height: 100%;
+    width: 100%;
+    padding-top: 3.4%;
+    position: absolute;
+}
+
 .wrapperInfoMatch {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 4.7%;
     width: 100%;
-    top: 3.6%;
+    margin-bottom: 5%;
     padding: 0 0 0 41%;
-    position: absolute;
 }
 
-.wrapperMatch1 {
+.wrapperMatch {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 19.3%;
     width: 100%;
-    top: 12.4%;
+    margin-bottom: 2.5%;
     padding: 0 2.8%;
-    position: absolute;
-}
-
-.wrapperMatch2 {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 19.3%;
-    width: 100%;
-    top: 34%;
-    padding: 0 2.8%;
-    position: absolute;
-}
-
-.wrapperMatch3 {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 19.3%;
-    width: 100%;
-    top: 55.6%;
-    padding: 0 2.8%;
-    position: absolute;
-}
-
-.wrapperMatch4 {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 19.3%;
-    width: 100%;
-    top: 77.2%;
-    padding: 0 2.8%;
-    position: absolute;
 }
 
 .infoMatches {

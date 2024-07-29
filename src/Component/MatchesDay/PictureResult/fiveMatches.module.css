@@ -15,70 +15,32 @@
     width: 100%;
 }
 
+.wrapperMatches {
+    display: block;
+    height: 100%;
+    width: 100%;
+    padding-top: 3.4%;
+    position: absolute;
+}
+
 .wrapperInfoMatch {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 3.9%;
     width: 100%;
-    top: 2.9%;
+    margin-bottom: 5%;
     padding: 0 0 0 41%;
-    position: absolute;
 }
 
-.wrapperMatch1 {
+.wrapperMatch {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 15.8%;
     width: 100%;
-    top: 10.2%;
+    margin-bottom: 2.5%;
     padding: 0 2.8%;
-    position: absolute;
-}
-
-.wrapperMatch2 {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 15.8%;
-    width: 100%;
-    top: 28%;
-    padding: 0 2.8%;
-    position: absolute;
-}
-
-.wrapperMatch3 {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 15.8%;
-    width: 100%;
-    top: 45.7%;
-    padding: 0 2.8%;
-    position: absolute;
-}
-
-.wrapperMatch4 {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 15.8%;
-    width: 100%;
-    top: 63.5%;
-    padding: 0 2.8%;
-    position: absolute;
-}
-
-.wrapperMatch5 {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 15.8%;
-    width: 100%;
-    top: 81.2%;
-    padding: 0 2.8%;
-    position: absolute;
 }
 
 .infoMatches {

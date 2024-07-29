@@ -9,5 +9,9 @@ export default function CurrentCoefficientPoints (dateNow, datePoints, points) {
 
     resPoints = points - (points * ((yearsDifference * 12 + monthsDifference)/10))
 
+    if(resPoints < 0) {
+        resPoints = 0
+    }
+
     return resPoints.toFixed(5);
 }

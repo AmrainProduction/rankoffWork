@@ -15,6 +15,14 @@
     width: 100%;
 }
 
+.wrapperMatches {
+    display: block;
+    height: 100%;
+    width: 100%;
+    padding-top: 3.4%;
+    position: absolute;
+}
+
 .wrapperInfoMatch {
     display: flex;
     justify-content: center;
@@ -26,7 +34,7 @@
     position: absolute;
 }
 
-.wrapperMatch1 {
+.wrapperMatch {
     display: flex;
     justify-content: center;
     align-items: center;

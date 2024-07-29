@@ -1,0 +1,200 @@
+.wrapperTopResult {
+    font-family: "Mazzard M", sans-serif;
+    display: block;
+    justify-content: center;
+    align-items: flex-start;
+    height: 100%;
+    width: 100%;
+    z-index: 20;
+    color: white;
+    position: relative;
+}
+
+.wrapperTopResult img {
+    height: auto;
+    width: 100%;
+}
+
+.wrapperInfoMatches {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    height: 4.3%;
+    top: 5.4%;
+    padding: 0 0 0 61%;
+    position: absolute;
+}
+
+.wrapperPredictors {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    height: 10%;
+    top: 12.2%;
+    padding: 0 5.2%;
+    position: absolute;
+}
+
+.wrapperPredictorsName {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    height: 2.5%;
+    top: 22.5%;
+    padding: 0 5.2%;
+    position: absolute;
+}
+
+.wrapperPickTeams {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    height: 10%;
+    top: 26%;
+    padding: 0 5.2%;
+    position: absolute;
+}
+
+.wrapperPickTeams2 {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    height: 10%;
+    top: 38%;
+    padding: 0 5.2%;
+    position: absolute;
+}
+
+.wrapperPickTeams3 {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    height: 10%;
+    top: 50%;
+    padding: 0 5.2%;
+    position: absolute;
+}
+
+.wrapperPickTeams4 {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    height: 10%;
+    top: 62%;
+    padding: 0 5.2%;
+    position: absolute;
+}
+
+.wrapperPickTeams5 {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    height: 10%;
+    top: 74%;
+    padding: 0 5.2%;
+    position: absolute;
+}
+
+.wrapperPickTeams6 {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    height: 10%;
+    top: 86%;
+    padding: 0 5.2%;
+    position: absolute;
+}
+
+.wrapperPredictorsName div:not(:last-child) {
+    margin-right: 1.8%;
+}
+
+.wrapperPredictors div:not(:last-child) {
+    margin-right: 1.8%;
+}
+
+.wrapperPickTeams div:not(:last-child) {
+    margin-right: 1.8%;
+}
+
+.wrapperPickTeams2 div:not(:last-child) {
+    margin-right: 1.8%;
+}
+
+.wrapperPickTeams3 div:not(:last-child) {
+    margin-right: 1.8%;
+}
+
+.wrapperPickTeams4 div:not(:last-child) {
+    margin-right: 1.8%;
+}
+
+.wrapperPickTeams5 div:not(:last-child) {
+    margin-right: 1.8%;
+}
+
+.wrapperPickTeams6 div:not(:last-child) {
+    margin-right: 1.8%;
+}
+
+.infoMatches {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30%;
+    padding: 0.5%;
+    height: 100%;
+    font-size: clamp(0.1vw, 2.2vw, 2.2vw);
+}
+
+.predictorPhoto {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.predictorPhoto img {
+    width: auto;
+    height: 100%;
+    border-radius: 16%;
+}
+
+.predictorsName {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 11%;
+    padding: 0.5%;
+    height: 100%;
+    font-size: clamp(0.1vw, 1.5vw, 1.5vw);
+}
+
+.pickTeamItem {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 11%;
+    padding: 0.5%;
+    height: 100%;
+    border-radius: 16%;
+    background: #15161A;
+    border: 2px solid #fff;
+}
+
+.pickTeamItem img {
+    height: 90%;
+    width: auto;
+}
+
