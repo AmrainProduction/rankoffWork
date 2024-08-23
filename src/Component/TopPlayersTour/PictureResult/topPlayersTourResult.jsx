@@ -7,7 +7,9 @@ import {
     useGetTeamsTournamentsByNameQuery, useGetTournamentByNameQuery
 } from "../../../store/api/apiSlice";
 import CountryFlagPlayer from "../../../Function/countryFlagPlayer";
-import CurrentTeamPlayer from "../../../Function/currentTeamPlayer";
+import normalizeRating from "../../Functions/AllFunctions/normalizeRating";
+import normalizeImpact from "../../Functions/AllFunctions/normalizeImpact";
+import normalizeKD from "../../Functions/AllFunctions/normalizeKD";
 
 const TopPlayersTourResult = (props) => {
 
@@ -63,30 +65,6 @@ const TopPlayersTourResult = (props) => {
     let maps_all = 0
     let maps_win = 0
     let maps_lose = 0
-
-    const normalizeRating = (rating) => {
-        if (rating > 2) {
-            return rating = 2
-        } else {
-            return rating
-        }
-    }
-
-    const normalizeImpact = (impact) => {
-        if (impact > 2) {
-            return impact = 2
-        } else {
-            return impact
-        }
-    }
-
-    const normalizeKD = (kd) => {
-        if (kd > 3) {
-            return kd = 3
-        } else {
-            return kd
-        }
-    }
 
     sortMatches = allMatches?.data?.filter(e => e.name_tour_for_sort === name)
 
@@ -500,7 +478,7 @@ const TopPlayersTourResult = (props) => {
                                         }>{e.kpr_p}</div>
                                         <div className={classes.dataPlayerDpr} style={
                                             {
-                                                background: e.dpr_p < 0.68 ? "#528347" : e.dpr_p > 0.7 ? e.dpr_p > 0.8 ? "#854141" : "#a29747" : "#854141"
+                                                background: e.dpr_p < 0.68 ? "#528347" : e.dpr_p > 0.7 ? e.dpr_p > 0.8 ? "#854141" : "#a29747" : "#a29747"
                                             }
                                         }>{e.dpr_p}</div>
                                         <div className={classes.dataPlayerK}>{e.k}</div>

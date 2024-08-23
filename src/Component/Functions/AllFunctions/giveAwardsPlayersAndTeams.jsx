@@ -34,7 +34,7 @@ const GiveAwardsPlayersAndTeams = () => {
                     "end_date_tour": player.end_date_tour,
                     "name_player": player.nickname,
                     "player_id": player.player_id,
-                    "logo_award": player.logo_tour,
+                    "logo_award": "MVP.png",
                     "award_description": `MVP ${player.name_tour} ${formatDate(player.end_date_tour)}`,
                 })
             })

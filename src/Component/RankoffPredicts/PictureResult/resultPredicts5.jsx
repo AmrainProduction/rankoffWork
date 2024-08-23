@@ -4,7 +4,7 @@ import {WhoWinPredict} from "../../../Function/whoWinPredict";
 
 const ResultPredicts5 = (props) => {
     return (
-        <className className={classes.wrapperTopResult}>
+        <div className={classes.wrapperTopResult}>
             <div className={classes.wrapperInfoMatches}>
                 <div className={classes.infoMatches}>
                     {props.matches[0].date.replaceAll("-", ".")}
@@ -278,7 +278,7 @@ const ResultPredicts5 = (props) => {
             </div>
 
             <img src={`/images/DataInImage/predicts_banner_2024_5.png`} className={classes.bgImg} alt="/"/>
-        </className>
+        </div>
     );
 };
 

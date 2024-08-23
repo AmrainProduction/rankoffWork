@@ -598,9 +598,8 @@
     justify-content: center;
     align-items: center;
     height: 100%;
-    /*width: 40px;*/
     max-width: 20%;
-    /*min-width: 20%;*/
+    /*margin-right: 10%;*/
 }
 
 .dataFlagPlayer img{

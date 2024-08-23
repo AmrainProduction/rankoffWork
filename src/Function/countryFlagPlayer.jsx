@@ -14,7 +14,7 @@ const CountryFlagPlayer = (props) => {
         }
     } else {
         style = {
-            // width: "12px", height: "9px", marginRight: "5px"
+            // width: "12px", height: "9px"
         }
     }
 

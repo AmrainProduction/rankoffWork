@@ -2,6 +2,9 @@ import React from 'react';
 import classes from "../matchPicture2.module.css";
 import {useGetMatchesByNameQuery} from "../../../store/api/apiSlice";
 import CountryFlagPlayer from "../../../Function/countryFlagPlayer";
+import normalizeImpact from "../../Functions/AllFunctions/normalizeImpact";
+import normalizeRating from "../../Functions/AllFunctions/normalizeRating";
+import normalizeKD from "../../Functions/AllFunctions/normalizeKD";
 
 const PictureResult2 = (props) => {
 
@@ -218,7 +221,7 @@ const PictureResult2 = (props) => {
                 t1p1_dpr += (el.t1p1_d / allRounds)
                 t1p1_kpr += (el.t1p1_k / allRounds)
                 t1p1_impact += el.t1p1_impact
-                t1p1_rating += el.t1p1_rating
+                t1p1_rating += normalizeRating(el.t1p1_rating)
                 t1p1_count_maps += 1
             } else {
                 t1p1 = el.t1p1
@@ -230,7 +233,7 @@ const PictureResult2 = (props) => {
                 t1p1_dpr = (el.t1p1_d / allRounds)
                 t1p1_kpr = (el.t1p1_k / allRounds)
                 t1p1_impact = el.t1p1_impact
-                t1p1_rating = el.t1p1_rating
+                t1p1_rating = normalizeRating(el.t1p1_rating)
                 t1p1_count_maps = 1
             }
             if (el.t1p2 && (el.t1p2 === t1p2_nickname)) {
@@ -243,7 +246,7 @@ const PictureResult2 = (props) => {
                 t1p2_dpr += (el.t1p2_d / allRounds)
                 t1p2_kpr += (el.t1p2_k / allRounds)
                 t1p2_impact += el.t1p2_impact
-                t1p2_rating += el.t1p2_rating
+                t1p2_rating += normalizeRating(el.t1p2_rating)
                 t1p2_count_maps += 1
             } else {
                 t1p2 = el.t1p2
@@ -255,7 +258,7 @@ const PictureResult2 = (props) => {
                 t1p2_dpr = (el.t1p2_d / allRounds)
                 t1p2_kpr = (el.t1p2_k / allRounds)
                 t1p2_impact = el.t1p2_impact
-                t1p2_rating = el.t1p2_rating
+                t1p2_rating = normalizeRating(el.t1p2_rating)
                 t1p2_count_maps = 1
             }
             if (el.t1p3 && (el.t1p3 === t1p3_nickname)) {
@@ -268,7 +271,7 @@ const PictureResult2 = (props) => {
                 t1p3_dpr += (el.t1p3_d / allRounds)
                 t1p3_kpr += (el.t1p3_k / allRounds)
                 t1p3_impact += el.t1p3_impact
-                t1p3_rating += el.t1p3_rating
+                t1p3_rating += normalizeRating(el.t1p3_rating)
                 t1p3_count_maps += 1
             } else {
                 t1p3 = el.t1p3
@@ -280,7 +283,7 @@ const PictureResult2 = (props) => {
                 t1p3_dpr = (el.t1p3_d / allRounds)
                 t1p3_kpr = (el.t1p3_k / allRounds)
                 t1p3_impact = el.t1p3_impact
-                t1p3_rating = el.t1p3_rating
+                t1p3_rating = normalizeRating(el.t1p3_rating)
                 t1p3_count_maps = 1
             }
             if (el.t1p4 && (el.t1p4 === t1p4_nickname)) {
@@ -293,7 +296,7 @@ const PictureResult2 = (props) => {
                 t1p4_dpr += (el.t1p4_d / allRounds)
                 t1p4_kpr += (el.t1p4_k / allRounds)
                 t1p4_impact += el.t1p4_impact
-                t1p4_rating += el.t1p4_rating
+                t1p4_rating += normalizeRating(el.t1p4_rating)
                 t1p4_count_maps += 1
             } else {
                 t1p4 = el.t1p4
@@ -305,7 +308,7 @@ const PictureResult2 = (props) => {
                 t1p4_dpr = (el.t1p4_d / allRounds)
                 t1p4_kpr = (el.t1p4_k / allRounds)
                 t1p4_impact = el.t1p4_impact
-                t1p4_rating = el.t1p4_rating
+                t1p4_rating = normalizeRating(el.t1p4_rating)
                 t1p4_count_maps = 1
             }
             if (el.t1p5 && (el.t1p5 === t1p5_nickname)) {
@@ -318,7 +321,7 @@ const PictureResult2 = (props) => {
                 t1p5_dpr += (el.t1p5_d / allRounds)
                 t1p5_kpr += (el.t1p5_k / allRounds)
                 t1p5_impact += el.t1p5_impact
-                t1p5_rating += el.t1p5_rating
+                t1p5_rating += normalizeRating(el.t1p5_rating)
                 t1p5_count_maps += 1
             } else {
                 t1p5 = el.t1p5
@@ -330,7 +333,7 @@ const PictureResult2 = (props) => {
                 t1p5_dpr = (el.t1p5_d / allRounds)
                 t1p5_kpr = (el.t1p5_k / allRounds)
                 t1p5_impact = el.t1p5_impact
-                t1p5_rating = el.t1p5_rating
+                t1p5_rating = normalizeRating(el.t1p5_rating)
                 t1p5_count_maps = 1
             }
 
@@ -344,7 +347,7 @@ const PictureResult2 = (props) => {
                 t2p1_dpr += (el.t2p1_d / allRounds)
                 t2p1_kpr += (el.t2p1_k / allRounds)
                 t2p1_impact += el.t2p1_impact
-                t2p1_rating += el.t2p1_rating
+                t2p1_rating += normalizeRating(el.t2p1_rating)
                 t2p1_count_maps += 1
             } else {
                 t2p1 = el.t2p1
@@ -356,7 +359,7 @@ const PictureResult2 = (props) => {
                 t2p1_dpr = (el.t2p1_d / allRounds)
                 t2p1_kpr = (el.t2p1_k / allRounds)
                 t2p1_impact = el.t2p1_impact
-                t2p1_rating = el.t2p1_rating
+                t2p1_rating = normalizeRating(el.t2p1_rating)
                 t2p1_count_maps = 1
             }
             if (el.t2p2 && (el.t2p2 === t2p2_nickname)) {
@@ -369,7 +372,7 @@ const PictureResult2 = (props) => {
                 t2p2_dpr += (el.t2p2_d / allRounds)
                 t2p2_kpr += (el.t2p2_k / allRounds)
                 t2p2_impact += el.t2p2_impact
-                t2p2_rating += el.t2p2_rating
+                t2p2_rating += normalizeRating(el.t2p2_rating)
                 t2p2_count_maps += 1
             } else {
                 t2p2 = el.t2p2
@@ -381,7 +384,7 @@ const PictureResult2 = (props) => {
                 t2p2_dpr = (el.t2p2_d / allRounds)
                 t2p2_kpr = (el.t2p2_k / allRounds)
                 t2p2_impact = el.t2p2_impact
-                t2p2_rating = el.t2p2_rating
+                t2p2_rating = normalizeRating(el.t2p2_rating)
                 t2p2_count_maps = 1
             }
             if (el.t2p3 && (el.t2p3 === t2p3_nickname)) {
@@ -394,7 +397,7 @@ const PictureResult2 = (props) => {
                 t2p3_dpr += (el.t2p3_d / allRounds)
                 t2p3_kpr += (el.t2p3_k / allRounds)
                 t2p3_impact += el.t2p3_impact
-                t2p3_rating += el.t2p3_rating
+                t2p3_rating += normalizeRating(el.t2p3_rating)
                 t2p3_count_maps += 1
             } else {
                 t2p3 = el.t2p3
@@ -406,7 +409,7 @@ const PictureResult2 = (props) => {
                 t2p3_dpr = (el.t2p3_d / allRounds)
                 t2p3_kpr = (el.t2p3_k / allRounds)
                 t2p3_impact = el.t2p3_impact
-                t2p3_rating = el.t2p3_rating
+                t2p3_rating = normalizeRating(el.t2p3_rating)
                 t2p3_count_maps = 1
             }
 
@@ -420,7 +423,7 @@ const PictureResult2 = (props) => {
                 t2p4_dpr += (el.t2p4_d / allRounds)
                 t2p4_kpr += (el.t2p4_k / allRounds)
                 t2p4_impact += el.t2p4_impact
-                t2p4_rating += el.t2p4_rating
+                t2p4_rating += normalizeRating(el.t2p4_rating)
                 t2p4_count_maps += 1
             } else {
                 t2p4 = el.t2p4
@@ -432,7 +435,7 @@ const PictureResult2 = (props) => {
                 t2p4_dpr = (el.t2p4_d / allRounds)
                 t2p4_kpr = (el.t2p4_k / allRounds)
                 t2p4_impact = el.t2p4_impact
-                t2p4_rating = el.t2p4_rating
+                t2p4_rating = normalizeRating(el.t2p4_rating)
                 t2p4_count_maps = 1
             }
             if (el.t2p5 && (el.t2p5 === t2p5_nickname)) {
@@ -445,7 +448,7 @@ const PictureResult2 = (props) => {
                 t2p5_dpr += (el.t2p5_d / allRounds)
                 t2p5_kpr += (el.t2p5_k / allRounds)
                 t2p5_impact += el.t2p5_impact
-                t2p5_rating += el.t2p5_rating
+                t2p5_rating += normalizeRating(el.t2p5_rating)
                 t2p5_count_maps += 1
             } else {
                 t2p5 = el.t2p5
@@ -457,7 +460,7 @@ const PictureResult2 = (props) => {
                 t2p5_dpr = (el.t2p5_d / allRounds)
                 t2p5_kpr = (el.t2p5_k / allRounds)
                 t2p5_impact = el.t2p5_impact
-                t2p5_rating = el.t2p5_rating
+                t2p5_rating = normalizeRating(el.t2p5_rating)
                 t2p5_count_maps = 1
             }
         })

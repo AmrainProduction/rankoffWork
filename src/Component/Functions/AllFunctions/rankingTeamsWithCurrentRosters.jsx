@@ -11,6 +11,7 @@ import CalculateCurrentTeamPoints from "../../../Function/calculateCurrentTeamPo
 import GetCurrentDate from "../../../Function/getCurrentDate";
 import WhatCountryTeam from "../../../Function/whatCountryTeam";
 import classes from "../functions.module.css";
+import exportFromJSON from "export-from-json";
 
 const RankingTeamsWithCurrentRosters = () => {
 
@@ -27,6 +28,12 @@ const RankingTeamsWithCurrentRosters = () => {
     const playersPoints = useGetPlayersPointsQuery()
     const teamsPoints = useGetTeamsPointsQuery()
     const transferTeamsPoints = useGetTransferTeamsPointsQuery()
+
+    const onExportLocal = (data) => {
+        const fileName = `ranking_${GetCurrentDate()}`
+        const exportType = exportFromJSON.types.csv
+        exportFromJSON({data, fileName, exportType, delimiter: ';'})
+    }
 
     if (playersPoints.data && playersPoints.data.length && teamsPoints.data && teamsPoints.data.length > 0 && allPlayers.data
         && allPlayers.data.length > 0 && transferTeamsPoints.data && transferTeamsPoints.data.length > 0
@@ -80,7 +87,7 @@ const RankingTeamsWithCurrentRosters = () => {
 
         allTeams.data.map(team => {
             delTeams.map(e1 => {
-                if (team.team_id !== e1 && CalculateCurrentTeamPoints(approvedTeams.filter(e => e.team_id === team.team_id)) > 0) {
+                if (team.team_id !== e1) {
                     teams.push({
                         name_team: team.name_team,
                         logo_team: team.logo_team,
@@ -121,16 +128,16 @@ const RankingTeamsWithCurrentRosters = () => {
                     start_date: "",
                     end_date: GetCurrentDate(),
                     position_team: 0,
-                    player1: playersInfo[0]?.nickname,
-                    player2: playersInfo[1]?.nickname,
-                    player3: playersInfo[2]?.nickname,
-                    player4: playersInfo[3]?.nickname,
-                    player5: playersInfo[4]?.nickname,
-                    logo_player1: playersInfo[0]?.logo_player,
-                    logo_player2: playersInfo[1]?.logo_player,
-                    logo_player3: playersInfo[2]?.logo_player,
-                    logo_player4: playersInfo[3]?.logo_player,
-                    logo_player5: playersInfo[4]?.logo_player,
+                    player1: playersInfo[0]?.nickname ? playersInfo[0]?.nickname : "",
+                    player2: playersInfo[1]?.nickname ? playersInfo[1]?.nickname : "",
+                    player3: playersInfo[2]?.nickname ? playersInfo[2]?.nickname : "",
+                    player4: playersInfo[3]?.nickname ? playersInfo[3]?.nickname : "",
+                    player5: playersInfo[4]?.nickname ? playersInfo[4]?.nickname : "",
+                    logo_player1: playersInfo[0]?.logo_player ? playersInfo[0]?.logo_player : "PlayerDefaultLogo.png",
+                    logo_player2: playersInfo[1]?.logo_player ? playersInfo[1]?.logo_player : "PlayerDefaultLogo.png",
+                    logo_player3: playersInfo[2]?.logo_player ? playersInfo[2]?.logo_player : "PlayerDefaultLogo.png",
+                    logo_player4: playersInfo[3]?.logo_player ? playersInfo[3]?.logo_player : "PlayerDefaultLogo.png",
+                    logo_player5: playersInfo[4]?.logo_player ? playersInfo[4]?.logo_player : "PlayerDefaultLogo.png",
                 })
             }
         })
@@ -154,6 +161,7 @@ const RankingTeamsWithCurrentRosters = () => {
                     }}>
                         Copy
                     </div>
+                    <div className={classes.tour} onClick={() => onExportLocal(ranking)}>Download CSV</div>
                 </div>
                 <div className={classes.resultCommand}>
                     {res.length > 0 ? res : ""}

@@ -1,11 +1,11 @@
 import React, {createRef, useCallback, useEffect, useState} from 'react';
 import classes from './rankoffPredicts.module.css'
-import {toJpeg, toPng} from 'html-to-image';
+import {toJpeg} from 'html-to-image';
 import {
     useGetMatchesByNameQuery,
     useGetMatchesQuery,
     useGetShortMatchByNameQuery,
-    useGetShortMatchQuery
+    useGetShortMatchQuery, useGetTournamentsQuery
 } from "../../store/api/apiSlice";
 import ResultPredicts from "./PictureResult/resultPredicts";
 import logo from "../../logo.svg";
@@ -18,10 +18,13 @@ import ResultPredicts6 from "./PictureResult/resultPredicts6";
 const RankoffPredicts = () => {
 
     const listMatches = useGetShortMatchQuery()
+    const listTours = useGetTournamentsQuery()
 
     const [date, setDate] = useState([])
 
     const [choiceMatch, setChoiceMatch] = useState([])
+    const [choiceTour, setChoiceTour] = useState([])
+    const [matches, setMatches] = useState([])
 
     const [choicePredicter1, setChoicePredicter1] = useState([])
     const [choicePredicter2, setChoicePredicter2] = useState([])
@@ -78,11 +81,16 @@ const RankoffPredicts = () => {
     const [choicePredicter68, setChoicePredicter68] = useState([])
 
     let dates = []
-    let matchesDate = []
+    let matchesData = []
     let matchesID = []
+    let toursID = []
     let predictorsPhotos = ["Andrey Gears", "Postanova", "itsnone", "rower", "Zadrot", "RAF", "oneday", "ggromovvvv"]
 
-    if (listMatches.data && listMatches.data.length > 0) {
+    if (listMatches.data && listMatches.data.length > 0 && listTours.data && listTours.data.length > 0) {
+
+        listTours.data.map((e) => {
+            toursID.push(e.name_tour_sort)
+        })
         listMatches.data.map((e) => {
             dates.push(e.date_match)
         })
@@ -94,7 +102,7 @@ const RankoffPredicts = () => {
         listMatches.data.map((e) => {
             if (e.date_match === date) {
                 matchesID.push(e.name_match_for_sort)
-                matchesDate.push({
+                matchesData.push({
                     team1: e.team1,
                     team2: e.team2,
                     logo_t1: e.logo_t1,
@@ -102,6 +110,7 @@ const RankoffPredicts = () => {
                     score_t1: e.total_score_match_t1,
                     score_t2: e.total_score_match_t2,
                     match_id: e.name_match_for_sort,
+                    tour_id: e.name_tour_sort,
                     format: e.format,
                     date: e.date_match,
                 })
@@ -130,6 +139,19 @@ const RankoffPredicts = () => {
             })
     }, [ref])
 
+    useEffect(() => {
+        if (date.length > 0) {
+            setMatches(matchesData.filter(e => e.date === date).reverse())
+        }
+        if (choiceTour.length > 0) {
+            setMatches(matchesData.filter(e => e.tour_id === choiceTour).reverse())
+        }
+        if (choiceMatch.length > 0) {
+            setMatches(matchesData.filter(e => e.match_id === choiceMatch).reverse())
+        }
+
+    }, [choiceMatch, date, choiceTour])
+
     return (
         <>
             <div className={classes.wrapperMenu}>
@@ -137,132 +159,206 @@ const RankoffPredicts = () => {
                     <img src={logo} alt="logo"/>
                 </div>
                 <div className={classes.menu}>
-                    <div className={classes.listMatches}>
-                        {matchesID.map((e, index) => {
-                            return (
-                                <div key={index} className={classes.match} onClick={() => {
-                                    setChoiceMatch(e)
-                                    setChoicePredicter1([])
-                                    setChoicePredicter2([])
-                                    setChoicePredicter3([])
-                                    setChoicePredicter4([])
-                                    setChoicePredicter5([])
-                                    setChoicePredicter6([])
-                                    setChoicePredicter7([])
-                                    setChoicePredicter8([])
-                                    setChoicePredicter21([])
-                                    setChoicePredicter22([])
-                                    setChoicePredicter23([])
-                                    setChoicePredicter24([])
-                                    setChoicePredicter25([])
-                                    setChoicePredicter26([])
-                                    setChoicePredicter27([])
-                                    setChoicePredicter28([])
-                                    setChoicePredicter31([])
-                                    setChoicePredicter32([])
-                                    setChoicePredicter33([])
-                                    setChoicePredicter34([])
-                                    setChoicePredicter35([])
-                                    setChoicePredicter36([])
-                                    setChoicePredicter37([])
-                                    setChoicePredicter38([])
-                                    setChoicePredicter41([])
-                                    setChoicePredicter42([])
-                                    setChoicePredicter43([])
-                                    setChoicePredicter44([])
-                                    setChoicePredicter45([])
-                                    setChoicePredicter46([])
-                                    setChoicePredicter47([])
-                                    setChoicePredicter48([])
-                                    setChoicePredicter51([])
-                                    setChoicePredicter52([])
-                                    setChoicePredicter53([])
-                                    setChoicePredicter54([])
-                                    setChoicePredicter55([])
-                                    setChoicePredicter56([])
-                                    setChoicePredicter57([])
-                                    setChoicePredicter58([])
-                                    setChoicePredicter61([])
-                                    setChoicePredicter62([])
-                                    setChoicePredicter63([])
-                                    setChoicePredicter64([])
-                                    setChoicePredicter65([])
-                                    setChoicePredicter66([])
-                                    setChoicePredicter67([])
-                                    setChoicePredicter68([])
-                                }}>
-                                    {e}
-                                </div>
-                            )
-                        })}
+
+                    <div className={classes.wrapperListMatches}>
+                        <div className={classes.titleBox}>Выбор матча:</div>
+                        <div className={classes.listMatches}>
+                            {matchesID.map((e, index) => {
+                                return (
+                                    <div key={index} className={classes.match} onClick={() => {
+                                        setChoiceMatch(e)
+                                        setChoiceTour("")
+                                        setChoicePredicter1([])
+                                        setChoicePredicter2([])
+                                        setChoicePredicter3([])
+                                        setChoicePredicter4([])
+                                        setChoicePredicter5([])
+                                        setChoicePredicter6([])
+                                        setChoicePredicter7([])
+                                        setChoicePredicter8([])
+                                        setChoicePredicter21([])
+                                        setChoicePredicter22([])
+                                        setChoicePredicter23([])
+                                        setChoicePredicter24([])
+                                        setChoicePredicter25([])
+                                        setChoicePredicter26([])
+                                        setChoicePredicter27([])
+                                        setChoicePredicter28([])
+                                        setChoicePredicter31([])
+                                        setChoicePredicter32([])
+                                        setChoicePredicter33([])
+                                        setChoicePredicter34([])
+                                        setChoicePredicter35([])
+                                        setChoicePredicter36([])
+                                        setChoicePredicter37([])
+                                        setChoicePredicter38([])
+                                        setChoicePredicter41([])
+                                        setChoicePredicter42([])
+                                        setChoicePredicter43([])
+                                        setChoicePredicter44([])
+                                        setChoicePredicter45([])
+                                        setChoicePredicter46([])
+                                        setChoicePredicter47([])
+                                        setChoicePredicter48([])
+                                        setChoicePredicter51([])
+                                        setChoicePredicter52([])
+                                        setChoicePredicter53([])
+                                        setChoicePredicter54([])
+                                        setChoicePredicter55([])
+                                        setChoicePredicter56([])
+                                        setChoicePredicter57([])
+                                        setChoicePredicter58([])
+                                        setChoicePredicter61([])
+                                        setChoicePredicter62([])
+                                        setChoicePredicter63([])
+                                        setChoicePredicter64([])
+                                        setChoicePredicter65([])
+                                        setChoicePredicter66([])
+                                        setChoicePredicter67([])
+                                        setChoicePredicter68([])
+                                    }}>
+                                        {e}
+                                    </div>
+                                )
+                            })}
+                        </div>
                     </div>
 
-                    <div className={classes.listMatches}>
-                        {dates.map((e, index) => {
-                            return (
-                                <div key={index} className={classes.match} onClick={() => {
-                                    setDate(e)
-                                    setChoiceMatch([])
-                                    setChoicePredicter1([])
-                                    setChoicePredicter2([])
-                                    setChoicePredicter3([])
-                                    setChoicePredicter4([])
-                                    setChoicePredicter5([])
-                                    setChoicePredicter6([])
-                                    setChoicePredicter7([])
-                                    setChoicePredicter8([])
-                                    setChoicePredicter21([])
-                                    setChoicePredicter22([])
-                                    setChoicePredicter23([])
-                                    setChoicePredicter24([])
-                                    setChoicePredicter25([])
-                                    setChoicePredicter26([])
-                                    setChoicePredicter27([])
-                                    setChoicePredicter28([])
-                                    setChoicePredicter31([])
-                                    setChoicePredicter32([])
-                                    setChoicePredicter33([])
-                                    setChoicePredicter34([])
-                                    setChoicePredicter35([])
-                                    setChoicePredicter36([])
-                                    setChoicePredicter37([])
-                                    setChoicePredicter38([])
-                                    setChoicePredicter41([])
-                                    setChoicePredicter42([])
-                                    setChoicePredicter43([])
-                                    setChoicePredicter44([])
-                                    setChoicePredicter45([])
-                                    setChoicePredicter46([])
-                                    setChoicePredicter47([])
-                                    setChoicePredicter48([])
-                                    setChoicePredicter51([])
-                                    setChoicePredicter52([])
-                                    setChoicePredicter53([])
-                                    setChoicePredicter54([])
-                                    setChoicePredicter55([])
-                                    setChoicePredicter56([])
-                                    setChoicePredicter57([])
-                                    setChoicePredicter58([])
-                                    setChoicePredicter61([])
-                                    setChoicePredicter62([])
-                                    setChoicePredicter63([])
-                                    setChoicePredicter64([])
-                                    setChoicePredicter65([])
-                                    setChoicePredicter66([])
-                                    setChoicePredicter67([])
-                                    setChoicePredicter68([])
-                                }}>
-                                    {e}
-                                </div>
-                            )
-                        })}
+                    <div className={classes.wrapperListMatches}>
+                        <div className={classes.titleBox}>Выбор турнира:</div>
+                        <div className={classes.listMatches}>
+                            {toursID.map((e, index) => {
+                                return (
+                                    <div key={index} className={classes.match} onClick={() => {
+                                        setChoiceTour(e)
+                                        setChoiceMatch("")
+                                        setChoicePredicter1([])
+                                        setChoicePredicter2([])
+                                        setChoicePredicter3([])
+                                        setChoicePredicter4([])
+                                        setChoicePredicter5([])
+                                        setChoicePredicter6([])
+                                        setChoicePredicter7([])
+                                        setChoicePredicter8([])
+                                        setChoicePredicter21([])
+                                        setChoicePredicter22([])
+                                        setChoicePredicter23([])
+                                        setChoicePredicter24([])
+                                        setChoicePredicter25([])
+                                        setChoicePredicter26([])
+                                        setChoicePredicter27([])
+                                        setChoicePredicter28([])
+                                        setChoicePredicter31([])
+                                        setChoicePredicter32([])
+                                        setChoicePredicter33([])
+                                        setChoicePredicter34([])
+                                        setChoicePredicter35([])
+                                        setChoicePredicter36([])
+                                        setChoicePredicter37([])
+                                        setChoicePredicter38([])
+                                        setChoicePredicter41([])
+                                        setChoicePredicter42([])
+                                        setChoicePredicter43([])
+                                        setChoicePredicter44([])
+                                        setChoicePredicter45([])
+                                        setChoicePredicter46([])
+                                        setChoicePredicter47([])
+                                        setChoicePredicter48([])
+                                        setChoicePredicter51([])
+                                        setChoicePredicter52([])
+                                        setChoicePredicter53([])
+                                        setChoicePredicter54([])
+                                        setChoicePredicter55([])
+                                        setChoicePredicter56([])
+                                        setChoicePredicter57([])
+                                        setChoicePredicter58([])
+                                        setChoicePredicter61([])
+                                        setChoicePredicter62([])
+                                        setChoicePredicter63([])
+                                        setChoicePredicter64([])
+                                        setChoicePredicter65([])
+                                        setChoicePredicter66([])
+                                        setChoicePredicter67([])
+                                        setChoicePredicter68([])
+                                    }}>
+                                        {e}
+                                    </div>
+                                )
+                            })}
+                        </div>
                     </div>
+
+                    <div className={classes.wrapperListMatches}>
+                        <div className={classes.titleBox}>Выбор даты:</div>
+                        <div className={classes.listMatches}>
+                            {dates.map((e, index) => {
+                                return (
+                                    <div key={index} className={classes.match} onClick={() => {
+                                        setDate(e)
+                                        setChoiceTour("")
+                                        setChoiceMatch("")
+                                        setChoicePredicter1([])
+                                        setChoicePredicter2([])
+                                        setChoicePredicter3([])
+                                        setChoicePredicter4([])
+                                        setChoicePredicter5([])
+                                        setChoicePredicter6([])
+                                        setChoicePredicter7([])
+                                        setChoicePredicter8([])
+                                        setChoicePredicter21([])
+                                        setChoicePredicter22([])
+                                        setChoicePredicter23([])
+                                        setChoicePredicter24([])
+                                        setChoicePredicter25([])
+                                        setChoicePredicter26([])
+                                        setChoicePredicter27([])
+                                        setChoicePredicter28([])
+                                        setChoicePredicter31([])
+                                        setChoicePredicter32([])
+                                        setChoicePredicter33([])
+                                        setChoicePredicter34([])
+                                        setChoicePredicter35([])
+                                        setChoicePredicter36([])
+                                        setChoicePredicter37([])
+                                        setChoicePredicter38([])
+                                        setChoicePredicter41([])
+                                        setChoicePredicter42([])
+                                        setChoicePredicter43([])
+                                        setChoicePredicter44([])
+                                        setChoicePredicter45([])
+                                        setChoicePredicter46([])
+                                        setChoicePredicter47([])
+                                        setChoicePredicter48([])
+                                        setChoicePredicter51([])
+                                        setChoicePredicter52([])
+                                        setChoicePredicter53([])
+                                        setChoicePredicter54([])
+                                        setChoicePredicter55([])
+                                        setChoicePredicter56([])
+                                        setChoicePredicter57([])
+                                        setChoicePredicter58([])
+                                        setChoicePredicter61([])
+                                        setChoicePredicter62([])
+                                        setChoicePredicter63([])
+                                        setChoicePredicter64([])
+                                        setChoicePredicter65([])
+                                        setChoicePredicter66([])
+                                        setChoicePredicter67([])
+                                        setChoicePredicter68([])
+                                    }}>
+                                        {e}
+                                    </div>
+                                )
+                            })}
+                        </div>
+                    </div>
+
                     <button className={classes.btnSaveAsImage} onClick={onButtonClick}>
                         Save as image
                     </button>
                 </div>
             </div>
-            {(choiceMatch.length > 0 ? matchesDate.filter(e => e.match_id === choiceMatch) : matchesDate.reverse()).map((e, index) => {
+            {matches.map((e, index) => {
                 if (index < 6) {
                     return (
                         <div key={index} className={classes.wrapperPredicters}>
@@ -270,7 +366,7 @@ const RankoffPredicts = () => {
                                 <div className={classes.name}>Gears</div>
                                 <div className={classes.wrapperTeams}>
                                     <div className={classes.team} onClick={() => {
-                                        index === 0 ? setChoicePredicter1(e.logo_t1) : index === 1 ? setChoicePredicter21(e.logo_t1) : index === 2 ? setChoicePredicter31(e.logo_t1) : index === 3 ? setChoicePredicter41(e.logo_t1) : index === 4 ? setChoicePredicter51(e.logo_t1) : setChoicePredicter51(e.logo_t1)
+                                        index === 0 ? setChoicePredicter1(e.logo_t1) : index === 1 ? setChoicePredicter21(e.logo_t1) : index === 2 ? setChoicePredicter31(e.logo_t1) : index === 3 ? setChoicePredicter41(e.logo_t1) : index === 4 ? setChoicePredicter51(e.logo_t1) : index === 5 ? setChoicePredicter61(e.logo_t1) : setChoicePredicter61(e.logo_t1)
                                     }}>
                                         <img src={`/images/LogoTeams/${e.logo_t1}`} alt="/"/>
                                     </div>
@@ -448,41 +544,59 @@ const RankoffPredicts = () => {
             })}
 
             <div ref={ref}>
-                {choiceMatch.length > 0 ?
-                    <ResultPredicts photos={predictorsPhotos} matches={matchesDate} p1={choicePredicter1}
+                {matches.length === 1 ?
+                    <ResultPredicts photos={predictorsPhotos} matches={matches} p1={choicePredicter1}
                                     p2={choicePredicter2}
                                     p3={choicePredicter3} p4={choicePredicter4} p5={choicePredicter5}
-                                    p6={choicePredicter6} p7={choicePredicter7}
-                                    p8={choicePredicter8}/> : matchesDate.length === 1 ?
-                        <ResultPredicts photos={predictorsPhotos} matches={matchesDate} p1={choicePredicter1}
-                                        p2={choicePredicter2}
-                                        p3={choicePredicter3} p4={choicePredicter4} p5={choicePredicter5}
-                                        p6={choicePredicter6} p7={choicePredicter7} p8={choicePredicter8}/> :
-                        matchesDate.length === 2 ?
-                            <ResultPredicts2 photos={predictorsPhotos} matches={matchesDate} p1={choicePredicter1}
+                                    p6={choicePredicter6} p7={choicePredicter7} p8={choicePredicter8}/> :
+                    matches.length === 2 ?
+                        <ResultPredicts2 photos={predictorsPhotos} matches={matches} p1={choicePredicter1}
+                                         p2={choicePredicter2}
+                                         p3={choicePredicter3} p4={choicePredicter4} p5={choicePredicter5}
+                                         p6={choicePredicter6} p7={choicePredicter7} p8={choicePredicter8}
+                                         p21={choicePredicter21} p22={choicePredicter22}
+                                         p23={choicePredicter23} p24={choicePredicter24} p25={choicePredicter25}
+                                         p26={choicePredicter26} p27={choicePredicter27} p28={choicePredicter28}/> :
+                        matches.length === 3 ?
+                            <ResultPredicts3 photos={predictorsPhotos} matches={matches} p1={choicePredicter1}
                                              p2={choicePredicter2}
                                              p3={choicePredicter3} p4={choicePredicter4} p5={choicePredicter5}
                                              p6={choicePredicter6} p7={choicePredicter7} p8={choicePredicter8}
                                              p21={choicePredicter21} p22={choicePredicter22}
                                              p23={choicePredicter23} p24={choicePredicter24} p25={choicePredicter25}
-                                             p26={choicePredicter26} p27={choicePredicter27} p28={choicePredicter28}/> :
-                            matchesDate.length === 3 ?
-                                <ResultPredicts3 photos={predictorsPhotos} matches={matchesDate} p1={choicePredicter1}
-                                                 p2={choicePredicter2}
+                                             p26={choicePredicter26} p27={choicePredicter27} p28={choicePredicter28}
+                                             p31={choicePredicter31} p32={choicePredicter32}
+                                             p33={choicePredicter33} p34={choicePredicter34} p35={choicePredicter35}
+                                             p36={choicePredicter36} p37={choicePredicter37}
+                                             p38={choicePredicter38}/> :
+                            matches.length === 4 ?
+                                <ResultPredicts4 photos={predictorsPhotos} matches={matches}
+                                                 p1={choicePredicter1} p2={choicePredicter2}
                                                  p3={choicePredicter3} p4={choicePredicter4} p5={choicePredicter5}
                                                  p6={choicePredicter6} p7={choicePredicter7} p8={choicePredicter8}
                                                  p21={choicePredicter21} p22={choicePredicter22}
-                                                 p23={choicePredicter23} p24={choicePredicter24} p25={choicePredicter25}
-                                                 p26={choicePredicter26} p27={choicePredicter27} p28={choicePredicter28}
+                                                 p23={choicePredicter23} p24={choicePredicter24}
+                                                 p25={choicePredicter25}
+                                                 p26={choicePredicter26} p27={choicePredicter27}
+                                                 p28={choicePredicter28}
                                                  p31={choicePredicter31} p32={choicePredicter32}
-                                                 p33={choicePredicter33} p34={choicePredicter34} p35={choicePredicter35}
+                                                 p33={choicePredicter33} p34={choicePredicter34}
+                                                 p35={choicePredicter35}
                                                  p36={choicePredicter36} p37={choicePredicter37}
-                                                 p38={choicePredicter38}/> :
-                                matchesDate.length === 4 ?
-                                    <ResultPredicts4 photos={predictorsPhotos} matches={matchesDate}
-                                                     p1={choicePredicter1} p2={choicePredicter2}
-                                                     p3={choicePredicter3} p4={choicePredicter4} p5={choicePredicter5}
-                                                     p6={choicePredicter6} p7={choicePredicter7} p8={choicePredicter8}
+                                                 p38={choicePredicter38}
+                                                 p41={choicePredicter41} p42={choicePredicter42}
+                                                 p43={choicePredicter43} p44={choicePredicter44}
+                                                 p45={choicePredicter45}
+                                                 p46={choicePredicter46} p47={choicePredicter47}
+                                                 p48={choicePredicter48}/> :
+                                matches.length === 5 ?
+                                    <ResultPredicts5 photos={predictorsPhotos} matches={matches}
+                                                     p1={choicePredicter1}
+                                                     p2={choicePredicter2}
+                                                     p3={choicePredicter3} p4={choicePredicter4}
+                                                     p5={choicePredicter5}
+                                                     p6={choicePredicter6} p7={choicePredicter7}
+                                                     p8={choicePredicter8}
                                                      p21={choicePredicter21} p22={choicePredicter22}
                                                      p23={choicePredicter23} p24={choicePredicter24}
                                                      p25={choicePredicter25}
@@ -497,9 +611,14 @@ const RankoffPredicts = () => {
                                                      p43={choicePredicter43} p44={choicePredicter44}
                                                      p45={choicePredicter45}
                                                      p46={choicePredicter46} p47={choicePredicter47}
-                                                     p48={choicePredicter48}/> :
-                                    matchesDate.length === 5 ?
-                                        <ResultPredicts5 photos={predictorsPhotos} matches={matchesDate}
+                                                     p48={choicePredicter48}
+                                                     p51={choicePredicter51} p52={choicePredicter52}
+                                                     p53={choicePredicter53} p54={choicePredicter54}
+                                                     p55={choicePredicter55}
+                                                     p56={choicePredicter56} p57={choicePredicter57}
+                                                     p58={choicePredicter58}/> :
+                                    matches.length >= 6 ?
+                                        <ResultPredicts6 photos={predictorsPhotos} matches={matches}
                                                          p1={choicePredicter1}
                                                          p2={choicePredicter2}
                                                          p3={choicePredicter3} p4={choicePredicter4}
@@ -525,42 +644,14 @@ const RankoffPredicts = () => {
                                                          p53={choicePredicter53} p54={choicePredicter54}
                                                          p55={choicePredicter55}
                                                          p56={choicePredicter56} p57={choicePredicter57}
-                                                         p58={choicePredicter58}/> :
-                                        matchesDate.length >= 6 ?
-                                            <ResultPredicts6 photos={predictorsPhotos} matches={matchesDate}
-                                                             p1={choicePredicter1}
-                                                             p2={choicePredicter2}
-                                                             p3={choicePredicter3} p4={choicePredicter4}
-                                                             p5={choicePredicter5}
-                                                             p6={choicePredicter6} p7={choicePredicter7}
-                                                             p8={choicePredicter8}
-                                                             p21={choicePredicter21} p22={choicePredicter22}
-                                                             p23={choicePredicter23} p24={choicePredicter24}
-                                                             p25={choicePredicter25}
-                                                             p26={choicePredicter26} p27={choicePredicter27}
-                                                             p28={choicePredicter28}
-                                                             p31={choicePredicter31} p32={choicePredicter32}
-                                                             p33={choicePredicter33} p34={choicePredicter34}
-                                                             p35={choicePredicter35}
-                                                             p36={choicePredicter36} p37={choicePredicter37}
-                                                             p38={choicePredicter38}
-                                                             p41={choicePredicter41} p42={choicePredicter42}
-                                                             p43={choicePredicter43} p44={choicePredicter44}
-                                                             p45={choicePredicter45}
-                                                             p46={choicePredicter46} p47={choicePredicter47}
-                                                             p48={choicePredicter48}
-                                                             p51={choicePredicter51} p52={choicePredicter52}
-                                                             p53={choicePredicter53} p54={choicePredicter54}
-                                                             p55={choicePredicter55}
-                                                             p56={choicePredicter56} p57={choicePredicter57}
-                                                             p58={choicePredicter58}
-                                                             p61={choicePredicter61} p62={choicePredicter62}
-                                                             p63={choicePredicter63} p64={choicePredicter64}
-                                                             p65={choicePredicter65}
-                                                             p66={choicePredicter66} p67={choicePredicter67}
-                                                             p68={choicePredicter68}/> :
+                                                         p58={choicePredicter58}
+                                                         p61={choicePredicter61} p62={choicePredicter62}
+                                                         p63={choicePredicter63} p64={choicePredicter64}
+                                                         p65={choicePredicter65}
+                                                         p66={choicePredicter66} p67={choicePredicter67}
+                                                         p68={choicePredicter68}/> :
 
-                                            ''}
+                                        ''}
             </div>
 
         </>

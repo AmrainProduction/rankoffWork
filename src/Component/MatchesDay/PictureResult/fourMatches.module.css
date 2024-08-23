@@ -125,6 +125,7 @@
     height: 100%;
     width: auto;
     padding: 0 3%;
+    white-space: nowrap;
     /*background: red;*/
 }
 

@@ -2,10 +2,10 @@ import React, {createRef, useCallback, useEffect, useState} from 'react';
 import classes from './matchesDay.module.css'
 import {toJpeg, toPng} from 'html-to-image';
 import {
-    useGetMatchesByNameQuery,
+    useGetMatchesByNameQuery, useGetMatchesByNameTourQuery,
     useGetMatchesQuery,
     useGetShortMatchByNameQuery,
-    useGetShortMatchQuery
+    useGetShortMatchQuery, useGetTournamentsQuery
 } from "../../store/api/apiSlice";
 import logo from "../../logo.svg";
 import OneMatch from "./PictureResult/oneMatch";
@@ -18,6 +18,7 @@ import SixMatches from "./PictureResult/sixMatches";
 const MatchesDay = () => {
 
     const listMatches = useGetShortMatchQuery()
+    const listTours = useGetTournamentsQuery()
 
     const [date, setDate] = useState([])
     const [today, setToday] = useState([])
@@ -25,9 +26,18 @@ const MatchesDay = () => {
     const [choiceMatch, setChoiceMatch] = useState([])
     const [matches, setMatches] = useState([])
 
+    const [choiceTour, setChoiceTour] = useState([])
+
     let dates = []
     let matchesData = []
     let matchesID = []
+    let toursID = []
+
+    if (listTours.data && listTours.data.length > 0) {
+        listTours.data.map((e) => {
+            toursID.push(e.name_tour_sort)
+        })
+    }
 
     if (listMatches.data && listMatches.data.length > 0) {
         listMatches.data.map((e) => {
@@ -49,6 +59,7 @@ const MatchesDay = () => {
                     score_t1: e.total_score_match_t1,
                     score_t2: e.total_score_match_t2,
                     match_id: e.name_match_for_sort,
+                    tour_id: e.name_tour_sort,
                     format: e.format,
                     date: e.date_match,
                     stage: e.name_stage,
@@ -99,10 +110,13 @@ const MatchesDay = () => {
     useEffect(() => {
         if (choiceMatch.length > 0) {
             setMatches(matchesData.filter(e => e.match_id === choiceMatch))
+        } else if (choiceTour.length > 0) {
+            setMatches(matchesData.filter(e => e.tour_id === choiceTour).reverse())
         } else {
             setMatches(matchesData.reverse())
         }
-    }, [choiceMatch])
+
+    }, [choiceMatch, choiceTour])
 
     return (
         <>
@@ -110,32 +124,59 @@ const MatchesDay = () => {
                 <div className={classes.wrapperLogo}>
                     <img src={logo} alt="logo"/>
                 </div>
+
                 <div className={classes.menu}>
-                    <div className={classes.listMatches}>
-                        {matchesID.map((e, index) => {
-                            return (
-                                <div key={index} className={classes.match} onClick={() => {
-                                    setChoiceMatch(e)
-                                    setMatches(e)
-                                }}>
-                                    {e}
-                                </div>
-                            )
-                        })}
+
+                    <div className={classes.wrapperListMatches}>
+                        <div className={classes.titleBox}>Выбор матча:</div>
+                        <div className={classes.listMatches}>
+                            {matchesID.map((e, index) => {
+                                return (
+                                    <div key={index} className={classes.match} onClick={() => {
+                                        setChoiceTour("")
+                                        setChoiceMatch(e)
+                                        setMatches(e)
+                                    }}>
+                                        {e}
+                                    </div>
+                                )
+                            })}
+                        </div>
                     </div>
 
-                    <div className={classes.listMatches}>
-                        {dates.map((e, index) => {
-                            return (
-                                <div key={index} className={classes.match} onClick={() => {
-                                    setDate(e)
-                                    setChoiceMatch([])
-                                }}>
-                                    {e}
-                                </div>
-                            )
-                        })}
+                    <div className={classes.wrapperListMatches}>
+                        <div className={classes.titleBox}>Выбор турнира:</div>
+                        <div className={classes.listMatches}>
+                            {toursID.map((e, index) => {
+                                return (
+                                    <div key={index} className={classes.match} onClick={() => {
+                                        setChoiceTour(e)
+                                        setChoiceMatch("")
+                                    }}>
+                                        {e}
+                                    </div>
+                                )
+                            })}
+                        </div>
                     </div>
+
+                    <div className={classes.wrapperListMatches}>
+                        <div className={classes.titleBox}>Выбор даты:</div>
+                        <div className={classes.listMatches}>
+                            {dates.map((e, index) => {
+                                return (
+                                    <div key={index} className={classes.match} onClick={() => {
+                                        setChoiceTour("")
+                                        setDate(e)
+                                        setChoiceMatch([])
+                                    }}>
+                                        {e}
+                                    </div>
+                                )
+                            })}
+                        </div>
+                    </div>
+
                     <div className={classes.wrapperButtons}>
                         <button className={classes.btnSaveAsImage} onClick={onButtonTodayClick}>
                             today
@@ -155,7 +196,7 @@ const MatchesDay = () => {
                                 matches.length === 4 ? <FourMatches matches={matches}/> :
                                     matches.length === 5 ? <FiveMatches matches={matches}/> :
                                         matches.length === 6 ? <SixMatches matches={matches}/> :
-                                        ""
+                                            ""
                 }
             </div>
 

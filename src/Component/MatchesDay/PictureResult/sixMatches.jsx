@@ -44,7 +44,7 @@ const FiveMatches = (props) => {
                     )
                 }) : ""}
             </div>
-            <img src={`/images/DataInImage/matches_day_6.png`} alt="/"/>
+            <img src={`/images/DataInImage/matches_day_5.png`} alt="/"/>
         </div>
     );
 };

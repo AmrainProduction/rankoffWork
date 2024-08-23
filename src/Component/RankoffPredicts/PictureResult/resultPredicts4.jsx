@@ -1,5 +1,5 @@
 import React from 'react';
-import classes from './ResultPredicts4.module.css'
+import classes from './resultPredicts4.module.css'
 import {WhoWinPredict} from "../../../Function/whoWinPredict";
 
 const ResultPredicts4 = (props) => {
