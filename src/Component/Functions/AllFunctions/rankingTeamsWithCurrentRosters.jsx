@@ -12,6 +12,7 @@ import GetCurrentDate from "../../../Function/getCurrentDate";
 import WhatCountryTeam from "../../../Function/whatCountryTeam";
 import classes from "../functions.module.css";
 import exportFromJSON from "export-from-json";
+import CurrentCoefficientPoints from "../../../Function/currentCoefficientPoints";
 
 const RankingTeamsWithCurrentRosters = () => {
 
@@ -39,6 +40,31 @@ const RankingTeamsWithCurrentRosters = () => {
         && allPlayers.data.length > 0 && transferTeamsPoints.data && transferTeamsPoints.data.length > 0
         && allPlayersTours.data && allPlayersTours.data.length > 0
         && allTeamsTours.data && allTeamsTours.data.length > 0) {
+
+        // let tempPlayersPoints = playersPoints.data.filter(e =>
+        //     e.event_id !== "GamesOfFuture_03_03_24"
+        //     && e.event_id !== "VozwoodenRevialCupSeason1_17_01_24"
+        //     && e.event_id !== "WinlineEpicStandoff2Brazil_12_03_24"
+        //     && e.event_id !== "WinlineEpicStandoff2Brazil2_14_05_24"
+        //     && e.event_id !== "MLSAmericas1_13_06_24"
+        //     && e.event_id !== "WinlineEpicStandoff2Brazil_20_08_24"
+        //     && e.event_id !== "WinlineEpicStandoff2Brazil4_24_09_24"
+        //     && e.event_id !== "MastersWay_28_07_23"
+        //     && e.event_id !== "GamesOfFuture_27_05_23"
+        //     && e.event_id !== "ScamOffBeeline_23_08_24"
+        // )
+        // let tempTeamsPoints = teamsPoints.data.filter(e =>
+        //     e.event_id !== "GamesOfFuture_03_03_24"
+        //     && e.event_id !== "VozwoodenRevialCupSeason1_17_01_24"
+        //     && e.event_id !== "WinlineEpicStandoff2Brazil_12_03_24"
+        //     && e.event_id !== "WinlineEpicStandoff2Brazil2_14_05_24"
+        //     && e.event_id !== "MLSAmericas1_13_06_24"
+        //     && e.event_id !== "WinlineEpicStandoff2Brazil_20_08_24"
+        //     && e.event_id !== "WinlineEpicStandoff2Brazil4_24_09_24"
+        //     && e.event_id !== "MastersWay_28_07_23"
+        //     && e.event_id !== "GamesOfFuture_27_05_23"
+        //     && e.event_id !== "ScamOffBeeline_23_08_24"
+        // )
 
         // посчитали текушие поинты всем игрокам
 
@@ -73,29 +99,21 @@ const RankingTeamsWithCurrentRosters = () => {
         // удаляем дубликаты из массива айдишников уже несуществующих команд
         delTeams = delTeams.filter((item, index) => delTeams.indexOf(item) === index)
 
-        // удаляем несуществующие команды из списка активных
-        delTeams.map(e1 => {
-            teamsPoints.data.map(e2 => {
-                if (e2.team_id !== e1) {
-                    approvedTeams.push(e2)
-                }
-            })
+        teamsPoints.data.filter(team => !delTeams.includes(team.team_id)).map(e => {
+            approvedTeams.push(e)
         })
 
         //совмещаем трансферные очки с очками команд
         approvedTeams = approvedTeams.concat(transfers)
 
-        allTeams.data.map(team => {
-            delTeams.map(e1 => {
-                if (team.team_id !== e1) {
-                    teams.push({
-                        name_team: team.name_team,
-                        logo_team: team.logo_team,
-                        team_id: team.team_id,
-                        points: CalculateCurrentTeamPoints(approvedTeams.filter(e => e.team_id === team.team_id)),
-                    })
-                }
+        allTeams.data.filter(team => !delTeams.includes(team.team_id)).map(team => {
+            teams.push({
+                name_team: team.name_team,
+                logo_team: team.logo_team,
+                team_id: team.team_id,
+                points: CalculateCurrentTeamPoints(approvedTeams.filter(e => e.team_id === team.team_id)),
             })
+
         })
 
         // теперь для каждой команды собираем ее состав согласно последнему сыгранному турниру и суммируем все очки
@@ -106,11 +124,11 @@ const RankingTeamsWithCurrentRosters = () => {
 
             let allPlayersPoints = 0
 
-            if(playersInfo.length > 0) {
+            if (playersInfo.length > 0) {
                 rosterTeam.map(e1 => {
                     players.map(e2 => {
                         if (e2.player_id === e1.player_1_id || e2.player_id === e1.player_2_id || e2.player_id === e1.player_3_id || e2.player_id === e1.player_4_id || e2.player_id === e1.player_5_id) {
-                            allPlayersPoints += e2.points
+                            allPlayersPoints += +e2.points.toFixed(1)
                         }
                     })
                 })
@@ -119,7 +137,7 @@ const RankingTeamsWithCurrentRosters = () => {
                     name_team: team.name_team,
                     logo_team: team.logo_team,
                     team_id: team.team_id,
-                    points_team: (team.points + allPlayersPoints),
+                    points_team: (+team.points.toFixed(0) + +allPlayersPoints.toFixed(0)),
                     country_team: WhatCountryTeam(allPlayers.data, playersInfo[0]?.nickname,
                         playersInfo[1]?.nickname,
                         playersInfo[2]?.nickname,
@@ -146,7 +164,7 @@ const RankingTeamsWithCurrentRosters = () => {
         ranking.map((e, index) => {
             e.position_team = index + 1
         })
-
+        // console.log(ranking)
         res = JSON.stringify(ranking)
 
         return (

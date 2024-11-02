@@ -8,6 +8,9 @@ import {
 } from "../../../store/api/apiSlice";
 import CountryFlagPlayer from "../../../Function/countryFlagPlayer";
 import CurrentTeamPlayer from "../../../Function/currentTeamPlayer";
+import normalizeRating from "../../Functions/AllFunctions/normalizeRating";
+import normalizeImpact from "../../Functions/AllFunctions/normalizeImpact";
+import normalizeKD from "../../Functions/AllFunctions/normalizeKD";
 
 const TopPlayersTourResult = (props) => {
 
@@ -64,40 +67,11 @@ const TopPlayersTourResult = (props) => {
     let maps_win = 0
     let maps_lose = 0
 
-    const normalizeRating = (rating) => {
-        if(rating > 3) {
-           return rating = 3
-        } else {
-            return rating
-        }
-    }
-
-    const normalizeImpact = (impact) => {
-        if(impact > 3) {
-            return impact = 3
-        } else {
-            return impact
-        }
-    }
-
-    const normalizeKD = (kd) => {
-        if(kd > 3) {
-            return kd = 3
-        } else {
-            return kd
-        }
-    }
-
     nececssaryMatches = allMatches?.data?.filter(e =>
-                                                e.name_tour_for_sort === "WinlineEpicStandoff2Season7_11_02_24" ||
-                                                e.name_tour_for_sort === "GamesOfFuture_03_03_24" ||
-                                                // e.name_tour_for_sort === "WinlineEpicStandoff2Season8ClosedQuals_25_03_24" ||
-                                                e.name_tour_for_sort === "WinlineEpicStandoff2Season8_28_03_24" ||
-                                                // e.name_tour_for_sort === "WinlineEpicStandoff2Season9ClosedQuals_22_04_24" ||
-                                                e.name_tour_for_sort === "WinlineEpicStandoff2Season9_25_04_24" ||
-                                                // e.name_tour_for_sort === "WinlineEpicStandoff2Season10CloseQuals_27_05_24" ||
-                                                e.name_tour_for_sort === "WinlineEpicStandoff2Season10_30_05_24" ||
-                                                e.name_tour_for_sort === "WinlineEpicStandoff2Major_10_07_24"
+        e.name_tour_for_sort === "WinlineEpicStandoff2Major_10_07_24" ||
+        e.name_tour_for_sort === "WinlineEpicStandoff2Major_06_12_23" ||
+        e.name_tour_for_sort === "Major_06_06_23" ||
+        e.name_tour_for_sort === "Major_13_09_22"
     )
 
 
@@ -132,8 +106,8 @@ const TopPlayersTourResult = (props) => {
             //----------сбор статистики игрока из первой команды------------------------------
 
             if ((match.t1p1 === nickname && match.t1p1_id === player_id) || (match.t1p2 === nickname && match.t1p2_id === player_id) || (match.t1p3 === nickname && match.t1p3_id === player_id) || (match.t1p4 === nickname && match.t1p4_id === player_id) || (match.t1p5 === nickname && match.t1p5_id === player_id)) {
-                team = match.team1
                 team_id = match.team1_id
+                team = match.team1
                 logo_team = match.team1_logo
 
                 //подсчет поражений и побед игрока
@@ -153,6 +127,7 @@ const TopPlayersTourResult = (props) => {
 
             }
 
+
             if ((match.t1p1 === nickname && match.t1p1_id === player_id)) {
                 logo_player = match.t1p1_logo
                 rating += normalizeRating(match.t1p1_rating)
@@ -163,6 +138,8 @@ const TopPlayersTourResult = (props) => {
                 k += match.t1p1_k
                 a += match.t1p1_a
                 d += match.t1p1_d
+                // team = allPlayers?.data?.filter(e => e.player_id === match.t1p1_id)[0].team
+                // logo_team = allPlayers?.data?.filter(e => e.player_id === match.t1p1_id)[0].back_logo_team
             }
 
             if ((match.t1p2 === nickname && match.t1p2_id === player_id)) {
@@ -175,6 +152,8 @@ const TopPlayersTourResult = (props) => {
                 k += match.t1p2_k
                 a += match.t1p2_a
                 d += match.t1p2_d
+                // team = allPlayers?.data?.filter(e => e.player_id === match.t1p2_id)[0].team
+                // logo_team = allPlayers?.data?.filter(e => e.player_id === match.t1p2_id)[0].back_logo_team
             }
 
             if ((match.t1p3 === nickname && match.t1p3_id === player_id)) {
@@ -188,6 +167,8 @@ const TopPlayersTourResult = (props) => {
                 k += match.t1p3_k
                 a += match.t1p3_a
                 d += match.t1p3_d
+                // team = allPlayers?.data?.filter(e => e.player_id === match.t1p3_id)[0].team
+                // logo_team = allPlayers?.data?.filter(e => e.player_id === match.t1p3_id)[0].back_logo_team
             }
 
             if ((match.t1p4 === nickname && match.t1p4_id === player_id)) {
@@ -200,6 +181,8 @@ const TopPlayersTourResult = (props) => {
                 k += match.t1p4_k
                 a += match.t1p4_a
                 d += match.t1p4_d
+                // team = allPlayers?.data?.filter(e => e.player_id === match.t1p4_id)[0].team
+                // logo_team = allPlayers?.data?.filter(e => e.player_id === match.t1p4_id)[0].back_logo_team
             }
 
             if ((match.t1p5 === nickname && match.t1p5_id === player_id)) {
@@ -212,14 +195,16 @@ const TopPlayersTourResult = (props) => {
                 k += match.t1p5_k
                 a += match.t1p5_a
                 d += match.t1p5_d
+                // team = allPlayers?.data?.filter(e => e.player_id === match.t1p5_id)[0].team
+                // logo_team = allPlayers?.data?.filter(e => e.player_id === match.t1p5_id)[0].back_logo_team
             }
 
             //----------сбор статистики игрока из второй команды------------------------------
 
             if ((match.t2p1 === nickname && match.t2p1_id === player_id) || (match.t2p2 === nickname && match.t2p2_id === player_id) || (match.t2p3 === nickname && match.t2p3_id === player_id) || (match.t2p4 === nickname && match.t2p4_id === player_id) || (match.t2p5 === nickname && match.t2p5_id === player_id)) {
 
-                team = match.team2
                 team_id = match.team2_id
+                team = match.team2
                 logo_team = match.team2_logo
 
                 //подсчет поражений и побед игрока
@@ -248,6 +233,8 @@ const TopPlayersTourResult = (props) => {
                 k += match.t2p1_k
                 a += match.t2p1_a
                 d += match.t2p1_d
+                // team = allPlayers?.data?.filter(e => e.player_id === match.t2p1_id)[0].team
+                // logo_team = allPlayers?.data?.filter(e => e.player_id === match.t2p1_id)[0].back_logo_team
             }
 
             if ((match.t2p2 === nickname && match.t2p2_id === player_id)) {
@@ -260,6 +247,8 @@ const TopPlayersTourResult = (props) => {
                 k += match.t2p2_k
                 a += match.t2p2_a
                 d += match.t2p2_d
+                // team = allPlayers?.data?.filter(e => e.player_id === match.t2p2_id)[0].team
+                // logo_team = allPlayers?.data?.filter(e => e.player_id === match.t2p2_id)[0].back_logo_team
             }
 
             if ((match.t2p3 === nickname && match.t2p3_id === player_id)) {
@@ -272,6 +261,8 @@ const TopPlayersTourResult = (props) => {
                 k += match.t2p3_k
                 a += match.t2p3_a
                 d += match.t2p3_d
+                // team = allPlayers?.data?.filter(e => e.player_id === match.t2p3_id)[0].team
+                // logo_team = allPlayers?.data?.filter(e => e.player_id === match.t2p3_id)[0].back_logo_team
             }
 
             if ((match.t2p4 === nickname && match.t2p4_id === player_id)) {
@@ -284,6 +275,8 @@ const TopPlayersTourResult = (props) => {
                 k += match.t2p4_k
                 a += match.t2p4_a
                 d += match.t2p4_d
+                // team = allPlayers?.data?.filter(e => e.player_id === match.t2p4_id)[0].team
+                // logo_team = allPlayers?.data?.filter(e => e.player_id === match.t2p4_id)[0].back_logo_team
             }
 
             if ((match.t2p5 === nickname && match.t2p5_id === player_id)) {
@@ -296,6 +289,8 @@ const TopPlayersTourResult = (props) => {
                 k += match.t2p5_k
                 a += match.t2p5_a
                 d += match.t2p5_d
+                // team = allPlayers?.data?.filter(e => e.player_id === match.t2p5_id)[0].team
+                // logo_team = allPlayers?.data?.filter(e => e.player_id === match.t2p5_id)[0].back_logo_team
             }
 
             //----------сбор общей информации о трунире------------------------------
@@ -427,7 +422,7 @@ const TopPlayersTourResult = (props) => {
         return (
             <div className={classes.wrapperTopResult}>
                 <div className={classes.wrapperTourInfo}>
-                <div className={classes.nameTour}>{"ТОП ИГРОКОВ ЗА ПЕРВОЕ ПОЛУГОДИЕ 2024 ГОДА"}</div>
+                    <div className={classes.nameTour}>{"ТОП ИГРОКОВ ЗА ВСЕ МАЖОРЫ"}</div>
                 </div>
                 <div className={classes.topResult}>
                     <div className={classes.wrapperPlayerTitle}>
@@ -476,7 +471,7 @@ const TopPlayersTourResult = (props) => {
                                         }>{e.kpr_p}</div>
                                         <div className={classes.dataPlayerDpr} style={
                                             {
-                                                background: e.dpr_p < 0.68 ? "#528347" : e.dpr_p > 0.7 ? e.dpr_p > 0.8 ? "#854141" : "#a29747" : "#854141"
+                                                background: e.dpr_p < 0.68 ? "#528347" : e.dpr_p > 0.7 ? e.dpr_p > 0.8 ? "#854141" : "#a29747" : "#a29747"
                                             }
                                         }>{e.dpr_p}</div>
                                         <div className={classes.dataPlayerK}>{e.k}</div>

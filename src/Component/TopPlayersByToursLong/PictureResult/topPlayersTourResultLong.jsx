@@ -8,15 +8,17 @@ import {
 } from "../../../store/api/apiSlice";
 import CountryFlagPlayer from "../../../Function/countryFlagPlayer";
 import CurrentTeamPlayer from "../../../Function/currentTeamPlayer";
+import normalizeRating from "../../Functions/AllFunctions/normalizeRating";
+import normalizeImpact from "../../Functions/AllFunctions/normalizeImpact";
+import normalizeKD from "../../Functions/AllFunctions/normalizeKD";
 
 const TopPlayersTourResultLong = (props) => {
 
-    let name = "WinlineEpicStandoff2Season9_25_04_24"
+    const name = props.name
     const stage = (props.stage === "playoff" ? "PLAYOFF" : props.stage === "group" ? "GROUP STAGE" : "")
 
     const allPlayers = useGetPlayersQuery()
     const allMatches = useGetMatchesQuery()
-    let allShortMatches = useGetShortMatchesByTournamentQuery({name})
     let teamsTour = useGetTeamsTournamentsByNameQuery({name})
     let tourInfo = useGetTournamentByNameQuery({name})
 
@@ -64,40 +66,8 @@ const TopPlayersTourResultLong = (props) => {
     let maps_win = 0
     let maps_lose = 0
 
-    const normalizeRating = (rating) => {
-        if (rating > 3) {
-            return rating = 3
-        } else {
-            return rating
-        }
-    }
-
-    const normalizeImpact = (impact) => {
-        if (impact > 3) {
-            return impact = 3
-        } else {
-            return impact
-        }
-    }
-
-    const normalizeKD = (kd) => {
-        if (kd > 3) {
-            return kd = 3
-        } else {
-            return kd
-        }
-    }
-
     nececssaryMatches = allMatches?.data?.filter(e =>
-        e.name_tour_for_sort === "WinlineEpicStandoff2Season7_11_02_24" ||
-        e.name_tour_for_sort === "GamesOfFuture_03_03_24" ||
-        // e.name_tour_for_sort === "WinlineEpicStandoff2Season8ClosedQuals_25_03_24" ||
-        e.name_tour_for_sort === "WinlineEpicStandoff2Season8_28_03_24" ||
-        // e.name_tour_for_sort === "WinlineEpicStandoff2Season9ClosedQuals_22_04_24" ||
-        e.name_tour_for_sort === "WinlineEpicStandoff2Season9_25_04_24" ||
-        // e.name_tour_for_sort === "WinlineEpicStandoff2Season10CloseQuals_27_05_24" ||
-        e.name_tour_for_sort === "WinlineEpicStandoff2Season10_30_05_24" ||
-        e.name_tour_for_sort === "WinlineEpicStandoff2Major_10_07_24"
+        e.name_tour_for_sort === name
     )
 
 
@@ -131,7 +101,7 @@ const TopPlayersTourResultLong = (props) => {
 
             //----------сбор статистики игрока из первой команды------------------------------
 
-            if ((match.t1p1 === nickname && match.t1p1_id === player_id) || (match.t1p2 === nickname && match.t1p2_id === player_id) || (match.t1p3 === nickname && match.t1p3_id === player_id) || (match.t1p4 === nickname && match.t1p4_id === player_id) || (match.t1p5 === nickname && match.t1p5_id === player_id)) {
+            if (match.t1p1_id === player_id || match.t1p2_id === player_id || match.t1p3_id === player_id || match.t1p4_id === player_id || match.t1p5_id === player_id) {
                 team = match.team1
                 team_id = match.team1_id
                 logo_team = match.team1_logo
@@ -153,7 +123,7 @@ const TopPlayersTourResultLong = (props) => {
 
             }
 
-            if ((match.t1p1 === nickname && match.t1p1_id === player_id)) {
+            if (match.t1p1_id === player_id) {
                 logo_player = match.t1p1_logo
                 rating += normalizeRating(match.t1p1_rating)
                 impact_p += normalizeImpact(match.t1p1_impact)
@@ -165,7 +135,7 @@ const TopPlayersTourResultLong = (props) => {
                 d += match.t1p1_d
             }
 
-            if ((match.t1p2 === nickname && match.t1p2_id === player_id)) {
+            if (match.t1p2_id === player_id) {
                 logo_player = match.t1p2_logo
                 rating += normalizeRating(match.t1p2_rating)
                 impact_p += normalizeImpact(match.t1p2_impact)
@@ -177,7 +147,7 @@ const TopPlayersTourResultLong = (props) => {
                 d += match.t1p2_d
             }
 
-            if ((match.t1p3 === nickname && match.t1p3_id === player_id)) {
+            if (match.t1p3_id === player_id) {
 
                 logo_player = match.t1p3_logo
                 rating += normalizeRating(match.t1p3_rating)
@@ -190,7 +160,7 @@ const TopPlayersTourResultLong = (props) => {
                 d += match.t1p3_d
             }
 
-            if ((match.t1p4 === nickname && match.t1p4_id === player_id)) {
+            if (match.t1p4_id === player_id) {
                 logo_player = match.t1p4_logo
                 rating += normalizeRating(match.t1p4_rating)
                 impact_p += normalizeImpact(match.t1p4_impact)
@@ -202,7 +172,7 @@ const TopPlayersTourResultLong = (props) => {
                 d += match.t1p4_d
             }
 
-            if ((match.t1p5 === nickname && match.t1p5_id === player_id)) {
+            if (match.t1p5_id === player_id) {
                 logo_player = match.t1p5_logo
                 rating += normalizeRating(match.t1p5_rating)
                 impact_p += normalizeImpact(match.t1p5_impact)
@@ -216,7 +186,7 @@ const TopPlayersTourResultLong = (props) => {
 
             //----------сбор статистики игрока из второй команды------------------------------
 
-            if ((match.t2p1 === nickname && match.t2p1_id === player_id) || (match.t2p2 === nickname && match.t2p2_id === player_id) || (match.t2p3 === nickname && match.t2p3_id === player_id) || (match.t2p4 === nickname && match.t2p4_id === player_id) || (match.t2p5 === nickname && match.t2p5_id === player_id)) {
+            if (match.t2p1_id === player_id || match.t2p2_id === player_id || match.t2p3_id === player_id || match.t2p4_id === player_id || match.t2p5_id === player_id) {
 
                 team = match.team2
                 team_id = match.team2_id
@@ -238,7 +208,7 @@ const TopPlayersTourResultLong = (props) => {
                 rounds_lose += match.total_r_team1
             }
 
-            if ((match.t2p1 === nickname && match.t2p1_id === player_id)) {
+            if (match.t2p1_id === player_id) {
                 logo_player = match.t2p1_logo
                 rating += normalizeRating(match.t2p1_rating)
                 impact_p += normalizeImpact(match.t2p1_impact)
@@ -250,7 +220,7 @@ const TopPlayersTourResultLong = (props) => {
                 d += match.t2p1_d
             }
 
-            if ((match.t2p2 === nickname && match.t2p2_id === player_id)) {
+            if (match.t2p2_id === player_id) {
                 logo_player = match.t2p2_logo
                 rating += normalizeRating(match.t2p2_rating)
                 impact_p += normalizeImpact(match.t2p2_impact)
@@ -262,7 +232,7 @@ const TopPlayersTourResultLong = (props) => {
                 d += match.t2p2_d
             }
 
-            if ((match.t2p3 === nickname && match.t2p3_id === player_id)) {
+            if (match.t2p3_id === player_id) {
                 logo_player = match.t2p3_logo
                 rating += normalizeRating(match.t2p3_rating)
                 impact_p += normalizeImpact(match.t2p3_impact)
@@ -274,7 +244,7 @@ const TopPlayersTourResultLong = (props) => {
                 d += match.t2p3_d
             }
 
-            if ((match.t2p4 === nickname && match.t2p4_id === player_id)) {
+            if (match.t2p4_id === player_id) {
                 logo_player = match.t2p4_logo
                 rating += normalizeRating(match.t2p4_rating)
                 impact_p += normalizeImpact(match.t2p4_impact)
@@ -286,7 +256,7 @@ const TopPlayersTourResultLong = (props) => {
                 d += match.t2p4_d
             }
 
-            if ((match.t2p5 === nickname && match.t2p5_id === player_id)) {
+            if (match.t2p5_id === player_id) {
                 logo_player = match.t2p5_logo
                 rating += normalizeRating(match.t2p5_rating)
                 impact_p += normalizeImpact(match.t2p5_impact)
@@ -329,11 +299,11 @@ const TopPlayersTourResultLong = (props) => {
                 "nickname": nickname,
                 "surname": surname,
                 "country_flag": country_flag,
-                "kd_p": Math.round(kd_p * 100) / 100,
-                "kpr_p": Math.round(kpr_p * 100) / 100,
-                "dpr_p": Math.round(dpr_p * 100) / 100,
+                "kd_p": Math.round((k / d) * 100) / 100,
+                "kpr_p": Math.round((k / (rounds_win + rounds_lose)) * 100) / 100,
+                "dpr_p": Math.round((d / (rounds_win + rounds_lose)) * 100) / 100,
                 "impact_p": Math.round(impact_p * 100) / 100,
-                "rating": Math.round(rating * 1000) / 1000,
+                "rating": rating,
                 "k": k,
                 "a": a,
                 "d": d,
@@ -427,7 +397,11 @@ const TopPlayersTourResultLong = (props) => {
         return (
             <div className={classes.wrapperTopResult}>
                 <div className={classes.wrapperTourInfo}>
-                    <div className={classes.nameTour}>{"ТОП ИГРОКОВ ЗА ПЕРВОЕ ПОЛУГОДИЕ 2024 ГОДА"}</div>
+                    <div
+                        className={classes.nameTour}>{players_tournaments[0].name_tour.toUpperCase()} {stage ? "[" + stage + "]" : ""}</div>
+                    <div className={classes.logoTour}>
+                        <img src={`/images/LogoAndBannerTour/${players_tournaments[0].logo_tour}`} alt="/"/>
+                    </div>
                 </div>
                 <div className={classes.topResult}>
                     <div className={classes.wrapperPlayerTitle}>
@@ -476,7 +450,7 @@ const TopPlayersTourResultLong = (props) => {
                                         }>{e.kpr_p}</div>
                                         <div className={classes.dataPlayerDpr} style={
                                             {
-                                                background: e.dpr_p < 0.68 ? "#528347" : e.dpr_p > 0.7 ? e.dpr_p > 0.8 ? "#854141" : "#a29747" : "#854141"
+                                                background: e.dpr_p < 0.68 ? "#528347" : e.dpr_p > 0.7 ? e.dpr_p > 0.8 ? "#854141" : "#a29747" : "#a29747"
                                             }
                                         }>{e.dpr_p}</div>
                                         <div className={classes.dataPlayerK}>{e.k}</div>

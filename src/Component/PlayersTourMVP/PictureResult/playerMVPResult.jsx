@@ -484,11 +484,11 @@ const PlayerMVPResult = (props) => {
                     <div className={classes.leftPictureMVP}>
                         <img src={`/images/DataInImage/MVP_banner_left_part_picture2.svg`} alt="/"/>
                     </div>
-                    <div className={classes.gradient}></div>
                     <div className={classes.backLogoPlayer}>
                         <img src={`/images/LogoTeams/${statsMvpPlayer[0]?.logo_team}`} alt="/"/>
                     </div>
                 </div>
+                <div className={classes.gradient}></div>
                 <img src={`/images/DataInImage/MVP_banner2.png`} className={classes.bgImg} alt="/"/>
             </div>
         )

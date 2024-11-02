@@ -84,7 +84,7 @@ const RankoffPredicts = () => {
     let matchesData = []
     let matchesID = []
     let toursID = []
-    let predictorsPhotos = ["Andrey Gears", "Postanova", "itsnone", "rower", "Zadrot", "RAF", "oneday", "ggromovvvv"]
+    let predictorsPhotos = ["Andrey Gears", "Postanova", "itsnone", "rower", "Zadrot", "Sir.Fuga", "oneday", "ggromovvvv"]
 
     if (listMatches.data && listMatches.data.length > 0 && listTours.data && listTours.data.length > 0) {
 
@@ -473,7 +473,7 @@ const RankoffPredicts = () => {
                                 </div>
                             </div>
                             <div className={classes.choicePredicter}>
-                                <div className={classes.name}>RAF</div>
+                                <div className={classes.name}>Sir.Fuga</div>
                                 <div className={classes.wrapperTeams}>
                                     <div className={classes.team} onClick={() => {
                                         index === 0 ? setChoicePredicter6(e.logo_t1) : index === 1 ? setChoicePredicter26(e.logo_t1) : index === 2 ? setChoicePredicter36(e.logo_t1) : index === 3 ? setChoicePredicter46(e.logo_t1) : index === 4 ? setChoicePredicter56(e.logo_t1) : index === 5 ? setChoicePredicter66(e.logo_t1) : setChoicePredicter66(e.logo_t1)

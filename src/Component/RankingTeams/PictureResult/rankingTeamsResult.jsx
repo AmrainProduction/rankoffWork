@@ -123,32 +123,32 @@ const RankingTeamsResult = (props) => {
 
                                             <div className={classes.dataRoster}>
                                                 <div className={classes.playerRoster}>
-                                                    <img src={`/images/LogoPlayers/${e.logo_player1 === "PlayerDefaultLogo.png" ? "PlayerDefaultLogoRanking.png" : e.logo_player1}`}
-                                                         onError={(event) => event.target.setAttribute("src", "/images/LogoPlayers/PlayerDefaultLogoRanking.png")}
+                                                    <img src={`/images/LogoPlayers/${e.logo_player1 === "PlayerDefaultLogo.png" ? "PlayerDefaultLogo.png" : e.logo_player1}`}
+                                                         onError={(event) => event.target.setAttribute("src", "/images/LogoPlayers/PlayerDefaultLogo.png")}
                                                          alt="/"/>
                                                     <div className={classes.nicknamePlayerRoster}>{e.player1}</div>
                                                 </div>
                                                 <div className={classes.playerRoster}>
-                                                     <img src={`/images/LogoPlayers/${e.logo_player2 === "PlayerDefaultLogo.png" ? "PlayerDefaultLogoRanking.png" : e.logo_player2}`}
-                                                         onError={(event) => event.target.setAttribute("src", "/images/LogoPlayers/PlayerDefaultLogoRanking.png")}
+                                                     <img src={`/images/LogoPlayers/${e.logo_player2 === "PlayerDefaultLogo.png" ? "PlayerDefaultLogo.png" : e.logo_player2}`}
+                                                         onError={(event) => event.target.setAttribute("src", "/images/LogoPlayers/PlayerDefaultLogo.png")}
                                                          alt="/"/>
                                                     <div className={classes.nicknamePlayerRoster}>{e.player2}</div>
                                                 </div>
                                                 <div className={classes.playerRoster}>
-                                                     <img src={`/images/LogoPlayers/${e.logo_player3 === "PlayerDefaultLogo.png" ? "PlayerDefaultLogoRanking.png" : e.logo_player3}`}
-                                                         onError={(event) => event.target.setAttribute("src", "/images/LogoPlayers/PlayerDefaultLogoRanking.png")}
+                                                     <img src={`/images/LogoPlayers/${e.logo_player3 === "PlayerDefaultLogo.png" ? "PlayerDefaultLogo.png" : e.logo_player3}`}
+                                                         onError={(event) => event.target.setAttribute("src", "/images/LogoPlayers/PlayerDefaultLogo.png")}
                                                          alt="/"/>
                                                     <div className={classes.nicknamePlayerRoster}>{e.player3}</div>
                                                 </div>
                                                 <div className={classes.playerRoster}>
-                                                     <img src={`/images/LogoPlayers/${e.logo_player4 === "PlayerDefaultLogo.png" ? "PlayerDefaultLogoRanking.png" : e.logo_player4}`}
-                                                         onError={(event) => event.target.setAttribute("src", "/images/LogoPlayers/PlayerDefaultLogoRanking.png")}
+                                                     <img src={`/images/LogoPlayers/${e.logo_player4 === "PlayerDefaultLogo.png" ? "PlayerDefaultLogo.png" : e.logo_player4}`}
+                                                         onError={(event) => event.target.setAttribute("src", "/images/LogoPlayers/PlayerDefaultLogo.png")}
                                                          alt="/"/>
                                                     <div className={classes.nicknamePlayerRoster}>{e.player4}</div>
                                                 </div>
                                                 <div className={classes.playerRoster}>
-                                                    <img src={`/images/LogoPlayers/${e.logo_player5 === "PlayerDefaultLogo.png" ? "PlayerDefaultLogoRanking.png" : e.logo_player5}`}
-                                                         onError={(event) => event.target.setAttribute("src", "/images/LogoPlayers/PlayerDefaultLogoRanking.png")}
+                                                    <img src={`/images/LogoPlayers/${e.logo_player5 === "PlayerDefaultLogo.png" ? "PlayerDefaultLogo.png" : e.logo_player5}`}
+                                                         onError={(event) => event.target.setAttribute("src", "/images/LogoPlayers/PlayerDefaultLogo.png")}
                                                          alt="/"/>
                                                     <div className={classes.nicknamePlayerRoster}>{e.player5}</div>
                                                 </div>

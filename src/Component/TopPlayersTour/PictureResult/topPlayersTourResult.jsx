@@ -333,7 +333,7 @@ const TopPlayersTourResult = (props) => {
                 "kpr_p": Math.round((k / (rounds_win + rounds_lose)) * 100) / 100,
                 "dpr_p": Math.round((d / (rounds_win + rounds_lose)) * 100) / 100,
                 "impact_p": Math.round(impact_p * 100) / 100,
-                "rating": Math.round(rating * 100) / 100,
+                "rating": rating,
                 "k": k,
                 "a": a,
                 "d": d,
@@ -493,7 +493,7 @@ const TopPlayersTourResult = (props) => {
                                             {
                                                 background: e.rating < 1 ? "#854141" : e.rating > 1 ? e.rating >= 1.10 ? "#528347" : "#a29747" : "#a29747"
                                             }
-                                        }>{e.rating}</div>
+                                        }>{Math.round(e.rating * 100) / 100}</div>
                                         <div className={classes.dataPlayerW_rounds}>{e.w_rounds}</div>
                                         <div className={classes.dataPlayerL_rounds}>{e.l_rounds}</div>
                                         <div className={classes.dataPlayerMaps}>{e.maps}</div>

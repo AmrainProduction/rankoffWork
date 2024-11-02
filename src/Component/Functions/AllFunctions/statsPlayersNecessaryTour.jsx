@@ -374,7 +374,7 @@ const StatsPlayersNecessaryTour = () => {
                 "kpr_p": Math.round((k / (rounds_win + rounds_lose))  * 100) / 100,
                 "dpr_p": Math.round((d / (rounds_win + rounds_lose)) * 100) / 100,
                 "impact_p": Math.round(impact_p * 100) / 100,
-                "rating": Math.round(rating * 100) / 100,
+                "rating": rating,
                 "k": k,
                 "a": a,
                 "d": d,
@@ -436,7 +436,7 @@ const StatsPlayersNecessaryTour = () => {
         }
     })
 
-    let divider = 3
+    let divider = 2
 
     while (max_maps > 1) {
 

@@ -1,6 +1,6 @@
 export default function (rating) {
-    if (rating > 2) {
-        return rating = 2
+    if (rating > 2.5) {
+        return rating = 2.5
     } else {
         return rating
     }

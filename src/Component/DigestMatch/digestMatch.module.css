@@ -1,0 +1,671 @@
+.wrapperMatchResult {
+    --backgroundGreen: #18613B;
+    --mainComponentGreen: #26935A;
+    --darkGreen: #1A2820;
+    --victory: #38D583;
+    --defeat: #D9372D;
+    --titleTable: #141D18;
+    --rowTable: #1A2720;
+    --redStats: #FF746B;
+    --yellowStats: #FFCA63;
+    --greenStats: #75FFB7;
+    --text: #fff;
+    --titleTableTextColor: #E2E2E2;
+    --tableStatsTextColor: #131D18;
+}
+
+@font-face {
+    font-family: "DrukCyrMedium";
+    src: url("../../Fonts/DrukCyr-Medium.eot");
+    src: url("../../Fonts/DrukCyr-Medium.eot?#iefix") format("embedded-opentype"),
+    url("../../Fonts/DrukCyr-Medium.woff") format("woff"),
+    url("../../Fonts/DrukCyr-Medium.ttf") format("truetype");
+    font-style: normal;
+    font-weight: 500;
+}
+
+@font-face {
+    font-family: "Mazzard M";
+    src: url("../../Fonts/Mazzard/MazzardM-SemiBold.eot");
+    src: url("../../Fonts/Mazzard/MazzardM-SemiBold.eot?#iefix") format("embedded-opentype"),
+    url("../../Fonts/Mazzard/MazzardM-SemiBold.woff") format("woff"),
+    url("../../Fonts/Mazzard/MazzardM-SemiBold.ttf") format("truetype");
+    font-style: normal;
+    font-weight: 500;
+}
+
+
+.wrapperMatchResult {
+    font-family: "DrukCyrMedium", sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    height: 100%;
+    width: 100%;
+    z-index: 20;
+    color: var(--text);
+    position: relative;
+}
+
+.wrapperMatchResult img {
+    height: auto;
+    width: 100%;
+}
+
+.bgImg {
+    height: auto;
+    width: 100%;
+}
+
+.wrapperMenu {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 100%;
+    height: 15%;
+    color: #fff;
+    background: #584669;
+    margin-bottom: 10px;
+    padding: 5px;
+}
+
+.wrapperLogo {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 10%;
+    height: 100%;
+}
+
+.wrapperLogo img {
+    height: auto;
+    width: 100%;
+}
+
+.menu {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    height: 100%;
+    width: 60%;
+}
+
+.wrapperListMatches {
+    display: block;
+    width: 100%;
+    height: 100%;
+    margin-right: 2%;
+    margin-left: 2%;
+    padding: 2px;
+}
+
+.titleBox {
+    width: 100%;
+    height: auto;
+    padding: 1% 0;
+}
+
+.listMatches {
+    display: block;
+    overflow-y: scroll;
+    border-radius: 3px;
+    width: 100%;
+    min-width: 150px;
+    height: 120px;
+    background: #7B6592;
+}
+
+.match {
+    background: #6a5783;
+    margin-bottom: 2px;
+    padding: 5px;
+    cursor: pointer;
+    transition: all 0.5s;
+}
+
+.match:hover {
+    background: #56476b;
+}
+
+.wrapperMain {
+    display: flex;
+    height: 100%;
+    width: 100%;
+    padding: 3.4%;
+    position: absolute;
+}
+
+.main {
+    display: block;
+    height: 100%;
+    width: 100%;
+}
+
+.btnSaveAsImage {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 3px;
+    padding: 1%;
+    background: #6a5783;
+    height: 120px;
+    width: 100%;
+    cursor: pointer;
+}
+
+.btnSaveAsImage:hover {
+    background: #615073;
+}
+
+.wrapperTopSection {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 19.1%;
+    position: absolute;
+}
+
+.wrapperLeftTopSection {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 20.6%;
+    height: 100%;
+    padding: 0.8%;
+    border-bottom-right-radius: 0.5vw;
+    border-bottom-left-radius: 0.5vw;
+    margin-right: 0.6%;
+    background: var(--mainComponentGreen);
+}
+
+.team1Logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: var(--darkGreen);
+    width: 38%;
+    height: 100%;
+    border-radius: 0.5vw;
+    padding: 1vw;
+}
+
+.scoreMatch {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 30%;
+    font-size: 2.5vw;
+}
+
+.team2Logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: var(--darkGreen);
+    width: 38%;
+    height: 100%;
+    border-radius: 0.5vw;
+    padding: 1vw;
+}
+
+.wrapperMiddleTopSection {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 62%;
+    height: 100%;
+    padding: 0.8% 0 0.8% 0.8%;
+    margin-right: 0.6%;
+    border-bottom-right-radius: 0.5vw;
+    border-bottom-left-radius: 0.5vw;
+    background: var(--mainComponentGreen);
+}
+
+.infoTour {
+    display: block;
+    text-align: center;
+    align-content: center;
+    background: var(--darkGreen);
+    width: 25%;
+    margin-right: 1.4%;
+    height: 100%;
+    border-radius: 0.5vw;
+}
+
+.titleInfoTour {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    height: 60%;
+    font-size: 4vw;
+}
+
+.nameTour {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    font-family: 'Mazzard M', sans-serif;
+    height: 40%;
+    padding: 0 4%;
+    font-size: 1.2vw;
+}
+
+.wrapperMap {
+    display: block;
+    height: 100%;
+    width: 13.3%;
+    border-radius: 0.5vw;
+    overflow: hidden;
+    font-family: 'Mazzard M', sans-serif;
+    position: relative;
+}
+
+.wrapperMiddleTopSection .wrapperMap:not(:last-child) {
+    margin-right: 1.4%;
+}
+
+.scoreMap {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 20%;
+    width: 100%;
+    background: var(--darkGreen);
+}
+
+.scoreMap img {
+    height: 80%;
+    width: auto;
+}
+
+.totalScoreMap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: auto;
+    padding: 0 5%;
+    background: var(--titleTable);
+    font-size: 1vw;
+}
+
+.imgMap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 70%;
+    width: 100%;
+    position: relative;
+}
+
+.imgMap img {
+    height: 100%;
+    width: auto;
+}
+
+
+.mapTeamPick {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    opacity: 0.1;
+}
+
+.mapTeamPick img {
+    height: 200%;
+    width: auto;
+}
+
+.mapName {
+    display: flex;
+    justify-content: flex-start;
+    padding-left: 5%;
+    align-items: center;
+    height: auto;
+    width: 100%;
+    font-size: 1vw;
+}
+
+.mapTeam {
+    display: flex;
+    justify-content: flex-start;
+    font-family: "Mazzard M Light", sans-serif;
+    padding-left: 5%;
+    align-items: center;
+    height: auto;
+    width: 100%;
+    font-size: 0.8vw;
+}
+
+.pickMap {
+    display: flex;
+    flex-flow: column;
+    justify-content: flex-end;
+    align-items: center;
+    text-align: center;
+    height: 70%;
+    width: 100%;
+    bottom: 0;
+    padding-bottom: 0.4rem;
+    font-size: clamp(2px, 1vw, 14px);
+    background: linear-gradient(to top, var(--titleTable) 15%, transparent);
+    position: absolute;
+}
+
+.wrapperScoreForMap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    top: 15%;
+    z-index: 10;
+    position: absolute;
+}
+
+.wrapperScoreForMap img {
+    height: 60%;
+    width: auto;
+}
+
+.wrapperRightTopSection {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 16.1%;
+    height: 100%;
+    padding: 0.8%;
+    border-bottom-right-radius: 0.5vw;
+    border-bottom-left-radius: 0.5vw;
+    background: var(--mainComponentGreen);
+}
+
+.wrapperRightTopSection .logoCollab:not(:last-child) img {
+    height: 70%;
+    width: auto;
+}
+
+.logoCollab {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: var(--darkGreen);
+    width: 47%;
+    height: 100%;
+    border-radius: 0.5vw;
+    padding: 1vw;
+}
+
+.wrapperMiddleSection {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 39.5%;
+    top: 20.1%;
+    position: absolute;
+}
+
+.leftMiddleSection {
+    font-family: "Mazzard M", sans-serif;
+    display: block;
+    text-align: center;
+    width: 20.6%;
+    height: 100%;
+    padding: 0.8%;
+    font-size: 2vw;
+    border-radius: 0.5vw;
+    background: var(--mainComponentGreen);
+}
+
+.teamLogo {
+    width: 100%;
+    height: 60%;
+    margin-bottom: 1.4%;
+    background: var(--rowTable);
+}
+
+.teamLogo img {
+    height: 100%;
+    width: auto;
+}
+
+.nameTeam {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 18.4%;
+    padding-bottom: 0.1rem;
+    margin-bottom: 1.4%;
+    border-bottom-right-radius: 0.5vw;
+    border-bottom-left-radius: 0.5vw;
+    background: var(--titleTable);
+}
+
+.victoryDefeat {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 18.4%;
+    padding-bottom: 0.1rem;
+    margin-bottom: 1.4%;
+    border-bottom-right-radius: 0.5vw;
+    border-bottom-left-radius: 0.5vw;
+}
+
+.rightMiddleSection {
+    font-family: "Mazzard M", sans-serif;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    width: 78.8%;
+    height: 100%;
+    padding: 0.8%;
+    border-radius: 0.5vw;
+    background: var(--mainComponentGreen);
+    z-index: 20;
+}
+
+.rightMiddleSection div:not(:last-child) {
+    margin-bottom: 0.2%;
+}
+
+.titleLineTable {
+    display: grid;
+    justify-content: space-between;
+    align-items: center;
+    height: 18.6%;
+    width: 100%;
+    border-top-right-radius: 0.5vw;
+    border-top-left-radius: 0.5vw;
+    background: var(--titleTable);
+    font-size: 1vw;
+    color: var(--titleTableTextColor);
+    grid-template-columns: 39.3% repeat(9, 6.3%);
+    grid-template-areas: 'startCell cell cell cell cell cell cell cell cell endCell';
+    overflow: hidden;
+}
+
+.rowTable {
+    display: grid;
+    justify-content: space-between;
+    align-items: center;
+    height: 14%;
+    width: 100%;
+    font-size: 1.2vw;
+    grid-template-columns: 39.3% repeat(9, 6.3%);
+    grid-template-areas: 'startCell cell cell cell cell cell cell cell cell endCell';
+    overflow: hidden;
+}
+
+.titleStartCell {
+    grid-area: startCell;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    height: 100%;
+    padding-left: 5%;
+    background: var(--titleTable);
+}
+
+.titleCell {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    background: var(--titleTable);
+}
+
+.titleEndCell {
+    grid-area: endCell;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    background: var(--titleTable);
+}
+
+.mvp {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.5% 2%;
+    border-radius: 0.3vw;
+    font-size: 1vw;
+    font-family: "Mazzard M", sans-serif;
+    background: var(--victory);
+    right: 0;
+    margin-right: 2%;
+    color: var(--tableStatsTextColor);
+    position: absolute;
+}
+
+.startCell {
+    grid-area: startCell;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    height: 100%;
+    padding-left: 5%;
+    background: var(--rowTable);
+    position: relative;
+}
+
+.cell {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    background: var(--rowTable);
+}
+
+.endCell {
+    grid-area: endCell;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    background: var(--rowTable);
+}
+
+.wrapperBottomSection {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 39.3%;
+    top: 60.6%;
+    position: absolute;
+}
+
+.bottomLeftMiddleSection {
+    font-family: "Mazzard M", sans-serif;
+    display: block;
+    text-align: center;
+    width: 20.6%;
+    height: 100%;
+    padding: 0.8%;
+    font-size: 2vw;
+    border-top-left-radius: 0.5vw;
+    border-top-right-radius: 0.5vw;
+    background: var(--mainComponentGreen);
+}
+.bottomRightMiddleSection {
+    font-family: "Mazzard M", sans-serif;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    width: 78.8%;
+    height: 100%;
+    padding: 0.8%;
+    border-top-left-radius: 0.5vw;
+    border-top-right-radius: 0.5vw;
+    background: var(--mainComponentGreen);
+    z-index: 20;
+}
+
+.dataFlagPlayer {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    height: 100%;
+    width: 1.4vw;
+    margin-right: 3%;
+}
+
+.dataFlagPlayer img {
+    width: 100%;
+    height: auto;
+}
+
+@media (max-width: 1125px) {
+    .wrapperMenu {
+        display: block;
+        justify-content: space-between;
+        align-items: flex-start;
+        width: 100%;
+        height: 15%;
+        background: #584669;
+        margin-bottom: 10px;
+        padding: 5px;
+    }
+
+    .menu {
+        display: flex;
+        flex-flow: column;
+        flex-direction: column-reverse;
+        justify-content: center;
+        align-items: flex-end;
+        height: 100%;
+        width: 100%;
+    }
+
+    .wrapperListMatches {
+        display: block;
+        margin: 0;
+    }
+
+    .btnSaveAsImage {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 3px;
+        margin-top: 1%;
+        padding: 1%;
+        background: #6a5783;
+        height: 100%;
+        width: 100%;
+        cursor: pointer;
+    }
+}
+
+
+

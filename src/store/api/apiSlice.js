@@ -86,6 +86,9 @@ export const apiSlice = createApi({
         getPlayersTournaments: build.query({
             query: () => `tourPlayers`,
         }),
+        getAwards: build.query({
+            query: () => `awards`,
+        }),
         getAwardsTournamentsByName: build.query({
             query: ({name}) => `awards/Tour/${name}`,
         }),
@@ -157,6 +160,7 @@ export const {
     useGetTop20PlayersQuery,
     useGetPlayersTournamentsByNameTourQuery,
     useGetAwardsTeamsByNameQuery,
+    useGetAwardsQuery,
     useGetAwardsTournamentsByNameQuery,
     useGetPlayersTournamentsByNickQuery,
     useGetPlayersTournamentsByNickDescQuery,

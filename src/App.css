@@ -11,6 +11,31 @@
   position: relative;
 }
 
+:root {
+  --mainBlack: #070707;
+  --mainLightBlack: #111;
+  --componentBlockColor: #15161a;
+  --componentLightBlockColor: #1a1a20;
+  --componentBlockColorHover: #2c2c33;
+  --componentLightBlockColorHover: #46464f;
+  --textColor: #d5dae0;
+  --textPlaceholderColor: #6e7279;
+  --DrawScoreColor: #bdc3c9;
+  --greenStatsColor: #30a806;
+  --yellowStatsColor: #cab600;
+  --redStatsColor: #ea2f2f;
+  --buttonColor: #e41242;
+  --buttonColorHover: #a41335;
+  --buttonDark: #1F1F25;
+  --textColorWhite: #d5dae0;
+  --textColorGreen: #33FF00;
+  --textColorDarkGreen: #2D5F21;
+  --textColorRed: #e41242;
+  --textColorDarkRed: #4A1F29;
+  --textColorYellow: #BDFF00;
+  --textColorDarkYellow: #4E5E21;
+}
+
 .wrapperBgLink {
   height: 100%;
   width: 100%;
