@@ -42,28 +42,12 @@ const RankingTeamsWithCurrentRosters = () => {
         && allTeamsTours.data && allTeamsTours.data.length > 0) {
 
         // let tempPlayersPoints = playersPoints.data.filter(e =>
-        //     e.event_id !== "GamesOfFuture_03_03_24"
-        //     && e.event_id !== "VozwoodenRevialCupSeason1_17_01_24"
-        //     && e.event_id !== "WinlineEpicStandoff2Brazil_12_03_24"
-        //     && e.event_id !== "WinlineEpicStandoff2Brazil2_14_05_24"
-        //     && e.event_id !== "MLSAmericas1_13_06_24"
-        //     && e.event_id !== "WinlineEpicStandoff2Brazil_20_08_24"
-        //     && e.event_id !== "WinlineEpicStandoff2Brazil4_24_09_24"
-        //     && e.event_id !== "MastersWay_28_07_23"
-        //     && e.event_id !== "GamesOfFuture_27_05_23"
-        //     && e.event_id !== "ScamOffBeeline_23_08_24"
+        //     e.event_id !== "WinlineEpicStandoff2Major2_25_11_24" &&
+        //     e.event_id !== "WinlineEpicStandoff2Major2ClosedQuals_05_11_24"
         // )
         // let tempTeamsPoints = teamsPoints.data.filter(e =>
-        //     e.event_id !== "GamesOfFuture_03_03_24"
-        //     && e.event_id !== "VozwoodenRevialCupSeason1_17_01_24"
-        //     && e.event_id !== "WinlineEpicStandoff2Brazil_12_03_24"
-        //     && e.event_id !== "WinlineEpicStandoff2Brazil2_14_05_24"
-        //     && e.event_id !== "MLSAmericas1_13_06_24"
-        //     && e.event_id !== "WinlineEpicStandoff2Brazil_20_08_24"
-        //     && e.event_id !== "WinlineEpicStandoff2Brazil4_24_09_24"
-        //     && e.event_id !== "MastersWay_28_07_23"
-        //     && e.event_id !== "GamesOfFuture_27_05_23"
-        //     && e.event_id !== "ScamOffBeeline_23_08_24"
+        //     e.event_id !== "WinlineEpicStandoff2Major2_25_11_24" &&
+        //     e.event_id !== "WinlineEpicStandoff2Major2ClosedQuals_05_11_24"
         // )
 
         // посчитали текушие поинты всем игрокам

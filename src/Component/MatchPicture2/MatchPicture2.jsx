@@ -1,6 +1,7 @@
 import React, {createRef, useCallback, useState} from 'react';
 import classes from './matchPicture2.module.css'
 import {toJpeg, toPng} from 'html-to-image';
+import domtoimage from 'dom-to-image-more';
 import {
     useGetMatchesByNameQuery,
     useGetShortMatchesTeamByNameQuery,
@@ -37,7 +38,7 @@ const MatchPicture2 = () => {
             return
         }
 
-        toJpeg(ref.current, {cacheBust: true,})
+        toPng(ref.current, {cacheBust: true,})
             .then((dataUrl) => {
                 const link = document.createElement('a')
                 link.download = `${choiceMatch}.jpg`

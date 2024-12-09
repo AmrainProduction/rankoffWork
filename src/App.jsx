@@ -48,6 +48,10 @@ import DigestMatch from "./Component/DigestMatch/digestMatch";
 import JemmMatch from "./Component/jemmMatch/jemmMatch";
 import StatsPlayerTour from "./Component/StatsPlayerTour/statsPlayerTour";
 import AddMatches from "./Component/AddMatches/addMatches";
+import CompareTops from "./Component/CompareTops/compareTops";
+import normalizeRating from "./Component/Functions/AllFunctions/normalizeRating";
+import normalizeImpact from "./Component/Functions/AllFunctions/normalizeImpact";
+import normalizeKD from "./Component/Functions/AllFunctions/normalizeKD";
 
 const router = createBrowserRouter(createRoutesFromElements(
     <Route path='/' element={<Layout/>} errorElement={<ErrorPage/>}>
@@ -72,7 +76,9 @@ const router = createBrowserRouter(createRoutesFromElements(
         <Route path='JEMM_MATCH' element={<JemmMatch/>}/>
         <Route path='i/ADDMATCHES' element={<AddMatches/>}/>
         <Route path='i/EMOJI' element={<EmojiTeams/>}/>
-        <Route path='i/TOP' element={<TopPlayersByTours/>}/> // топ игроков за несколько турниров сразу, надо в коде менять за какие
+        <Route path='i/TOP' element={<TopPlayersByTours/>}/> // топ игроков за несколько турниров сразу, надо в коде
+        менять за какие
+        <Route path='i/COMPARE_TOPS' element={<CompareTops/>}/> // сравнить два топа на одном баннере
         <Route path='i/LONG_TOP' element={<TopPlayersByToursLong/>}/>
     </Route>
 ))
@@ -82,14 +88,6 @@ function App() {
     useEffect(() => {
         window.scrollTo(0, 0)
     }, [])
-
-    // let id = "198"
-    // let nickname = "CraNkz"
-    //
-    // const playerTours = useGetPlayersTournamentsByNickQuery({id, nickname})
-    //
-    // console.log(playerTours?.data?.filter(e => !e.name_tour.toLowerCase().includes('rankoff')))
-
 
     return (
         <RouterProvider router={router}/>

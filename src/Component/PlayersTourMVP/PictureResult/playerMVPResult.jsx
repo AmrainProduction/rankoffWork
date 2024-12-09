@@ -11,9 +11,11 @@ import CurrentTeamPlayer from "../../../Function/currentTeamPlayer";
 import normalizeRating from "../../Functions/AllFunctions/normalizeRating";
 import normalizeImpact from "../../Functions/AllFunctions/normalizeImpact";
 import normalizeKD from "../../Functions/AllFunctions/normalizeKD";
+import Kpr from "../../Formulas/kpr";
+import Dpr from "../../Formulas/dpr";
+import Rating from "../../Formulas/rating";
 
 const PlayerMVPResult = (props) => {
-
     const choiceStage = props.stage
     const name = props.player.nickname
     const nickname = props.player.nickname
@@ -29,15 +31,15 @@ const PlayerMVPResult = (props) => {
 
     let name_tour
     let date_match
-    let logo_player
+    let logolayer
     let player_id
     let nameP
     let surname
     let country_flag
-    let kd_p = 0
-    let kpr_p = 0
-    let dpr_p = 0
-    let impact_p = 0
+    let kd = 0
+    let kpr = 0
+    let dpr = 0
+    let impact = 0
     let rating = 0
     let k = 0
     let a = 0
@@ -64,15 +66,16 @@ const PlayerMVPResult = (props) => {
 
     let count = 0
     let personal_let = 0
-    let personal_kd_p = 0
-    let personal_kpr_p = 0
-    let personal_dpr_p = 0
-    let personal_impact_p = 0
+    let personal_kd = 0
+    let personal_kpr = 0
+    let personal_dpr = 0
+    let personal_impact = 0
     let personal_rating = 0
     let personal_k = 0
     let personal_a = 0
     let personal_d = 0
     let personal_all_r = 0
+    let personal_all_maps = 0
 
 
     playerInfo?.data?.map(e => {
@@ -125,12 +128,8 @@ const PlayerMVPResult = (props) => {
                 }
 
                 if (match.t1p1 === nickname) {
-                    logo_player = match.t1p1_logo
-                    rating += normalizeRating(match.t1p1_rating)
-                    impact_p += normalizeImpact(( match.t1p1_impact))
-                    kd_p += normalizeKD(match.t1p1_kd)
-                    kpr_p += (match.t1p1_k / (match.total_r_team1 + match.total_r_team2))
-                    dpr_p += (match.t1p1_d / (match.total_r_team1 + match.total_r_team2))
+                    logolayer = match.t1p1_logo
+                    impact += normalizeImpact(match.t1p1_impact)
                     k += match.t1p1_k
                     a += match.t1p1_a
                     d += match.t1p1_d
@@ -138,12 +137,8 @@ const PlayerMVPResult = (props) => {
                 }
 
                 if (match.t1p2 === nickname) {
-                    logo_player = match.t1p2_logo
-                    rating += normalizeRating(match.t1p2_rating)
-                    impact_p += normalizeImpact(match.t1p2_impact)
-                    kd_p += normalizeKD(match.t1p2_kd)
-                    kpr_p += (match.t1p2_k / (match.total_r_team1 + match.total_r_team2))
-                    dpr_p += (match.t1p2_d / (match.total_r_team1 + match.total_r_team2))
+                    logolayer = match.t1p2_logo
+                    impact += normalizeImpact(match.t1p2_impact)
                     k += match.t1p2_k
                     a += match.t1p2_a
                     d += match.t1p2_d
@@ -151,12 +146,8 @@ const PlayerMVPResult = (props) => {
                 }
 
                 if (match.t1p3 === nickname) {
-                    logo_player = match.t1p3_logo
-                    rating += normalizeRating(match.t1p3_rating)
-                    impact_p += normalizeImpact(match.t1p3_impact)
-                    kd_p += normalizeKD(match.t1p3_kd)
-                    kpr_p += (match.t1p3_k / (match.total_r_team1 + match.total_r_team2))
-                    dpr_p += (match.t1p3_d / (match.total_r_team1 + match.total_r_team2))
+                    logolayer = match.t1p3_logo
+                    impact += normalizeImpact(match.t1p3_impact)
                     k += match.t1p3_k
                     a += match.t1p3_a
                     d += match.t1p3_d
@@ -164,12 +155,8 @@ const PlayerMVPResult = (props) => {
                 }
 
                 if (match.t1p4 === nickname) {
-                    logo_player = match.t1p4_logo
-                    rating += normalizeRating(match.t1p4_rating)
-                    impact_p += normalizeImpact(match.t1p4_impact)
-                    kd_p += normalizeKD(match.t1p4_kd)
-                    kpr_p += (match.t1p4_k / (match.total_r_team1 + match.total_r_team2))
-                    dpr_p += (match.t1p4_d / (match.total_r_team1 + match.total_r_team2))
+                    logolayer = match.t1p4_logo
+                    impact += normalizeImpact(match.t1p4_impact)
                     k += match.t1p4_k
                     a += match.t1p4_a
                     d += match.t1p4_d
@@ -177,12 +164,8 @@ const PlayerMVPResult = (props) => {
                 }
 
                 if (match.t1p5 === nickname) {
-                    logo_player = match.t1p5_logo
-                    rating += normalizeRating(match.t1p5_rating)
-                    impact_p += normalizeImpact(match.t1p5_impact)
-                    kd_p += normalizeKD(match.t1p5_kd)
-                    kpr_p += (match.t1p5_k / (match.total_r_team1 + match.total_r_team2))
-                    dpr_p += (match.t1p5_d / (match.total_r_team1 + match.total_r_team2))
+                    logolayer = match.t1p5_logo
+                    impact += normalizeImpact(match.t1p5_impact)
                     k += match.t1p5_k
                     a += match.t1p5_a
                     d += match.t1p5_d
@@ -217,12 +200,8 @@ const PlayerMVPResult = (props) => {
                 }
 
                 if (match.t2p1 === nickname) {
-                    logo_player = match.t2p1_logo
-                    rating += normalizeRating(match.t2p1_rating)
-                    impact_p += normalizeImpact(match.t2p1_impact)
-                    kd_p += normalizeKD(match.t2p1_kd)
-                    kpr_p += (match.t2p1_k / (match.total_r_team1 + match.total_r_team2))
-                    dpr_p += (match.t2p1_d / (match.total_r_team1 + match.total_r_team2))
+                    logolayer = match.t2p1_logo
+                    impact += normalizeImpact(match.t2p1_impact)
                     k += match.t2p1_k
                     a += match.t2p1_a
                     d += match.t2p1_d
@@ -230,12 +209,8 @@ const PlayerMVPResult = (props) => {
                 }
 
                 if (match.t2p2 === nickname) {
-                    logo_player = match.t2p2_logo
-                    rating += normalizeRating(match.t2p2_rating)
-                    impact_p += normalizeImpact(match.t2p2_impact)
-                    kd_p += normalizeKD(match.t2p2_kd)
-                    kpr_p += (match.t2p2_k / (match.total_r_team1 + match.total_r_team2))
-                    dpr_p += (match.t2p2_d / (match.total_r_team1 + match.total_r_team2))
+                    logolayer = match.t2p2_logo
+                    impact += normalizeImpact(match.t2p2_impact)
                     k += match.t2p2_k
                     a += match.t2p2_a
                     d += match.t2p2_d
@@ -243,12 +218,8 @@ const PlayerMVPResult = (props) => {
                 }
 
                 if (match.t2p3 === nickname) {
-                    logo_player = match.t2p3_logo
-                    rating += normalizeRating(match.t2p3_rating)
-                    impact_p += normalizeImpact(match.t2p3_impact)
-                    kd_p += normalizeKD(match.t2p3_kd)
-                    kpr_p += (match.t2p3_k / (match.total_r_team1 + match.total_r_team2))
-                    dpr_p += (match.t2p3_d / (match.total_r_team1 + match.total_r_team2))
+                    logolayer = match.t2p3_logo
+                    impact += normalizeImpact(match.t2p3_impact)
                     k += match.t2p3_k
                     a += match.t2p3_a
                     d += match.t2p3_d
@@ -256,12 +227,8 @@ const PlayerMVPResult = (props) => {
                 }
 
                 if (match.t2p4 === nickname) {
-                    logo_player = match.t2p4_logo
-                    rating += normalizeRating(match.t2p4_rating)
-                    impact_p += normalizeImpact(match.t2p4_impact)
-                    kd_p += normalizeKD(match.t2p4_kd)
-                    kpr_p += (match.t2p4_k / (match.total_r_team1 + match.total_r_team2))
-                    dpr_p += (match.t2p4_d / (match.total_r_team1 + match.total_r_team2))
+                    logolayer = match.t2p4_logo
+                    impact += normalizeImpact(match.t2p4_impact)
                     k += match.t2p4_k
                     a += match.t2p4_a
                     d += match.t2p4_d
@@ -269,63 +236,56 @@ const PlayerMVPResult = (props) => {
                 }
 
                 if (match.t2p5 === nickname) {
-                    logo_player = match.t2p5_logo
-                    rating += normalizeRating( match.t2p5_rating)
-                    impact_p += normalizeImpact(match.t2p5_impact)
-                    kd_p += normalizeKD( match.t2p5_kd)
-                    kpr_p += (match.t2p5_k / (match.total_r_team1 + match.total_r_team2))
-                    dpr_p += (match.t2p5_d / (match.total_r_team1 + match.total_r_team2))
+                    logolayer = match.t2p5_logo
+                    impact += normalizeImpact(match.t2p5_impact)
                     k += match.t2p5_k
                     a += match.t2p5_a
                     d += match.t2p5_d
                     count++
                 }
 
-
                 //----------сбор общей информации о трунире------------------------------
 
                 maps_all = (count_1_win + count_2_win) + (count_1_lose + count_2_lose)
                 maps_win = count_1_win + count_2_win
                 maps_lose = (count_1_lose + count_2_lose)
-
             }
         })
 
         //фиксируем статистику игрока
 
-        if (rating && impact_p) {
-
-            personal_kd_p += kd_p
-            personal_kpr_p += kpr_p
-            personal_dpr_p += dpr_p
-            personal_impact_p += impact_p
+        if (k && d) {
+            personal_kd += kd
+            personal_kpr += kpr
+            personal_dpr += dpr
+            personal_impact += impact
             personal_rating += rating
             personal_k += k
             personal_a += a
             personal_d += d
+            personal_all_maps += maps_all
             personal_all_r += rounds_win + rounds_lose
 
-            rating = rating / maps_all
-            impact_p = impact_p / maps_all
-            kd_p = kd_p / maps_all
-            kpr_p = kpr_p / maps_all
-            dpr_p = dpr_p / maps_all
-            rm = rating + maps_all
+            kd = (k / d)
+            kpr = Kpr(k, rounds_win + rounds_lose)
+            dpr = Dpr(d, rounds_win + rounds_lose)
+            impact = impact / maps_all
+            rating = Rating(kd, kpr, dpr, impact)
 
             statsMvpPlayer[index] = {
                 "name_tour": name_tour,
                 "date_match": date_match,
-                "logo_player": logo_player,
+                "logolayer": logolayer,
                 "player_id": player_id,
                 "name": nameP,
                 "nickname": nickname,
                 "surname": surname,
                 "country_flag": country_flag,
-                "kd_p": Math.round((k/d) * 100) / 100,
-                "kpr_p": Math.round((k / (rounds_win + rounds_lose)) * 100) / 100,
-                "dpr_p": Math.round((d / (rounds_win + rounds_lose)) * 100) / 100,
-                "impact_p": Math.round(impact_p * 100) / 100,
-                "rating": Math.round(rating * 100) / 100,
+                "kd": Math.round(kd * 100) / 100,
+                "kpr": Math.round(kpr * 100) / 100,
+                "dpr": Math.round(dpr * 100) / 100,
+                "impact": Math.round(impact * 100) / 100,
+                "rating": rating,
                 "k": k,
                 "a": a,
                 "d": d,
@@ -342,10 +302,10 @@ const PlayerMVPResult = (props) => {
             }
         }
 
-        kd_p = 0
-        kpr_p = 0
-        dpr_p = 0
-        impact_p = 0
+        kd = 0
+        kpr = 0
+        dpr = 0
+        impact = 0
         rating = 0
         k = 0
         a = 0
@@ -371,11 +331,11 @@ const PlayerMVPResult = (props) => {
         "nickname": nickname,
         "surname": surname,
         "country_flag": country_flag,
-        "kd_p": Math.round((personal_k/personal_d) * 100) / 100,
-        "kpr_p": Math.round((personal_k / personal_all_r) * 100) / 100,
-        "dpr_p": Math.round((personal_d / personal_all_r) * 100) / 100,
-        "impact_p": Math.round((personal_impact_p / count) * 100) / 100,
-        "rating": Math.round((personal_rating / count) * 100) / 100,
+        "kd": Math.round((personal_k/personal_d) * 100) / 100,
+        "kpr": Math.round((Kpr(personal_k, personal_all_r)) * 100) / 100,
+        "dpr": Math.round((Dpr(personal_d, personal_all_r)) * 100) / 100,
+        "impact": Math.round((personal_impact / count) * 100) / 100,
+        "rating": Rating((personal_k/personal_d), (Kpr(personal_k, personal_all_r)), (Dpr(personal_d, personal_all_r)), (personal_impact / count)),
         "k": personal_k,
         "a": personal_a,
         "d": personal_d,
@@ -421,19 +381,19 @@ const PlayerMVPResult = (props) => {
                                     <div className={classes.d}>{e.d}</div>
                                     <div className={classes.kd} style={
                                         {
-                                            color: e.kd_p < 0.9 ? "#cc5656" : e.kd_p > 1.05 ? "#7bc551" : "#b29936"
+                                            color: e.kd < 0.9 ? "#cc5656" : e.kd > 1.05 ? "#7bc551" : "#b29936"
                                         }
-                                    }>{e.kd_p}</div>
+                                    }>{e.kd}</div>
                                     <div className={classes.kpr} style={
                                         {
-                                            color: e.kpr_p < 0.60 ? "#cc5656" : e.kpr_p > 0.65 ? e.kpr_p > 0.70 ? "#7bc551" : "#b29936" : "#b29936"
+                                            color: e.kpr < 0.60 ? "#cc5656" : e.kpr > 0.65 ? e.kpr > 0.70 ? "#7bc551" : "#b29936" : "#b29936"
                                         }
-                                    }>{e.kpr_p}</div>
+                                    }>{e.kpr}</div>
                                     <div className={classes.impact} style={
                                         {
-                                            color: e.impact_p < 1 ? "#cc5656" : e.impact_p > 1 ? e.impact_p >= 1.15 ? "#7bc551" : "#b29936" : "#b29936"
+                                            color: e.impact < 1 ? "#cc5656" : e.impact > 1 ? e.impact >= 1.15 ? "#7bc551" : "#b29936" : "#b29936"
                                         }
-                                    }>{e.impact_p}</div>
+                                    }>{e.impact}</div>
                                     <div className={classes.rating} style={
                                         {
                                             color: e.rating < 1 ? "#cc5656" : e.rating > 1 ? e.rating >= 1.10 ? "#7bc551" : "#b29936" : "#b29936"
@@ -456,19 +416,19 @@ const PlayerMVPResult = (props) => {
                             <div className={classes.d}>{totalStatsPlayer[0]?.d}</div>
                             <div className={classes.kd} style={
                                 {
-                                    color: totalStatsPlayer[0]?.kd_p < 0.9 ? "#cc5656" : totalStatsPlayer[0]?.kd_p > 1.05 ? "#7bc551" : "#b29936"
+                                    color: totalStatsPlayer[0]?.kd < 0.9 ? "#cc5656" : totalStatsPlayer[0]?.kd > 1.05 ? "#7bc551" : "#b29936"
                                 }
-                            }>{totalStatsPlayer[0]?.kd_p}</div>
+                            }>{totalStatsPlayer[0]?.kd}</div>
                             <div className={classes.kpr} style={
                                 {
-                                    color: totalStatsPlayer[0]?.kpr_p < 0.60 ? "#cc5656" : totalStatsPlayer[0]?.kpr_p > 0.65 ? totalStatsPlayer[0]?.kpr_p > 0.70 ? "#7bc551" : "#b29936" : "#b29936"
+                                    color: totalStatsPlayer[0]?.kpr < 0.60 ? "#cc5656" : totalStatsPlayer[0]?.kpr > 0.65 ? totalStatsPlayer[0]?.kpr > 0.70 ? "#7bc551" : "#b29936" : "#b29936"
                                 }
-                            }>{totalStatsPlayer[0]?.kpr_p}</div>
+                            }>{totalStatsPlayer[0]?.kpr}</div>
                             <div className={classes.impact} style={
                                 {
-                                    color: totalStatsPlayer[0]?.impact_p < 1 ? "#cc5656" : totalStatsPlayer[0]?.impact_p > 1 ? totalStatsPlayer[0]?.impact_p >= 1.15 ? "#7bc551" : "#b29936" : "#b29936"
+                                    color: totalStatsPlayer[0]?.impact < 1 ? "#cc5656" : totalStatsPlayer[0]?.impact > 1 ? totalStatsPlayer[0]?.impact >= 1.15 ? "#7bc551" : "#b29936" : "#b29936"
                                 }
-                            }>{totalStatsPlayer[0]?.impact_p}</div>
+                            }>{totalStatsPlayer[0]?.impact}</div>
                             <div className={classes.rating} style={
                                 {
                                     color: totalStatsPlayer[0]?.rating < 1 ? "#cc5656" : totalStatsPlayer[0]?.rating > 1 ? totalStatsPlayer[0]?.rating >= 1.10 ? "#7bc551" : "#b29936" : "#b29936"
@@ -477,12 +437,12 @@ const PlayerMVPResult = (props) => {
                         </div>
                     </div>
                     <div className={classes.player}>
-                        <img src={`/images/LogoPlayers/${statsMvpPlayer[0]?.logo_player}`} alt="/"/>
+                        <img src={`/images/LogoPlayers/${statsMvpPlayer[0]?.logolayer}`} alt="/"/>
                     </div>
                     <div className={classes.nickname}>{statsMvpPlayer[0]?.nickname.toUpperCase()}</div>
                     <div className={classes.name}>{statsMvpPlayer[0]?.name + " " + statsMvpPlayer[0]?.surname}</div>
                     <div className={classes.leftPictureMVP}>
-                        <img src={`/images/DataInImage/MVP_banner_left_part_picture2.svg`} alt="/"/>
+                        <img src={`/images/DataInImage/MVP_banner_leftarticture2.svg`} alt="/"/>
                     </div>
                     <div className={classes.backLogoPlayer}>
                         <img src={`/images/LogoTeams/${statsMvpPlayer[0]?.logo_team}`} alt="/"/>

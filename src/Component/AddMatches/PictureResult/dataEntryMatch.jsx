@@ -1,11 +1,18 @@
-import React, {useEffect, useState} from 'react';
+import React, {createRef, useCallback, useEffect, useState} from 'react';
 import classes from "./dataEntryMatch.module.css";
 import {
+    useGetMatchesByNameQuery,
     useGetPlayersQuery,
     useGetShortMatchByNameQuery,
     useGetShortMatchQuery,
     useGetTeamsQuery
 } from "../../../store/api/apiSlice";
+import PictureResult2 from "../../MatchPicture2/PictureResult/pictureResult2";
+import toSQLCommandAddMatch from "./toSQLCommandAddMatch";
+import {toJpeg} from "html-to-image";
+import toSQLCommandUpdateShortMatch from "./toSQLCommandUpdateShortMatch";
+import Impact from "../../Formulas/impact";
+import Rating from "../../Formulas/rating";
 
 const DataEntryMatch = (props) => {
     const name = props.match_id
@@ -13,6 +20,7 @@ const DataEntryMatch = (props) => {
     const players = useGetPlayersQuery()
     const teams = useGetTeamsQuery()
     const shortMatches = useGetShortMatchByNameQuery({name})
+    const currentMatch = useGetMatchesByNameQuery({name})
 
     let resultData = []
 
@@ -29,9 +37,41 @@ const DataEntryMatch = (props) => {
         return ((0.5094*kd)+(0.2067*kpr)+(0.3409*(1-dpr))+(0.2054*impact)).toFixed(2)
     }
 
+    const ref = createRef(null);
+
+    const onButtonClick = useCallback(() => {
+        if (ref.current === null) {
+            return
+        }
+
+        toJpeg(ref.current, {cacheBust: true,})
+            .then((dataUrl) => {
+                const link = document.createElement('a')
+                link.download = `${name}.jpg`
+                link.href = dataUrl
+                link.click()
+            })
+            .catch((err) => {
+                console.log(err)
+            })
+    }, [ref])
+
     const [choiceMap, setChoiceMap] = useState(null);
     const [selectedSide, setSelectedSide] = useState('');
     const [pickMap, setPickMap] = useState('');
+
+    // проверка на то, что получаемый после ввода данных о матче массив заполнен полностью
+    const [isValidData, setIsValidData] = useState(false)
+
+    useEffect(() => {
+
+        const isDataValid = resultData?.every(item => {
+            return Object.values(item).every(value => value !== null && value !== '' && value !== "NaN")
+        })
+
+        setIsValidData(isDataValid)
+
+    }, [resultData])
 
     // Обработчик для изменения значения
     const handlePickMap = (event) => {
@@ -143,14 +183,12 @@ const DataEntryMatch = (props) => {
 
     // Универсальный обработчик изменения значений полей инфы о матче
     const handleChangeInfoMatch = (event) => {
-        // if (event.key === 'Enter') {
-            const {name, value} = event.target;
-            // Обновляем только изменённое поле
-            setMatchInfo({
-                ...matchInfo,
-                [name]: value,
-            });
-        // }
+        const {name, value} = event.target;
+        // Обновляем только изменённое поле
+        setMatchInfo({
+            ...matchInfo,
+            [name]: value,
+        });
     };
 
     if (players.data && players.data.length > 0 && teams.data && teams.data.length > 0 && shortMatches.data && shortMatches.data.length > 0) {
@@ -169,6 +207,10 @@ const DataEntryMatch = (props) => {
         let t2p4Data = players.data.find(player => player.nickname === (matchInfo.t2p4 ? matchInfo.t2p4 : matchInfo.t2p4 = team2Data.player_4))
         let t2p5Data = players.data.find(player => player.nickname === (matchInfo.t2p5 ? matchInfo.t2p5 : matchInfo.t2p5 = team2Data.player_5))
 
+        let allK = +matchInfo.t1p1_k + +matchInfo.t1p2_k + +matchInfo.t1p3_k + +matchInfo.t1p4_k + +matchInfo.t1p5_k + +matchInfo.t2p1_k + +matchInfo.t2p2_k + +matchInfo.t2p3_k + +matchInfo.t2p4_k + +matchInfo.t2p5_k
+        let allA = +matchInfo.t1p1_a + +matchInfo.t1p2_a + +matchInfo.t1p3_a + +matchInfo.t1p4_a + +matchInfo.t1p5_a + +matchInfo.t2p1_a + +matchInfo.t2p2_a + +matchInfo.t2p3_a + +matchInfo.t2p4_a + +matchInfo.t2p5_a
+        let allRounds = (+matchInfo.half1_team1 + (+matchInfo.half2_team1 - +matchInfo.half1_team1)) + (+matchInfo.half1_team2 + (+matchInfo.half2_team2 - +matchInfo.half1_team2))
+
         resultData = [{
             name_tour_for_sort: shortMatches.data[0].name_tour_sort,
             name_match_for_sort: shortMatches.data[0].name_match_for_sort,
@@ -183,12 +225,12 @@ const DataEntryMatch = (props) => {
             team2_id: shortMatches.data[0].team2_id,
             team1_logo: shortMatches.data[0].logo_t1,
             team2_logo: shortMatches.data[0].logo_t2,
-            total_r_team1: (+matchInfo.half1_team1 + +matchInfo.half2_team1),
-            total_r_team2: (+matchInfo.half1_team2 + +matchInfo.half2_team2),
-            half1_team1: matchInfo.half1_team1,
-            half1_team2: matchInfo.half1_team2,
-            half2_team1: matchInfo.half2_team1,
-            half2_team2: matchInfo.half2_team2,
+            total_r_team1: (+matchInfo.half1_team1 + (+matchInfo.half2_team1 - matchInfo.half1_team1)),
+            total_r_team2: (+matchInfo.half1_team2 + (+matchInfo.half2_team2 - matchInfo.half1_team2)),
+            half1_team1: +matchInfo.half1_team1,
+            half1_team2: +matchInfo.half1_team2,
+            half2_team1: (+matchInfo.half2_team1 - matchInfo.half1_team1),
+            half2_team2: (+matchInfo.half2_team2 - matchInfo.half1_team2),
             start_side_team1: selectedSide,
             start_side_team2: selectedSide === "CT" ? "T" : "CT",
             t1p1: matchInfo.t1p1,
@@ -261,29 +303,59 @@ const DataEntryMatch = (props) => {
             t2p3_d: matchInfo.t2p3_d,
             t2p4_d: matchInfo.t2p4_d,
             t2p5_d: matchInfo.t2p5_d,
-            t1p1_impact: calculateImpact(+matchInfo.t1p1_k, +matchInfo.t1p1_a, (+matchInfo.t1p1_k + +matchInfo.t1p2_k + +matchInfo.t1p3_k + +matchInfo.t1p4_k + +matchInfo.t1p5_k + +matchInfo.t2p1_k + +matchInfo.t2p2_k + +matchInfo.t2p3_k + +matchInfo.t2p4_k + +matchInfo.t2p5_k), (+matchInfo.t1p1_a + +matchInfo.t1p2_a + +matchInfo.t1p3_a + +matchInfo.t1p4_a + +matchInfo.t1p5_a + +matchInfo.t2p1_a + +matchInfo.t2p2_a + +matchInfo.t2p3_a + +matchInfo.t2p4_a + +matchInfo.t2p5_a)),
-            t1p2_impact: calculateImpact(+matchInfo.t1p2_k, +matchInfo.t1p2_a, (+matchInfo.t1p1_k + +matchInfo.t1p2_k + +matchInfo.t1p3_k + +matchInfo.t1p4_k + +matchInfo.t1p5_k + +matchInfo.t2p1_k + +matchInfo.t2p2_k + +matchInfo.t2p3_k + +matchInfo.t2p4_k + +matchInfo.t2p5_k), (+matchInfo.t1p1_a + +matchInfo.t1p2_a + +matchInfo.t1p3_a + +matchInfo.t1p4_a + +matchInfo.t1p5_a + +matchInfo.t2p1_a + +matchInfo.t2p2_a + +matchInfo.t2p3_a + +matchInfo.t2p4_a + +matchInfo.t2p5_a)),
-            t1p3_impact: calculateImpact(+matchInfo.t1p3_k, +matchInfo.t1p3_a, (+matchInfo.t1p1_k + +matchInfo.t1p2_k + +matchInfo.t1p3_k + +matchInfo.t1p4_k + +matchInfo.t1p5_k + +matchInfo.t2p1_k + +matchInfo.t2p2_k + +matchInfo.t2p3_k + +matchInfo.t2p4_k + +matchInfo.t2p5_k), (+matchInfo.t1p1_a + +matchInfo.t1p2_a + +matchInfo.t1p3_a + +matchInfo.t1p4_a + +matchInfo.t1p5_a + +matchInfo.t2p1_a + +matchInfo.t2p2_a + +matchInfo.t2p3_a + +matchInfo.t2p4_a + +matchInfo.t2p5_a)),
-            t1p4_impact: calculateImpact(+matchInfo.t1p4_k, +matchInfo.t1p4_a, (+matchInfo.t1p1_k + +matchInfo.t1p2_k + +matchInfo.t1p3_k + +matchInfo.t1p4_k + +matchInfo.t1p5_k + +matchInfo.t2p1_k + +matchInfo.t2p2_k + +matchInfo.t2p3_k + +matchInfo.t2p4_k + +matchInfo.t2p5_k), (+matchInfo.t1p1_a + +matchInfo.t1p2_a + +matchInfo.t1p3_a + +matchInfo.t1p4_a + +matchInfo.t1p5_a + +matchInfo.t2p1_a + +matchInfo.t2p2_a + +matchInfo.t2p3_a + +matchInfo.t2p4_a + +matchInfo.t2p5_a)),
-            t1p5_impact: calculateImpact(+matchInfo.t1p5_k, +matchInfo.t1p5_a, (+matchInfo.t1p1_k + +matchInfo.t1p2_k + +matchInfo.t1p3_k + +matchInfo.t1p4_k + +matchInfo.t1p5_k + +matchInfo.t2p1_k + +matchInfo.t2p2_k + +matchInfo.t2p3_k + +matchInfo.t2p4_k + +matchInfo.t2p5_k), (+matchInfo.t1p1_a + +matchInfo.t1p2_a + +matchInfo.t1p3_a + +matchInfo.t1p4_a + +matchInfo.t1p5_a + +matchInfo.t2p1_a + +matchInfo.t2p2_a + +matchInfo.t2p3_a + +matchInfo.t2p4_a + +matchInfo.t2p5_a)),
-            t2p1_impact: calculateImpact(+matchInfo.t2p1_k, +matchInfo.t2p1_a, (+matchInfo.t1p1_k + +matchInfo.t1p2_k + +matchInfo.t1p3_k + +matchInfo.t1p4_k + +matchInfo.t1p5_k + +matchInfo.t2p1_k + +matchInfo.t2p2_k + +matchInfo.t2p3_k + +matchInfo.t2p4_k + +matchInfo.t2p5_k), (+matchInfo.t1p1_a + +matchInfo.t1p2_a + +matchInfo.t1p3_a + +matchInfo.t1p4_a + +matchInfo.t1p5_a + +matchInfo.t2p1_a + +matchInfo.t2p2_a + +matchInfo.t2p3_a + +matchInfo.t2p4_a + +matchInfo.t2p5_a)),
-            t2p2_impact: calculateImpact(+matchInfo.t2p2_k, +matchInfo.t2p2_a, (+matchInfo.t1p1_k + +matchInfo.t1p2_k + +matchInfo.t1p3_k + +matchInfo.t1p4_k + +matchInfo.t1p5_k + +matchInfo.t2p1_k + +matchInfo.t2p2_k + +matchInfo.t2p3_k + +matchInfo.t2p4_k + +matchInfo.t2p5_k), (+matchInfo.t1p1_a + +matchInfo.t1p2_a + +matchInfo.t1p3_a + +matchInfo.t1p4_a + +matchInfo.t1p5_a + +matchInfo.t2p1_a + +matchInfo.t2p2_a + +matchInfo.t2p3_a + +matchInfo.t2p4_a + +matchInfo.t2p5_a)),
-            t2p3_impact: calculateImpact(+matchInfo.t2p3_k, +matchInfo.t2p3_a, (+matchInfo.t1p1_k + +matchInfo.t1p2_k + +matchInfo.t1p3_k + +matchInfo.t1p4_k + +matchInfo.t1p5_k + +matchInfo.t2p1_k + +matchInfo.t2p2_k + +matchInfo.t2p3_k + +matchInfo.t2p4_k + +matchInfo.t2p5_k), (+matchInfo.t1p1_a + +matchInfo.t1p2_a + +matchInfo.t1p3_a + +matchInfo.t1p4_a + +matchInfo.t1p5_a + +matchInfo.t2p1_a + +matchInfo.t2p2_a + +matchInfo.t2p3_a + +matchInfo.t2p4_a + +matchInfo.t2p5_a)),
-            t2p4_impact: calculateImpact(+matchInfo.t2p4_k, +matchInfo.t2p4_a, (+matchInfo.t1p1_k + +matchInfo.t1p2_k + +matchInfo.t1p3_k + +matchInfo.t1p4_k + +matchInfo.t1p5_k + +matchInfo.t2p1_k + +matchInfo.t2p2_k + +matchInfo.t2p3_k + +matchInfo.t2p4_k + +matchInfo.t2p5_k), (+matchInfo.t1p1_a + +matchInfo.t1p2_a + +matchInfo.t1p3_a + +matchInfo.t1p4_a + +matchInfo.t1p5_a + +matchInfo.t2p1_a + +matchInfo.t2p2_a + +matchInfo.t2p3_a + +matchInfo.t2p4_a + +matchInfo.t2p5_a)),
-            t2p5_impact: calculateImpact(+matchInfo.t2p5_k, +matchInfo.t2p5_a, (+matchInfo.t1p1_k + +matchInfo.t1p2_k + +matchInfo.t1p3_k + +matchInfo.t1p4_k + +matchInfo.t1p5_k + +matchInfo.t2p1_k + +matchInfo.t2p2_k + +matchInfo.t2p3_k + +matchInfo.t2p4_k + +matchInfo.t2p5_k), (+matchInfo.t1p1_a + +matchInfo.t1p2_a + +matchInfo.t1p3_a + +matchInfo.t1p4_a + +matchInfo.t1p5_a + +matchInfo.t2p1_a + +matchInfo.t2p2_a + +matchInfo.t2p3_a + +matchInfo.t2p4_a + +matchInfo.t2p5_a)),
-            t1p1_rating: calculateRating(+matchInfo.t1p1_k, +matchInfo.t1p1_d, +matchInfo.t1p1_a, (+matchInfo.t1p1_k + +matchInfo.t1p2_k + +matchInfo.t1p3_k + +matchInfo.t1p4_k + +matchInfo.t1p5_k + +matchInfo.t2p1_k + +matchInfo.t2p2_k + +matchInfo.t2p3_k + +matchInfo.t2p4_k + +matchInfo.t2p5_k), (+matchInfo.t1p1_a + +matchInfo.t1p2_a + +matchInfo.t1p3_a + +matchInfo.t1p4_a + +matchInfo.t1p5_a + +matchInfo.t2p1_a + +matchInfo.t2p2_a + +matchInfo.t2p3_a + +matchInfo.t2p4_a + +matchInfo.t2p5_a), (+matchInfo.half1_team1 + +matchInfo.half1_team2 + +matchInfo.half2_team1 + +matchInfo.half2_team2)),
-            t1p2_rating: calculateRating(+matchInfo.t1p2_k, +matchInfo.t1p2_d, +matchInfo.t1p2_a, (+matchInfo.t1p1_k + +matchInfo.t1p2_k + +matchInfo.t1p3_k + +matchInfo.t1p4_k + +matchInfo.t1p5_k + +matchInfo.t2p1_k + +matchInfo.t2p2_k + +matchInfo.t2p3_k + +matchInfo.t2p4_k + +matchInfo.t2p5_k), (+matchInfo.t1p1_a + +matchInfo.t1p2_a + +matchInfo.t1p3_a + +matchInfo.t1p4_a + +matchInfo.t1p5_a + +matchInfo.t2p1_a + +matchInfo.t2p2_a + +matchInfo.t2p3_a + +matchInfo.t2p4_a + +matchInfo.t2p5_a), (+matchInfo.half1_team1 + +matchInfo.half1_team2 + +matchInfo.half2_team1 + +matchInfo.half2_team2)),
-            t1p3_rating: calculateRating(+matchInfo.t1p3_k, +matchInfo.t1p3_d, +matchInfo.t1p3_a, (+matchInfo.t1p1_k + +matchInfo.t1p2_k + +matchInfo.t1p3_k + +matchInfo.t1p4_k + +matchInfo.t1p5_k + +matchInfo.t2p1_k + +matchInfo.t2p2_k + +matchInfo.t2p3_k + +matchInfo.t2p4_k + +matchInfo.t2p5_k), (+matchInfo.t1p1_a + +matchInfo.t1p2_a + +matchInfo.t1p3_a + +matchInfo.t1p4_a + +matchInfo.t1p5_a + +matchInfo.t2p1_a + +matchInfo.t2p2_a + +matchInfo.t2p3_a + +matchInfo.t2p4_a + +matchInfo.t2p5_a), (+matchInfo.half1_team1 + +matchInfo.half1_team2 + +matchInfo.half2_team1 + +matchInfo.half2_team2)),
-            t1p4_rating: calculateRating(+matchInfo.t1p4_k, +matchInfo.t1p4_d, +matchInfo.t1p4_a, (+matchInfo.t1p1_k + +matchInfo.t1p2_k + +matchInfo.t1p3_k + +matchInfo.t1p4_k + +matchInfo.t1p5_k + +matchInfo.t2p1_k + +matchInfo.t2p2_k + +matchInfo.t2p3_k + +matchInfo.t2p4_k + +matchInfo.t2p5_k), (+matchInfo.t1p1_a + +matchInfo.t1p2_a + +matchInfo.t1p3_a + +matchInfo.t1p4_a + +matchInfo.t1p5_a + +matchInfo.t2p1_a + +matchInfo.t2p2_a + +matchInfo.t2p3_a + +matchInfo.t2p4_a + +matchInfo.t2p5_a), (+matchInfo.half1_team1 + +matchInfo.half1_team2 + +matchInfo.half2_team1 + +matchInfo.half2_team2)),
-            t1p5_rating: calculateRating(+matchInfo.t1p5_k, +matchInfo.t1p5_d, +matchInfo.t1p5_a, (+matchInfo.t1p1_k + +matchInfo.t1p2_k + +matchInfo.t1p3_k + +matchInfo.t1p4_k + +matchInfo.t1p5_k + +matchInfo.t2p1_k + +matchInfo.t2p2_k + +matchInfo.t2p3_k + +matchInfo.t2p4_k + +matchInfo.t2p5_k), (+matchInfo.t1p1_a + +matchInfo.t1p2_a + +matchInfo.t1p3_a + +matchInfo.t1p4_a + +matchInfo.t1p5_a + +matchInfo.t2p1_a + +matchInfo.t2p2_a + +matchInfo.t2p3_a + +matchInfo.t2p4_a + +matchInfo.t2p5_a), (+matchInfo.half1_team1 + +matchInfo.half1_team2 + +matchInfo.half2_team1 + +matchInfo.half2_team2)),
-            t2p1_rating: calculateRating(+matchInfo.t2p1_k, +matchInfo.t2p1_d, +matchInfo.t2p1_a, (+matchInfo.t1p1_k + +matchInfo.t1p2_k + +matchInfo.t1p3_k + +matchInfo.t1p4_k + +matchInfo.t1p5_k + +matchInfo.t2p1_k + +matchInfo.t2p2_k + +matchInfo.t2p3_k + +matchInfo.t2p4_k + +matchInfo.t2p5_k), (+matchInfo.t1p1_a + +matchInfo.t1p2_a + +matchInfo.t1p3_a + +matchInfo.t1p4_a + +matchInfo.t1p5_a + +matchInfo.t2p1_a + +matchInfo.t2p2_a + +matchInfo.t2p3_a + +matchInfo.t2p4_a + +matchInfo.t2p5_a), (+matchInfo.half1_team1 + +matchInfo.half1_team2 + +matchInfo.half2_team1 + +matchInfo.half2_team2)),
-            t2p2_rating: calculateRating(+matchInfo.t2p2_k, +matchInfo.t2p2_d, +matchInfo.t2p2_a, (+matchInfo.t1p1_k + +matchInfo.t1p2_k + +matchInfo.t1p3_k + +matchInfo.t1p4_k + +matchInfo.t1p5_k + +matchInfo.t2p1_k + +matchInfo.t2p2_k + +matchInfo.t2p3_k + +matchInfo.t2p4_k + +matchInfo.t2p5_k), (+matchInfo.t1p1_a + +matchInfo.t1p2_a + +matchInfo.t1p3_a + +matchInfo.t1p4_a + +matchInfo.t1p5_a + +matchInfo.t2p1_a + +matchInfo.t2p2_a + +matchInfo.t2p3_a + +matchInfo.t2p4_a + +matchInfo.t2p5_a), (+matchInfo.half1_team1 + +matchInfo.half1_team2 + +matchInfo.half2_team1 + +matchInfo.half2_team2)),
-            t2p3_rating: calculateRating(+matchInfo.t2p3_k, +matchInfo.t2p3_d, +matchInfo.t2p3_a, (+matchInfo.t1p1_k + +matchInfo.t1p2_k + +matchInfo.t1p3_k + +matchInfo.t1p4_k + +matchInfo.t1p5_k + +matchInfo.t2p1_k + +matchInfo.t2p2_k + +matchInfo.t2p3_k + +matchInfo.t2p4_k + +matchInfo.t2p5_k), (+matchInfo.t1p1_a + +matchInfo.t1p2_a + +matchInfo.t1p3_a + +matchInfo.t1p4_a + +matchInfo.t1p5_a + +matchInfo.t2p1_a + +matchInfo.t2p2_a + +matchInfo.t2p3_a + +matchInfo.t2p4_a + +matchInfo.t2p5_a), (+matchInfo.half1_team1 + +matchInfo.half1_team2 + +matchInfo.half2_team1 + +matchInfo.half2_team2)),
-            t2p4_rating: calculateRating(+matchInfo.t2p4_k, +matchInfo.t2p4_d, +matchInfo.t2p4_a, (+matchInfo.t1p1_k + +matchInfo.t1p2_k + +matchInfo.t1p3_k + +matchInfo.t1p4_k + +matchInfo.t1p5_k + +matchInfo.t2p1_k + +matchInfo.t2p2_k + +matchInfo.t2p3_k + +matchInfo.t2p4_k + +matchInfo.t2p5_k), (+matchInfo.t1p1_a + +matchInfo.t1p2_a + +matchInfo.t1p3_a + +matchInfo.t1p4_a + +matchInfo.t1p5_a + +matchInfo.t2p1_a + +matchInfo.t2p2_a + +matchInfo.t2p3_a + +matchInfo.t2p4_a + +matchInfo.t2p5_a), (+matchInfo.half1_team1 + +matchInfo.half1_team2 + +matchInfo.half2_team1 + +matchInfo.half2_team2)),
-            t2p5_rating: calculateRating(+matchInfo.t2p5_k, +matchInfo.t2p5_d, +matchInfo.t2p5_a, (+matchInfo.t1p1_k + +matchInfo.t1p2_k + +matchInfo.t1p3_k + +matchInfo.t1p4_k + +matchInfo.t1p5_k + +matchInfo.t2p1_k + +matchInfo.t2p2_k + +matchInfo.t2p3_k + +matchInfo.t2p4_k + +matchInfo.t2p5_k), (+matchInfo.t1p1_a + +matchInfo.t1p2_a + +matchInfo.t1p3_a + +matchInfo.t1p4_a + +matchInfo.t1p5_a + +matchInfo.t2p1_a + +matchInfo.t2p2_a + +matchInfo.t2p3_a + +matchInfo.t2p4_a + +matchInfo.t2p5_a), (+matchInfo.half1_team1 + +matchInfo.half1_team2 + +matchInfo.half2_team1 + +matchInfo.half2_team2)),
+            t1p1_impact: Math.round((Impact(+matchInfo.t1p1_k, +matchInfo.t1p1_a, allK, allA) * 10) * 100) / 100,
+            t1p2_impact: Math.round((Impact(+matchInfo.t1p2_k, +matchInfo.t1p2_a, allK, allA) * 10) * 100) / 100,
+            t1p3_impact: Math.round((Impact(+matchInfo.t1p3_k, +matchInfo.t1p3_a, allK, allA) * 10) * 100) / 100,
+            t1p4_impact: Math.round((Impact(+matchInfo.t1p4_k, +matchInfo.t1p4_a, allK, allA) * 10) * 100) / 100,
+            t1p5_impact: Math.round((Impact(+matchInfo.t1p5_k, +matchInfo.t1p5_a, allK, allA) * 10) * 100) / 100,
+            t2p1_impact: Math.round((Impact(+matchInfo.t2p1_k, +matchInfo.t2p1_a, allK, allA) * 10) * 100) / 100,
+            t2p2_impact: Math.round((Impact(+matchInfo.t2p2_k, +matchInfo.t2p2_a, allK, allA) * 10) * 100) / 100,
+            t2p3_impact: Math.round((Impact(+matchInfo.t2p3_k, +matchInfo.t2p3_a, allK, allA) * 10) * 100) / 100,
+            t2p4_impact: Math.round((Impact(+matchInfo.t2p4_k, +matchInfo.t2p4_a, allK, allA) * 10) * 100) / 100,
+            t2p5_impact: Math.round((Impact(+matchInfo.t2p5_k, +matchInfo.t2p5_a, allK, allA) * 10) * 100) / 100,
+            t1p1_rating: Rating((+matchInfo.t1p1_k / +matchInfo.t1p1_d), (+matchInfo.t1p1_k / allRounds), (+matchInfo.t1p1_d / allRounds), Impact(+matchInfo.t1p1_k, +matchInfo.t1p1_a, allK, allA)),
+            t1p2_rating: Rating((+matchInfo.t1p2_k / +matchInfo.t1p2_d), (+matchInfo.t1p2_k / allRounds), (+matchInfo.t1p2_d / allRounds), Impact(+matchInfo.t1p2_k, +matchInfo.t1p2_a, allK, allA)),
+            t1p3_rating: Rating((+matchInfo.t1p3_k / +matchInfo.t1p3_d), (+matchInfo.t1p3_k / allRounds), (+matchInfo.t1p3_d / allRounds), Impact(+matchInfo.t1p3_k, +matchInfo.t1p3_a, allK, allA)),
+            t1p4_rating: Rating((+matchInfo.t1p4_k / +matchInfo.t1p4_d), (+matchInfo.t1p4_k / allRounds), (+matchInfo.t1p4_d / allRounds), Impact(+matchInfo.t1p4_k, +matchInfo.t1p4_a, allK, allA)),
+            t1p5_rating: Rating((+matchInfo.t1p5_k / +matchInfo.t1p5_d), (+matchInfo.t1p5_k / allRounds), (+matchInfo.t1p5_d / allRounds), Impact(+matchInfo.t1p5_k, +matchInfo.t1p5_a, allK, allA)),
+            t2p1_rating: Rating((+matchInfo.t2p1_k / +matchInfo.t2p1_d), (+matchInfo.t2p1_k / allRounds), (+matchInfo.t2p1_d / allRounds), Impact(+matchInfo.t2p1_k, +matchInfo.t2p1_a, allK, allA)),
+            t2p2_rating: Rating((+matchInfo.t2p2_k / +matchInfo.t2p2_d), (+matchInfo.t2p2_k / allRounds), (+matchInfo.t2p2_d / allRounds), Impact(+matchInfo.t2p2_k, +matchInfo.t2p2_a, allK, allA)),
+            t2p3_rating: Rating((+matchInfo.t2p3_k / +matchInfo.t2p3_d), (+matchInfo.t2p3_k / allRounds), (+matchInfo.t2p3_d / allRounds), Impact(+matchInfo.t2p3_k, +matchInfo.t2p3_a, allK, allA)),
+            t2p4_rating: Rating((+matchInfo.t2p4_k / +matchInfo.t2p4_d), (+matchInfo.t2p4_k / allRounds), (+matchInfo.t2p4_d / allRounds), Impact(+matchInfo.t2p4_k, +matchInfo.t2p4_a, allK, allA)),
+            t2p5_rating: Rating((+matchInfo.t2p5_k / +matchInfo.t2p5_d), (+matchInfo.t2p5_k / allRounds), (+matchInfo.t2p5_d / allRounds), Impact(+matchInfo.t2p5_k, +matchInfo.t2p5_a, allK, allA)),
         }]
 
-        console.log(resultData)
+        const copyToClipboard = () => {
+            const textToCopy = resultData.length > 0
+                ? toSQLCommandAddMatch(resultData) + toSQLCommandUpdateShortMatch(name, resultData, currentMatch.data)
+                : "";
+
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                // Попытка использовать API Clipboard
+                navigator.clipboard.writeText(textToCopy).then(() => {
+                    console.log('Copy good');
+                }, () => {
+                    console.log('Fail copy');
+                });
+            } else {
+                // Альтернативный способ для iOS и старых браузеров
+                const textArea = document.createElement("textarea");
+                textArea.value = textToCopy;
+                // Прячем текстовое поле из видимости
+                textArea.style.position = "absolute";
+                textArea.style.left = "-9999px";
+                document.body.appendChild(textArea);
+                textArea.select();
+                try {
+                    document.execCommand("copy"); // Используем устаревший метод
+                    console.log('Copy good');
+                } catch (err) {
+                    console.log('Fail copy');
+                }
+                document.body.removeChild(textArea); // Удаляем текстовое поле после копирования
+            }
+        };
+
         return (
             <div className={classes.wrapperAddMatches}>
                 <div className={classes.selectMap}>
@@ -392,31 +464,37 @@ const DataEntryMatch = (props) => {
                         <div className={classes.labelInput}>half 1
                             <img src={`/images/LogoTeams/${shortMatches.data[0].logo_t1}`} alt="/"/>:
                         </div>
-                        <input type="text" className={classes.inputEntryData} name="half1_team1"
+                        <input type="number" className={classes.inputEntryData} name="half1_team1" autoComplete="off"
                                value={matchInfo.half1_team1} onChange={handleChangeInfoMatch}/>
                     </div>
                     <div className={classes.wrapperInputData}>
                         <div className={classes.labelInput}>half 1
                             <img src={`/images/LogoTeams/${shortMatches.data[0].logo_t2}`} alt="/"/>:
                         </div>
-                        <input type="text" className={classes.inputEntryData} name="half1_team2"
+                        <input type="number" className={classes.inputEntryData} name="half1_team2" autoComplete="off"
                                value={matchInfo.half1_team2} onChange={handleChangeInfoMatch}/>
                     </div>
                     <div className={classes.wrapperInputData}>
-                        <div className={classes.labelInput}>half 2
+                        <div className={classes.labelInput}>Score
                             <img src={`/images/LogoTeams/${shortMatches.data[0].logo_t1}`} alt="/"/>:
                         </div>
-                        <input type="text" className={classes.inputEntryData} name="half2_team1"
+                        <input type="number" className={classes.inputEntryData} name="half2_team1" autoComplete="off"
                                value={matchInfo.half2_team1} onChange={handleChangeInfoMatch}/>
                     </div>
                     <div className={classes.wrapperInputData}>
-                        <div className={classes.labelInput}>half 2
+                        <div className={classes.labelInput}>Score
                             <img src={`/images/LogoTeams/${shortMatches.data[0].logo_t2}`} alt="/"/>:
                         </div>
-                        <input type="text" className={classes.inputEntryData} name="half2_team2"
+                        <input type="number" className={classes.inputEntryData} name="half2_team2" autoComplete="off"
                                value={matchInfo.half2_team2} onChange={handleChangeInfoMatch}/>
                     </div>
                 </div>
+                {isValidData ?
+                    <div className={classes.wrapperCopyButton}>
+                        <div className={classes.copyButton} onClick={copyToClipboard}>Copy command
+                        </div>
+                    </div>
+                    : ""}
                 <div className={classes.wrapperDataPlayersMatch}>
                     <div className={classes.wrapperTitleCells}>
                         <div className={classes.titleCell}>Players</div>
@@ -425,101 +503,122 @@ const DataEntryMatch = (props) => {
                         <div className={classes.titleCell}>D</div>
                     </div>
                     <div className={classes.dataPlayersMatch}>
-                        <input type="text" className={classes.inputEntryData} name="t1p1"
+
+                        <input type="text" className={classes.inputEntryData} name="t1p1" autoComplete="off"
                                value={matchInfo.t1p1 ? matchInfo.t1p1 : matchInfo.t1p1 = team1Data.player_1}
                                onChange={handleChangeInfoMatch}/>
-                        <input type="text" className={classes.inputEntryData} name="t1p2"
-                               value={matchInfo.t1p2 ? matchInfo.t1p2 : matchInfo.t1p2 = team1Data.player_2}
-                               onChange={handleChangeInfoMatch}/>
-                        <input type="text" className={classes.inputEntryData} name="t1p3"
-                               value={matchInfo.t1p3 ? matchInfo.t1p3 : matchInfo.t1p3 = team1Data.player_3}
-                               onChange={handleChangeInfoMatch}/>
-                        <input type="text" className={classes.inputEntryData} name="t1p4"
-                               value={matchInfo.t1p4 ? matchInfo.t1p4 : matchInfo.t1p4 = team1Data.player_4}
-                               onChange={handleChangeInfoMatch}/>
-                        <input type="text" className={classes.inputEntryData} name="t1p5"
-                               value={matchInfo.t1p5 ? matchInfo.t1p5 : matchInfo.t1p5 = team1Data.player_5}
-                               onChange={handleChangeInfoMatch}/>
-                        <input type="text" className={classes.inputEntryData} name="t2p1"
-                               value={matchInfo.t2p1 ? matchInfo.t2p1 : matchInfo.t2p1 = team2Data.player_1}
-                               onChange={handleChangeInfoMatch}/>
-                        <input type="text" className={classes.inputEntryData} name="t2p2"
-                               value={matchInfo.t2p2 ? matchInfo.t2p2 : matchInfo.t2p2 = team2Data.player_2}
-                               onChange={handleChangeInfoMatch}/>
-                        <input type="text" className={classes.inputEntryData} name="t2p3"
-                               value={matchInfo.t2p3 ? matchInfo.t2p3 : matchInfo.t2p3 = team2Data.player_3}
-                               onChange={handleChangeInfoMatch}/>
-                        <input type="text" className={classes.inputEntryData} name="t2p4"
-                               value={matchInfo.t2p4 ? matchInfo.t2p4 : matchInfo.t2p4 = team2Data.player_4}
-                               onChange={handleChangeInfoMatch}/>
-                        <input type="text" className={classes.inputEntryData} name="t2p5"
-                               value={matchInfo.t2p5 ? matchInfo.t2p5 : matchInfo.t2p5 = team2Data.player_5}
-                               onChange={handleChangeInfoMatch}/>
-
                         <input type="number" className={classes.inputEntryData} name="t1p1_k" value={matchInfo.t1p1_k}
                                onChange={handleChangeInfoMatch} autoComplete="off"/>
-                        <input type="number" className={classes.inputEntryData} name="t1p2_k" value={matchInfo.t1p2_k}
+                        <input type="number" className={classes.inputEntryData} name="t1p1_a" value={matchInfo.t1p1_a}
                                onChange={handleChangeInfoMatch} autoComplete="off"/>
-                        <input type="number" className={classes.inputEntryData} name="t1p3_k" value={matchInfo.t1p3_k}
-                               onChange={handleChangeInfoMatch} autoComplete="off"/>
-                        <input type="number" className={classes.inputEntryData} name="t1p4_k" value={matchInfo.t1p4_k}
-                               onChange={handleChangeInfoMatch} autoComplete="off"/>
-                        <input type="number" className={classes.inputEntryData} name="t1p5_k" value={matchInfo.t1p5_k}
-                               onChange={handleChangeInfoMatch} autoComplete="off"/>
-                        <input type="number" className={classes.inputEntryData} name="t2p1_k" value={matchInfo.t2p1_k}
-                               onChange={handleChangeInfoMatch} autoComplete="off"/>
-                        <input type="number" className={classes.inputEntryData} name="t2p2_k" value={matchInfo.t2p2_k}
-                               onChange={handleChangeInfoMatch} autoComplete="off"/>
-                        <input type="number" className={classes.inputEntryData} name="t2p3_k" value={matchInfo.t2p3_k}
-                               onChange={handleChangeInfoMatch} autoComplete="off"/>
-                        <input type="number" className={classes.inputEntryData} name="t2p4_k" value={matchInfo.t2p4_k}
-                               onChange={handleChangeInfoMatch} autoComplete="off"/>
-                        <input type="number" className={classes.inputEntryData} name="t2p5_k" value={matchInfo.t2p5_k}
+                        <input type="number" className={classes.inputEntryData} name="t1p1_d" value={matchInfo.t1p1_d}
                                onChange={handleChangeInfoMatch} autoComplete="off"/>
 
-                        <input type="number" className={classes.inputEntryData} name="t1p1_a" value={matchInfo.t1p1_a}
+                        <input type="text" className={classes.inputEntryData} name="t1p2" autoComplete="off"
+                               value={matchInfo.t1p2 ? matchInfo.t1p2 : matchInfo.t1p2 = team1Data.player_2}
+                               onChange={handleChangeInfoMatch}/>
+                        <input type="number" className={classes.inputEntryData} name="t1p2_k" value={matchInfo.t1p2_k}
                                onChange={handleChangeInfoMatch} autoComplete="off"/>
                         <input type="number" className={classes.inputEntryData} name="t1p2_a" value={matchInfo.t1p2_a}
                                onChange={handleChangeInfoMatch} autoComplete="off"/>
-                        <input type="number" className={classes.inputEntryData} name="t1p3_a" value={matchInfo.t1p3_a}
-                               onChange={handleChangeInfoMatch} autoComplete="off"/>
-                        <input type="number" className={classes.inputEntryData} name="t1p4_a" value={matchInfo.t1p4_a}
-                               onChange={handleChangeInfoMatch} autoComplete="off"/>
-                        <input type="number" className={classes.inputEntryData} name="t1p5_a" value={matchInfo.t1p5_a}
-                               onChange={handleChangeInfoMatch} autoComplete="off"/>
-                        <input type="number" className={classes.inputEntryData} name="t2p1_a" value={matchInfo.t2p1_a}
-                               onChange={handleChangeInfoMatch} autoComplete="off"/>
-                        <input type="number" className={classes.inputEntryData} name="t2p2_a" value={matchInfo.t2p2_a}
-                               onChange={handleChangeInfoMatch} autoComplete="off"/>
-                        <input type="number" className={classes.inputEntryData} name="t2p3_a" value={matchInfo.t2p3_a}
-                               onChange={handleChangeInfoMatch} autoComplete="off"/>
-                        <input type="number" className={classes.inputEntryData} name="t2p4_a" value={matchInfo.t2p4_a}
-                               onChange={handleChangeInfoMatch} autoComplete="off"/>
-                        <input type="number" className={classes.inputEntryData} name="t2p5_a" value={matchInfo.t2p5_a}
+                        <input type="number" className={classes.inputEntryData} name="t1p2_d" value={matchInfo.t1p2_d}
                                onChange={handleChangeInfoMatch} autoComplete="off"/>
 
-                        <input type="number" className={classes.inputEntryData} name="t1p1_d" value={matchInfo.t1p1_d}
+                        <input type="text" className={classes.inputEntryData} name="t1p3" autoComplete="off"
+                               value={matchInfo.t1p3 ? matchInfo.t1p3 : matchInfo.t1p3 = team1Data.player_3}
+                               onChange={handleChangeInfoMatch}/>
+                        <input type="number" className={classes.inputEntryData} name="t1p3_k" value={matchInfo.t1p3_k}
                                onChange={handleChangeInfoMatch} autoComplete="off"/>
-                        <input type="number" className={classes.inputEntryData} name="t1p2_d" value={matchInfo.t1p2_d}
+                        <input type="number" className={classes.inputEntryData} name="t1p3_a" value={matchInfo.t1p3_a}
                                onChange={handleChangeInfoMatch} autoComplete="off"/>
                         <input type="number" className={classes.inputEntryData} name="t1p3_d" value={matchInfo.t1p3_d}
                                onChange={handleChangeInfoMatch} autoComplete="off"/>
+
+                        <input type="text" className={classes.inputEntryData} name="t1p4" autoComplete="off"
+                               value={matchInfo.t1p4 ? matchInfo.t1p4 : matchInfo.t1p4 = team1Data.player_4}
+                               onChange={handleChangeInfoMatch}/>
+                        <input type="number" className={classes.inputEntryData} name="t1p4_k" value={matchInfo.t1p4_k}
+                               onChange={handleChangeInfoMatch} autoComplete="off"/>
+                        <input type="number" className={classes.inputEntryData} name="t1p4_a" value={matchInfo.t1p4_a}
+                               onChange={handleChangeInfoMatch} autoComplete="off"/>
                         <input type="number" className={classes.inputEntryData} name="t1p4_d" value={matchInfo.t1p4_d}
+                               onChange={handleChangeInfoMatch} autoComplete="off"/>
+
+                        <input type="text" className={classes.inputEntryData} name="t1p5" autoComplete="off"
+                               value={matchInfo.t1p5 ? matchInfo.t1p5 : matchInfo.t1p5 = team1Data.player_5}
+                               onChange={handleChangeInfoMatch}/>
+                        <input type="number" className={classes.inputEntryData} name="t1p5_k" value={matchInfo.t1p5_k}
+                               onChange={handleChangeInfoMatch} autoComplete="off"/>
+                        <input type="number" className={classes.inputEntryData} name="t1p5_a" value={matchInfo.t1p5_a}
                                onChange={handleChangeInfoMatch} autoComplete="off"/>
                         <input type="number" className={classes.inputEntryData} name="t1p5_d" value={matchInfo.t1p5_d}
                                onChange={handleChangeInfoMatch} autoComplete="off"/>
+
+                        <input type="text" className={classes.inputEntryData} name="t2p1" autoComplete="off"
+                               value={matchInfo.t2p1 ? matchInfo.t2p1 : matchInfo.t2p1 = team2Data.player_1}
+                               onChange={handleChangeInfoMatch}/>
+                        <input type="number" className={classes.inputEntryData} name="t2p1_k" value={matchInfo.t2p1_k}
+                               onChange={handleChangeInfoMatch} autoComplete="off"/>
+                        <input type="number" className={classes.inputEntryData} name="t2p1_a" value={matchInfo.t2p1_a}
+                               onChange={handleChangeInfoMatch} autoComplete="off"/>
                         <input type="number" className={classes.inputEntryData} name="t2p1_d" value={matchInfo.t2p1_d}
+                               onChange={handleChangeInfoMatch} autoComplete="off"/>
+
+                        <input type="text" className={classes.inputEntryData} name="t2p2" autoComplete="off"
+                               value={matchInfo.t2p2 ? matchInfo.t2p2 : matchInfo.t2p2 = team2Data.player_2}
+                               onChange={handleChangeInfoMatch}/>
+                        <input type="number" className={classes.inputEntryData} name="t2p2_k" value={matchInfo.t2p2_k}
+                               onChange={handleChangeInfoMatch} autoComplete="off"/>
+                        <input type="number" className={classes.inputEntryData} name="t2p2_a" value={matchInfo.t2p2_a}
                                onChange={handleChangeInfoMatch} autoComplete="off"/>
                         <input type="number" className={classes.inputEntryData} name="t2p2_d" value={matchInfo.t2p2_d}
                                onChange={handleChangeInfoMatch} autoComplete="off"/>
+
+                        <input type="text" className={classes.inputEntryData} name="t2p3" autoComplete="off"
+                               value={matchInfo.t2p3 ? matchInfo.t2p3 : matchInfo.t2p3 = team2Data.player_3}
+                               onChange={handleChangeInfoMatch}/>
+                        <input type="number" className={classes.inputEntryData} name="t2p3_k" value={matchInfo.t2p3_k}
+                               onChange={handleChangeInfoMatch} autoComplete="off"/>
+                        <input type="number" className={classes.inputEntryData} name="t2p3_a" value={matchInfo.t2p3_a}
+                               onChange={handleChangeInfoMatch} autoComplete="off"/>
                         <input type="number" className={classes.inputEntryData} name="t2p3_d" value={matchInfo.t2p3_d}
+                               onChange={handleChangeInfoMatch} autoComplete="off"/>
+
+                        <input type="text" className={classes.inputEntryData} name="t2p4" autoComplete="off"
+                               value={matchInfo.t2p4 ? matchInfo.t2p4 : matchInfo.t2p4 = team2Data.player_4}
+                               onChange={handleChangeInfoMatch}/>
+                        <input type="number" className={classes.inputEntryData} name="t2p4_k" value={matchInfo.t2p4_k}
+                               onChange={handleChangeInfoMatch} autoComplete="off"/>
+                        <input type="number" className={classes.inputEntryData} name="t2p4_a" value={matchInfo.t2p4_a}
                                onChange={handleChangeInfoMatch} autoComplete="off"/>
                         <input type="number" className={classes.inputEntryData} name="t2p4_d" value={matchInfo.t2p4_d}
                                onChange={handleChangeInfoMatch} autoComplete="off"/>
+
+                        <input type="text" className={classes.inputEntryData} name="t2p5" autoComplete="off"
+                               value={matchInfo.t2p5 ? matchInfo.t2p5 : matchInfo.t2p5 = team2Data.player_5}
+                               onChange={handleChangeInfoMatch}/>
+                        <input type="number" className={classes.inputEntryData} name="t2p5_k" value={matchInfo.t2p5_k}
+                               onChange={handleChangeInfoMatch} autoComplete="off"/>
+                        <input type="number" className={classes.inputEntryData} name="t2p5_a" value={matchInfo.t2p5_a}
+                               onChange={handleChangeInfoMatch} autoComplete="off"/>
                         <input type="number" className={classes.inputEntryData} name="t2p5_d" value={matchInfo.t2p5_d}
                                onChange={handleChangeInfoMatch} autoComplete="off"/>
+
+
                     </div>
                 </div>
+                {isValidData ?
+                    <>
+                        <div className={classes.wrapperCopyButton}>
+                            <div className={classes.copyButton} onClick={onButtonClick}>
+                                Download
+                            </div>
+                        </div>
+                        <div className={classes.resultBanner} ref={ref}>
+                            <PictureResult2 entryDataMatch={resultData}/>
+                        </div>
+                    </>
+                    : <p>Entry data!</p>}
             </div>
         )
     }

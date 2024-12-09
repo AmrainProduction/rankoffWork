@@ -1,15 +1,31 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import classes from "../matchPicture2.module.css";
 import {useGetMatchesByNameQuery} from "../../../store/api/apiSlice";
 import CountryFlagPlayer from "../../../Function/countryFlagPlayer";
 import normalizeImpact from "../../Functions/AllFunctions/normalizeImpact";
 import normalizeRating from "../../Functions/AllFunctions/normalizeRating";
 import normalizeKD from "../../Functions/AllFunctions/normalizeKD";
+import Rating from "../../Formulas/rating";
+import Kpr from "../../Formulas/kpr";
+import Dpr from "../../Formulas/dpr";
 
 const PictureResult2 = (props) => {
 
     const name = props.name
     const choiceMap = props.map
+    const entryDataMatch = props.entryDataMatch
+
+    const [isValidData, setIsValidData] = useState(false)
+
+    useEffect(() => {
+
+        const isDataValid = entryDataMatch?.every(item => {
+            return Object.values(item).every(value => value !== null && value !== '' && value !== "NaN")
+        })
+
+        setIsValidData(isDataValid)
+
+    }, [props.entryDataMatch])
 
     const necessaryMatch = useGetMatchesByNameQuery({name})
 
@@ -159,9 +175,16 @@ const PictureResult2 = (props) => {
 
     let allRounds = 0
     let tempArr = []
+    let necessaryData = []
 
     if (necessaryMatch.data && necessaryMatch.data.length > 0) {
-        tempArr = (choiceMap.length > 0 && choiceMap !== "AllMaps") ? necessaryMatch.data.filter(e => e.map === choiceMap) : necessaryMatch.data
+        necessaryData = necessaryMatch.data
+    } else if (isValidData) {
+        necessaryData = entryDataMatch
+    }
+
+    if (necessaryData && necessaryData.length > 0) {
+        tempArr = isValidData ? necessaryData : (choiceMap.length > 0 && choiceMap !== "AllMaps") ? necessaryData.filter(e => e.map === choiceMap) : necessaryData
 
         tempArr.map(el => {
 
@@ -198,7 +221,8 @@ const PictureResult2 = (props) => {
                 scoreT2++
             }
 
-            allRounds = (el.total_r_team1 + el.total_r_team2)
+            allRounds += (el.total_r_team1 + el.total_r_team2)
+
             count++
             t1p1_nickname = t1p1
             t1p2_nickname = t1p2
@@ -531,26 +555,26 @@ const PictureResult2 = (props) => {
             t2p3_kd: Math.round((t2p3_k / t2p3_d) * 100) / 100,
             t2p4_kd: Math.round((t2p4_k / t2p4_d) * 100) / 100,
             t2p5_kd: Math.round((t2p5_k / t2p5_d) * 100) / 100,
-            t1p1_kpr: Math.round((t1p1_kpr / t1p1_count_maps) * 100) / 100,
-            t1p2_kpr: Math.round((t1p2_kpr / t1p2_count_maps) * 100) / 100,
-            t1p3_kpr: Math.round((t1p3_kpr / t1p3_count_maps) * 100) / 100,
-            t1p4_kpr: Math.round((t1p4_kpr / t1p4_count_maps) * 100) / 100,
-            t1p5_kpr: Math.round((t1p5_kpr / t1p5_count_maps) * 100) / 100,
-            t2p1_kpr: Math.round((t2p1_kpr / t2p1_count_maps) * 100) / 100,
-            t2p2_kpr: Math.round((t2p2_kpr / t2p2_count_maps) * 100) / 100,
-            t2p3_kpr: Math.round((t2p3_kpr / t2p3_count_maps) * 100) / 100,
-            t2p4_kpr: Math.round((t2p4_kpr / t2p4_count_maps) * 100) / 100,
-            t2p5_kpr: Math.round((t2p5_kpr / t2p5_count_maps) * 100) / 100,
-            t1p1_dpr: Math.round((t1p1_dpr / t1p1_count_maps) * 100) / 100,
-            t1p2_dpr: Math.round((t1p2_dpr / t1p2_count_maps) * 100) / 100,
-            t1p3_dpr: Math.round((t1p3_dpr / t1p3_count_maps) * 100) / 100,
-            t1p4_dpr: Math.round((t1p4_dpr / t1p4_count_maps) * 100) / 100,
-            t1p5_dpr: Math.round((t1p5_dpr / t1p5_count_maps) * 100) / 100,
-            t2p1_dpr: Math.round((t2p1_dpr / t2p1_count_maps) * 100) / 100,
-            t2p2_dpr: Math.round((t2p2_dpr / t2p2_count_maps) * 100) / 100,
-            t2p3_dpr: Math.round((t2p3_dpr / t2p3_count_maps) * 100) / 100,
-            t2p4_dpr: Math.round((t2p4_dpr / t2p4_count_maps) * 100) / 100,
-            t2p5_dpr: Math.round((t2p5_dpr / t2p5_count_maps) * 100) / 100,
+            t1p1_kpr: Math.round(Kpr(t1p1_k, allRounds) * 100) / 100,
+            t1p2_kpr: Math.round(Kpr(t1p2_k, allRounds) * 100) / 100,
+            t1p3_kpr: Math.round(Kpr(t1p3_k, allRounds) * 100) / 100,
+            t1p4_kpr: Math.round(Kpr(t1p4_k, allRounds) * 100) / 100,
+            t1p5_kpr: Math.round(Kpr(t1p5_k, allRounds) * 100) / 100,
+            t2p1_kpr: Math.round(Kpr(t2p1_k, allRounds) * 100) / 100,
+            t2p2_kpr: Math.round(Kpr(t2p2_k, allRounds) * 100) / 100,
+            t2p3_kpr: Math.round(Kpr(t2p3_k, allRounds) * 100) / 100,
+            t2p4_kpr: Math.round(Kpr(t2p4_k, allRounds) * 100) / 100,
+            t2p5_kpr: Math.round(Kpr(t2p5_k, allRounds) * 100) / 100,
+            t1p1_dpr: Math.round(Dpr(t1p1_d, allRounds) * 100) / 100,
+            t1p2_dpr: Math.round(Dpr(t1p2_d, allRounds) * 100) / 100,
+            t1p3_dpr: Math.round(Dpr(t1p3_d, allRounds) * 100) / 100,
+            t1p4_dpr: Math.round(Dpr(t1p4_d, allRounds) * 100) / 100,
+            t1p5_dpr: Math.round(Dpr(t1p5_d, allRounds) * 100) / 100,
+            t2p1_dpr: Math.round(Dpr(t2p1_d, allRounds) * 100) / 100,
+            t2p2_dpr: Math.round(Dpr(t2p2_d, allRounds) * 100) / 100,
+            t2p3_dpr: Math.round(Dpr(t2p3_d, allRounds) * 100) / 100,
+            t2p4_dpr: Math.round(Dpr(t2p4_d, allRounds) * 100) / 100,
+            t2p5_dpr: Math.round(Dpr(t2p5_d, allRounds) * 100) / 100,
             t1p1_impact: Math.round((t1p1_impact / t1p1_count_maps) * 100) / 100,
             t1p2_impact: Math.round((t1p2_impact / t1p2_count_maps) * 100) / 100,
             t1p3_impact: Math.round((t1p3_impact / t1p3_count_maps) * 100) / 100,
@@ -561,16 +585,16 @@ const PictureResult2 = (props) => {
             t2p3_impact: Math.round((t2p3_impact / t2p3_count_maps) * 100) / 100,
             t2p4_impact: Math.round((t2p4_impact / t2p4_count_maps) * 100) / 100,
             t2p5_impact: Math.round((t2p5_impact / t2p5_count_maps) * 100) / 100,
-            t1p1_rating: Math.round((t1p1_rating / t1p1_count_maps) * 100) / 100,
-            t1p2_rating: Math.round((t1p2_rating / t1p2_count_maps) * 100) / 100,
-            t1p3_rating: Math.round((t1p3_rating / t1p3_count_maps) * 100) / 100,
-            t1p4_rating: Math.round((t1p4_rating / t1p4_count_maps) * 100) / 100,
-            t1p5_rating: Math.round((t1p5_rating / t1p5_count_maps) * 100) / 100,
-            t2p1_rating: Math.round((t2p1_rating / t2p1_count_maps) * 100) / 100,
-            t2p2_rating: Math.round((t2p2_rating / t2p2_count_maps) * 100) / 100,
-            t2p3_rating: Math.round((t2p3_rating / t2p3_count_maps) * 100) / 100,
-            t2p4_rating: Math.round((t2p4_rating / t2p4_count_maps) * 100) / 100,
-            t2p5_rating: Math.round((t2p5_rating / t2p5_count_maps) * 100) / 100,
+            t1p1_rating: Rating((t1p1_k / t1p1_d), (t1p1_k / allRounds), (t1p1_d / allRounds), (t1p1_impact / t1p1_count_maps)),
+            t1p2_rating: Rating((t1p2_k / t1p2_d), (t1p2_k / allRounds), (t1p2_d / allRounds), (t1p1_impact / t1p2_count_maps)),
+            t1p3_rating: Rating((t1p3_k / t1p3_d), (t1p3_k / allRounds), (t1p3_d / allRounds), (t1p1_impact / t1p3_count_maps)),
+            t1p4_rating: Rating((t1p4_k / t1p4_d), (t1p4_k / allRounds), (t1p4_d / allRounds), (t1p1_impact / t1p4_count_maps)),
+            t1p5_rating: Rating((t1p5_k / t1p5_d), (t1p5_k / allRounds), (t1p5_d / allRounds), (t1p1_impact / t1p5_count_maps)),
+            t2p1_rating: Rating((t2p1_k / t2p1_d), (t2p1_k / allRounds), (t2p1_d / allRounds), (t1p1_impact / t2p1_count_maps)),
+            t2p2_rating: Rating((t2p2_k / t2p2_d), (t2p2_k / allRounds), (t2p2_d / allRounds), (t1p1_impact / t2p2_count_maps)),
+            t2p3_rating: Rating((t2p3_k / t2p3_d), (t2p3_k / allRounds), (t2p3_d / allRounds), (t1p1_impact / t2p3_count_maps)),
+            t2p4_rating: Rating((t2p4_k / t2p4_d), (t2p4_k / allRounds), (t2p4_d / allRounds), (t1p1_impact / t2p4_count_maps)),
+            t2p5_rating: Rating((t2p5_k / t2p5_d), (t2p5_k / allRounds), (t2p5_d / allRounds), (t1p1_impact / t2p5_count_maps)),
         }
 
         let max = []
@@ -789,7 +813,7 @@ const PictureResult2 = (props) => {
                                 </div>
                                 <div className={classes.cell7} style={
                                     {
-                                        background: players[0].t1p1_dpr < 0.68 ? "#528347" : players[0].t1p1_dpr > 0.7 ? players[0].t1p1_dpr > 0.8 ? "#854141" : "#a29747" : "#854141"
+                                        background: players[0].t1p1_dpr < 0.68 ? "#528347" : players[0].t1p1_dpr > 0.7 ? players[0].t1p1_dpr > 0.8 ? "#854141" : "#a29747" : "#a29747"
                                     }
                                 }>{players[0].t1p1_dpr}
                                 </div>
@@ -838,7 +862,7 @@ const PictureResult2 = (props) => {
                                 </div>
                                 <div className={classes.cell7} style={
                                     {
-                                        background: players[0].t1p2_dpr < 0.68 ? "#528347" : players[0].t1p2_dpr > 0.7 ? players[0].t1p2_dpr > 0.8 ? "#854141" : "#a29747" : "#854141"
+                                        background: players[0].t1p2_dpr < 0.68 ? "#528347" : players[0].t1p2_dpr > 0.7 ? players[0].t1p2_dpr > 0.8 ? "#854141" : "#a29747" : "#a29747"
                                     }
                                 }>{players[0].t1p2_dpr}
                                 </div>
@@ -887,7 +911,7 @@ const PictureResult2 = (props) => {
                                 </div>
                                 <div className={classes.cell7} style={
                                     {
-                                        background: players[0].t1p3_dpr < 0.68 ? "#528347" : players[0].t1p3_dpr > 0.7 ? players[0].t1p3_dpr > 0.8 ? "#854141" : "#a29747" : "#854141"
+                                        background: players[0].t1p3_dpr < 0.68 ? "#528347" : players[0].t1p3_dpr > 0.7 ? players[0].t1p3_dpr > 0.8 ? "#854141" : "#a29747" : "#a29747"
                                     }
                                 }>{players[0].t1p3_dpr}
                                 </div>
@@ -936,7 +960,7 @@ const PictureResult2 = (props) => {
                                 </div>
                                 <div className={classes.cell7} style={
                                     {
-                                        background: players[0].t1p4_dpr < 0.68 ? "#528347" : players[0].t1p4_dpr > 0.7 ? players[0].t1p4_dpr > 0.8 ? "#854141" : "#a29747" : "#854141"
+                                        background: players[0].t1p4_dpr < 0.68 ? "#528347" : players[0].t1p4_dpr > 0.7 ? players[0].t1p4_dpr > 0.8 ? "#854141" : "#a29747" : "#a29747"
                                     }
                                 }>{players[0].t1p4_dpr}
                                 </div>
@@ -985,7 +1009,7 @@ const PictureResult2 = (props) => {
                                 </div>
                                 <div className={classes.cell7} style={
                                     {
-                                        background: players[0].t1p5_dpr < 0.68 ? "#528347" : players[0].t1p5_dpr > 0.7 ? players[0].t1p5_dpr > 0.8 ? "#854141" : "#a29747" : "#854141"
+                                        background: players[0].t1p5_dpr < 0.68 ? "#528347" : players[0].t1p5_dpr > 0.7 ? players[0].t1p5_dpr > 0.8 ? "#854141" : "#a29747" : "#a29747"
                                     }
                                 }>{players[0].t1p5_dpr}
                                 </div>
@@ -1081,7 +1105,7 @@ const PictureResult2 = (props) => {
                                 </div>
                                 <div className={classes.cell7} style={
                                     {
-                                        background: players[0].t2p1_dpr < 0.68 ? "#528347" : players[0].t2p1_dpr > 0.7 ? players[0].t2p1_dpr > 0.8 ? "#854141" : "#a29747" : "#854141"
+                                        background: players[0].t2p1_dpr < 0.68 ? "#528347" : players[0].t2p1_dpr > 0.7 ? players[0].t2p1_dpr > 0.8 ? "#854141" : "#a29747" : "#a29747"
                                     }
                                 }>{players[0].t2p1_dpr}
                                 </div>
@@ -1130,7 +1154,7 @@ const PictureResult2 = (props) => {
                                 </div>
                                 <div className={classes.cell7} style={
                                     {
-                                        background: players[0].t2p2_dpr < 0.68 ? "#528347" : players[0].t2p2_dpr > 0.7 ? players[0].t2p2_dpr > 0.8 ? "#854141" : "#a29747" : "#854141"
+                                        background: players[0].t2p2_dpr < 0.68 ? "#528347" : players[0].t2p2_dpr > 0.7 ? players[0].t2p2_dpr > 0.8 ? "#854141" : "#a29747" : "#a29747"
                                     }
                                 }>{players[0].t2p2_dpr}
                                 </div>
@@ -1179,7 +1203,7 @@ const PictureResult2 = (props) => {
                                 </div>
                                 <div className={classes.cell7} style={
                                     {
-                                        background: players[0].t2p3_dpr < 0.68 ? "#528347" : players[0].t2p3_dpr > 0.7 ? players[0].t2p3_dpr > 0.8 ? "#854141" : "#a29747" : "#854141"
+                                        background: players[0].t2p3_dpr < 0.68 ? "#528347" : players[0].t2p3_dpr > 0.7 ? players[0].t2p3_dpr > 0.8 ? "#854141" : "#a29747" : "#a29747"
                                     }
                                 }>{players[0].t2p3_dpr}
                                 </div>
@@ -1228,7 +1252,7 @@ const PictureResult2 = (props) => {
                                 </div>
                                 <div className={classes.cell7} style={
                                     {
-                                        background: players[0].t2p4_dpr < 0.68 ? "#528347" : players[0].t2p4_dpr > 0.7 ? players[0].t2p4_dpr > 0.8 ? "#854141" : "#a29747" : "#854141"
+                                        background: players[0].t2p4_dpr < 0.68 ? "#528347" : players[0].t2p4_dpr > 0.7 ? players[0].t2p4_dpr > 0.8 ? "#854141" : "#a29747" : "#a29747"
                                     }
                                 }>{players[0].t2p4_dpr}
                                 </div>
@@ -1277,7 +1301,7 @@ const PictureResult2 = (props) => {
                                 </div>
                                 <div className={classes.cell7} style={
                                     {
-                                        background: players[0].t2p5_dpr < 0.68 ? "#528347" : players[0].t2p5_dpr > 0.7 ? players[0].t2p5_dpr > 0.8 ? "#854141" : "#a29747" : "#854141"
+                                        background: players[0].t2p5_dpr < 0.68 ? "#528347" : players[0].t2p5_dpr > 0.7 ? players[0].t2p5_dpr > 0.8 ? "#854141" : "#a29747" : "#a29747"
                                     }
                                 }>{players[0].t2p5_dpr}
                                 </div>

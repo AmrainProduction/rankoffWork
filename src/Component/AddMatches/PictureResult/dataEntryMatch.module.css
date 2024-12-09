@@ -1,3 +1,13 @@
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type="number"] {
+    -moz-appearance: textfield;
+}
+
 .wrapperAddMatches {
     font-family: "Mazzard M", sans-serif;
     display: block;
@@ -128,6 +138,7 @@
     justify-content: start;
     padding: 0.5rem;
     gap: 0.4rem;
+    margin-bottom: 0.5rem;
     grid-template-rows: auto auto;
     background: var(--componentLightBlockColor);
 }
@@ -143,7 +154,6 @@
     display: grid;
     width: 100%;
     gap: 0.4rem;
-    grid-auto-flow: column;
     grid-template-columns: auto auto auto auto;
     grid-template-rows: repeat(10, 1fr);
 }
@@ -161,31 +171,38 @@
     max-width: 100px;
 }
 
-.dataPlayersMatch > :nth-child(1),
-.dataPlayersMatch > :nth-child(2),
-.dataPlayersMatch > :nth-child(3),
-.dataPlayersMatch > :nth-child(4),
-.dataPlayersMatch > :nth-child(5),
-.dataPlayersMatch > :nth-child(11),
-.dataPlayersMatch > :nth-child(12),
-.dataPlayersMatch > :nth-child(13),
-.dataPlayersMatch > :nth-child(14),
-.dataPlayersMatch > :nth-child(15),
-.dataPlayersMatch > :nth-child(21),
-.dataPlayersMatch > :nth-child(22),
-.dataPlayersMatch > :nth-child(23),
-.dataPlayersMatch > :nth-child(24),
-.dataPlayersMatch > :nth-child(25),
-.dataPlayersMatch > :nth-child(31),
-.dataPlayersMatch > :nth-child(32),
-.dataPlayersMatch > :nth-child(33),
-.dataPlayersMatch > :nth-child(34),
-.dataPlayersMatch > :nth-child(35),
-.dataPlayersMatch > :nth-child(41),
-.dataPlayersMatch > :nth-child(42),
-.dataPlayersMatch > :nth-child(43),
-.dataPlayersMatch > :nth-child(44),
-.dataPlayersMatch > :nth-child(45)
+.dataPlayersMatch > :nth-child(n + 1):nth-child(-n + 20)
 {
     background-color: var(--componentLightBlockColorHover);
+}
+
+.wrapperCopyButton {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    background: var(--componentLightBlockColor);
+    margin-bottom: 0.5rem;
+    padding: 0.5rem;
+}
+
+.copyButton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    width: 150px;
+    border-radius: 0.5rem;
+    background: var(--buttonColor);
+    padding: 0.5rem;
+}
+
+.copyButton:hover {
+    background: var(--buttonColorHover);
+}
+
+.resultBanner {
+    display: block;
+    background: var(--componentLightBlockColor);
+    margin-bottom: 0.5rem;
+    /*padding: 0.5rem;*/
 }

@@ -2,11 +2,8 @@ import React, {createRef, useCallback, useState} from 'react';
 import classes from './topPlayersTour.module.css'
 import {toJpeg, toPng} from 'html-to-image';
 import {useGetTournamentsQuery} from "../../store/api/apiSlice";
-import PictureResult from "./PictureResult/topPlayersTourResult";
-import TopPlayersTourResult from "./PictureResult/topPlayersTourResult";
 import logo from "../../logo.svg";
-import PictureResult2 from "../MatchPicture2/PictureResult/pictureResult2";
-import TopPlayersTourResultML from "../MOBLIVE_TopPlayersTour/PictureResult/topPlayersTourResultML";
+import TopPlayersTourResult from "./PictureResult_v2/topPlayersTourResult";
 
 const TopPlayersTour = () => {
 

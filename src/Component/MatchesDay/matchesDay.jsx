@@ -3,22 +3,24 @@ import classes from './matchesDay.module.css'
 import {toJpeg, toPng} from 'html-to-image';
 import {
     useGetMatchesByNameQuery, useGetMatchesByNameTourQuery,
-    useGetMatchesQuery,
+    useGetMatchesQuery, useGetPlayersQuery,
     useGetShortMatchByNameQuery,
-    useGetShortMatchQuery, useGetTournamentsQuery
+    useGetShortMatchQuery, useGetTeamsQuery, useGetTournamentsQuery
 } from "../../store/api/apiSlice";
 import logo from "../../logo.svg";
-import OneMatch from "./PictureResult/oneMatch";
-import TwoMatches from "./PictureResult/twoMatches";
-import ThreeMatches from "./PictureResult/threeMatches";
-import FourMatches from "./PictureResult/fourMatches";
-import FiveMatches from "./PictureResult/fiveMatches";
-import SixMatches from "./PictureResult/sixMatches";
+import OneMatch from "./PictureResultV2/oneMatch";
+import TwoMatches from "./PictureResultV2/twoMatches";
+import ThreeMatches from "./PictureResultV2/threeMatches";
+import FourMatches from "./PictureResultV2/fourMatches";
+import FiveMatches from "./PictureResultV2/fiveMatches";
+import SixMatches from "./PictureResultV2/sixMatches";
 
 const MatchesDay = () => {
 
     const listMatches = useGetShortMatchQuery()
     const listTours = useGetTournamentsQuery()
+    const allTeams = useGetTeamsQuery()
+    const allPlayers = useGetPlayersQuery()
 
     const [date, setDate] = useState([])
     const [today, setToday] = useState([])
@@ -39,7 +41,24 @@ const MatchesDay = () => {
         })
     }
 
-    if (listMatches.data && listMatches.data.length > 0) {
+    const getPlayersTeam = (team_id) => {
+
+        let rosterTeam = []
+
+        allTeams.data.filter(e => e.team_id === team_id).forEach(e => {
+            allPlayers.data.filter(e1 => e1.nickname !== "nickname" && (e1.player_id === e.player_1_id || e1.player_id === e.player_2_id || e1.player_id === e.player_3_id || e1.player_id === e.player_4_id || e1.player_id === e.player_5_id))
+                .forEach(e2 => {
+                    rosterTeam.push({
+                        nickname: e2.nickname,
+                        playerPhoto: e2.logo_player ? e2.logo_player : "PlayerDefaultLogo.png",
+                    })
+                })
+        })
+
+        return rosterTeam
+    }
+
+    if (listMatches.data && listMatches.data.length > 0 && allTeams.data && allTeams.data.length > 0 && allPlayers.data && allPlayers.data.length > 0) {
         listMatches.data.map((e) => {
             dates.push(e.date_match)
         })
@@ -54,6 +73,8 @@ const MatchesDay = () => {
                 matchesData.push({
                     team1: e.team1,
                     team2: e.team2,
+                    team1_id: e.team1_id,
+                    team2_id: e.team2_id,
                     logo_t1: e.logo_t1,
                     logo_t2: e.logo_t2,
                     score_t1: e.total_score_match_t1,
@@ -64,6 +85,8 @@ const MatchesDay = () => {
                     date: e.date_match,
                     stage: e.name_stage,
                     time: e.time_match.slice(0, -3),
+                    playersTeam1: getPlayersTeam(e.team1_id),
+                    playersTeam2: getPlayersTeam(e.team2_id),
                 })
             }
         })
