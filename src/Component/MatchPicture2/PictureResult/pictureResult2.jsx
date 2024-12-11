@@ -241,11 +241,8 @@ const PictureResult2 = (props) => {
                 t1p1_k += el.t1p1_k
                 t1p1_a += el.t1p1_a
                 t1p1_d += el.t1p1_d
-                t1p1_kd += el.t1p1_kd
-                t1p1_dpr += (el.t1p1_d / allRounds)
-                t1p1_kpr += (el.t1p1_k / allRounds)
                 t1p1_impact += el.t1p1_impact
-                t1p1_rating += tempArr.length > 1 ? normalizeRating(el.t1p1_rating) : el.t1p1_rating
+                t1p1_rating += el.t1p1_rating
                 t1p1_count_maps += 1
             } else {
                 t1p1 = el.t1p1
@@ -253,11 +250,8 @@ const PictureResult2 = (props) => {
                 t1p1_k = el.t1p1_k
                 t1p1_a = el.t1p1_a
                 t1p1_d = el.t1p1_d
-                t1p1_kd = el.t1p1_kd
-                t1p1_dpr = (el.t1p1_d / allRounds)
-                t1p1_kpr = (el.t1p1_k / allRounds)
                 t1p1_impact = el.t1p1_impact
-                t1p1_rating = tempArr.length > 1 ? normalizeRating(el.t1p1_rating) : el.t1p1_rating
+                t1p1_rating = el.t1p1_rating
                 t1p1_count_maps = 1
             }
             if (el.t1p2 && (el.t1p2 === t1p2_nickname)) {
@@ -266,11 +260,8 @@ const PictureResult2 = (props) => {
                 t1p2_k += el.t1p2_k
                 t1p2_a += el.t1p2_a
                 t1p2_d += el.t1p2_d
-                t1p2_kd += el.t1p2_kd
-                t1p2_dpr += (el.t1p2_d / allRounds)
-                t1p2_kpr += (el.t1p2_k / allRounds)
                 t1p2_impact += el.t1p2_impact
-                t1p2_rating += tempArr.length > 1 ? normalizeRating(el.t1p2_rating) : el.t1p2_rating
+                t1p2_rating += el.t1p2_rating
                 t1p2_count_maps += 1
             } else {
                 t1p2 = el.t1p2
@@ -278,11 +269,8 @@ const PictureResult2 = (props) => {
                 t1p2_k = el.t1p2_k
                 t1p2_a = el.t1p2_a
                 t1p2_d = el.t1p2_d
-                t1p2_kd = el.t1p2_kd
-                t1p2_dpr = (el.t1p2_d / allRounds)
-                t1p2_kpr = (el.t1p2_k / allRounds)
                 t1p2_impact = el.t1p2_impact
-                t1p2_rating = tempArr.length > 1 ? normalizeRating(el.t1p2_rating) : el.t1p2_rating
+                t1p2_rating = el.t1p2_rating
                 t1p2_count_maps = 1
             }
             if (el.t1p3 && (el.t1p3 === t1p3_nickname)) {
@@ -291,11 +279,8 @@ const PictureResult2 = (props) => {
                 t1p3_k += el.t1p3_k
                 t1p3_a += el.t1p3_a
                 t1p3_d += el.t1p3_d
-                t1p3_kd += el.t1p3_kd
-                t1p3_dpr += (el.t1p3_d / allRounds)
-                t1p3_kpr += (el.t1p3_k / allRounds)
                 t1p3_impact += el.t1p3_impact
-                t1p3_rating += tempArr.length > 1 ? normalizeRating(el.t1p3_rating) : el.t1p3_rating
+                t1p3_rating += el.t1p3_rating
                 t1p3_count_maps += 1
             } else {
                 t1p3 = el.t1p3
@@ -303,11 +288,8 @@ const PictureResult2 = (props) => {
                 t1p3_k = el.t1p3_k
                 t1p3_a = el.t1p3_a
                 t1p3_d = el.t1p3_d
-                t1p3_kd = el.t1p3_kd
-                t1p3_dpr = (el.t1p3_d / allRounds)
-                t1p3_kpr = (el.t1p3_k / allRounds)
                 t1p3_impact = el.t1p3_impact
-                t1p3_rating = tempArr.length > 1 ? normalizeRating(el.t1p3_rating) : el.t1p3_rating
+                t1p3_rating = el.t1p3_rating
                 t1p3_count_maps = 1
             }
             if (el.t1p4 && (el.t1p4 === t1p4_nickname)) {
@@ -316,11 +298,8 @@ const PictureResult2 = (props) => {
                 t1p4_k += el.t1p4_k
                 t1p4_a += el.t1p4_a
                 t1p4_d += el.t1p4_d
-                t1p4_kd += el.t1p4_kd
-                t1p4_dpr += (el.t1p4_d / allRounds)
-                t1p4_kpr += (el.t1p4_k / allRounds)
                 t1p4_impact += el.t1p4_impact
-                t1p4_rating += tempArr.length > 1 ? normalizeRating(el.t1p4_rating) : el.t1p4_rating
+                t1p4_rating += el.t1p4_rating
                 t1p4_count_maps += 1
             } else {
                 t1p4 = el.t1p4
@@ -328,11 +307,8 @@ const PictureResult2 = (props) => {
                 t1p4_k = el.t1p4_k
                 t1p4_a = el.t1p4_a
                 t1p4_d = el.t1p4_d
-                t1p4_kd = el.t1p4_kd
-                t1p4_dpr = (el.t1p4_d / allRounds)
-                t1p4_kpr = (el.t1p4_k / allRounds)
                 t1p4_impact = el.t1p4_impact
-                t1p4_rating = tempArr.length > 1 ? normalizeRating(el.t1p4_rating) : el.t1p4_rating
+                t1p4_rating = el.t1p4_rating
                 t1p4_count_maps = 1
             }
             if (el.t1p5 && (el.t1p5 === t1p5_nickname)) {
@@ -341,11 +317,8 @@ const PictureResult2 = (props) => {
                 t1p5_k += el.t1p5_k
                 t1p5_a += el.t1p5_a
                 t1p5_d += el.t1p5_d
-                t1p5_kd += el.t1p5_kd
-                t1p5_dpr += (el.t1p5_d / allRounds)
-                t1p5_kpr += (el.t1p5_k / allRounds)
                 t1p5_impact += el.t1p5_impact
-                t1p5_rating += tempArr.length > 1 ? normalizeRating(el.t1p5_rating) : el.t1p5_rating
+                t1p5_rating += el.t1p5_rating
                 t1p5_count_maps += 1
             } else {
                 t1p5 = el.t1p5
@@ -353,11 +326,8 @@ const PictureResult2 = (props) => {
                 t1p5_k = el.t1p5_k
                 t1p5_a = el.t1p5_a
                 t1p5_d = el.t1p5_d
-                t1p5_kd = el.t1p5_kd
-                t1p5_dpr = (el.t1p5_d / allRounds)
-                t1p5_kpr = (el.t1p5_k / allRounds)
                 t1p5_impact = el.t1p5_impact
-                t1p5_rating = tempArr.length > 1 ? normalizeRating(el.t1p5_rating) : el.t1p5_rating
+                t1p5_rating = el.t1p5_rating
                 t1p5_count_maps = 1
             }
 
@@ -367,11 +337,8 @@ const PictureResult2 = (props) => {
                 t2p1_k += el.t2p1_k
                 t2p1_a += el.t2p1_a
                 t2p1_d += el.t2p1_d
-                t2p1_kd += el.t2p1_kd
-                t2p1_dpr += (el.t2p1_d / allRounds)
-                t2p1_kpr += (el.t2p1_k / allRounds)
                 t2p1_impact += el.t2p1_impact
-                t2p1_rating += tempArr.length > 1 ? normalizeRating(el.t2p1_rating) : el.t2p1_rating
+                t2p1_rating += el.t2p1_rating
                 t2p1_count_maps += 1
             } else {
                 t2p1 = el.t2p1
@@ -379,11 +346,8 @@ const PictureResult2 = (props) => {
                 t2p1_k = el.t2p1_k
                 t2p1_a = el.t2p1_a
                 t2p1_d = el.t2p1_d
-                t2p1_kd = el.t2p1_kd
-                t2p1_dpr = (el.t2p1_d / allRounds)
-                t2p1_kpr = (el.t2p1_k / allRounds)
                 t2p1_impact = el.t2p1_impact
-                t2p1_rating = tempArr.length > 1 ? normalizeRating(el.t2p1_rating) : el.t2p1_rating
+                t2p1_rating = el.t2p1_rating
                 t2p1_count_maps = 1
             }
             if (el.t2p2 && (el.t2p2 === t2p2_nickname)) {
@@ -392,11 +356,8 @@ const PictureResult2 = (props) => {
                 t2p2_k += el.t2p2_k
                 t2p2_a += el.t2p2_a
                 t2p2_d += el.t2p2_d
-                t2p2_kd += el.t2p2_kd
-                t2p2_dpr += (el.t2p2_d / allRounds)
-                t2p2_kpr += (el.t2p2_k / allRounds)
                 t2p2_impact += el.t2p2_impact
-                t2p2_rating += tempArr.length > 1 ? normalizeRating(el.t2p2_rating) : el.t2p2_rating
+                t2p2_rating += el.t2p2_rating
                 t2p2_count_maps += 1
             } else {
                 t2p2 = el.t2p2
@@ -404,11 +365,8 @@ const PictureResult2 = (props) => {
                 t2p2_k = el.t2p2_k
                 t2p2_a = el.t2p2_a
                 t2p2_d = el.t2p2_d
-                t2p2_kd = el.t2p2_kd
-                t2p2_dpr = (el.t2p2_d / allRounds)
-                t2p2_kpr = (el.t2p2_k / allRounds)
                 t2p2_impact = el.t2p2_impact
-                t2p2_rating = tempArr.length > 1 ? normalizeRating(el.t2p2_rating) : el.t2p2_rating
+                t2p2_rating = el.t2p2_rating
                 t2p2_count_maps = 1
             }
             if (el.t2p3 && (el.t2p3 === t2p3_nickname)) {
@@ -417,11 +375,8 @@ const PictureResult2 = (props) => {
                 t2p3_k += el.t2p3_k
                 t2p3_a += el.t2p3_a
                 t2p3_d += el.t2p3_d
-                t2p3_kd += el.t2p3_kd
-                t2p3_dpr += (el.t2p3_d / allRounds)
-                t2p3_kpr += (el.t2p3_k / allRounds)
                 t2p3_impact += el.t2p3_impact
-                t2p3_rating += tempArr.length > 1 ? normalizeRating(el.t2p3_rating) : el.t2p3_rating
+                t2p3_rating += el.t2p3_rating
                 t2p3_count_maps += 1
             } else {
                 t2p3 = el.t2p3
@@ -429,11 +384,8 @@ const PictureResult2 = (props) => {
                 t2p3_k = el.t2p3_k
                 t2p3_a = el.t2p3_a
                 t2p3_d = el.t2p3_d
-                t2p3_kd = el.t2p3_kd
-                t2p3_dpr = (el.t2p3_d / allRounds)
-                t2p3_kpr = (el.t2p3_k / allRounds)
                 t2p3_impact = el.t2p3_impact
-                t2p3_rating = tempArr.length > 1 ? normalizeRating(el.t2p3_rating) : el.t2p3_rating
+                t2p3_rating = el.t2p3_rating
                 t2p3_count_maps = 1
             }
 
@@ -443,11 +395,8 @@ const PictureResult2 = (props) => {
                 t2p4_k += el.t2p4_k
                 t2p4_a += el.t2p4_a
                 t2p4_d += el.t2p4_d
-                t2p4_kd += el.t2p4_kd
-                t2p4_dpr += (el.t2p4_d / allRounds)
-                t2p4_kpr += (el.t2p4_k / allRounds)
                 t2p4_impact += el.t2p4_impact
-                t2p4_rating += tempArr.length > 1 ? normalizeRating(el.t2p4_rating) : el.t2p4_rating
+                t2p4_rating += el.t2p4_rating
                 t2p4_count_maps += 1
             } else {
                 t2p4 = el.t2p4
@@ -455,11 +404,8 @@ const PictureResult2 = (props) => {
                 t2p4_k = el.t2p4_k
                 t2p4_a = el.t2p4_a
                 t2p4_d = el.t2p4_d
-                t2p4_kd = el.t2p4_kd
-                t2p4_dpr = (el.t2p4_d / allRounds)
-                t2p4_kpr = (el.t2p4_k / allRounds)
                 t2p4_impact = el.t2p4_impact
-                t2p4_rating = tempArr.length > 1 ? normalizeRating(el.t2p4_rating) : el.t2p4_rating
+                t2p4_rating = el.t2p4_rating
                 t2p4_count_maps = 1
             }
             if (el.t2p5 && (el.t2p5 === t2p5_nickname)) {
@@ -468,11 +414,8 @@ const PictureResult2 = (props) => {
                 t2p5_k += el.t2p5_k
                 t2p5_a += el.t2p5_a
                 t2p5_d += el.t2p5_d
-                t2p5_kd += el.t2p5_kd
-                t2p5_dpr += (el.t2p5_d / allRounds)
-                t2p5_kpr += (el.t2p5_k / allRounds)
                 t2p5_impact += el.t2p5_impact
-                t2p5_rating += tempArr.length > 1 ? normalizeRating(el.t2p5_rating) : el.t2p5_rating
+                t2p5_rating += el.t2p5_rating
                 t2p5_count_maps += 1
             } else {
                 t2p5 = el.t2p5
@@ -480,11 +423,8 @@ const PictureResult2 = (props) => {
                 t2p5_k = el.t2p5_k
                 t2p5_a = el.t2p5_a
                 t2p5_d = el.t2p5_d
-                t2p5_kd = el.t2p5_kd
-                t2p5_dpr = (el.t2p5_d / allRounds)
-                t2p5_kpr = (el.t2p5_k / allRounds)
                 t2p5_impact = el.t2p5_impact
-                t2p5_rating = tempArr.length > 1 ? normalizeRating(el.t2p5_rating) : el.t2p5_rating
+                t2p5_rating = el.t2p5_rating
                 t2p5_count_maps = 1
             }
         })
@@ -586,98 +526,36 @@ const PictureResult2 = (props) => {
             t2p4_impact: Math.round((t2p4_impact / t2p4_count_maps) * 100) / 100,
             t2p5_impact: Math.round((t2p5_impact / t2p5_count_maps) * 100) / 100,
             t1p1_rating: Rating((t1p1_k / t1p1_d), (t1p1_k / allRounds), (t1p1_d / allRounds), (t1p1_impact / t1p1_count_maps)),
-            t1p2_rating: Rating((t1p2_k / t1p2_d), (t1p2_k / allRounds), (t1p2_d / allRounds), (t1p1_impact / t1p2_count_maps)),
-            t1p3_rating: Rating((t1p3_k / t1p3_d), (t1p3_k / allRounds), (t1p3_d / allRounds), (t1p1_impact / t1p3_count_maps)),
-            t1p4_rating: Rating((t1p4_k / t1p4_d), (t1p4_k / allRounds), (t1p4_d / allRounds), (t1p1_impact / t1p4_count_maps)),
-            t1p5_rating: Rating((t1p5_k / t1p5_d), (t1p5_k / allRounds), (t1p5_d / allRounds), (t1p1_impact / t1p5_count_maps)),
-            t2p1_rating: Rating((t2p1_k / t2p1_d), (t2p1_k / allRounds), (t2p1_d / allRounds), (t1p1_impact / t2p1_count_maps)),
-            t2p2_rating: Rating((t2p2_k / t2p2_d), (t2p2_k / allRounds), (t2p2_d / allRounds), (t1p1_impact / t2p2_count_maps)),
-            t2p3_rating: Rating((t2p3_k / t2p3_d), (t2p3_k / allRounds), (t2p3_d / allRounds), (t1p1_impact / t2p3_count_maps)),
-            t2p4_rating: Rating((t2p4_k / t2p4_d), (t2p4_k / allRounds), (t2p4_d / allRounds), (t1p1_impact / t2p4_count_maps)),
-            t2p5_rating: Rating((t2p5_k / t2p5_d), (t2p5_k / allRounds), (t2p5_d / allRounds), (t1p1_impact / t2p5_count_maps)),
+            t1p2_rating: Rating((t1p2_k / t1p2_d), (t1p2_k / allRounds), (t1p2_d / allRounds), (t1p2_impact / t1p2_count_maps)),
+            t1p3_rating: Rating((t1p3_k / t1p3_d), (t1p3_k / allRounds), (t1p3_d / allRounds), (t1p3_impact / t1p3_count_maps)),
+            t1p4_rating: Rating((t1p4_k / t1p4_d), (t1p4_k / allRounds), (t1p4_d / allRounds), (t1p4_impact / t1p4_count_maps)),
+            t1p5_rating: Rating((t1p5_k / t1p5_d), (t1p5_k / allRounds), (t1p5_d / allRounds), (t1p5_impact / t1p5_count_maps)),
+            t2p1_rating: Rating((t2p1_k / t2p1_d), (t2p1_k / allRounds), (t2p1_d / allRounds), (t2p1_impact / t2p1_count_maps)),
+            t2p2_rating: Rating((t2p2_k / t2p2_d), (t2p2_k / allRounds), (t2p2_d / allRounds), (t2p2_impact / t2p2_count_maps)),
+            t2p3_rating: Rating((t2p3_k / t2p3_d), (t2p3_k / allRounds), (t2p3_d / allRounds), (t2p3_impact / t2p3_count_maps)),
+            t2p4_rating: Rating((t2p4_k / t2p4_d), (t2p4_k / allRounds), (t2p4_d / allRounds), (t2p4_impact / t2p4_count_maps)),
+            t2p5_rating: Rating((t2p5_k / t2p5_d), (t2p5_k / allRounds), (t2p5_d / allRounds), (t2p5_impact / t2p5_count_maps)),
         }
 
-        let max = []
+        let ratingPlayers = []
         let maxRating = 0
+        let mvp = []
 
-        if(t1p1_rating > maxRating) {
-            max[0] = {
-                player: t1p1,
-                rating: t1p1_rating,
-            }
-
-            maxRating = t1p1_rating
-        }
-        if (t1p2_rating > maxRating) {
-            max[0] = {
-                player: t1p2,
-                rating: t1p2_rating,
-            }
-
-            maxRating = t1p2_rating
-        }
-        if (t1p3_rating > maxRating) {
-            max[0] = {
-                player: t1p3,
-                rating: t1p3_rating,
-            }
-
-            maxRating = t1p3_rating
-        }
-        if (t1p4_rating > maxRating) {
-            max[0] = {
-                player: t1p4,
-                rating: t1p4_rating,
-            }
-
-            maxRating = t1p4_rating
-        }
-        if (t1p5_rating > maxRating) {
-            max[0] = {
-                player: t1p5,
-                rating: t1p5_rating,
-            }
-
-            maxRating = t1p5_rating
-        }
-        if (t2p1_rating > maxRating) {
-            max[0] = {
-                player: t2p1,
-                rating: t2p1_rating,
-            }
-
-            maxRating = t2p1_rating
-        }
-        if (t2p2_rating > maxRating) {
-            max[0] = {
-                player: t2p2,
-                rating: t2p2_rating,
-            }
-
-            maxRating = t2p2_rating
-        }
-        if (t2p3_rating > maxRating) {
-            max[0] = {
-                player: t2p3,
-                rating: t2p3_rating,
-            }
-
-            maxRating = t2p3_rating
-        }
-        if (t2p4_rating > maxRating) {
-            max[0] = {
-                player: t2p4,
-                rating: t2p4_rating,
-            }
-
-            maxRating = t2p4_rating
-        }
-        if (t2p5_rating > maxRating) {
-            max[0] = {
-                player: t2p5,
-                rating: t2p5_rating,
+        for(let i = 1; i < 3; i++) {
+            for(let j = 1; j < 6; j++) {
+                ratingPlayers.push({
+                    nickname: players[0][`t${i}p${j}`],
+                    rating: players[0][`t${i}p${j}_rating`]
+                })
             }
         }
+
+        ratingPlayers.forEach(e => {
+            if(e.rating > maxRating) {
+                maxRating = e.rating
+                mvp = e
+            }
+        })
 
         return (
             <div className={classes.wrapperMatchResult}>
@@ -782,7 +660,7 @@ const PictureResult2 = (props) => {
                             </div>
                             <div className={classes.rowTable} style={
                                 {
-                                    background: t1p1 === max[0].player ? "linear-gradient(to right, #ccb629 1px, transparent 100%)" : ""
+                                    background: players[0].t1p1 === mvp.nickname ? "linear-gradient(to right, #ccb629 1px, transparent 100%)" : ""
                                 }
                             }>
                                 <div className={classes.startCell}>
@@ -832,7 +710,7 @@ const PictureResult2 = (props) => {
                             </div>
                             <div className={classes.rowTable} style={
                                 {
-                                    background: t1p2 === max[0].player ? "linear-gradient(to right, #ccb629 1px, transparent 100%)" : ""
+                                    background: players[0].t1p2 === mvp.nickname ? "linear-gradient(to right, #ccb629 1px, transparent 100%)" : ""
                                 }
                             }>
                                 <div className={classes.startCell}>
@@ -881,7 +759,7 @@ const PictureResult2 = (props) => {
                             </div>
                             <div className={classes.rowTable} style={
                                 {
-                                    background: t1p3 === max[0].player ? "linear-gradient(to right, #ccb629 1px, transparent 100%)" : ""
+                                    background: players[0].t1p3 === mvp.nickname ? "linear-gradient(to right, #ccb629 1px, transparent 100%)" : ""
                                 }
                             }>
                                 <div className={classes.startCell}>
@@ -930,7 +808,7 @@ const PictureResult2 = (props) => {
                             </div>
                             <div className={classes.rowTable} style={
                                 {
-                                    background: t1p4 === max[0].player ? "linear-gradient(to right, #ccb629 1px, transparent 100%)" : ""
+                                    background: players[0].t1p4 === mvp.nickname ? "linear-gradient(to right, #ccb629 1px, transparent 100%)" : ""
                                 }
                             }>
                                 <div className={classes.startCell}>
@@ -979,7 +857,7 @@ const PictureResult2 = (props) => {
                             </div>
                             <div className={classes.rowTable} style={
                                 {
-                                    background: t1p5 === max[0].player ? "linear-gradient(to right, #ccb629 1px, transparent 100%)" : ""
+                                    background: players[0].t1p5 === mvp.nickname ? "linear-gradient(to right, #ccb629 1px, transparent 100%)" : ""
                                 }
                             }>
                                 <div className={classes.startCell}>
@@ -1074,7 +952,7 @@ const PictureResult2 = (props) => {
                             </div>
                             <div className={classes.rowTable} style={
                                 {
-                                    background: t2p1 === max[0].player ? "linear-gradient(to right, #ccb629 1px, transparent 100%)" : ""
+                                    background: players[0].t2p1 === mvp.nickname ? "linear-gradient(to right, #ccb629 1px, transparent 100%)" : ""
                                 }
                             }>
                                 <div className={classes.startCell}>
@@ -1124,7 +1002,7 @@ const PictureResult2 = (props) => {
                             </div>
                             <div className={classes.rowTable} style={
                                 {
-                                    background: t2p2 === max[0].player ? "linear-gradient(to right, #ccb629 1px, transparent 100%)" : ""
+                                    background: players[0].t2p2 === mvp.nickname ? "linear-gradient(to right, #ccb629 1px, transparent 100%)" : ""
                                 }
                             }>
                                 <div className={classes.startCell}>
@@ -1173,7 +1051,7 @@ const PictureResult2 = (props) => {
                             </div>
                             <div className={classes.rowTable} style={
                                 {
-                                    background: t2p3 === max[0].player ? "linear-gradient(to right, #ccb629 1px, transparent 100%)" : ""
+                                    background: players[0].t2p3 === mvp.nickname ? "linear-gradient(to right, #ccb629 1px, transparent 100%)" : ""
                                 }
                             }>
                                 <div className={classes.startCell}>
@@ -1222,7 +1100,7 @@ const PictureResult2 = (props) => {
                             </div>
                             <div className={classes.rowTable} style={
                                 {
-                                    background: t2p4 === max[0].player ? "linear-gradient(to right, #ccb629 1px, transparent 100%)" : ""
+                                    background: players[0].t2p4 === mvp.nickname ? "linear-gradient(to right, #ccb629 1px, transparent 100%)" : ""
                                 }
                             }>
                                 <div className={classes.startCell}>
@@ -1271,7 +1149,7 @@ const PictureResult2 = (props) => {
                             </div>
                             <div className={classes.rowTable} style={
                                 {
-                                    background: t2p5 === max[0].player ? "linear-gradient(to right, #ccb629 1px, transparent 100%)" : ""
+                                    background: players[0].t2p5 === mvp.nickname ? "linear-gradient(to right, #ccb629 1px, transparent 100%)" : ""
                                 }
                             }>
                                 <div className={classes.startCell}>

@@ -160,8 +160,9 @@
     align-items: center;
     padding-left: 0.4%;
     color: white;
-    height: 4%;
-    width: 60%;
+    height: auto;
+    max-height: 4%;
+    width: auto;
     top: 4%;
     position: relative;
     font-size: clamp(10px, 1.8vw, 60px);

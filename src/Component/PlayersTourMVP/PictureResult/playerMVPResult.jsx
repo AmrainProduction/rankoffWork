@@ -341,6 +341,10 @@ const PlayerMVPResult = (props) => {
         "d": personal_d,
     }
 
+    function ifCloseQualification (name) {
+        return name.toLowerCase().replace(/closed qualifications/gi, 'CQ')
+    }
+
     if (matchesID?.length > 0) {
         return (
             <div className={classes.wrapperTopResult}>
@@ -349,7 +353,7 @@ const PlayerMVPResult = (props) => {
                         <img src={`/images/DataInImage/MVP_banner_title_White.svg`} alt="/"/>
                     </div>
                     <div
-                        className={classes.nameTour}>{statsMvpPlayer[0]?.name_tour.toUpperCase()} {choiceStage.length > 0 ? "[" + choiceStage.toUpperCase() + "]" : ""}</div>
+                        className={classes.nameTour}>{ifCloseQualification(statsMvpPlayer[0]?.name_tour).toUpperCase()} {choiceStage.length > 0 ? "[" + choiceStage.toUpperCase() + "]" : ""}</div>
                     <div className={classes.tableStats}>
                         <div className={classes.rowTitleTable}>
                             <div className={classes.opponent}>Match</div>
@@ -442,7 +446,7 @@ const PlayerMVPResult = (props) => {
                     <div className={classes.nickname}>{statsMvpPlayer[0]?.nickname.toUpperCase()}</div>
                     <div className={classes.name}>{statsMvpPlayer[0]?.name + " " + statsMvpPlayer[0]?.surname}</div>
                     <div className={classes.leftPictureMVP}>
-                        <img src={`/images/DataInImage/MVP_banner_leftarticture2.svg`} alt="/"/>
+                        <img src={`/images/DataInImage/MVP_banner_left_part_picture2.svg`} alt="/"/>
                     </div>
                     <div className={classes.backLogoPlayer}>
                         <img src={`/images/LogoTeams/${statsMvpPlayer[0]?.logo_team}`} alt="/"/>
