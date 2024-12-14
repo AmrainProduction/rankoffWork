@@ -1,0 +1,804 @@
+@font-face {
+    font-family: "JetBrainsMono";
+    src: url("../../Fonts/JetBrainsMono.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "refinery-95-bold";
+    src: url("../../Fonts/refinery-95-bold.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "Refinery-95-Medium";
+    src: url("../../Fonts/Refinery-95-Medium.ttf") format("truetype");
+}
+
+.wrapperMatchResult {
+    --blue: #5f7ffd;
+    --darkBlue: #1d264b;
+    --green: #3aba4f;
+    --red: #ff4a4a;
+    --yellow: #ecb200;
+    --draw: #a6a5a5;
+}
+
+
+.wrapperMatchResult {
+    font-family: "refinery-95-bold", sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    height: 100%;
+    width: 100%;
+    z-index: 20;
+    position: relative;
+}
+
+.wrapperMatchResult img {
+    height: auto;
+    width: 100%;
+}
+
+.bgImg {
+    height: auto;
+    width: 100%;
+}
+
+.wrapperMenu {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 100%;
+    height: 15%;
+    background: var(--mainLightBlack);
+    margin-bottom: 10px;
+    padding: 5px;
+}
+
+.wrapperLogo {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 10%;
+    height: 100%;
+}
+
+.wrapperLogo img {
+    height: auto;
+    width: 100%;
+}
+
+.menu {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    height: 100%;
+    width: 60%;
+}
+
+.wrapperListMatches {
+    display: block;
+    width: 100%;
+    height: 100%;
+    margin-right: 2%;
+    margin-left: 2%;
+    padding: 2px;
+}
+
+.titleBox {
+    width: 100%;
+    height: auto;
+    padding: 1% 0;
+    color: white;
+}
+
+.listMatches {
+    display: block;
+    overflow-y: scroll;
+    border-radius: 3px;
+    width: 100%;
+    min-width: 150px;
+    height: 120px;
+    background: var(--componentBlockColor);
+    color: white;
+}
+
+.match {
+    background: var(--componentLightBlockColor);
+    margin-bottom: 2px;
+    padding: 5px;
+    cursor: pointer;
+    transition: all 0.5s;
+}
+
+.match:hover {
+    background: var(--componentBlockColorHover);
+}
+
+.wrapperMain {
+    display: flex;
+    height: 100%;
+    width: 100%;
+    padding: 3.4%;
+    position: absolute;
+}
+
+.main {
+    display: block;
+    height: 100%;
+    width: 100%;
+}
+
+.btnSaveAsImage {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 3px;
+    padding: 1%;
+    background: var(--buttonColor);
+    height: 120px;
+    width: 100%;
+    cursor: pointer;
+    color: white;
+}
+
+.btnSaveAsImage:hover {
+    background: var(--buttonColorHover);
+}
+
+.wrapperTopSection {
+    display: grid;
+    width: 100%;
+    column-gap: 1.2vw;
+    grid-template-columns: 27.2vw 54.7vw 10vw;
+    padding: 0 2.3vw;
+    height: 13.4vw;
+    top: 1.2vw;
+    color: white;
+    overflow: hidden;
+    position: absolute;
+}
+
+.generalInfoMatch {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.wrapperMapsMatch {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    background: var(--blue);
+    overflow: hidden;
+    position: relative;
+}
+
+.titleMaps {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 4vw;
+    right: 0;
+    top: 0;
+    font-size: 3.5vw;
+    transform: rotate(-90deg);
+}
+
+.wrapperMatchMaps {
+    display: flex;
+    padding: 1vw 0 1vw 1.3vw;
+    width: 100%;
+    height: 100%;
+}
+
+.wrapperMatchMaps .maps:not(:last-child) {
+    margin-right: 0.5vw;
+}
+
+.maps {
+    display: block;
+    height: 11.5vw;
+    width: 9.4vw;
+    position: relative;
+}
+
+.imgMap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+}
+
+.imgMap img {
+    height: 100%;
+    width: auto;
+}
+
+.scoreMap {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    height: 22%;
+    bottom: 0;
+    left: 0;
+    background: rgb(0, 0, 0, 0.5);
+    position: absolute;
+}
+
+.scoreMapTeamLogo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 25%;
+    height: 2.5vw;
+    overflow: hidden;
+}
+
+.scoreMapTeamLogo img {
+    height: 80%;
+    width: auto;
+}
+
+.pickMapTeamLogo {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    width: 100%;
+    height: 25%;
+    padding: 0.1vw 0.2vw 0 0;
+    top: 0;
+    right: 0;
+    position: absolute;
+}
+
+.pickMapTeamLogo img {
+    height: 100%;
+    width: auto;
+}
+
+.totalScoreMap {
+    font-family: "JetBrainsMono", sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 2.5vw;
+    width: auto;
+    font-size: 1.2vw;
+}
+
+.rankoff {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.logoRankoff {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1.5vw;
+    height: 81%;
+    width: 100%;
+    background: var(--blue);
+}
+
+.linkRankoff {
+    font-family: "refinery-95-medium", sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 19%;
+    width: 100%;
+    font-size: 1vw;
+    background: var(--darkBlue);
+}
+
+
+.statusMatch {
+    font-family: "refinery-95-bold", sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 1.8vw;
+    font-size: 1.4vw;
+    padding-bottom: 0.2vw;
+}
+
+.scoreMatch {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 8vw;
+    background: var(--blue);
+}
+
+.team1Logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40%;
+    height: 100%;
+    padding: 1vw;
+}
+
+.score {
+    font-family: "refinery-95-bold", sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 30%;
+    padding-bottom: 1.5vw;
+    font-size: 4vw;
+}
+
+.team2Logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40%;
+    height: 100%;
+    padding: 1vw;
+}
+
+.event {
+    display: block;
+    height: 3.6vw;
+    font-size: 1vw;
+    padding: 0.2vw 0.2vw 0 0.2vw;
+    background: var(--darkBlue);
+    font-family: "JetBrainsMono", sans-serif;
+}
+
+.nameEvent {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 50%;
+    text-align: center;
+}
+
+.mainSections {
+    display: flex;
+    height: 37.8vw;
+    width: 100%;
+    top: 16vw;
+    padding: 0 2.3vw;
+    position: absolute;
+}
+
+.leftSection {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    width: 27.2vw;
+    height: 100%;
+    border: 0.1vw solid black;
+    position: relative;
+}
+
+.leftSection img {
+    top: 0;
+    position: absolute;
+    height: auto;
+    width: 120%;
+}
+
+.rightSection {
+    width: 65.9vw;
+    margin-left: 1.2vw;
+    height: 100%;
+}
+
+.rightSection .teamSection:not(:last-child) {
+    margin-bottom: 1.1vw;
+}
+
+
+/*--------------------------------------------*/
+
+
+.wrapperMiddleSection {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 18.4vw;
+    top: 16vw;
+    padding: 0 2.3vw;
+    background: red;
+    opacity: 0.5;
+    position: absolute;
+}
+
+.wrapperBottomSection {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 32.1%;
+    padding-left: 2.18%;
+    padding-right: 2.18%;
+    top: 65.2%;
+    position: absolute;
+}
+
+.middleSection {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: #0e0e0e;
+}
+
+.bottomSection {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: #0e0e0e;
+}
+
+.leftMiddleSection {
+    font-family: "DrukCyrMedium", sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 10%;
+    height: 100%;
+    color: white;
+}
+
+.playersSection {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    width: 42%;
+    padding-bottom: 0.1%;
+    height: 100%;
+    position: relative;
+}
+
+.wrapperPlayersTeamLogo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.wrapperPlayersTeamLogo img {
+    height: auto;
+    width: 90%;
+    opacity: 1;
+}
+
+.wrapperPlayersTeamLogoBG {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 42%;
+    position: absolute;
+    overflow: hidden;
+    border-bottom-left-radius: 20px;
+    z-index: 2;
+}
+
+.scoreColor {
+    height: 100%;
+    width: 100%;
+    background: radial-gradient(at bottom, #0e0e0e 20%, transparent 75%);
+}
+
+.wrapperPlayersTeam {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    height: 20%;
+    bottom: -0.5%;
+    width: 120%;
+    z-index: 11;
+    position: absolute;
+    color: white;
+    font-size: clamp(10px, 2.5vw, 30px);
+    padding-bottom: 1%;
+    background: linear-gradient(to top, #0e0e0e 2%, transparent 100%);
+}
+
+.wrapperPlayers {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    width: 98%;
+    height: 100%;
+    position: absolute;
+    z-index: 10;
+}
+
+.wrapperPlayers img {
+    width: 30%;
+    height: auto;
+}
+
+.player1 {
+    left: 0;
+    position: absolute;
+    z-index: 1;
+}
+
+.player2 {
+    left: 17%;
+    position: absolute;
+    z-index: 2;
+}
+
+.player3 {
+    position: absolute;
+    z-index: 3;
+}
+
+.player4 {
+    right: 17%;
+    position: absolute;
+    z-index: 2;
+}
+
+.player5 {
+    right: 0;
+    position: absolute;
+    z-index: 1;
+}
+
+.teamSection {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    height: auto;
+}
+
+.teamSection .rowTable:not(:last-child) {
+    margin-bottom: 0.3vw;
+}
+
+.titleLineTable {
+    font-family: "JetBrainsMono", sans-serif;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    height: 3.4vw;
+    width: 100%;
+    background: var(--blue);
+    color: #ffffff;
+    font-size: 1vw;
+    margin-bottom: 0.4vw;
+    grid-template-columns: 37% repeat(9, 7%);
+    grid-template-areas: 'startCell cell1 cell2 cell3 cell4 cell5 cell6 cell7 cell8 endCell';
+    overflow: hidden;
+}
+
+.rowTable {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    height: 2.67svw;
+    width: 100%;
+    color: white;
+    font-size: 1vw;
+    grid-template-columns: 37% repeat(9, 7%);
+    grid-template-areas: 'startCell cell1 cell2 cell3 cell4 cell5 cell6 cell7 cell8 endCell';
+    overflow: hidden;
+}
+
+.startCellTeamLogo {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    height: 3.4vw;
+    width: 100%;
+}
+
+.startCellTeamLogo img {
+    height: 90%;
+    width: auto;
+}
+
+.startCellTeamName {
+    font-family: "Refinery-95-bold", sans-serif;
+    display: flex;
+    margin-left: 0.5vw;
+    padding-bottom: 0.4vw;
+    font-size: 2vw;
+}
+
+.MVP {
+    font-family: "Refinery-95-Medium", sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: white;
+    color: var(--blue);
+    padding: 0 0.2vw 0.2vw 0.2vw;
+    font-size: 1vw;
+    right: 0;
+    margin-right: 0.5vw;
+    border-radius: 0.4vw;
+    position: absolute;
+}
+
+.startCell {
+    grid-area: startCell;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    height: 100%;
+    padding-left: 1vw;
+    margin-right: 0.3vw;
+    position: relative;
+    background: var(--blue);
+}
+
+.dataFlagPlayer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 0.3vw;
+    max-width: 2vw;
+    margin-right: 0.5vw;
+}
+
+.dataFlagPlayer img {
+    border-radius: 0.2vw;
+    overflow: hidden;
+    width: 100%;
+    height: auto;
+}
+
+
+.cell1 {
+    grid-area: cell1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    margin-right: 0.3vw;
+    background: var(--blue);
+}
+
+.cell2 {
+    grid-area: cell2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    margin-right: 0.3vw;
+    background: var(--blue);
+}
+
+.cell3 {
+    grid-area: cell3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    margin-right: 0.3vw;
+    background: var(--blue);
+}
+
+.cell4 {
+    grid-area: cell4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    margin-right: 0.3vw;
+    background: var(--blue);
+}
+
+.cell5 {
+    grid-area: cell5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    margin-right: 0.3vw;
+    background: var(--blue);
+}
+
+.cell6 {
+    grid-area: cell6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    margin-right: 0.3vw;
+    background: var(--blue);
+}
+
+.cell7 {
+    grid-area: cell7;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    margin-right: 0.3vw;
+    background: var(--blue);
+}
+
+.cell8 {
+    grid-area: cell8;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    margin-right: 0.3vw;
+    background: var(--blue);
+}
+
+.endCell {
+    grid-area: endCell;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    background: var(--blue);
+}
+
+@media (max-width: 1125px) {
+    .wrapperMenu {
+        display: block;
+        justify-content: space-between;
+        align-items: flex-start;
+        width: 100%;
+        height: 15%;
+        margin-bottom: 10px;
+        padding: 5px;
+    }
+
+    .menu {
+        display: flex;
+        flex-flow: column;
+        flex-direction: column-reverse;
+        justify-content: center;
+        align-items: flex-end;
+        height: 100%;
+        width: 100%;
+    }
+
+    .wrapperListMatches {
+        display: block;
+        margin: 0;
+    }
+
+    .btnSaveAsImage {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 3px;
+        margin-top: 1%;
+        padding: 1%;
+        height: 100%;
+        width: 100%;
+        cursor: pointer;
+        color: white;
+    }
+}
+
+
+

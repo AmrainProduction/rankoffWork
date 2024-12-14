@@ -24,19 +24,6 @@ const DataEntryMatch = (props) => {
 
     let resultData = []
 
-    const calculateImpact = (k, a, allK, allA) => {
-        return (((k + a * 0.8)/(allK + allA * 0.8))*10).toFixed(2)
-    }
-
-    const calculateRating = (k, d, a, allK, allA, allRounds) => {
-        let kd = (k / d).toFixed(2)
-        let kpr = (k / allRounds).toFixed(2)
-        let dpr = (d / allRounds).toFixed(2)
-        let impact = calculateImpact(k, a, allK, allA)
-
-        return ((0.5094*kd)+(0.2067*kpr)+(0.3409*(1-dpr))+(0.2054*impact)).toFixed(2)
-    }
-
     const ref = createRef(null);
 
     const onButtonClick = useCallback(() => {

@@ -1,8 +1,11 @@
 {
   "files": {
-    "main.css": "/static/css/main.64a07f53.css",
-    "main.js": "/static/js/main.d049fc79.js",
+    "main.css": "/static/css/main.6d4109a9.css",
+    "main.js": "/static/js/main.0dab6dcd.js",
+    "static/media/Refinery-95-Medium.ttf": "/static/media/Refinery-95-Medium.c7cbbed36f82cf9d555f.ttf",
+    "static/media/refinery-95-bold.ttf": "/static/media/refinery-95-bold.8cf439da42671411771e.ttf",
     "static/media/ArtegraSans-Bold.ttf": "/static/media/ArtegraSans-Bold.da44aa68938af12c8c37.ttf",
+    "static/media/JetBrainsMono.ttf": "/static/media/JetBrainsMono.469a0017c534427d1d59.ttf",
     "static/media/DrukCyr-Medium.eot": "/static/media/DrukCyr-Medium.d3ed9c1ccf57848ea1ad.eot",
     "static/media/DrukCyr-Medium.ttf": "/static/media/DrukCyr-Medium.8d002b52be6529b27cc2.ttf",
     "static/media/MazzardM-SemiBold.eot": "/static/media/MazzardM-SemiBold.ecd0114af84529105fa7.eot",
@@ -15,7 +18,7 @@
     "index.html": "/index.html"
   },
   "entrypoints": [
-    "static/css/main.64a07f53.css",
-    "static/js/main.d049fc79.js"
+    "static/css/main.6d4109a9.css",
+    "static/js/main.0dab6dcd.js"
   ]
 }

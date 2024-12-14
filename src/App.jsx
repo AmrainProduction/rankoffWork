@@ -52,6 +52,8 @@ import CompareTops from "./Component/CompareTops/compareTops";
 import normalizeRating from "./Component/Functions/AllFunctions/normalizeRating";
 import normalizeImpact from "./Component/Functions/AllFunctions/normalizeImpact";
 import normalizeKD from "./Component/Functions/AllFunctions/normalizeKD";
+import CYBERSHOKE from "./Component/CYBERSHOKE/CYBERSHOKE";
+import TopPlayersBanner from "./Component/RankoffAwards2024/TopPlayersBanner/topPlayersBanner";
 
 const router = createBrowserRouter(createRoutesFromElements(
     <Route path='/' element={<Layout/>} errorElement={<ErrorPage/>}>
@@ -65,7 +67,7 @@ const router = createBrowserRouter(createRoutesFromElements(
         <Route path='i/PREDICTORS' element={<RankoffPredicts/>}/>
         <Route path='i/MATCHESDAY' element={<MatchesDay/>}/>
         <Route path='i/RANKING_TEAMS' element={<RankingTeams/>}/>
-        <Route path='i/topYearPlayers' element={<TopYearPlayers/>}/>
+        <Route path='i/topYearPlayers' element={<TopPlayersBanner/>}/>
         <Route path='i/topYearTeams' element={<TopYearTeams/>}/>
         <Route path='i/topMinorPlayers' element={<TopMinorPlayers/>}/>
         <Route path='i/RGG_RESULT_MATCH' element={<ResultMatchRGG/>}/>
@@ -74,6 +76,7 @@ const router = createBrowserRouter(createRoutesFromElements(
         <Route path='RGG_TOP_TOUR' element={<TopPlayersRGG/>}/>
         <Route path='DIGEST_MATCH' element={<DigestMatch/>}/>
         <Route path='JEMM_MATCH' element={<JemmMatch/>}/>
+        <Route path='i/CYBERSHOKE' element={<CYBERSHOKE/>}/>
         <Route path='i/ADDMATCHES' element={<AddMatches/>}/>
         <Route path='i/EMOJI' element={<EmojiTeams/>}/>
         <Route path='i/TOP' element={<TopPlayersByTours/>}/> // топ игроков за несколько турниров сразу, надо в коде

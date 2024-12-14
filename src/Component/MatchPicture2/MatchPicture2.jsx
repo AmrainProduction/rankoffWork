@@ -101,7 +101,6 @@ const MatchPicture2 = () => {
             <div className={classes.wrapperPicture} ref={ref}>
                 {choiceMatch.length > 0 ? <PictureResult2 name={choiceMatch} map={choiceMap}/> : ''}
             </div>
-
         </>
     );
 };
