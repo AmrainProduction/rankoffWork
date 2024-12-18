@@ -133,7 +133,7 @@ export function calculatePlayersTop(name, stageTour, allPlayers, allMatches, tea
 
             if (match.t1p1_id === player_id) {
                 logo_player = match.t1p1_logo
-                impact += normalizeImpact(match.t1p1_impact)
+                impact += match.t1p1_impact
                 k += match.t1p1_k
                 a += match.t1p1_a
                 d += match.t1p1_d
@@ -141,7 +141,7 @@ export function calculatePlayersTop(name, stageTour, allPlayers, allMatches, tea
 
             if (match.t1p2_id === player_id) {
                 logo_player = match.t1p2_logo
-                impact += normalizeImpact(match.t1p2_impact)
+                impact += match.t1p2_impact
                 k += match.t1p2_k
                 a += match.t1p2_a
                 d += match.t1p2_d
@@ -150,7 +150,7 @@ export function calculatePlayersTop(name, stageTour, allPlayers, allMatches, tea
             if (match.t1p3_id === player_id) {
 
                 logo_player = match.t1p3_logo
-                impact += normalizeImpact(match.t1p3_impact)
+                impact += match.t1p3_impact
                 k += match.t1p3_k
                 a += match.t1p3_a
                 d += match.t1p3_d
@@ -158,7 +158,7 @@ export function calculatePlayersTop(name, stageTour, allPlayers, allMatches, tea
 
             if (match.t1p4_id === player_id) {
                 logo_player = match.t1p4_logo
-                impact += normalizeImpact(match.t1p4_impact)
+                impact += match.t1p4_impact
                 k += match.t1p4_k
                 a += match.t1p4_a
                 d += match.t1p4_d
@@ -166,7 +166,7 @@ export function calculatePlayersTop(name, stageTour, allPlayers, allMatches, tea
 
             if (match.t1p5_id === player_id) {
                 logo_player = match.t1p5_logo
-                impact += normalizeImpact(match.t1p5_impact)
+                impact += match.t1p5_impact
                 k += match.t1p5_k
                 a += match.t1p5_a
                 d += match.t1p5_d
@@ -198,7 +198,7 @@ export function calculatePlayersTop(name, stageTour, allPlayers, allMatches, tea
 
             if (match.t2p1_id === player_id) {
                 logo_player = match.t2p1_logo
-                impact += normalizeImpact(match.t2p1_impact)
+                impact += match.t2p1_impact
                 k += match.t2p1_k
                 a += match.t2p1_a
                 d += match.t2p1_d
@@ -206,7 +206,7 @@ export function calculatePlayersTop(name, stageTour, allPlayers, allMatches, tea
 
             if (match.t2p2_id === player_id) {
                 logo_player = match.t2p2_logo
-                impact += normalizeImpact(match.t2p2_impact)
+                impact += match.t2p2_impact
                 k += match.t2p2_k
                 a += match.t2p2_a
                 d += match.t2p2_d
@@ -214,7 +214,7 @@ export function calculatePlayersTop(name, stageTour, allPlayers, allMatches, tea
 
             if (match.t2p3_id === player_id) {
                 logo_player = match.t2p3_logo
-                impact += normalizeImpact(match.t2p3_impact)
+                impact += match.t2p3_impact
                 k += match.t2p3_k
                 a += match.t2p3_a
                 d += match.t2p3_d
@@ -222,7 +222,7 @@ export function calculatePlayersTop(name, stageTour, allPlayers, allMatches, tea
 
             if (match.t2p4_id === player_id) {
                 logo_player = match.t2p4_logo
-                impact += normalizeImpact(match.t2p4_impact)
+                impact += match.t2p4_impact
                 k += match.t2p4_k
                 a += match.t2p4_a
                 d += match.t2p4_d
@@ -230,7 +230,7 @@ export function calculatePlayersTop(name, stageTour, allPlayers, allMatches, tea
 
             if (match.t2p5_id === player_id) {
                 logo_player = match.t2p5_logo
-                impact += normalizeImpact(match.t2p5_impact)
+                impact += match.t2p5_impact
                 k += match.t2p5_k
                 a += match.t2p5_a
                 d += match.t2p5_d

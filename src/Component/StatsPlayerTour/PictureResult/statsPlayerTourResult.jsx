@@ -392,7 +392,7 @@ const StatsPlayerTourResult = (props) => {
                                     }>{e.kpr}</div>
                                     <div className={classes.impact} style={
                                         {
-                                            color: e.impact < 1 ? "#cc5656" : e.impact > 1 ? e.impact >= 1.15 ? "#7bc551" : "#b29936" : "#b29936"
+                                            color: e.impact < 1 ? "#cc5656" : e.impact > 1 ? e.impact >= 1.10 ? "#7bc551" : "#b29936" : "#b29936"
                                         }
                                     }>{e.impact}</div>
                                     <div className={classes.rating} style={
@@ -427,7 +427,7 @@ const StatsPlayerTourResult = (props) => {
                             }>{totalStatsPlayer[0]?.kpr}</div>
                             <div className={classes.impact} style={
                                 {
-                                    color: totalStatsPlayer[0]?.impact < 1 ? "#cc5656" : totalStatsPlayer[0]?.impact > 1 ? totalStatsPlayer[0]?.impact >= 1.15 ? "#7bc551" : "#b29936" : "#b29936"
+                                    color: totalStatsPlayer[0]?.impact < 1 ? "#cc5656" : totalStatsPlayer[0]?.impact > 1 ? totalStatsPlayer[0]?.impact >= 1.10 ? "#7bc551" : "#b29936" : "#b29936"
                                 }
                             }>{totalStatsPlayer[0]?.impact}</div>
                             <div className={classes.rating} style={

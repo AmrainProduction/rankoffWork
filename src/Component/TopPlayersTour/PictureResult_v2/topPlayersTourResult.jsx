@@ -86,7 +86,7 @@ const TopPlayersTourResult = (props) => {
                                         <div className={classes.dataPlayerD}>{e.d}</div>
                                         <div className={classes.dataPlayerImpact} style={
                                             {
-                                                background: e.impact_p < 1 ? "#854141" : e.impact_p > 1 ? e.impact_p >= 1.15 ? "#528347" : "#a29747" : "#a29747"
+                                                background: e.impact_p < 1 ? "#854141" : e.impact_p > 1 ? e.impact_p >= 1.10 ? "#528347" : "#a29747" : "#a29747"
                                             }
                                         }>{e.impact_p}</div>
                                         <div className={classes.dataPlayerRating} style={

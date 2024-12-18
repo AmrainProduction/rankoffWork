@@ -632,7 +632,7 @@ const PictureResult2 = (props) => {
                                 </div>
                                 <div className={classes.cell8} style={
                                     {
-                                        background: players[0].t1p1_impact < 1 ? "#854141" : players[0].t1p1_impact > 1 ? players[0].t1p1_impact >= 1.15 ? "#528347" : "#a29747" : "#a29747"
+                                        background: players[0].t1p1_impact < 1 ? "#854141" : players[0].t1p1_impact > 1 ? players[0].t1p1_impact >= 1.10 ? "#528347" : "#a29747" : "#a29747"
                                     }
                                 }>{players[0].t1p1_impact}
                                 </div>
@@ -681,7 +681,7 @@ const PictureResult2 = (props) => {
                                 </div>
                                 <div className={classes.cell8} style={
                                     {
-                                        background: players[0].t1p2_impact < 1 ? "#854141" : players[0].t1p2_impact > 1 ? players[0].t1p2_impact >= 1.15 ? "#528347" : "#a29747" : "#a29747"
+                                        background: players[0].t1p2_impact < 1 ? "#854141" : players[0].t1p2_impact > 1 ? players[0].t1p2_impact >= 1.10 ? "#528347" : "#a29747" : "#a29747"
                                     }
                                 }>{players[0].t1p2_impact}
                                 </div>
@@ -730,7 +730,7 @@ const PictureResult2 = (props) => {
                                 </div>
                                 <div className={classes.cell8} style={
                                     {
-                                        background: players[0].t1p3_impact < 1 ? "#854141" : players[0].t1p3_impact > 1 ? players[0].t1p3_impact >= 1.15 ? "#528347" : "#a29747" : "#a29747"
+                                        background: players[0].t1p3_impact < 1 ? "#854141" : players[0].t1p3_impact > 1 ? players[0].t1p3_impact >= 1.10 ? "#528347" : "#a29747" : "#a29747"
                                     }
                                 }>{players[0].t1p3_impact}
                                 </div>
@@ -779,7 +779,7 @@ const PictureResult2 = (props) => {
                                 </div>
                                 <div className={classes.cell8} style={
                                     {
-                                        background: players[0].t1p4_impact < 1 ? "#854141" : players[0].t1p4_impact > 1 ? players[0].t1p4_impact >= 1.15 ? "#528347" : "#a29747" : "#a29747"
+                                        background: players[0].t1p4_impact < 1 ? "#854141" : players[0].t1p4_impact > 1 ? players[0].t1p4_impact >= 1.10 ? "#528347" : "#a29747" : "#a29747"
                                     }
                                 }>{players[0].t1p4_impact}
                                 </div>
@@ -828,7 +828,7 @@ const PictureResult2 = (props) => {
                                 </div>
                                 <div className={classes.cell8} style={
                                     {
-                                        background: players[0].t1p5_impact < 1 ? "#854141" : players[0].t1p5_impact > 1 ? players[0].t1p5_impact >= 1.15 ? "#528347" : "#a29747" : "#a29747"
+                                        background: players[0].t1p5_impact < 1 ? "#854141" : players[0].t1p5_impact > 1 ? players[0].t1p5_impact >= 1.10 ? "#528347" : "#a29747" : "#a29747"
                                     }
                                 }>{players[0].t1p5_impact}
                                 </div>
@@ -924,7 +924,7 @@ const PictureResult2 = (props) => {
                                 </div>
                                 <div className={classes.cell8} style={
                                     {
-                                        background: players[0].t2p1_impact < 1 ? "#854141" : players[0].t2p1_impact > 1 ? players[0].t2p1_impact >= 1.15 ? "#528347" : "#a29747" : "#a29747"
+                                        background: players[0].t2p1_impact < 1 ? "#854141" : players[0].t2p1_impact > 1 ? players[0].t2p1_impact >= 1.10 ? "#528347" : "#a29747" : "#a29747"
                                     }
                                 }>{players[0].t2p1_impact}
                                 </div>
@@ -973,7 +973,7 @@ const PictureResult2 = (props) => {
                                 </div>
                                 <div className={classes.cell8} style={
                                     {
-                                        background: players[0].t2p2_impact < 1 ? "#854141" : players[0].t2p2_impact > 1 ? players[0].t2p2_impact >= 1.15 ? "#528347" : "#a29747" : "#a29747"
+                                        background: players[0].t2p2_impact < 1 ? "#854141" : players[0].t2p2_impact > 1 ? players[0].t2p2_impact >= 1.10 ? "#528347" : "#a29747" : "#a29747"
                                     }
                                 }>{players[0].t2p2_impact}
                                 </div>
@@ -1022,7 +1022,7 @@ const PictureResult2 = (props) => {
                                 </div>
                                 <div className={classes.cell8} style={
                                     {
-                                        background: players[0].t2p3_impact < 1 ? "#854141" : players[0].t2p3_impact > 1 ? players[0].t2p3_impact >= 1.15 ? "#528347" : "#a29747" : "#a29747"
+                                        background: players[0].t2p3_impact < 1 ? "#854141" : players[0].t2p3_impact > 1 ? players[0].t2p3_impact >= 1.10 ? "#528347" : "#a29747" : "#a29747"
                                     }
                                 }>{players[0].t2p3_impact}
                                 </div>
@@ -1071,7 +1071,7 @@ const PictureResult2 = (props) => {
                                 </div>
                                 <div className={classes.cell8} style={
                                     {
-                                        background: players[0].t2p4_impact < 1 ? "#854141" : players[0].t2p4_impact > 1 ? players[0].t2p4_impact >= 1.15 ? "#528347" : "#a29747" : "#a29747"
+                                        background: players[0].t2p4_impact < 1 ? "#854141" : players[0].t2p4_impact > 1 ? players[0].t2p4_impact >= 1.10 ? "#528347" : "#a29747" : "#a29747"
                                     }
                                 }>{players[0].t2p4_impact}
                                 </div>
@@ -1120,7 +1120,7 @@ const PictureResult2 = (props) => {
                                 </div>
                                 <div className={classes.cell8} style={
                                     {
-                                        background: players[0].t2p5_impact < 1 ? "#854141" : players[0].t2p5_impact > 1 ? players[0].t2p5_impact >= 1.15 ? "#528347" : "#a29747" : "#a29747"
+                                        background: players[0].t2p5_impact < 1 ? "#854141" : players[0].t2p5_impact > 1 ? players[0].t2p5_impact >= 1.10 ? "#528347" : "#a29747" : "#a29747"
                                     }
                                 }>{players[0].t2p5_impact}
                                 </div>

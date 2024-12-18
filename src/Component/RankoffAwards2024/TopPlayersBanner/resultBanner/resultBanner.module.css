@@ -35,7 +35,7 @@
     --grayDark: #252525;
     --bronzeDark: #3f230c;
     --grayOpacity: rgb(159, 159, 159, 0.2);
-    --grayDarkOpacity: rgb(37, 37, 37, 0.4);
+    --grayDarkOpacity: rgb(37, 37, 37, 0.6);
     --dark: #030404;
     --white: #fff;
 }
@@ -160,8 +160,8 @@
 
 .photoPlayer img {
     padding-left: 5vw;
-    padding-top: 10vw;
-    height: 98%;
+    padding-top: 14vw;
+    height: 100%;
     width: auto;
 }
 
@@ -422,6 +422,6 @@
 
 .event img {
     height: auto;
-    width: 90%;
+    width: 100%;
 }
 
