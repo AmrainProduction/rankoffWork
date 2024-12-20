@@ -35,7 +35,7 @@ const TopPlayersBanner = () => {
     let allAwardsPlayer = []
     let allEventsPlayer = []
 
-    if(allAwards.data && allAwards.data.length > 0 && allEvents.data && allEvents.data.length > 0) {
+    if(allAwards.data && allAwards.data.length >= 0 && allEvents.data && allEvents.data.length > 0) {
         allAwardsPlayer = allAwards.data.filter(e => e.end_date_tour.slice(0, 4) === "2024" && !e.name_tour_sort.toLowerCase().includes("rankoff") && (
             e.name_tour_sort === "WinlineEpicStandoff2Season14_11_12_24"
             || e.name_tour_sort === "WinlineEpicStandoff2Major2_25_11_24"
@@ -70,8 +70,6 @@ const TopPlayersBanner = () => {
             || e.name_tour_sort === "WinlineEpicStandoff2Brazil2_14_05_24"
             || e.name_tour_sort === "WinlineEpicStandoff2Brazil_12_03_24"
         ))
-
-        console.log(allEventsPlayer)
 
         let one = 0
         let two = 0
@@ -192,6 +190,7 @@ const TopPlayersBanner = () => {
                 back_logo_team = tempDataPlayer[0]?.back_logo_team
                 country_flag = tempDataPlayer[0]?.country_flag
 
+                let tempMatchId = ""
 
                 allMatchesForPeriod.map(e2 => {
                     if (e2.t1p1_id === e1.player_id || e2.t1p2_id === e1.player_id || e2.t1p3_id === e1.player_id || e2.t1p4_id === e1.player_id || e2.t1p5_id === e1.player_id) {
@@ -200,16 +199,17 @@ const TopPlayersBanner = () => {
 
                         let temp = allShortMatches.data.find(e => e.name_match_for_sort === e2.name_match_for_sort)
 
-                        if(temp?.total_score_match_t1 >= temp?.total_score_match_t2) {
+                        if(temp?.total_score_match_t1 >= temp?.total_score_match_t2 && tempMatchId !== e2.name_match_for_sort) {
                             matches++
                             w_match++
                         }
 
-                        if(temp?.total_score_match_t1 < temp?.total_score_match_t2) {
+                        if(temp?.total_score_match_t1 < temp?.total_score_match_t2 && tempMatchId !== e2.name_match_for_sort) {
                             matches++
                             l_match++
                         }
 
+                        tempMatchId = e2.name_match_for_sort
                         //подсчет процента выигранных матчей на разных стадиях
 
                         if(temp?.total_score_match_t1 >= temp?.total_score_match_t2 && temp?.name_stage.toLowerCase().includes("group")) {
@@ -256,16 +256,17 @@ const TopPlayersBanner = () => {
 
                         let temp = allShortMatches.data.find(e => e.name_match_for_sort === e2.name_match_for_sort)
 
-                        if(temp?.total_score_match_t2 >= temp?.total_score_match_t1) {
+                        if(temp?.total_score_match_t2 >= temp?.total_score_match_t1 && tempMatchId !== e2.name_match_for_sort) {
                             matches++
                             w_match++
                         }
 
-                        if(temp?.total_score_match_t2 < temp?.total_score_match_t1) {
+                        if(temp?.total_score_match_t2 < temp?.total_score_match_t1 && tempMatchId !== e2.name_match_for_sort) {
                             matches++
                             l_match++
                         }
 
+                        tempMatchId = e2.name_match_for_sort
                         //подсчет процента выигранных матчей на разных стадиях
 
                         if(temp?.total_score_match_t2 >= temp?.total_score_match_t1 && temp?.name_stage.toLowerCase().includes("group")) {

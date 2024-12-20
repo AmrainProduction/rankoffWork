@@ -311,9 +311,9 @@ export function calculatePlayersTop(name, stageTour, allPlayers, allMatches, tea
         logo_tour = 0
     })
 
-    players_tournaments = players_tournaments.sort(function (a, b) {
-        return (parseFloat(b.rating) - parseFloat(a.rating))
-    });
+    // players_tournaments = players_tournaments.sort(function (a, b) {
+    //     return (parseFloat(b.rating) - parseFloat(a.rating))
+    // });
 
 //сортировочный алгоритм
 

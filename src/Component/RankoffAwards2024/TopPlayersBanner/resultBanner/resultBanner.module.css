@@ -21,21 +21,41 @@
     src: url("../../../../Fonts/Montserrat/MONTSERRAT-SEMIBOLD.ttf") format("truetype");
 }
 
+@font-face {
+    font-family: "Montserrat Bold";
+    src: url("../../../../Fonts/Montserrat/MONTSERRAT-BOLD.TTF") format("truetype");
+}
+
 .wrapperBanner {
-    --red: #AB4444;
-    --green: #549E48;
-    --yellow: #A1984E;
-    --gold: #C0A05C;
-    --gray: #9F9F9F;
-    --bronze: #be8c63;
-    --redDark: #3A0D0D;
-    --greenDark: #123E0B;
-    --yellowDark: #3E3911;
-    --goldDark: #412612;
-    --grayDark: #252525;
-    --bronzeDark: #3f230c;
+    --red: #c24f4f;
+    --green: #6cc24f;
+    --yellow: #c2ab4f;
+    --gold: #c2ab4f;
+    --gray: #b6b6b6;
+    --bronze: #c2904f;
+    /*--red: #AB4444;*/
+    /*--green: #549E48;*/
+    /*--yellow: #A1984E;*/
+    /*--gold: #C0A05C;*/
+    /*--gray: #9F9F9F;*/
+    /*--bronze: #be8c63;*/
+    --redDark: #3f1a1a;
+    --greenDark: #203a17;
+    --yellowDark: #3f381a;
+    --goldDark: #3f381a;
+    --grayDark: #363636;
+    --bronzeDark: #3d2d19;
+    /*--redDark: #3A0D0D;*/
+    /*--greenDark: #123E0B;*/
+    /*--yellowDark: #3E3911;*/
+    /*--goldDark: #412612;*/
+    /*--grayDark: #252525;*/
+    /*--bronzeDark: #3f230c;*/
     --grayOpacity: rgb(159, 159, 159, 0.2);
-    --grayDarkOpacity: rgb(37, 37, 37, 0.6);
+    --grayDarkOpacity: rgb(37, 37, 37, 0.5);
+    --goldOpacity: rgb(192, 160, 92, 0.5);
+    --bronzeOpacity: rgb(190, 140, 99, 0.5);
+    --silverOpacity: rgb(159, 159, 159, 0.5);
     --dark: #030404;
     --white: #fff;
 }
@@ -53,7 +73,7 @@
 }
 
 .wrapperBanner img {
-    height: auto;
+    height: 97vw;
     width: 100%;
 }
 
@@ -81,6 +101,7 @@
     color: var(--white);
     position: absolute;
     z-index: 5;
+    /*background: red;*/
 }
 
 .logoTeamPlayer {
@@ -121,6 +142,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    font-size: 2.5vw;
     color: var(--gray);
 }
 
@@ -138,11 +160,12 @@
 }
 
 .logoTeam img {
+    /*transform: skew(-8deg,-8deg);*/
     padding-bottom: 15vw;
     padding-left: 3.2vw;
     height: 70%;
     width: auto;
-    opacity: 0.3;
+    opacity: 0.2;
     filter: blur(0.5vw);
 }
 
@@ -190,7 +213,7 @@
 
 .titleBanner img {
     height: 90%;
-    width: 90%;
+    width: 86%;
 }
 
 .positionPlayer {
@@ -303,6 +326,10 @@
     position: relative;
 }
 
+.doubleMetric .valueMetric {
+    font-size: 4vw;
+}
+
 .verticalMetric {
     display: block;
     height: 100%;
@@ -318,9 +345,10 @@
 
 .verticalMetric .valueMetric {
     bottom: 1vw;
-    left: 50%;
+    /*left: 50%;*/
+    right: 10%;
     font-size: 3.5vw;
-    transform: translate(-50%, 0);
+    transform: translate(0, 0);
 }
 
 .bottomVerticalMetric {
@@ -338,7 +366,7 @@
 }
 
 .bottomVerticalMetric .valueMetric {
-    bottom: 1vw;
+    bottom: 2vw;
     right: 1vw;
     font-size: 5vw;
     transform: translate(0, 0);
@@ -359,13 +387,14 @@
 }
 
 .leftBottomMetric .valueMetric {
-    bottom: 2vw;
+    bottom: 2.5vw;
     right: 1vw;
     font-size: 6vw;
     transform: translate(0, 0);
 }
 
 .nameMetric {
+    font-family: "Montserrat Bold", sans-serif;
     top: 1vw;
     left: 1vw;
     max-width: 6vw;
@@ -379,7 +408,7 @@
 
 .valueMetric {
     font-family: "DrukCyr Bold", sans-serif;
-    top: 50%;
+    top: 60%;
     right: 1vw;
     transform: translate(0, -50%);
     display: flex;
@@ -394,7 +423,7 @@
     justify-content: flex-end;
     align-items: center;
     flex-direction: column;
-    bottom: 5.55vw;
+    bottom: 3.65vw;
     left: 51.5vw;
     width: 4vw;
     height: auto;
@@ -403,7 +432,6 @@
     backdrop-filter: blur(0.5vw);
     background: var(--grayDarkOpacity);
     position: absolute;
-    /*overflow: hidden;*/
 }
 
 .listEvent .event:not(:last-child) {

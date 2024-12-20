@@ -36,7 +36,7 @@ const ResultBanner = (props) => {
         playerInfo[0].back_logo_team = teamPlayerInfo[0]
         playerInfo[0].team_id = teamPlayerInfo[1]
         playerInfo[0].team = teamPlayerInfo[2]
-// console.log(props.allEvents)
+
         return (
             <div className={classes.wrapperBanner}>
                 <div className={classes.resultDataBanner}>
@@ -324,9 +324,12 @@ const ResultBanner = (props) => {
                             </div>
                         </div>
                         <div className={classes.listEvent}>
-                            {props.allEvents?.reverse().map(e => {
+                            {props.allEvents?.reverse().map((e, index) => {
+
                                 return (
-                                    <div className={classes.event}>
+                                    <div key={index} className={classes.event} style={{
+                                        background: e.position_team === 1 ? "var(--goldOpacity)" : e.position_team === 2 ? "var(--silverOpacity)" : e.position_team === 3 ? "var(--bronzeOpacity)" : ""
+                                    }}>
                                         <img src={`/images/DataInImage/RANKOFF_AWARDS_2024/LogoAndBannerTour/${e.logo_tour}`}
                                              alt="/"/>
                                     </div>
