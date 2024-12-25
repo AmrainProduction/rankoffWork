@@ -3,7 +3,7 @@ import Kpr from "../Component/Formulas/kpr";
 import Dpr from "../Component/Formulas/dpr";
 import Rating from "../Component/Formulas/rating";
 
-export function calculatePlayersTop(name, stageTour, allPlayers, allMatches, teamsTour, tourInfo, allShortMatches, filterTours) {
+export function calculatePlayersTop(name, stageTour, allPlayers, allMatches, teamsTour, tourInfo, allShortMatches, filterTours, allShorts) {
 
     let stage = (stageTour === "playoff" ? "PLAYOFF" : stageTour === "group" ? "GROUP STAGE" : "")
 

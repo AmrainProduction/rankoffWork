@@ -325,7 +325,6 @@ const ResultBanner = (props) => {
                         </div>
                         <div className={classes.listEvent}>
                             {props.allEvents?.reverse().map((e, index) => {
-
                                 return (
                                     <div key={index} className={classes.event} style={{
                                         background: e.position_team === 1 ? "var(--goldOpacity)" : e.position_team === 2 ? "var(--silverOpacity)" : e.position_team === 3 ? "var(--bronzeOpacity)" : ""

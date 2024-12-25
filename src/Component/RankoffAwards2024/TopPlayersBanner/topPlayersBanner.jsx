@@ -52,6 +52,7 @@ const TopPlayersBanner = () => {
             || e.name_tour_sort === "WinlineEpicStandoff2Brazil_20_08_24"
             || e.name_tour_sort === "WinlineEpicStandoff2Brazil2_14_05_24"
             || e.name_tour_sort === "WinlineEpicStandoff2Brazil_12_03_24"
+            || e.name_tour_sort === "ScamOffBeeline_23_08_24"
         ))
         allEventsPlayer = allEvents.data.filter(e => e.end_date_tour.slice(0, 4) === "2024" && !e.name_tour.toLowerCase().includes("rankoff") && (
             e.name_tour_sort === "WinlineEpicStandoff2Season14_11_12_24"
@@ -69,6 +70,7 @@ const TopPlayersBanner = () => {
             || e.name_tour_sort === "WinlineEpicStandoff2Brazil_20_08_24"
             || e.name_tour_sort === "WinlineEpicStandoff2Brazil2_14_05_24"
             || e.name_tour_sort === "WinlineEpicStandoff2Brazil_12_03_24"
+            || e.name_tour_sort === "ScamOffBeeline_23_08_24"
         ))
 
         let one = 0
@@ -88,7 +90,7 @@ const TopPlayersBanner = () => {
             positionsTeamPlayer = [one, two, three]
         })
 
-        MVPAwards = allAwardsPlayer.filter(e => e.logo_award.slice(0, 3).toLowerCase() === "mpv")
+        MVPAwards = allAwardsPlayer.filter(e => e.logo_award.slice(0, 3).toLowerCase() === "mvp")
         EVPAwards = allAwardsPlayer.filter(e => e.logo_award.slice(0, 3).toLowerCase() === "evp")
     }
 

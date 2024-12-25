@@ -3,14 +3,10 @@ import classes from "../topPlayersByTours.module.css";
 import {
     useGetMatchesByNameTourQuery,
     useGetMatchesQuery,
-    useGetPlayersQuery, useGetShortMatchesByTournamentQuery,
+    useGetPlayersQuery, useGetShortMatchesByTournamentQuery, useGetShortMatchQuery,
     useGetTeamsTournamentsByNameQuery, useGetTournamentByNameQuery
 } from "../../../store/api/apiSlice";
 import CountryFlagPlayer from "../../../Function/countryFlagPlayer";
-import CurrentTeamPlayer from "../../../Function/currentTeamPlayer";
-import normalizeRating from "../../Functions/AllFunctions/normalizeRating";
-import normalizeImpact from "../../Functions/AllFunctions/normalizeImpact";
-import normalizeKD from "../../Functions/AllFunctions/normalizeKD";
 import {calculatePlayersTop} from "../../../Function/calculatePlayersTop";
 
 const TopPlayersTourResult = (props) => {
@@ -21,30 +17,26 @@ const TopPlayersTourResult = (props) => {
     const allPlayers = useGetPlayersQuery()
     const allMatches = useGetMatchesQuery()
     const allShortMatches = useGetShortMatchesByTournamentQuery({name})
+    const allShorts = useGetShortMatchQuery()
     const teamsTour = useGetTeamsTournamentsByNameQuery({name})
     const tourInfo = useGetTournamentByNameQuery({name})
 
     let filterTours = [
         "WinlineEpicStandoff2Season14_11_12_24",
-        "WinlineEpicStandoff2Major2_25_11_24",
         "WinlineEpicStandoff2Season13_08_10_24",
         "WinlineEpicStandoff2Season12_04_09_24",
         "WinlineEpicStandoff2Season11_01_08_24",
-        "WinlineEpicStandoff2Major_10_07_24",
         "WinlineEpicStandoff2Season10_30_05_24",
         "WinlineEpicStandoff2Season9_25_04_24",
         "WinlineEpicStandoff2Season8_28_03_24",
-        "GamesOfFuture_03_03_24",
         "WinlineEpicStandoff2Season7_11_02_24",
-        // "WinlineEpicStandoff2Brazil4_24_09_24",
-        // "WinlineEpicStandoff2Brazil_20_08_24",
-        // "WinlineEpicStandoff2Brazil2_14_05_24",
-        // "WinlineEpicStandoff2Brazil_12_03_24"
+        "ScamOffBeeline_23_08_24",
+        "WinlineEpicStandoff2Major2_25_11_24",
+        "WinlineEpicStandoff2Major_10_07_24",
+        "GamesOfFuture_03_03_24",
     ]
 
-    let players_tournaments = calculatePlayersTop(name, stage, allPlayers, allMatches, teamsTour, tourInfo, allShortMatches, filterTours)
-
-    console.log(players_tournaments)
+    let players_tournaments = calculatePlayersTop(name, stage, allPlayers, allMatches, teamsTour, tourInfo, allShortMatches, filterTours, allShorts)
 
     if (players_tournaments.length > 0) {
         return (
@@ -107,7 +99,7 @@ const TopPlayersTourResult = (props) => {
                                         <div className={classes.dataPlayerD}>{e.d}</div>
                                         <div className={classes.dataPlayerImpact} style={
                                             {
-                                                background: e.impact_p < 1 ? "#854141" : e.impact_p > 1 ? e.impact_p >= 1.15 ? "#528347" : "#a29747" : "#a29747"
+                                                background: e.impact_p < 1 ? "#854141" : e.impact_p > 1 ? e.impact_p >= 1.10 ? "#528347" : "#a29747" : "#a29747"
                                             }
                                         }>{e.impact_p}</div>
                                         <div className={classes.dataPlayerRating} style={

@@ -54,6 +54,7 @@ import normalizeImpact from "./Component/Functions/AllFunctions/normalizeImpact"
 import normalizeKD from "./Component/Functions/AllFunctions/normalizeKD";
 import CYBERSHOKE from "./Component/CYBERSHOKE/CYBERSHOKE";
 import TopPlayersBanner from "./Component/RankoffAwards2024/TopPlayersBanner/topPlayersBanner";
+import TopPlayersYear from "./Component/RankoffAwards2024/TopPlayersByTours/topPlayersYear";
 
 const router = createBrowserRouter(createRoutesFromElements(
     <Route path='/' element={<Layout/>} errorElement={<ErrorPage/>}>
@@ -79,6 +80,7 @@ const router = createBrowserRouter(createRoutesFromElements(
         <Route path='i/CYBERSHOKE' element={<CYBERSHOKE/>}/>
         <Route path='i/ADDMATCHES' element={<AddMatches/>}/>
         <Route path='i/EMOJI' element={<EmojiTeams/>}/>
+        <Route path='i/TOP_YEAR' element={<TopPlayersYear/>}/> // топ игроков за несколько турниров сразу, надо в коде
         <Route path='i/TOP' element={<TopPlayersByTours/>}/> // топ игроков за несколько турниров сразу, надо в коде
         менять за какие
         <Route path='i/COMPARE_TOPS' element={<CompareTops/>}/> // сравнить два топа на одном баннере

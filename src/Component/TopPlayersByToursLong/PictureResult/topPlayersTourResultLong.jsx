@@ -2,7 +2,7 @@ import React from 'react';
 import classes from "../topPlayersByToursLong.module.css";
 import {
     useGetMatchesQuery,
-    useGetPlayersQuery, useGetShortMatchesByTournamentQuery,
+    useGetPlayersQuery, useGetShortMatchesByTournamentQuery, useGetShortMatchQuery,
     useGetTeamsTournamentsByNameQuery, useGetTournamentByNameQuery
 } from "../../../store/api/apiSlice";
 import CountryFlagPlayer from "../../../Function/countryFlagPlayer";
@@ -16,17 +16,33 @@ const TopPlayersTourResultLong = (props) => {
     const allPlayers = useGetPlayersQuery()
     const allMatches = useGetMatchesQuery()
     const allShortMatches = useGetShortMatchesByTournamentQuery({name})
+    const allShorts = useGetShortMatchQuery()
     const teamsTour = useGetTeamsTournamentsByNameQuery({name})
     const tourInfo = useGetTournamentByNameQuery({name})
 
-    let players_tournaments = calculatePlayersTop(name, stage, allPlayers, allMatches, teamsTour, tourInfo, allShortMatches)
+
+    let filterTours = [
+        "WinlineEpicStandoff2Season14_11_12_24",
+        "WinlineEpicStandoff2Season13_08_10_24",
+        "WinlineEpicStandoff2Season12_04_09_24",
+        "WinlineEpicStandoff2Season11_01_08_24",
+        "WinlineEpicStandoff2Season10_30_05_24",
+        "WinlineEpicStandoff2Season9_25_04_24",
+        "WinlineEpicStandoff2Season8_28_03_24",
+        "WinlineEpicStandoff2Season7_11_02_24",
+        "ScamOffBeeline_23_08_24",
+        "WinlineEpicStandoff2Major2_25_11_24",
+        "WinlineEpicStandoff2Major_10_07_24",
+        "GamesOfFuture_03_03_24",
+    ]
+
+    let players_tournaments = calculatePlayersTop(name, stage, allPlayers, allMatches, teamsTour, tourInfo, allShortMatches, filterTours, allShorts)
 
     if (players_tournaments.length > 0) {
         return (
             <div className={classes.wrapperTopResult}>
                 <div className={classes.wrapperTourInfo}>
-                    <div
-                        className={classes.nameTour}>{players_tournaments[0].name_tour.toUpperCase()} {stage ? "[" + stage + "]" : ""}</div>
+                    <div className={classes.nameTour}>{players_tournaments[0].name_tour.toUpperCase()} {stage ? "[" + stage + "]" : ""}</div>
                     <div className={classes.logoTour}>
                         <img src={`/images/LogoAndBannerTour/${players_tournaments[0].logo_tour}`} alt="/"/>
                     </div>
