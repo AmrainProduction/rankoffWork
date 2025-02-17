@@ -5,7 +5,7 @@ import Rating from "../Component/Formulas/rating";
 
 export function calculatePlayersTop(name, stageTour, allPlayers, allMatches, teamsTour, tourInfo, allShortMatches, filterTours, allShorts) {
 
-    let stage = (stageTour === "playoff" ? "PLAYOFF" : stageTour === "group" ? "GROUP STAGE" : "")
+    let stage = stageTour
 
     let players_tournaments = []
     let sortMatches = []
@@ -48,8 +48,8 @@ export function calculatePlayersTop(name, stageTour, allPlayers, allMatches, tea
     sortMatches = allMatches?.data?.filter(e => e.name_tour_for_sort === name)
 
     if (stage && stage.length > 0) {
-        if (stage === "group") {
-            sortByStageMatches = allShortMatches?.data?.filter(e => e.name_stage.toLowerCase().includes(stage))
+        if (stage === "GROUP") {
+            sortByStageMatches = allShortMatches?.data?.filter(e => e.name_stage.toUpperCase().includes(stage))
             sortByStageMatches?.map(e => {
                 sortMatches?.map((e2, index) => {
                     if (e.name_match_for_sort === e2.name_match_for_sort) {
@@ -59,8 +59,8 @@ export function calculatePlayersTop(name, stageTour, allPlayers, allMatches, tea
             })
         }
 
-        if (stage === "playoff") {
-            sortByStageMatches = allShortMatches?.data?.filter(e => e.name_stage.toLowerCase().includes(stage) || e.name_stage.toLowerCase().includes("final"))
+        if (stage === "PLAYOFF") {
+            sortByStageMatches = allShortMatches?.data?.filter(e => e.name_stage.toUpperCase().includes(stage) || e.name_stage.toUpperCase().includes("FINAL"))
 
             sortByStageMatches?.map(e => {
                 sortMatches?.map((e2, index) => {
@@ -70,7 +70,7 @@ export function calculatePlayersTop(name, stageTour, allPlayers, allMatches, tea
                 })
             })
         }
-        if (stage === "full") {
+        if (stage === "FULL") {
             necessaryMatches = allMatches?.data?.filter(e => e.name_tour_for_sort === name)
         }
     } else if (filterTours && filterTours.length > 0) {

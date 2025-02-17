@@ -42,12 +42,18 @@ const RankingTeamsWithCurrentRosters = () => {
         && allTeamsTours.data && allTeamsTours.data.length > 0) {
 
         // let tempPlayersPoints = playersPoints.data.filter(e =>
-        //     e.event_id !== "WinlineEpicStandoff2Major2_25_11_24" &&
-        //     e.event_id !== "WinlineEpicStandoff2Major2ClosedQuals_05_11_24"
+        //     e.event_id !== "Standoff2NewYearCup_29_12_24" &&
+        //     e.event_id !== "Standoff2EpicAcademyYEARFINALS17_12_24" &&
+        //     e.event_id !== "ScamOffBeeline_23_08_24" &&
+        //     e.event_id !== "GamesOfFuture_03_03_24" &&
+        //     e.event_id !== "VozwoodenRevialCupSeason1_17_01_24"
         // )
         // let tempTeamsPoints = teamsPoints.data.filter(e =>
-        //     e.event_id !== "WinlineEpicStandoff2Major2_25_11_24" &&
-        //     e.event_id !== "WinlineEpicStandoff2Major2ClosedQuals_05_11_24"
+        //     e.event_id !== "Standoff2NewYearCup_29_12_24" &&
+        //     e.event_id !== "Standoff2EpicAcademyYEARFINALS17_12_24" &&
+        //     e.event_id !== "ScamOffBeeline_23_08_24" &&
+        //     e.event_id !== "GamesOfFuture_03_03_24" &&
+        //     e.event_id !== "VozwoodenRevialCupSeason1_17_01_24"
         // )
 
         // посчитали текушие поинты всем игрокам
@@ -60,6 +66,15 @@ const RankingTeamsWithCurrentRosters = () => {
                 points: CalculateCurrentPlayerPoints(playersPoints.data.filter(e => e.player_id === player.player_id)),
             })
         })
+
+        // let t = 0
+        //
+        // players.filter(e => e.player_id === 63).map(e => {
+        //     console.log(e.points)
+        //     t += e.points
+        // })
+        //
+        // console.log(t)
 
         // посчитали текушие поинты всем командам
 
@@ -97,7 +112,6 @@ const RankingTeamsWithCurrentRosters = () => {
                 team_id: team.team_id,
                 points: CalculateCurrentTeamPoints(approvedTeams.filter(e => e.team_id === team.team_id)),
             })
-
         })
 
         // теперь для каждой команды собираем ее состав согласно последнему сыгранному турниру и суммируем все очки

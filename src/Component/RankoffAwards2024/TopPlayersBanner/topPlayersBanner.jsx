@@ -15,6 +15,7 @@ import ResultBanner from "./resultBanner/resultBanner";
 import Kpr from "../../Formulas/kpr";
 import Dpr from "../../Formulas/dpr";
 import Rating from "../../Formulas/rating";
+import ResultBannerEN from "./resultBanner/resultBannerEN";
 
 const TopPlayersBanner = () => {
     let [choicePlayer, setChoicePlayer] = useState([])
@@ -53,6 +54,7 @@ const TopPlayersBanner = () => {
             || e.name_tour_sort === "WinlineEpicStandoff2Brazil2_14_05_24"
             || e.name_tour_sort === "WinlineEpicStandoff2Brazil_12_03_24"
             || e.name_tour_sort === "ScamOffBeeline_23_08_24"
+            || e.name_tour_sort === "Standoff2EpicAcademyYEARFINALS17_12_24"
         ))
         allEventsPlayer = allEvents.data.filter(e => e.end_date_tour.slice(0, 4) === "2024" && !e.name_tour.toLowerCase().includes("rankoff") && (
             e.name_tour_sort === "WinlineEpicStandoff2Season14_11_12_24"
@@ -71,6 +73,7 @@ const TopPlayersBanner = () => {
             || e.name_tour_sort === "WinlineEpicStandoff2Brazil2_14_05_24"
             || e.name_tour_sort === "WinlineEpicStandoff2Brazil_12_03_24"
             || e.name_tour_sort === "ScamOffBeeline_23_08_24"
+            || e.name_tour_sort === "Standoff2EpicAcademyYEARFINALS17_12_24"
         ))
 
         let one = 0
@@ -93,7 +96,6 @@ const TopPlayersBanner = () => {
         MVPAwards = allAwardsPlayer.filter(e => e.logo_award.slice(0, 3).toLowerCase() === "mvp")
         EVPAwards = allAwardsPlayer.filter(e => e.logo_award.slice(0, 3).toLowerCase() === "evp")
     }
-
 
     const calculatePersonalStatsForYear = (allPlayers, allMatches, allShortMatches) => {
 
@@ -145,11 +147,13 @@ const TopPlayersBanner = () => {
                 || e.name_tour_for_sort === "WinlineEpicStandoff2Season9_25_04_24"
                 || e.name_tour_for_sort === "WinlineEpicStandoff2Season8_28_03_24"
                 || e.name_tour_for_sort === "GamesOfFuture_03_03_24"
+                || e.name_tour_for_sort === "Standoff2EpicAcademyYEARFINALS17_12_24"
                 || e.name_tour_for_sort === "WinlineEpicStandoff2Season7_11_02_24"
                 || e.name_tour_for_sort === "WinlineEpicStandoff2Brazil4_24_09_24"
                 || e.name_tour_for_sort === "WinlineEpicStandoff2Brazil_20_08_24"
                 || e.name_tour_for_sort === "WinlineEpicStandoff2Brazil2_14_05_24"
                 || e.name_tour_for_sort === "WinlineEpicStandoff2Brazil_12_03_24"
+                || e.name_tour_for_sort === "ScamOffBeeline_23_08_24"
                 )
             )
 
@@ -211,32 +215,34 @@ const TopPlayersBanner = () => {
                             l_match++
                         }
 
-                        tempMatchId = e2.name_match_for_sort
+
                         //подсчет процента выигранных матчей на разных стадиях
 
-                        if(temp?.total_score_match_t1 >= temp?.total_score_match_t2 && temp?.name_stage.toLowerCase().includes("group")) {
+                        if(temp?.total_score_match_t1 >= temp?.total_score_match_t2 && temp?.name_stage.toLowerCase().includes("group") && tempMatchId !== e2.name_match_for_sort) {
                             w_group++
                         }
 
-                        if (temp?.total_score_match_t1 >= temp?.total_score_match_t2 && temp?.name_stage.toLowerCase().includes("playoff")) {
+                        if (temp?.total_score_match_t1 > temp?.total_score_match_t2 && temp?.name_stage.toLowerCase().includes("playoff") && tempMatchId !== e2.name_match_for_sort) {
                             w_playoff++
                         }
 
-                        if (temp?.total_score_match_t1 >= temp?.total_score_match_t2 && temp?.name_stage.toLowerCase().includes("final")) {
+                        if (temp?.total_score_match_t1 > temp?.total_score_match_t2 && temp?.name_stage.toLowerCase().includes("final") && tempMatchId !== e2.name_match_for_sort) {
                             w_final++
                         }
 
-                        if(temp?.total_score_match_t2 >= temp?.total_score_match_t1 && temp?.name_stage.toLowerCase().includes("group")) {
+                        if(temp?.total_score_match_t1 < temp?.total_score_match_t2 && temp?.name_stage.toLowerCase().includes("group") && tempMatchId !== e2.name_match_for_sort) {
                             l_group++
                         }
 
-                        if (temp?.total_score_match_t2 >= temp?.total_score_match_t1 && temp?.name_stage.toLowerCase().includes("playoff")) {
+                        if (temp?.total_score_match_t1 < temp?.total_score_match_t2 && temp?.name_stage.toLowerCase().includes("playoff") && tempMatchId !== e2.name_match_for_sort) {
                             l_playoff++
                         }
 
-                        if (temp?.total_score_match_t2 >= temp?.total_score_match_t1 && temp?.name_stage.toLowerCase().includes("final")) {
+                        if (temp?.total_score_match_t1 < temp?.total_score_match_t2 && temp?.name_stage.toLowerCase().includes("final") && tempMatchId !== e2.name_match_for_sort) {
                             l_final++
                         }
+
+                        tempMatchId = e2.name_match_for_sort
 
                         //подсчет поражений и побед игрока
 
@@ -268,32 +274,33 @@ const TopPlayersBanner = () => {
                             l_match++
                         }
 
-                        tempMatchId = e2.name_match_for_sort
                         //подсчет процента выигранных матчей на разных стадиях
 
-                        if(temp?.total_score_match_t2 >= temp?.total_score_match_t1 && temp?.name_stage.toLowerCase().includes("group")) {
+                        if(temp?.total_score_match_t2 >= temp?.total_score_match_t1 && temp?.name_stage.toLowerCase().includes("group") && tempMatchId !== e2.name_match_for_sort) {
                             w_group++
                         }
 
-                        if (temp?.total_score_match_t2 >= temp?.total_score_match_t1 && temp?.name_stage.toLowerCase().includes("playoff")) {
+                        if (temp?.total_score_match_t2 > temp?.total_score_match_t1 && temp?.name_stage.toLowerCase().includes("playoff") && tempMatchId !== e2.name_match_for_sort) {
                             w_playoff++
                         }
 
-                        if (temp?.total_score_match_t2 >= temp?.total_score_match_t1 && temp?.name_stage.toLowerCase().includes("final")) {
+                        if (temp?.total_score_match_t2 > temp?.total_score_match_t1 && temp?.name_stage.toLowerCase().includes("final") && tempMatchId !== e2.name_match_for_sort) {
                             w_final++
                         }
 
-                        if(temp?.total_score_match_t1 >= temp?.total_score_match_t2 && temp?.name_stage.toLowerCase().includes("group")) {
+                        if(temp?.total_score_match_t2 < temp?.total_score_match_t1 && temp?.name_stage.toLowerCase().includes("group") && tempMatchId !== e2.name_match_for_sort) {
                             l_group++
                         }
 
-                        if (temp?.total_score_match_t1 >= temp?.total_score_match_t2 && temp?.name_stage.toLowerCase().includes("playoff")) {
+                        if (temp?.total_score_match_t2 < temp?.total_score_match_t1 && temp?.name_stage.toLowerCase().includes("playoff") && tempMatchId !== e2.name_match_for_sort) {
                             l_playoff++
                         }
 
-                        if (temp?.total_score_match_t1 >= temp?.total_score_match_t2 && temp?.name_stage.toLowerCase().includes("final")) {
+                        if (temp?.total_score_match_t2 < temp?.total_score_match_t1 && temp?.name_stage.toLowerCase().includes("final") && tempMatchId !== e2.name_match_for_sort) {
                             l_final++
                         }
+
+                        tempMatchId = e2.name_match_for_sort
 
                         //подсчет поражений и побед игрока
 
@@ -463,7 +470,8 @@ const TopPlayersBanner = () => {
 
     let necessaryPlayers = calculatePersonalStatsForYear(allPlayers, allMatches, allShortMatches)
     let necessaryPlayer = necessaryPlayers?.filter(e => e.player_id === choicePlayer.id)
-
+    // console.log(necessaryPlayer[0]?.w_final, necessaryPlayer[0]?.l_final, necessaryPlayer[0]?.wr_final)
+    // console.log(positionsTeamPlayer)
     let listPlayers = []
 
     if (necessaryPlayers && necessaryPlayers.length > 0) {
@@ -505,7 +513,15 @@ const TopPlayersBanner = () => {
                 console.log(err)
             })
     }, [ref])
-
+// console.log(necessaryPlayers.filter(e =>
+//     e.player_id === 28 || e.player_id === 128 || e.player_id === 281
+//     || e.player_id === 52 || e.player_id === 16 || e.player_id === 94
+//     || e.player_id === 53 || e.player_id === 19 || e.player_id === 8
+//     || e.player_id === 25 || e.player_id === 278 || e.player_id === 6
+//     || e.player_id === 47 || e.player_id === 75 || e.player_id === 30
+//     || e.player_id === 98 || e.player_id === 51 || e.player_id === 5
+//     || e.player_id === 29 || e.player_id === 13))
+//     console.log(necessaryPlayer[0]?.l_final, necessaryPlayer[0]?.w_final, necessaryPlayer[0]?.wr_final)
     return (
         <>
             <div className={classes.wrapperMenu}>
@@ -537,8 +553,8 @@ const TopPlayersBanner = () => {
                     </div>
                 </div>
             </div>
-            <div className={classes.wrapperPicture} ref={ref}>
-                {necessaryPlayer?.length > 0 ? <ResultBanner player={necessaryPlayer} position={enterPosition} MVP={MVPAwards} EVP={EVPAwards}
+            <div ref={ref}>
+                {necessaryPlayer?.length > 0 ? <ResultBannerEN player={necessaryPlayer} position={enterPosition} MVP={MVPAwards} EVP={EVPAwards}
                 countFirstPlaces={positionsTeamPlayer} allEvents={allEventsPlayer}/> : ''}
             </div>
         </>

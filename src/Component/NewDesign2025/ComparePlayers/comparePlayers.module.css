@@ -1,0 +1,397 @@
+@font-face {
+    font-family: "DrukCyrMedium";
+    src: url("../../../Fonts/DrukCyr-Medium.eot");
+    src: url("../../../Fonts/DrukCyr-Medium.eot?#iefix") format("embedded-opentype"),
+    url("../../../Fonts/DrukCyr-Medium.woff") format("woff"),
+    url("../../../Fonts/DrukCyr-Medium.ttf") format("truetype");
+    font-style: normal;
+    font-weight: 500;
+}
+
+@font-face {
+    font-family: "Mazzard M";
+    src: url("../../../Fonts/Mazzard/MazzardM-SemiBold.eot");
+    src: url("../../../Fonts/Mazzard/MazzardM-SemiBold.eot?#iefix") format("embedded-opentype"),
+    url("../../../Fonts/Mazzard/MazzardM-SemiBold.woff") format("woff"),
+    url("../../../Fonts/Mazzard/MazzardM-SemiBold.ttf") format("truetype");
+    font-style: normal;
+    font-weight: 500;
+}
+
+@font-face {
+    font-family: "DrukCyr Bold";
+    src: url("../../../Fonts/DrukCyr-Bold.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "DrukTextWide";
+    src: url("../../../Fonts/DRUKTEXTWIDECYR-BOLD.otf") format("truetype");
+}
+
+@font-face {
+    font-family: "Montserrat SemiBold";
+    src: url("../../../Fonts/Montserrat/MONTSERRAT-SEMIBOLD.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "Montserrat Bold";
+    src: url("../../../Fonts/Montserrat/MONTSERRAT-BOLD.TTF") format("truetype");
+}
+
+.wrapperTopResult {
+    --red: #c24f4f;
+    --green: #6cc24f;
+    --yellow: #c2ab4f;
+    --gold: #c0a05c;
+    --gray: #b6b6b6;
+    --bronze: #c2904f;
+    --redDark: #3f1a1a;
+    --greenDark: #203a17;
+    --yellowDark: #3f381a;
+    --goldDark: #3f381a;
+    --grayDark: #363636;
+    --grayDarkMedium: #797979;
+    --bronzeDark: #3d2d19;
+    --grayOpacity: rgb(159, 159, 159, 0.1);
+    --grayOpacityMedium: rgb(159, 159, 159, 0.2);
+    --grayDarkOpacity: rgb(37, 37, 37, 0.5);
+    --redDarkOpacity: rgb(63, 26, 26, 0.8);
+    --goldOpacity: rgb(192, 160, 92, 0.5);
+    --bronzeOpacity: rgb(190, 140, 99, 0.5);
+    --silverOpacity: rgb(159, 159, 159, 0.5);
+    --dark: #030404;
+    --white: #fff;
+}
+
+.bgImg {
+    height: auto;
+    width: 100%;
+}
+
+.wrapperMenu {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 100%;
+    height: 160px;
+    background: var(--mainLightBlack);
+    margin-bottom: 10px;
+    padding: 5px;
+}
+
+.wrapperLogo {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 20%;
+    height: 100%;
+}
+
+.wrapperLogo img {
+    height: 70%;
+    width: auto;
+}
+
+.menu {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    height: 100%;
+    width: 100%;
+}
+
+.wrapperList {
+    display: block;
+    width: 100%;
+    height: 100%;
+    margin-right: 2%;
+    margin-left: 2%;
+    padding: 2px;
+}
+
+.titleBox {
+    width: 100%;
+    height: auto;
+    padding: 1% 0;
+    color: white;
+}
+
+.list {
+    display: block;
+    overflow-y: scroll;
+    border-radius: 3px;
+    width: 100%;
+    min-width: 150px;
+    height: 120px;
+    background: var(--componentBlockColor);
+    color: white;
+}
+
+.match {
+    background: var(--componentLightBlockColor);
+    margin-bottom: 2px;
+    padding: 5px;
+    cursor: pointer;
+    transition: all 0.5s;
+}
+
+.match:hover {
+    background: var(--componentBlockColorHover);
+}
+
+
+.btnSaveAsImage {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 3px;
+    padding: 1%;
+    background: var(--buttonColor);
+    height: 120px;
+    width: 100%;
+    cursor: pointer;
+    color: white;
+}
+
+.btnSaveAsImage:hover {
+    background: var(--buttonColorHover);
+}
+
+.dropdownMenu {
+    max-height: 15vw;
+    max-width: 15vw;
+    width: 100%;
+    margin-top: 0.5rem;
+    border-radius: 0.5rem;
+    background: var(--componentLightBlockColor);
+    color: var(--textPlaceholderColor);
+    border: 0.14rem solid var(--componentLightBlockColor);
+    overflow: hidden;
+    z-index: 99;
+    position: absolute;
+}
+
+.dropdownMenuItem {
+    font-family: 'Montserrat SemiBold', sans-serif;
+    cursor: pointer;
+    width: 100%;
+    padding: 0.2rem 0.5rem;
+    background: var(--componentLightBlockColor);
+}
+
+.dropdownMenuItem:hover {
+    background: var(--componentBlockColorHover);
+}
+
+.wrapperTopResult {
+    font-family: "Montserrat Bold", sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    z-index: 20;
+    color: var(--textColor);
+    position: relative;
+}
+
+.wrapperTopResult img {
+    height: auto;
+    width: 100%;
+}
+
+.leftPlayer {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    height: 100%;
+    z-index: 1;
+    left: 0;
+    width: 32vw;
+    position: absolute;
+}
+
+.leftPlayer img {
+    z-index: 2;
+    height: 100%;
+    width: auto;
+}
+
+.statsSection {
+    font-family: "Montserrat Bold", sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    z-index: 10;
+    width: 40vw;
+    padding: 11.5vw 0 0 0;
+    position: absolute;
+}
+
+.rightPlayer {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    height: 100%;
+    z-index: 1;
+    right: 0;
+    width: 32vw;
+    position: absolute;
+}
+
+.rightPlayer img {
+    z-index: 2;
+    height: 100%;
+    width: auto;
+}
+
+.shadowToTop {
+    height: 40vw;
+    width: 67.2vw;
+    background: linear-gradient(to top, #130407 0.5vw, transparent);
+    z-index: 3;
+    bottom: 0;
+    position: absolute;
+}
+
+.infoPlayer {
+    display: block;
+    align-items: center;
+    height: 21vw;
+    width: 100%;
+    z-index: 4;
+    position: absolute;
+}
+
+.logoTeams {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 6vw;
+    width: 100%;
+    margin-bottom: 2vw;
+}
+
+.logoTeams img {
+    height: 100%;
+    width: auto;
+}
+
+.flagAndAge {
+    font-family: "DrukTextWide", sans-serif;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    font-size: 1.2vw;
+    align-items: center;
+}
+
+.flagAndAge img {
+    height: 1.2vw;
+    width: auto;
+    margin-right: 1vw;
+}
+
+.nickname {
+    display: flex;
+    justify-content: center;
+    font-family: "DrukTextWide", sans-serif;
+    font-size: 3vw;
+    padding: 0 1vw;
+    /*text-overflow: ellipsis;*/
+    /*white-space: nowrap;*/
+    /*overflow: hidden;*/
+    /*word-wrap: break-word;*/
+}
+
+.name {
+    font-family: "Montserrat SemiBold", sans-serif;
+    display: flex;
+    justify-content: center;
+    font-size: 1.5vw;
+    color: var(--grayDarkMedium);
+    padding: 0 1vw;
+    /*text-overflow: ellipsis;*/
+    /*white-space: nowrap;*/
+    /*overflow: hidden;*/
+    /*word-wrap: break-word;*/
+}
+
+.backLogoTeam {
+    height: 100%;
+    z-index: 0;
+    filter: blur(0.5vw);
+    opacity: 0.2;
+    position: absolute;
+}
+
+.rankoff {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 2.9vw;
+    width: 33vw;
+    border-top-left-radius: 1.3vw;
+    border-top-right-radius: 1.3vw;
+    font-size: 1.2vw;
+    background: var(--grayOpacity);
+    color: var(--grayDarkMedium);
+}
+
+.wrapperStats {
+    display: block;
+    width: 100%;
+    height: 41.9vw;
+    border-radius: 1.3vw;
+    overflow: hidden;
+}
+
+.wrapperStats .metric:nth-child(odd) {
+    background: var(--grayOpacityMedium);
+}
+
+.metric {
+    display: grid;
+    height: 7vw;
+    grid-template-rows: 100%;
+    grid-template-columns: 35% 30% 35%;
+    background: var(--grayOpacity);
+}
+
+.valuePlayer {
+    font-family: "DrukTextWide", sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--white);
+    font-size: 2.5vw;
+}
+
+.nameMetric {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2vw;
+}
+
+
+.description {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 2.9vw;
+    width: 33vw;
+    font-size: 1.2vw;
+    border-bottom-left-radius: 1.3vw;
+    border-bottom-right-radius: 1.3vw;
+    background: var(--grayOpacity);
+    color: var(--grayDarkMedium);
+}
+
+
+
+
+
+
+

@@ -1,0 +1,122 @@
+.wrapperMatchResult {
+    font-family: "Mazzard M", sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    height: 100%;
+    width: 100%;
+    z-index: 20;
+    position: relative;
+}
+
+.wrapperMatchResult img {
+    height: auto;
+    width: 100%;
+}
+
+.bgImg {
+    height: auto;
+    width: 100%;
+}
+
+.wrapperMenu {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 100%;
+    height: 15%;
+    background: var(--mainLightBlack);
+    margin-bottom: 10px;
+    padding: 5px;
+}
+
+.wrapperLogo {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 10%;
+    height: 100%;
+}
+
+.wrapperLogo img {
+    height: auto;
+    width: 100%;
+}
+
+.menu {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    height: 100%;
+    width: 60%;
+}
+
+.wrapperListMatches {
+    display: block;
+    width: 100%;
+    height: 100%;
+    margin-right: 2%;
+    margin-left: 2%;
+    padding: 2px;
+}
+
+.titleBox {
+    width: 100%;
+    height: auto;
+    padding: 1% 0;
+    color: white;
+}
+
+.listMatches {
+    display: block;
+    overflow-y: scroll;
+    border-radius: 3px;
+    width: 100%;
+    min-width: 150px;
+    height: 120px;
+    background: var(--componentBlockColor);
+    color: white;
+}
+
+.match {
+    background: var(--componentLightBlockColor);
+    margin-bottom: 2px;
+    padding: 5px;
+    cursor: pointer;
+    transition: all 0.5s;
+}
+
+.match:hover {
+    background: var(--componentBlockColorHover);
+}
+
+.wrapperMain {
+    display: flex;
+    height: 100%;
+    width: 100%;
+    padding: 3.4%;
+    position: absolute;
+}
+
+.main {
+    display: block;
+    height: 100%;
+    width: 100%;
+}
+
+.btnSaveAsImage {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 3px;
+    padding: 1%;
+    background: var(--buttonColor);
+    height: 120px;
+    width: 100%;
+    cursor: pointer;
+    color: white;
+}
+
+.btnSaveAsImage:hover {
+    background: var(--buttonColorHover);
+}

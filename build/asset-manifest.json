@@ -1,10 +1,12 @@
 {
   "files": {
-    "main.css": "/static/css/main.f8c0d092.css",
-    "main.js": "/static/js/main.79e9ae2f.js",
+    "main.css": "/static/css/main.791bb3d2.css",
+    "main.js": "/static/js/main.1a63561c.js",
     "static/media/Refinery-95-Medium.ttf": "/static/media/Refinery-95-Medium.c7cbbed36f82cf9d555f.ttf",
     "static/media/refinery-95-bold.ttf": "/static/media/refinery-95-bold.8cf439da42671411771e.ttf",
+    "static/media/MONTSERRAT-BOLD.TTF": "/static/media/MONTSERRAT-BOLD.0915f0a8c3367a6d05ec.TTF",
     "static/media/MONTSERRAT-SEMIBOLD.ttf": "/static/media/MONTSERRAT-SEMIBOLD.2f7a846126c7d5ee9163.ttf",
+    "static/media/MONTSERRAT-MEDIUM.TTF": "/static/media/MONTSERRAT-MEDIUM.647f0e61af3a76a138c3.TTF",
     "static/media/ArtegraSans-Bold.ttf": "/static/media/ArtegraSans-Bold.da44aa68938af12c8c37.ttf",
     "static/media/JetBrainsMono.ttf": "/static/media/JetBrainsMono.469a0017c534427d1d59.ttf",
     "static/media/DRUKTEXTWIDECYR-BOLD.otf": "/static/media/DRUKTEXTWIDECYR-BOLD.63b128a3232e21f2d371.otf",
@@ -17,11 +19,11 @@
     "static/media/MazzardM-SemiBold.woff": "/static/media/MazzardM-SemiBold.6d64bfd5768b045af7c6.woff",
     "static/media/marsek-demi-webfont.woff": "/static/media/marsek-demi-webfont.c8eae89ba35a187a073c.woff",
     "static/media/marsek-demi-webfont.woff2": "/static/media/marsek-demi-webfont.7ca31594c29432707ea7.woff2",
-    "static/media/logo.svg": "/static/media/logo.182725c1ea6691dac66e3a941382345d.svg",
+    "static/media/logo.svg": "/static/media/logo.9ba3127ab7f79b4ee098a9ae9c2a2bbb.svg",
     "index.html": "/index.html"
   },
   "entrypoints": [
-    "static/css/main.f8c0d092.css",
-    "static/js/main.79e9ae2f.js"
+    "static/css/main.791bb3d2.css",
+    "static/js/main.1a63561c.js"
   ]
 }

@@ -22,6 +22,7 @@ const TopPlayersTourResult = (props) => {
     let players_tournaments = calculatePlayersTop(name, stage, allPlayers, allMatches, teamsTour, tourInfo, allShortMatches)
 
     if (players_tournaments.length > 0) {
+        console.log(players_tournaments)
         return (
             <div className={classes.wrapperTopResult}>
                 <div className={classes.wrapperTourInfo}>

@@ -408,8 +408,6 @@ const TopPlayersTourResult = (props) => {
 
     calculatePointsPlayers = calculatePointsPlayers.sort((a, b) => b.points - a.points)
 
-    console.log(calculatePointsPlayers)
-
     if (ONLINE_GROUP_IMPACT.length > 0) {
         return (
             <div className={classes.wrapperTopResult}>

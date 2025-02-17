@@ -33,24 +33,12 @@
     --gold: #c2ab4f;
     --gray: #b6b6b6;
     --bronze: #c2904f;
-    /*--red: #AB4444;*/
-    /*--green: #549E48;*/
-    /*--yellow: #A1984E;*/
-    /*--gold: #C0A05C;*/
-    /*--gray: #9F9F9F;*/
-    /*--bronze: #be8c63;*/
     --redDark: #3f1a1a;
     --greenDark: #203a17;
     --yellowDark: #3f381a;
     --goldDark: #3f381a;
     --grayDark: #363636;
     --bronzeDark: #3d2d19;
-    /*--redDark: #3A0D0D;*/
-    /*--greenDark: #123E0B;*/
-    /*--yellowDark: #3E3911;*/
-    /*--goldDark: #412612;*/
-    /*--grayDark: #252525;*/
-    /*--bronzeDark: #3f230c;*/
     --grayOpacity: rgb(159, 159, 159, 0.2);
     --grayDarkOpacity: rgb(37, 37, 37, 0.5);
     --goldOpacity: rgb(192, 160, 92, 0.5);
@@ -101,7 +89,7 @@
     color: var(--white);
     position: absolute;
     z-index: 5;
-    /*background: red;*/
+    background: radial-gradient(20vw 30vw at bottom, var(--dark), transparent);
 }
 
 .logoTeamPlayer {
@@ -183,7 +171,7 @@
 
 .photoPlayer img {
     padding-left: 5vw;
-    padding-top: 14vw;
+    padding-top: 12vw;
     height: 100%;
     width: auto;
 }
@@ -241,7 +229,6 @@
 .statsBlock {
     font-family: "Montserrat SemiBold", sans-serif;
     display: block;
-    top: 0;
     left: 4.4vw;
     width: 46vw;
     height: 77.7vw;
@@ -249,6 +236,7 @@
     padding: 1.2vw 1.2vw;
     font-size: 1.5vw;
     backdrop-filter: blur(0.5vw);
+    /*backdrop-filter: blur(8px);*/
     background: var(--grayDarkOpacity);
     position: absolute;
 }
@@ -445,6 +433,7 @@
     height: 3vw;
     width: 3vw;
     border-radius: 0.8vw;
+    position: relative;
     background: var(--grayOpacity);
 }
 
@@ -452,4 +441,21 @@
     height: auto;
     width: 100%;
 }
+
+.checkAwardEvent {
+    font-family: 'DrukCyr Bold', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    padding: 0 0 0.2vw 0.1vw;
+    height: 2vw;
+    width: 2vw;
+    right: -1.3vw;
+    top: -0.4vw;
+    font-size: 1.2vw;
+    position: absolute;
+}
+
+
 

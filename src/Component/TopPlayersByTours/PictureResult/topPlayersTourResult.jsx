@@ -22,18 +22,26 @@ const TopPlayersTourResult = (props) => {
     const tourInfo = useGetTournamentByNameQuery({name})
 
     let filterTours = [
-        "WinlineEpicStandoff2Season14_11_12_24",
-        "WinlineEpicStandoff2Season13_08_10_24",
-        "WinlineEpicStandoff2Season12_04_09_24",
-        "WinlineEpicStandoff2Season11_01_08_24",
-        "WinlineEpicStandoff2Season10_30_05_24",
-        "WinlineEpicStandoff2Season9_25_04_24",
-        "WinlineEpicStandoff2Season8_28_03_24",
-        "WinlineEpicStandoff2Season7_11_02_24",
-        "ScamOffBeeline_23_08_24",
-        "WinlineEpicStandoff2Major2_25_11_24",
+        // "WinlineEpicStandoff2Season14_11_12_24",
+        // "WinlineEpicStandoff2Season13_08_10_24",
+        // "WinlineEpicStandoff2Season12_04_09_24",
+        // "WinlineEpicStandoff2Season11_01_08_24",
+        // "WinlineEpicStandoff2Season10_30_05_24",
+        // "WinlineEpicStandoff2Season9_25_04_24",
+        // "WinlineEpicStandoff2Season8_28_03_24",
+        // "WinlineEpicStandoff2Season7_11_02_24",
+        // "ScamOffBeeline_23_08_24",
+        // "WinlineEpicStandoff2Major2_25_11_24",
+        // "WinlineEpicStandoff2Major_10_07_24",
+        // "GamesOfFuture_03_03_24",
+        // "VozwoodenRevialCupSeason1_17_01_24",
+
+        "WinlineEpicStandoff2Brazil4_24_09_24",
+        "WinlineEpicStandoff2Brazil_20_08_24",
+        "WinlineEpicStandoff2Brazil2_14_05_24",
+        "WinlineEpicStandoff2Brazil_12_03_24",
         "WinlineEpicStandoff2Major_10_07_24",
-        "GamesOfFuture_03_03_24",
+        "WinlineEpicStandoff2Major2_25_11_24"
     ]
 
     let players_tournaments = calculatePlayersTop(name, stage, allPlayers, allMatches, teamsTour, tourInfo, allShortMatches, filterTours, allShorts)
@@ -42,7 +50,7 @@ const TopPlayersTourResult = (props) => {
         return (
             <div className={classes.wrapperTopResult}>
                 <div className={classes.wrapperTourInfo}>
-                    <div className={classes.nameTour}>{"ТОП ИГРОКОВ ЗА ВСЕ МАЖОРЫ"}</div>
+                    <div className={classes.nameTour}>{"ТОП ЗА ТУРНИРЫ С УЧАСТИЕМ БРАЗИЛЬЦЕВ 2024"}</div>
                 </div>
                 <div className={classes.topResult}>
                     <div className={classes.wrapperPlayerTitle}>

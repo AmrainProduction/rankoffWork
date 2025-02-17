@@ -7,6 +7,7 @@ const ResultBanner = (props) => {
 
     const id = props.player[0].player_id
     const nickname = props.player[0].nickname
+    const awards = props.allEvents?.reverse()
 
     const playerTeam = useGetPlayerByNickQuery({id, nickname})
 
@@ -44,7 +45,7 @@ const ResultBanner = (props) => {
                         <div className={classes.titleBanner}>
                             <img src="/images/DataInImage/RANKOFF_AWARDS_2024/TOP_PLAYERS_LOGO.svg" alt="/"/>
                         </div>
-                        <div className={classes.positionPlayer}>#{props.position}</div>
+                        {props.position ? <div className={classes.positionPlayer}>#{props.position}</div> : ""}
                     </div>
                     <div className={classes.mainSection}>
                         <div className={classes.statsBlock}>
@@ -250,7 +251,7 @@ const ResultBanner = (props) => {
                                     <div className={classes.leftBottomMetric}>
                                         <div className={classes.nameMetric} style={{
                                             color: "var(--goldDark)",
-                                        }}>Количесвто наград MVP:
+                                        }}>Количество наград MVP:
                                         </div>
                                         <div className={classes.valueMetric}>{props.MVP?.length}</div>
                                     </div>
@@ -324,13 +325,26 @@ const ResultBanner = (props) => {
                             </div>
                         </div>
                         <div className={classes.listEvent}>
-                            {props.allEvents?.reverse().map((e, index) => {
+                            {awards?.map((e, index) => {
                                 return (
                                     <div key={index} className={classes.event} style={{
                                         background: e.position_team === 1 ? "var(--goldOpacity)" : e.position_team === 2 ? "var(--silverOpacity)" : e.position_team === 3 ? "var(--bronzeOpacity)" : ""
                                     }}>
-                                        <img src={`/images/DataInImage/RANKOFF_AWARDS_2024/LogoAndBannerTour/${e.logo_tour}`}
-                                             alt="/"/>
+                                        <img
+                                            src={`/images/DataInImage/RANKOFF_AWARDS_2024/LogoAndBannerTour/${e.logo_tour}`}
+                                            alt="/"/>
+                                        {props.MVP?.map(e2 => e2.name_tour_sort).includes(e.name_tour_sort) ?
+                                            <div className={classes.checkAwardEvent} style={{
+                                                background: "var(--gold)",
+                                                color: "var(--goldDark)",
+                                            }}>MVP</div> : ""
+                                        }
+                                        {props.EVP?.map(e2 => e2.name_tour_sort).includes(e.name_tour_sort) ?
+                                            <div className={classes.checkAwardEvent} style={{
+                                                background: "var(--gray)",
+                                                color: "var(--grayDark)",
+                                            }}>EVP</div> : ""
+                                        }
                                     </div>
                                 )
                             })}
@@ -359,7 +373,7 @@ const ResultBanner = (props) => {
                     <img src={`/images/LogoPlayers/${playerInfo[0].logo_player}`} alt="/"/>
                 </div>
                 <div className={classes.shadowToTop}></div>
-                <img src={`/images/DataInImage/RANKOFF_AWARDS_2024/BG.png`} alt="/"/>
+                <img src={`/images/DataInImage/RANKOFF_AWARDS_2024/BG_brazil.png`} alt="/"/>
             </div>
         )
     }

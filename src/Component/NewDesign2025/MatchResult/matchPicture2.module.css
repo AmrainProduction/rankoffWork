@@ -1,0 +1,600 @@
+@font-face {
+    font-family: "DrukCyrMedium";
+    src: url("../../../Fonts/DrukCyr-Medium.eot");
+    src: url("../../../Fonts/DrukCyr-Medium.eot?#iefix") format("embedded-opentype"),
+    url("../../../Fonts/DrukCyr-Medium.woff") format("woff"),
+    url("../../../Fonts/DrukCyr-Medium.ttf") format("truetype");
+    font-style: normal;
+    font-weight: 500;
+}
+
+@font-face {
+    font-family: "Mazzard M";
+    src: url("../../../Fonts/Mazzard/MazzardM-SemiBold.eot");
+    src: url("../../../Fonts/Mazzard/MazzardM-SemiBold.eot?#iefix") format("embedded-opentype"),
+    url("../../../Fonts/Mazzard/MazzardM-SemiBold.woff") format("woff"),
+    url("../../../Fonts/Mazzard/MazzardM-SemiBold.ttf") format("truetype");
+    font-style: normal;
+    font-weight: 500;
+}
+
+.wrapperMatchResult {
+    --red: #c24f4f;
+    --green: #6cc24f;
+    --yellow: #c2ab4f;
+    --gold: #c2ab4f;
+    --gray: #b6b6b6;
+    --bronze: #c2904f;
+    --redDark: #3f1a1a;
+    --greenDark: #203a17;
+    --yellowDark: #3f381a;
+    --goldDark: #3f381a;
+    --grayDark: #363636;
+    --bronzeDark: #3d2d19;
+    --redOpacity:rgb(194, 79, 79, 0.4);
+    --greenOpacity: rgb(108, 194, 79, 0.4);
+    --redLowOpacity:rgb(194, 79, 79, 0.8);
+    --greenLowOpacity: rgb(108, 194, 79, 0.8);
+    --grayOpacity: rgb(159, 159, 159, 0.13);
+    --grayDarkOpacity: rgb(37, 37, 37, 0.5);
+    --redDarkOpacity: rgb(63, 26, 26, 0.8);
+    --goldOpacity: rgb(192, 160, 92, 0.5);
+    --bronzeOpacity: rgb(190, 140, 99, 0.5);
+    --silverOpacity: rgb(159, 159, 159, 0.5);
+    --dark: #030404;
+    --white: #fff;
+}
+
+.wrapperMatchResult {
+    font-family: "DrukTextWide", sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    height: 100%;
+    width: 100%;
+    z-index: 20;
+    position: relative;
+}
+
+.wrapperMatchResult img {
+    height: auto;
+    width: 100%;
+}
+
+.bgImg {
+    height: auto;
+    width: 100%;
+}
+
+.wrapperMenu {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 100%;
+    height: 160px;
+    background: var(--mainLightBlack);
+    margin-bottom: 10px;
+    padding: 5px;
+}
+
+.wrapperLogo {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 20%;
+    height: 100%;
+}
+
+.wrapperLogo img {
+    height: 70%;
+    width: auto;
+}
+
+.menu {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    height: 100%;
+    width: 100%;
+}
+
+.wrapperListMatches {
+    display: block;
+    width: 100%;
+    height: 100%;
+    margin-right: 2%;
+    margin-left: 2%;
+    padding: 2px;
+}
+
+.titleBox {
+    width: 100%;
+    height: auto;
+    padding: 1% 0;
+    color: white;
+}
+
+.listMatches {
+    display: block;
+    overflow-y: scroll;
+    border-radius: 3px;
+    width: 100%;
+    min-width: 150px;
+    height: 120px;
+    background: var(--componentBlockColor);
+    color: white;
+}
+
+.match {
+    background: var(--componentLightBlockColor);
+    margin-bottom: 2px;
+    padding: 5px;
+    cursor: pointer;
+    transition: all 0.5s;
+}
+
+.match:hover {
+    background: var(--componentBlockColorHover);
+}
+
+.wrapperMain {
+    display: flex;
+    height: 100%;
+    width: 100%;
+    padding: 3.4%;
+    position: absolute;
+}
+
+.main {
+    display: block;
+    height: 100%;
+    width: 100%;
+}
+
+.wrapperButtons {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 20%;
+}
+
+.wrapperButtons button:not(:last-child) {
+    margin-bottom: 3%;
+}
+
+.btnSaveAsImage {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 3px;
+    background: var(--buttonColor);
+    height: 40px;
+    width: 160px;
+    cursor: pointer;
+    color: white;
+}
+
+.btnSaveAsImage:hover {
+    background: var(--buttonColorHover);
+}
+
+.titleAndMapsSection {
+    display: grid;
+    width: 100%;
+    height: 11vw;
+    top: 2.5vw;
+    padding: 0 2.5vw;
+    gap: 1vw;
+    color: white;
+    grid-template-rows: 53% auto;
+    grid-template-columns: auto minmax(auto, 50%);
+    grid-template-areas: 'titleBanner mapsMatch'
+                         'infoMatch mapsMatch';
+    position: absolute;
+}
+
+.playersAndScoreSection {
+    display: grid;
+    width: 100%;
+    height: 16vw;
+    top: 14.5vw;
+    padding: 0 2.5vw;
+    gap: 1vw;
+    grid-template-rows: 100%;
+    grid-template-columns: auto 28% auto;
+    position: absolute;
+}
+
+.statsSection {
+    display: grid;
+    width: 100%;
+    height: 19vw;
+    top: 31.5vw;
+    padding: 0 2.5vw;
+    column-gap: 1vw;
+    color: white;
+    grid-template-rows: 100%;
+    grid-template-columns: calc(50% - 0.5vw) calc(50% - 0.5vw);
+    position: absolute;
+}
+
+.titleBanner {
+    grid-area: titleBanner;
+    display: flex;
+    align-items: center;
+}
+
+.logoRankoff {
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+.logoRankoff img {
+    height: 100%;
+    width: auto;
+}
+
+.textTitleBanner {
+    font-family: 'DrukCyrMedium', sans-serif;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    font-size: 6.9vw;
+    padding-bottom: 0.05vw;
+    margin-left: 1.2vw;
+    color: white;
+}
+
+.infoMatch {
+    font-family: 'Montserrat Bold', sans-serif;
+    grid-area: infoMatch;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+    padding: 0 1vw;
+    font-size: 1.2vw;
+    border-radius: 0.8vw;
+    background: var(--grayOpacity);
+}
+
+.nameTour {
+    display: flex;
+    align-items: center;
+    max-width: 37vw;
+}
+
+.nameTour img {
+    height: 2vw;
+    width: auto;
+}
+
+.nameTour span {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    word-wrap: break-word;
+}
+
+.dateMatch {
+    display: flex;
+    justify-content: flex-end;
+    min-width: 8vw;
+    width: auto;
+}
+
+.mapsMatch {
+    grid-area: mapsMatch;
+    display: grid;
+    align-content: center;
+    padding: 0.5vw;
+    column-gap: 1vw;
+    border-radius: 0.8vw;
+    grid-template-rows: 100%;
+    grid-template-columns: repeat(5, minmax(auto, 9vw));
+    background: var(--grayOpacity);
+}
+
+.map {
+    display: block;
+    overflow: hidden;
+    height: 10vw;
+    border-radius: 0.8vw;
+    background: var(--grayOpacity);
+}
+
+.scoreMap {
+    font-family: 'Montserrat SemiBold', sans-serif;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 20%;
+    width: 100%;
+}
+
+.scoreMap img {
+    height: 60%;
+    width: auto;
+}
+
+.totalScoreMap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: auto;
+    font-size: 1.2vw;
+}
+
+.imgMap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50%;
+    width: 100%;
+    position: relative;
+}
+
+.imgMap img {
+    height: 100%;
+    opacity: 0.8;
+    width: auto;
+}
+
+.mapColor {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+}
+
+.mapTeamPick {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    opacity: 0.1;
+}
+
+.mapTeamPick img {
+    height: 200%;
+    width: auto;
+}
+
+.mapName {
+    font-family: 'Montserrat Bold', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+    width: 100%;
+}
+
+.teamName {
+    font-family: 'Montserrat Regular', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    font-size: 1vw;
+}
+
+.teamName span {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    word-wrap: break-word;
+}
+
+.pickMap {
+    font-family: 'DrukTextWide', sans-serif;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 30%;
+    width: 100%;
+    padding: 0 0.5vw;
+    font-size: 0.8vw;
+    position: relative;
+    overflow: hidden;
+}
+
+.wrapperScoreForMap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    top: 15%;
+    z-index: 10;
+    position: absolute;
+}
+
+.wrapperScoreForMap img {
+    height: 60%;
+    width: auto;
+}
+
+.playersTeam {
+    display: block;
+    border-radius: 1vw;
+    overflow: hidden;
+    position: relative;
+}
+
+.playersTeamLogo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    top: -10vw;
+    z-index: 1;
+    opacity: 0.5;
+    filter: blur(0.1vw);
+    position: absolute;
+}
+
+.playersTeamLogo img {
+    height: 200%;
+}
+
+.players {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    z-index: 2;
+    position: absolute;
+}
+
+.playersTeam img {
+    height: 90%;
+    width: auto;
+}
+
+.player1 {
+    left: 0;
+    z-index: 2;
+    position: absolute;
+}
+
+.player2 {
+    left: 5.5vw;
+    z-index: 3;
+    position: absolute;
+}
+
+.player3 {
+    z-index: 4;
+    position: absolute;
+}
+
+.player4 {
+    right: 5.5vw;
+    z-index: 3;
+    position: absolute;
+}
+
+.player5 {
+    right: 0;
+    z-index: 2;
+    position: absolute;
+}
+
+.scoreMatch {
+    display: grid;
+    justify-content: center;
+    align-content: center;
+    color: var(--goldDark);
+    background: var(--gold);
+    column-gap: 1vw;
+    overflow: hidden;
+    grid-template-rows: 100%;
+    grid-template-columns: auto auto auto;
+    border-radius: 1vw;
+}
+
+.totalScore {
+    font-family: 'DrukCyrMedium', sans-serif;
+    display: flex;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    font-size: 8vw;
+}
+
+.scoreLogoTeam {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.scoreLogoTeam img {
+    height: auto;
+    width: 100%;
+}
+
+.teamSection {
+    display: flex;
+    flex-direction: column;
+}
+
+.titleRowTable {
+    font-family: "Montserrat Bold", sans-serif;
+    display: grid;
+    align-content: center;
+    padding: 0 0.5vw;
+    width: 100%;
+    height: 2vw;
+    border-radius: 0.5vw;
+    column-gap: 0.2vw;
+    grid-template-rows: 100%;
+    grid-template-columns: auto repeat(9, 7.5%);
+    background: var(--gold);
+    color: var(--goldDark);
+    font-size: 0.8vw;
+    margin-bottom: 0.5vw;
+}
+
+.rowTable {
+    font-family: "Montserrat Bold", sans-serif;
+    display: grid;
+    align-content: center;
+    width: 100%;
+    height: 3.8vw;
+    border-radius: 0.5vw;
+    overflow: hidden;
+    column-gap: 0.2vw;
+    grid-template-rows: 100%;
+    grid-template-columns: auto repeat(9, 7.5%);
+    background: var(--grayOpacity);
+    font-size: 1.2vw;
+    margin-bottom: 0.5vw;
+}
+
+.startCell {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+.cell {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+.dataFlagPlayer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    max-width: 20%;
+}
+
+.dataFlagPlayer img{
+    width: 60%;
+    height: auto;
+}
+
+
+
+
+
+
+
+
+

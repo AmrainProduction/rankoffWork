@@ -14,9 +14,6 @@ const Layout = () => {
                 <main className='main'>
                     <Outlet/>
                 </main>
-                <footer className='footer'>
-                    <Footer/>
-                </footer>
             </div>
         </>
 

@@ -22,18 +22,18 @@ const TopPlayersTourResultLong = (props) => {
 
 
     let filterTours = [
-        "WinlineEpicStandoff2Season14_11_12_24",
-        "WinlineEpicStandoff2Season13_08_10_24",
-        "WinlineEpicStandoff2Season12_04_09_24",
-        "WinlineEpicStandoff2Season11_01_08_24",
-        "WinlineEpicStandoff2Season10_30_05_24",
-        "WinlineEpicStandoff2Season9_25_04_24",
-        "WinlineEpicStandoff2Season8_28_03_24",
-        "WinlineEpicStandoff2Season7_11_02_24",
-        "ScamOffBeeline_23_08_24",
-        "WinlineEpicStandoff2Major2_25_11_24",
-        "WinlineEpicStandoff2Major_10_07_24",
-        "GamesOfFuture_03_03_24",
+        // "WinlineEpicStandoff2Season14_11_12_24",
+        // "WinlineEpicStandoff2Season13_08_10_24",
+        // "WinlineEpicStandoff2Season12_04_09_24",
+        // "WinlineEpicStandoff2Season11_01_08_24",
+        // "WinlineEpicStandoff2Season10_30_05_24",
+        // "WinlineEpicStandoff2Season9_25_04_24",
+        // "WinlineEpicStandoff2Season8_28_03_24",
+        // "WinlineEpicStandoff2Season7_11_02_24",
+        // "ScamOffBeeline_23_08_24",
+        // "WinlineEpicStandoff2Major2_25_11_24",
+        // "WinlineEpicStandoff2Major_10_07_24",
+        // "GamesOfFuture_03_03_24",
     ]
 
     let players_tournaments = calculatePlayersTop(name, stage, allPlayers, allMatches, teamsTour, tourInfo, allShortMatches, filterTours, allShorts)
