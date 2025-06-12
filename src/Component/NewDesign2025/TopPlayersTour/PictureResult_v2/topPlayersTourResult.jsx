@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import classes from "../topPlayersTour.module.css";
 import {
     useGetMatchesQuery,
@@ -11,7 +11,8 @@ import {calculatePlayersTop} from "../../../../Function/calculatePlayersTop";
 const TopPlayersTourResult = (props) => {
 
     const name = props.name
-    const stage = (props.stage === "PLAYOFF" ? "PLAYOFF" : props.stage === "GROUP" ? "GROUP STAGE" : "")
+    const stage = (props.stage === "PLAYOFF" ? "PLAYOFF" : props.stage === "GROUP" ? "GROUP STAGE" : props.stage === "FINAL" ? "FINAL" : "")
+    const [matches, setMatches] = useState([])
 
     const allPlayers = useGetPlayersQuery()
     const allMatches = useGetMatchesQuery()
@@ -19,7 +20,18 @@ const TopPlayersTourResult = (props) => {
     const teamsTour = useGetTeamsTournamentsByNameQuery({name})
     const tourInfo = useGetTournamentByNameQuery({name})
 
-    let players_tournaments = calculatePlayersTop(name, props.stage, allPlayers, allMatches, teamsTour, tourInfo, allShortMatches)
+    let filterTours = [
+        // "WinlineEPICStandoff2CosmoMajorClosedQuals_06_05_25",
+        "WinlineEpicStandoff2Major2_25_11_24",
+        // "WinlineEpicStandoff2Major2ClosedQuals_05_11_24",
+        "WinlineEpicStandoff2Major_10_07_24",
+        // "WinlineEpicStandoff2MajorClosedQuals_21_06_24",
+        "WinlineEpicStandoff2Major_06_12_23",
+        "Major_06_06_23",
+        "Major_13_09_22",
+    ]
+
+    let players_tournaments = calculatePlayersTop(name, props.stage, allPlayers, allMatches, teamsTour, tourInfo, allShortMatches, filterTours)
 
     if (players_tournaments.length > 0) {
         return (
@@ -31,11 +43,13 @@ const TopPlayersTourResult = (props) => {
                             <div className={classes.titleBanner}>ТОП 20 ИГРОКОВ</div>
                             </div>
                         <div className={classes.nameTour}>
+                            {/*ЗА ВСЕ МАЖОРЫ С 2022 ПО 2024*/}
                             {players_tournaments[0].name_tour.toUpperCase()} {stage ? "[" + stage.toUpperCase() + "]" : ""}
                         </div>
                     </div>
                     <div className={classes.logoTour}>
-                        <img src={`/images/LogoAndBannerTour/${players_tournaments[0].logo_tour}`} alt="/"/>
+                        {filterTours.length > 0 ? "" :
+                            <img src={`/images/LogoAndBannerTour/${players_tournaments[0].logo_tour}`} alt="/"/>}
                     </div>
                 </div>
                 <div className={classes.topResult}>

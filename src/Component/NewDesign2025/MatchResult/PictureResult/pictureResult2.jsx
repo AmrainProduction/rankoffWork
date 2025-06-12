@@ -142,7 +142,7 @@ const PictureResult2 = (props) => {
 
             dateMatch = el.db_date_match
             NameTour = el.name_tour
-            logoTour = el.name_tour_for_sort + ".jpg"
+            logoTour = el.name_tour_for_sort + ".png"
 
             // команды матча
             matchTeamsInfo[0] = {
@@ -500,7 +500,7 @@ const PictureResult2 = (props) => {
                     </div>
                     <div className={classes.infoMatch}>
                         <div className={classes.nameTour}>
-                            <img src={`/images/LogoAndBannerTour/${players[0].logoTour.slice(0, -4)}.png`} alt="/"/>
+                            <img src={`/images/LogoAndBannerTour/${players[0].logoTour}`} alt="/"/>
                             <span>{players[0].NameTour}</span>
                         </div>
                         <div className={classes.dateMatch}>{players[0].dateMatch}</div>

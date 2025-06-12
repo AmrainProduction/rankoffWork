@@ -1,0 +1,362 @@
+@font-face {
+    font-family: "DrukCyrMedium";
+    src: url("../../../Fonts/DrukCyr-Medium.eot");
+    src: url("../../../Fonts/DrukCyr-Medium.eot?#iefix") format("embedded-opentype"),
+    url("../../../Fonts/DrukCyr-Medium.woff") format("woff"),
+    url("../../../Fonts/DrukCyr-Medium.ttf") format("truetype");
+    font-style: normal;
+    font-weight: 500;
+}
+
+@font-face {
+    font-family: "Mazzard M";
+    src: url("../../../Fonts/Mazzard/MazzardM-SemiBold.eot");
+    src: url("../../../Fonts/Mazzard/MazzardM-SemiBold.eot?#iefix") format("embedded-opentype"),
+    url("../../../Fonts/Mazzard/MazzardM-SemiBold.woff") format("woff"),
+    url("../../../Fonts/Mazzard/MazzardM-SemiBold.ttf") format("truetype");
+    font-style: normal;
+    font-weight: 500;
+}
+
+@font-face {
+    font-family: "DrukCyr Bold";
+    src: url("../../../Fonts/DrukCyr-Bold.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "DrukTextWide";
+    src: url("../../../Fonts/DRUKTEXTWIDECYR-BOLD.otf") format("truetype");
+}
+
+@font-face {
+    font-family: "Montserrat SemiBold";
+    src: url("../../../Fonts/Montserrat/MONTSERRAT-SEMIBOLD.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "Montserrat Bold";
+    src: url("../../../Fonts/Montserrat/MONTSERRAT-BOLD.TTF") format("truetype");
+}
+
+
+.wrapperTopResult {
+    --red: #c24f4f;
+    --green: #6cc24f;
+    --yellow: #c2ab4f;
+    --gold: #c0a05c;
+    --gray: #b6b6b6;
+    --bronze: #c2904f;
+    --redDark: #3f1a1a;
+    --greenDark: #203a17;
+    --yellowDark: #3f381a;
+    --goldDark: #3f381a;
+    --grayDark: #363636;
+    --bronzeDark: #3d2d19;
+    --grayOpacity: rgb(159, 159, 159, 0.1);
+    --grayDarkOpacity: rgb(37, 37, 37, 0.5);
+    --redDarkOpacity: rgb(63, 26, 26, 0.8);
+    --goldOpacity: rgb(192, 160, 92, 0.5);
+    --bronzeOpacity: rgb(190, 140, 99, 0.5);
+    --silverOpacity: rgb(159, 159, 159, 0.5);
+    --dark: #030404;
+    --white: #fff;
+}
+
+.wrapperTopResult {
+    font-family: "DrukCyrMedium", sans-serif;
+    display: block;
+    justify-content: center;
+    align-items: flex-start;
+    height: 100%;
+    width: 100%;
+    z-index: 20;
+    position: relative;
+}
+
+.wrapperTopResult img {
+    height: auto;
+    width: 100%;
+}
+
+.wrapperTourInfo {
+    display: flex;
+    align-items: flex-end;
+    width: 100%;
+    position: absolute;
+}
+
+.nameTour {
+    font-family: "Mazzard M", sans-serif;
+    width: 100%;
+    height: 20%;
+    color: white;
+    font-size: clamp(9px, 1.5vw, 36px);
+}
+
+.topResult {
+    display: block;
+    height: 100%;
+    width: 100%;
+    top: 2.5rem;
+    position: absolute;
+}
+
+.wrapperPlayerTitle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 2vw;
+    margin-bottom: 0.5vw;
+}
+
+.playerTitle {
+    display: grid;
+    align-content: center;
+    justify-content: space-between;
+    grid-template-columns: 6% 9% 15% 9% 9% 9% 10% 9% 9% 9%;
+    height: 100%;
+    width: 100%;
+    border-radius: 0.5vw;
+    background: var(--gold);
+}
+
+.playerTitle div {
+    display: flex;
+    width: 100%;
+    color: var(--goldDark);
+    justify-content: center;
+    align-items: center;
+    font-family: "Montserrat Bold", sans-serif;
+    font-size: 1.1vw;
+}
+
+.wrapperPlayer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 0.5vw;
+    position: relative;
+}
+
+.wrapperPlayer div:not(:last-child){
+    margin-right: 0.4vw;
+}
+
+.player {
+    font-family: 'DrukTextWide', sans-serif;
+    display: grid;
+    align-content: center;
+    justify-content: space-between;
+    height: 100%;
+    width: 100%;
+    border-radius: 0.6vw;
+    grid-template-columns: 6% 9% 15% 9% 9% 9% 10% 9% 9% 9%;
+    background: var(--grayOpacity);
+}
+
+.player div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 3.7vw;
+    color: var(--textColor);
+    font-size: clamp(0.6rem, 1vw, 2rem);
+}
+
+.player .logoTeam {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.player .logoTeam img {
+    height: 3rem;
+    width: auto;
+}
+
+.diffPositionPlayer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 2vw;
+    right: -1.5vw;
+    top: -0.2vw;
+    padding: 0 0.5vw;
+    font-size: clamp(0.6rem, 1.5vw, 2rem);
+    color: var(--textColor);
+    border-radius: 0.5vw;
+    position: absolute;
+}
+
+/*.dataNumberPlayerTitle {*/
+/*    display: flex;*/
+/*    justify-content: center;*/
+/*    align-items: center;*/
+/*    height: 100%;*/
+/*    width: 4%;*/
+/*    font-size: 1.1vw;*/
+/*    color: white;*/
+/*}*/
+
+/*.logoTeamTeam {*/
+/*    display: flex;*/
+/*    justify-content: center;*/
+/*    align-items: center;*/
+/*    height: 100%;*/
+/*    width: 5%;*/
+/*}*/
+
+/*.dataNicknamePlayerNickname {*/
+/*    display: flex;*/
+/*    justify-content: center;*/
+/*    align-items: center;*/
+/*    height: 100%;*/
+/*    width: 12%;*/
+/*    font-size: 1.1vw;*/
+/*    color: white;*/
+/*}*/
+
+/*.dataFlagPlayerCountry {*/
+/*    display: flex;*/
+/*    justify-content: center;*/
+/*    align-items: center;*/
+/*    height: 100%;*/
+/*    width: 3%;*/
+/*}*/
+
+/*.dataPlayerKd {*/
+/*    display: flex;*/
+/*    justify-content: center;*/
+/*    align-items: center;*/
+/*    height: 100%;*/
+/*    width: 7%;*/
+/*    font-size: 1.2vw;*/
+/*}*/
+
+/*.dataPlayerKpr {*/
+/*    display: flex;*/
+/*    justify-content: center;*/
+/*    align-items: center;*/
+/*    height: 100%;*/
+/*    width: 7%;*/
+/*    font-size: 1.2vw;*/
+/*}*/
+
+/*.dataPlayerDpr {*/
+/*    display: flex;*/
+/*    justify-content: center;*/
+/*    align-items: center;*/
+/*    height: 100%;*/
+/*    width: 7%;*/
+/*    font-size: 1.2vw;*/
+/*}*/
+
+/*!*.dataPlayerK {*!*/
+/*!*    display: flex;*!*/
+/*!*    justify-content: center;*!*/
+/*!*    align-items: center;*!*/
+/*!*    height: 100%;*!*/
+/*!*    width: 6%;*!*/
+/*!*    color: white;*!*/
+/*!*    font-size: 1.2vw;*!*/
+/*!*}*!*/
+
+/*!*.dataPlayerA {*!*/
+/*!*    display: flex;*!*/
+/*!*    justify-content: center;*!*/
+/*!*    align-items: center;*!*/
+/*!*    height: 100%;*!*/
+/*!*    width: 6%;*!*/
+/*!*    color: white;*!*/
+/*!*    font-size: 1.2vw;*!*/
+/*!*}*!*/
+
+/*!*.dataPlayerD {*!*/
+/*!*    display: flex;*!*/
+/*!*    justify-content: center;*!*/
+/*!*    align-items: center;*!*/
+/*!*    height: 100%;*!*/
+/*!*    width: 6%;*!*/
+/*!*    color: white;*!*/
+/*!*    font-size: 1.2vw;*!*/
+/*!*}*!*/
+
+/*.dataPlayerDiff {*/
+/*    display: flex;*/
+/*    justify-content: center;*/
+/*    align-items: center;*/
+/*    height: 100%;*/
+/*    width: 6%;*/
+/*    font-size: 1.2vw;*/
+/*}*/
+
+/*.dataPlayerImpact {*/
+/*    display: flex;*/
+/*    justify-content: center;*/
+/*    align-items: center;*/
+/*    height: 100%;*/
+/*    width: 7%;*/
+/*    font-size: 1.2vw;*/
+/*}*/
+
+/*.dataPlayerRating {*/
+/*    display: flex;*/
+/*    justify-content: center;*/
+/*    align-items: center;*/
+/*    height: 100%;*/
+/*    width: 7%;*/
+/*    font-size: 1.2vw;*/
+/*}*/
+
+/*!*.dataPlayerW_rounds {*!*/
+/*!*    display: flex;*!*/
+/*!*    justify-content: center;*!*/
+/*!*    align-items: center;*!*/
+/*!*    height: 100%;*!*/
+/*!*    width: 7%;*!*/
+/*!*    font-size: 1.2vw;*!*/
+/*!*    color: white;*!*/
+/*!*}*!*/
+
+/*!*.dataPlayerL_rounds {*!*/
+/*!*    display: flex;*!*/
+/*!*    justify-content: center;*!*/
+/*!*    align-items: center;*!*/
+/*!*    height: 100%;*!*/
+/*!*    width: 7%;*!*/
+/*!*    font-size: 1.2vw;*!*/
+/*!*    color: white;*!*/
+/*!*}*!*/
+
+/*.dataPlayerMaps {*/
+/*    display: flex;*/
+/*    justify-content: center;*/
+/*    align-items: center;*/
+/*    height: 100%;*/
+/*    width: 6%;*/
+/*    font-size: 1.2vw;*/
+/*    color: white;*/
+/*}*/
+
+/*.logoTeam {*/
+/*    display: flex;*/
+/*    justify-content: center;*/
+/*    align-items: center;*/
+/*    width: 5%;*/
+/*    height: 100%;*/
+/*}*/
+
+/*.logoTeam img {*/
+/*    height: 80%;*/
+/*    width: auto;*/
+/*}*/
+
+
+
+
+
+
+

@@ -4,6 +4,7 @@ import classes from "../emojiEvents.module.css";
 const EmojiEventsResult = (props) => {
 
     const player = props.player
+    console.log(player)
 
     if (player?.length > 0) {
         return (

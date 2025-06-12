@@ -13,6 +13,9 @@ import RankingTeamsWithCurrentRosters from "./AllFunctions/rankingTeamsWithCurre
 import AllPlayers from "./AllFunctions/allPlayers";
 import AllTeams from "./AllFunctions/allTeams";
 import GiveAwardsPlayersAndTeams from "./AllFunctions/giveAwardsPlayersAndTeams";
+import Kpr from "../Formulas/kpr";
+import Dpr from "../Formulas/dpr";
+import Rating from "../Formulas/rating";
 
 const Functions = () => {
 

@@ -58,10 +58,18 @@ export function calculatePlayersTop(name, stageTour, allPlayers, allMatches, tea
                 })
             })
         }
-
         if (stage === "PLAYOFF") {
             sortByStageMatches = allShortMatches?.data?.filter(e => e.name_stage.toUpperCase().includes(stage) || e.name_stage.toUpperCase().includes("FINAL"))
-
+            sortByStageMatches?.map(e => {
+                sortMatches?.map((e2, index) => {
+                    if (e.name_match_for_sort === e2.name_match_for_sort) {
+                        necessaryMatches[index] = e2
+                    }
+                })
+            })
+        }
+        if (stage === "FINAL") {
+            sortByStageMatches = allShortMatches?.data?.filter(e => e.name_stage.toUpperCase().includes(stage))
             sortByStageMatches?.map(e => {
                 sortMatches?.map((e2, index) => {
                     if (e.name_match_for_sort === e2.name_match_for_sort) {

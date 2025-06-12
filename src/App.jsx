@@ -21,18 +21,18 @@ import TopPlayersBanner from "./Component/RankoffAwards2024/TopPlayersBanner/top
 import TopPlayersYear from "./Component/RankoffAwards2024/TopPlayersByTours/topPlayersYear";
 import TopTeamsBanner from "./Component/RankoffAwards2024/TopTeamsBanner/topTeamsBanner";
 import TopPlayersYearAllTours from "./Component/RankoffAwards2024/TopPlayersAllEventsBanner/topPlayersBanner";
-import TopPlayersTour from "./Component/NewDesign2025/TopPlayersTour/topPlayersTour";
+import TopPlayersTour from "./Component/NewDesign2025/TopPlayersTourV2/topPlayersTour";
 import RankingTeams from "./Component/NewDesign2025/RankingTeams/rankingTeams";
 import PlayersTourMVP from "./Component/NewDesign2025/PlayersTourMVP/playersTourMVP";
 import StatsPlayerTour from "./Component/NewDesign2025/StatsPlayerTour/statsPlayerTour";
 import RankoffPredicts from "./Component/NewDesign2025/RankoffPredicts/rankoffPredicts";
 import MatchesDay from "./Component/NewDesign2025/MatchesDay/matchesDay";
 import MatchPicture2 from "./Component/NewDesign2025/MatchResult/MatchPicture2";
-import { countries } from "country-flags-svg";
 import TopPlayersByToursLong from "./Component/NewDesign2025/TopPlayersByToursLong/topPlayersByToursLong";
 import EmojiPlayers from "./Component/EmojiPlayers/emojiPlayers";
 import EmojiEvents from "./Component/EmojiEvents/emojiEvents";
 import ComparePlayers from "./Component/NewDesign2025/ComparePlayers/comparePlayers";
+import UpdateRoster from "./Component/NewDesign2025/UpdateRoster/updateRoster";
 
 const router = createBrowserRouter(createRoutesFromElements(
     <Route path='/' element={<Layout/>} errorElement={<ErrorPage/>}>
@@ -46,7 +46,9 @@ const router = createBrowserRouter(createRoutesFromElements(
         <Route path='i/PREDICTORS' element={<RankoffPredicts/>}/>
         <Route path='i/MATCHESDAY' element={<MatchesDay/>}/>
         <Route path='i/COMPARE' element={<ComparePlayers/>}/>
+        <Route path='i/COMPARE_TOPS' element={<CompareTops/>}/> // сравнить два топа на одном баннере
         <Route path='i/ADDMATCHES' element={<AddMatches/>}/>
+        <Route path='i/UPDATE_ROSTER' element={<UpdateRoster/>}/>
         <Route path='i/LONG_TOP' element={<TopPlayersByToursLong/>}/>
         <Route path='RA2024/topYearPlayers' element={<TopPlayersBanner/>}/>
         <Route path='RA2024/topYearTeams' element={<TopTeamsBanner/>}/>
@@ -60,9 +62,7 @@ const router = createBrowserRouter(createRoutesFromElements(
         <Route path='i/EMOJI_PLAYERS' element={<EmojiPlayers/>}/>
         <Route path='i/EMOJI_EVENTS' element={<EmojiEvents/>}/>
         <Route path='i/TOP_YEAR' element={<TopPlayersYear/>}/> // топ игроков за несколько турниров сразу, надо в коде
-        <Route path='i/TOP' element={<TopPlayersByTours/>}/> // топ игроков за несколько турниров сразу, надо в коде
-        менять за какие
-        <Route path='i/COMPARE_TOPS' element={<CompareTops/>}/> // сравнить два топа на одном баннере
+        <Route path='i/TOP' element={<TopPlayersByTours/>}/> // топ игроков за несколько турниров сразу, надо в коде менять за какие
     </Route>
 ))
 

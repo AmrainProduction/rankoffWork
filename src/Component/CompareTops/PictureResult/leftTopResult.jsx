@@ -1,5 +1,5 @@
-import React from 'react';
-import classes from "../compareTops.module.css";
+import React, {useEffect} from 'react';
+import classes from "./sideTop.module.css";
 import {
     useGetMatchesByNameTourQuery,
     useGetMatchesQuery,
@@ -7,435 +7,40 @@ import {
     useGetTeamsTournamentsByNameQuery, useGetTournamentByNameQuery
 } from "../../../store/api/apiSlice";
 import CountryFlagPlayer from "../../../Function/countryFlagPlayer";
-import CurrentTeamPlayer from "../../../Function/currentTeamPlayer";
-import normalizeRating from "../../Functions/AllFunctions/normalizeRating";
-import normalizeImpact from "../../Functions/AllFunctions/normalizeImpact";
-import normalizeKD from "../../Functions/AllFunctions/normalizeKD";
+import {calculatePlayersTop} from "../../../Function/calculatePlayersTop";
+import {calculatePlayersTopV2} from "../../../Function/calculatePlayersTopV2";
 
 const LeftTopResult = (props) => {
 
-    let name = "WinlineEpicStandoff2Season9_25_04_24"
-    const stage = (props.stage === "playoff" ? "PLAYOFF" : props.stage === "group" ? "GROUP STAGE" : "")
+    const name = props.name
 
     const allPlayers = useGetPlayersQuery()
     const allMatches = useGetMatchesQuery()
-    let allShortMatches = useGetShortMatchQuery()
-    let teamsTour = useGetTeamsTournamentsByNameQuery({name})
-    let tourInfo = useGetTournamentByNameQuery({name})
-
-    let players_tournaments = []
-    let sortMatches = []
-    let sortByStageMatches = []
-    let nececssaryMatches = []
-
-    let name_tour_sort
-    let name_tour
-    let date_tour
-    let end_date_tour
-    let logo_tour
-    let logo_player
-    let player_id
-    let nameP
-    let nickname
-    let surname
-    let country_flag
-    let kd_p = 0
-    let kpr_p = 0
-    let dpr_p = 0
-    let impact_p = 0
-    let rating = 0
-    let k = 0
-    let a = 0
-    let d = 0
-    let w_rounds
-    let l_rounds
-    let maps
-    let rm
-    let team
-    let logo_team
-    let team_id
-    let position_team
-
-    let count_1_win = 0
-    let count_1_lose = 0
-    let count_2_win = 0
-    let count_2_lose = 0
-    let rounds_win = 0
-    let rounds_lose = 0
-    let rounds = 0
-    let maps_all = 0
-    let maps_win = 0
-    let maps_lose = 0
-
-    let nececssaryIDMatches = []
-
-    allShortMatches?.data?.filter(e => e.name_stage.toLowerCase() === "playoff" && !e.name_tour.toLowerCase().includes("qualifications") && e.date_match.slice(0, 4) === "2023").forEach(e1 => {
-        nececssaryIDMatches.push(e1.name_match_for_sort)
-    })
-
-    allMatches?.data?.filter(e => nececssaryIDMatches.includes(e.name_match_for_sort) && !e.name_tour_for_sort.toLowerCase().includes('brazil')).forEach(e2 => {
-        nececssaryMatches.push(e2)
-    })
-
-    // nececssaryMatches = allMatches?.data?.filter(e =>
-    //     e.name_tour_for_sort === "GamesOfFuture_03_03_24" ||
-    //     e.name_tour_for_sort === "GamesOfFuture_27_05_23" ||
-    //     e.name_tour_for_sort === "WinlineEpicStandoff2Major2_25_11_24" ||
-    //     e.name_tour_for_sort === "WinlineEpicStandoff2Major_10_07_24" ||
-    //     e.name_tour_for_sort === "WinlineEpicStandoff2Major_06_12_23" ||
-    //     e.name_tour_for_sort === "Major_06_06_23" ||
-    //     e.name_tour_for_sort === "Major_13_09_22"
-    // )
-
-
-    allPlayers?.data?.map((player, index) => {
-        player_id = player.player_id
-        nameP = player.name
-        nickname = player.nickname
-        surname = player.surname
-        country_flag = player.country_flag
-
-        teamsTour?.data?.map(e => {
-            if (player.team === e.name_team && e.name_tour_sort === name) {
-                position_team = e.position_team
-            }
-        })
-
-        tourInfo?.data?.map(e => {
-            if (e.name_tour_sort === name) {
-                date_tour = e.date_tour
-                end_date_tour = e.date_end
-                logo_tour = e.logo_tour
-            }
-        })
-
-        nececssaryMatches?.map((match, indexMatch) => {
-
-            //----------сбор общей информации о трунире------------------------------
-
-            name_tour_sort = match.name_tour_for_sort
-            name_tour = match.name_tour
-
-            //----------сбор статистики игрока из первой команды------------------------------
-
-            if ((match.t1p1 === nickname && match.t1p1_id === player_id) || (match.t1p2 === nickname && match.t1p2_id === player_id) || (match.t1p3 === nickname && match.t1p3_id === player_id) || (match.t1p4 === nickname && match.t1p4_id === player_id) || (match.t1p5 === nickname && match.t1p5_id === player_id)) {
-                team_id = match.team1_id
-                team = match.team1
-                logo_team = match.team1_logo
-
-                //подсчет поражений и побед игрока
-
-                if (match.total_r_team1 > match.total_r_team2) {
-                    count_1_win++
-                }
-                if (match.total_r_team1 < match.total_r_team2) {
-                    count_1_lose++
-                }
-
-                //подсчет победных и проигранных раундов игрока
-
-                rounds += (match.total_r_team1 + match.total_r_team2)
-                rounds_win += match.total_r_team1
-                rounds_lose += match.total_r_team2
-
-            }
-
-
-            if ((match.t1p1 === nickname && match.t1p1_id === player_id)) {
-                logo_player = match.t1p1_logo
-                rating += normalizeRating(match.t1p1_rating)
-                impact_p += normalizeImpact(match.t1p1_impact)
-                kd_p += normalizeKD(match.t1p1_kd)
-                kpr_p += (match.t1p1_k / (match.total_r_team1 + match.total_r_team2))
-                dpr_p += (match.t1p1_d / (match.total_r_team1 + match.total_r_team2))
-                k += match.t1p1_k
-                a += match.t1p1_a
-                d += match.t1p1_d
-                // team = allPlayers?.data?.filter(e => e.player_id === match.t1p1_id)[0].team
-                // logo_team = allPlayers?.data?.filter(e => e.player_id === match.t1p1_id)[0].back_logo_team
-            }
-
-            if ((match.t1p2 === nickname && match.t1p2_id === player_id)) {
-                logo_player = match.t1p2_logo
-                rating += normalizeRating(match.t1p2_rating)
-                impact_p += normalizeImpact(match.t1p2_impact)
-                kd_p += normalizeKD(match.t1p2_kd)
-                kpr_p += (match.t1p2_k / (match.total_r_team1 + match.total_r_team2))
-                dpr_p += (match.t1p2_d / (match.total_r_team1 + match.total_r_team2))
-                k += match.t1p2_k
-                a += match.t1p2_a
-                d += match.t1p2_d
-                // team = allPlayers?.data?.filter(e => e.player_id === match.t1p2_id)[0].team
-                // logo_team = allPlayers?.data?.filter(e => e.player_id === match.t1p2_id)[0].back_logo_team
-            }
-
-            if ((match.t1p3 === nickname && match.t1p3_id === player_id)) {
-
-                logo_player = match.t1p3_logo
-                rating += normalizeRating(match.t1p3_rating)
-                impact_p += normalizeImpact(match.t1p3_impact)
-                kd_p += normalizeKD(match.t1p3_kd)
-                kpr_p += (match.t1p3_k / (match.total_r_team1 + match.total_r_team2))
-                dpr_p += (match.t1p3_d / (match.total_r_team1 + match.total_r_team2))
-                k += match.t1p3_k
-                a += match.t1p3_a
-                d += match.t1p3_d
-                // team = allPlayers?.data?.filter(e => e.player_id === match.t1p3_id)[0].team
-                // logo_team = allPlayers?.data?.filter(e => e.player_id === match.t1p3_id)[0].back_logo_team
-            }
-
-            if ((match.t1p4 === nickname && match.t1p4_id === player_id)) {
-                logo_player = match.t1p4_logo
-                rating += normalizeRating(match.t1p4_rating)
-                impact_p += normalizeImpact(match.t1p4_impact)
-                kd_p += normalizeKD(match.t1p4_kd)
-                kpr_p += (match.t1p4_k / (match.total_r_team1 + match.total_r_team2))
-                dpr_p += (match.t1p4_d / (match.total_r_team1 + match.total_r_team2))
-                k += match.t1p4_k
-                a += match.t1p4_a
-                d += match.t1p4_d
-                // team = allPlayers?.data?.filter(e => e.player_id === match.t1p4_id)[0].team
-                // logo_team = allPlayers?.data?.filter(e => e.player_id === match.t1p4_id)[0].back_logo_team
-            }
-
-            if ((match.t1p5 === nickname && match.t1p5_id === player_id)) {
-                logo_player = match.t1p5_logo
-                rating += normalizeRating(match.t1p5_rating)
-                impact_p += normalizeImpact(match.t1p5_impact)
-                kd_p += normalizeKD(match.t1p5_kd)
-                kpr_p += (match.t1p5_k / (match.total_r_team1 + match.total_r_team2))
-                dpr_p += (match.t1p5_d / (match.total_r_team1 + match.total_r_team2))
-                k += match.t1p5_k
-                a += match.t1p5_a
-                d += match.t1p5_d
-                // team = allPlayers?.data?.filter(e => e.player_id === match.t1p5_id)[0].team
-                // logo_team = allPlayers?.data?.filter(e => e.player_id === match.t1p5_id)[0].back_logo_team
-            }
-
-            //----------сбор статистики игрока из второй команды------------------------------
-
-            if ((match.t2p1 === nickname && match.t2p1_id === player_id) || (match.t2p2 === nickname && match.t2p2_id === player_id) || (match.t2p3 === nickname && match.t2p3_id === player_id) || (match.t2p4 === nickname && match.t2p4_id === player_id) || (match.t2p5 === nickname && match.t2p5_id === player_id)) {
-
-                team_id = match.team2_id
-                team = match.team2
-                logo_team = match.team2_logo
-
-                //подсчет поражений и побед игрока
-
-                if (match.total_r_team1 < match.total_r_team2) {
-                    count_2_win++
-                }
-                if (match.total_r_team1 > match.total_r_team2) {
-                    count_2_lose++
-                }
-
-                //подсчет победных и проигранных раундов игрока
-
-                rounds += (match.total_r_team1 + match.total_r_team2)
-                rounds_win += match.total_r_team2
-                rounds_lose += match.total_r_team1
-            }
-
-            if ((match.t2p1 === nickname && match.t2p1_id === player_id)) {
-                logo_player = match.t2p1_logo
-                rating += normalizeRating(match.t2p1_rating)
-                impact_p += normalizeImpact(match.t2p1_impact)
-                kd_p += normalizeKD(match.t2p1_kd)
-                kpr_p += (match.t2p1_k / (match.total_r_team1 + match.total_r_team2))
-                dpr_p += (match.t2p1_d / (match.total_r_team1 + match.total_r_team2))
-                k += match.t2p1_k
-                a += match.t2p1_a
-                d += match.t2p1_d
-                // team = allPlayers?.data?.filter(e => e.player_id === match.t2p1_id)[0].team
-                // logo_team = allPlayers?.data?.filter(e => e.player_id === match.t2p1_id)[0].back_logo_team
-            }
-
-            if ((match.t2p2 === nickname && match.t2p2_id === player_id)) {
-                logo_player = match.t2p2_logo
-                rating += normalizeRating(match.t2p2_rating)
-                impact_p += normalizeImpact(match.t2p2_impact)
-                kd_p += normalizeKD(match.t2p2_kd)
-                kpr_p += (match.t2p2_k / (match.total_r_team1 + match.total_r_team2))
-                dpr_p += (match.t2p2_d / (match.total_r_team1 + match.total_r_team2))
-                k += match.t2p2_k
-                a += match.t2p2_a
-                d += match.t2p2_d
-                // team = allPlayers?.data?.filter(e => e.player_id === match.t2p2_id)[0].team
-                // logo_team = allPlayers?.data?.filter(e => e.player_id === match.t2p2_id)[0].back_logo_team
-            }
-
-            if ((match.t2p3 === nickname && match.t2p3_id === player_id)) {
-                logo_player = match.t2p3_logo
-                rating += normalizeRating(match.t2p3_rating)
-                impact_p += normalizeImpact(match.t2p3_impact)
-                kd_p += normalizeKD(match.t2p3_kd)
-                kpr_p += (match.t2p3_k / (match.total_r_team1 + match.total_r_team2))
-                dpr_p += (match.t2p3_d / (match.total_r_team1 + match.total_r_team2))
-                k += match.t2p3_k
-                a += match.t2p3_a
-                d += match.t2p3_d
-                // team = allPlayers?.data?.filter(e => e.player_id === match.t2p3_id)[0].team
-                // logo_team = allPlayers?.data?.filter(e => e.player_id === match.t2p3_id)[0].back_logo_team
-            }
-
-            if ((match.t2p4 === nickname && match.t2p4_id === player_id)) {
-                logo_player = match.t2p4_logo
-                rating += normalizeRating(match.t2p4_rating)
-                impact_p += normalizeImpact(match.t2p4_impact)
-                kd_p += normalizeKD(match.t2p4_kd)
-                kpr_p += (match.t2p4_k / (match.total_r_team1 + match.total_r_team2))
-                dpr_p += (match.t2p4_d / (match.total_r_team1 + match.total_r_team2))
-                k += match.t2p4_k
-                a += match.t2p4_a
-                d += match.t2p4_d
-                // team = allPlayers?.data?.filter(e => e.player_id === match.t2p4_id)[0].team
-                // logo_team = allPlayers?.data?.filter(e => e.player_id === match.t2p4_id)[0].back_logo_team
-            }
-
-            if ((match.t2p5 === nickname && match.t2p5_id === player_id)) {
-                logo_player = match.t2p5_logo
-                rating += normalizeRating(match.t2p5_rating)
-                impact_p += normalizeImpact(match.t2p5_impact)
-                kd_p += normalizeKD(match.t2p5_kd)
-                kpr_p += (match.t2p5_k / (match.total_r_team1 + match.total_r_team2))
-                dpr_p += (match.t2p5_d / (match.total_r_team1 + match.total_r_team2))
-                k += match.t2p5_k
-                a += match.t2p5_a
-                d += match.t2p5_d
-                // team = allPlayers?.data?.filter(e => e.player_id === match.t2p5_id)[0].team
-                // logo_team = allPlayers?.data?.filter(e => e.player_id === match.t2p5_id)[0].back_logo_team
-            }
-
-            //----------сбор общей информации о трунире------------------------------
-
-            maps_all = (count_1_win + count_2_win) + (count_1_lose + count_2_lose)
-            maps_win = count_1_win + count_2_win
-            maps_lose = (count_1_lose + count_2_lose)
-
-        })
-
-        //фиксируем статистику каждого игрока
-
-        if (rating && impact_p) {
-
-            rating = rating / maps_all
-            impact_p = impact_p / maps_all
-            kd_p = kd_p / maps_all
-            kpr_p = kpr_p / maps_all
-            dpr_p = dpr_p / maps_all
-            rm = rating + maps_all
-
-            players_tournaments.push({
-                "name_tour_sort": name_tour_sort,
-                "name_tour": name_tour,
-                "date_tour": date_tour,
-                "end_date_tour": end_date_tour,
-                "logo_tour": logo_tour,
-                "logo_player": logo_player,
-                "player_id": player_id,
-                "name": nameP,
-                "nickname": nickname,
-                "surname": surname,
-                "country_flag": country_flag,
-                "kd_p": Math.round(kd_p * 100) / 100,
-                "kpr_p": Math.round(kpr_p * 100) / 100,
-                "dpr_p": Math.round(dpr_p * 100) / 100,
-                "impact_p": Math.round(impact_p * 100) / 100,
-                "rating": Math.round(rating * 1000) / 1000,
-                "k": k,
-                "a": a,
-                "d": d,
-                "w_rounds": rounds_win,
-                "l_rounds": rounds_lose,
-                "w_maps": (count_1_win + count_2_win),
-                "l_maps": (count_1_lose + count_2_lose),
-                "WL": Math.round((((count_1_win + count_2_win) === 0 ? 0 : (count_1_win + count_2_win)) / ((count_1_lose + count_2_lose) === 0 ? 1 : (count_1_lose + count_2_lose))) * 100) / 100,
-                "maps": maps_all,
-                "rm": maps_all,
-                "team": team,
-                "logo_team": logo_team,
-                "team_id": team_id,
-                "position_team": position_team,
-            })
-        }
-
-        kd_p = 0
-        kpr_p = 0
-        dpr_p = 0
-        impact_p = 0
-        rating = 0
-        k = 0
-        a = 0
-        d = 0
-        rounds_win = 0
-        rounds_lose = 0
-        maps_all = 0
-        maps_win = 0
-        maps_lose = 0
-        count_1_win = 0
-        count_2_win = 0
-        count_1_lose = 0
-        count_2_lose = 0
-        rm = 0
-        team = 0
-        logo_team = 0
-        team_id = 0
-        position_team = 0
-        date_tour = 0
-        end_date_tour = 0
-        logo_tour = 0
-
-
-    })
-
-    players_tournaments = players_tournaments.sort(function (a, b) {
-        return (parseFloat(b.rating) - parseFloat(a.rating))
-    });
-
-//сортировочный алгоритм
-
-    let max_maps = 0
-    let tempArr = []
-    let sortPlayersArr = []
-
-    players_tournaments.map(e => {
-        if (max_maps < e.maps) {
-            max_maps = e.maps
-        }
-    })
-
-    let divider = 2
-
-    while (max_maps > 1) {
-
-        tempArr = []
-
-        max_maps = Math.round((max_maps / divider) * 10) / 10
-
-        divider += 0.04
-
-        players_tournaments.map(e => {
-            if (e.maps >= max_maps) {
-                tempArr.push(e)
-            }
-        })
-
-        tempArr = tempArr.sort((a, b) => (b.rating) - (a.rating))
-
-        sortPlayersArr = [...sortPlayersArr, ...tempArr]
-
-    }
-
-    sortPlayersArr = sortPlayersArr.filter((item, index) => {
-        return sortPlayersArr.indexOf(item) === index
-    });
-
-    if (players_tournaments.length > 0) {
-
+    const allShortMatches = useGetShortMatchesByTournamentQuery({name})
+    const teamsTour = useGetTeamsTournamentsByNameQuery({name})
+    const tourInfo = useGetTournamentByNameQuery({name})
+
+    let filterTours = [
+        // "WinlineEpicStandoff2Major2_25_11_24",
+        "WinlineEPICStandoff2CosmoCancriE_09_04_25",
+    ]
+
+    let players_tournaments = calculatePlayersTopV2(name, props.stage, allPlayers, allMatches, teamsTour, tourInfo, allShortMatches, filterTours)
+
+    const playersWithIndex = players_tournaments?.map((item, index) => ({
+        ...item,
+        position: index + 1
+    }))
+
+    useEffect(() => {
+            props.setLeftTop(playersWithIndex)
+    }, [props.name]);
+
+    if (playersWithIndex.length > 0) {
         return (
             <div className={classes.wrapperTopResult}>
                 <div className={classes.wrapperTourInfo}>
-                    <div className={classes.nameTour}>{"ТОП ИГРОКОВ СО ВСЕХ ПЛЕЙОФФ СТАДИЙ 2023 ГОДА"}</div>
+                    <div className={classes.nameTour}>{"ТОП-20 ИГРОКОВ ЗИМНЕГО МАЖОРА 2024"}</div>
                 </div>
                 <div className={classes.topResult}>
                     <div className={classes.wrapperPlayerTitle}>
@@ -452,12 +57,12 @@ const LeftTopResult = (props) => {
                             <div className={classes.dataPlayerMaps}>Maps</div>
                         </div>
                     </div>
-                    {sortPlayersArr.map((e, index) => {
+                    {playersWithIndex.map((e, index) => {
                         if (index < 20) {
                             return (
                                 <div key={index} className={classes.wrapperPlayer}>
-                                    <div className={classes.player} key={index}>
-                                        <div className={classes.dataNumberPlayerTitle}>{++index}</div>
+                                    <div className={classes.player}>
+                                        <div className={classes.dataNumberPlayerTitle}>{e.position}</div>
                                         <div className={classes.logoTeam}>
                                             <img src={`/images/LogoTeams/${e.logo_team}`} alt="/"/>
                                         </div>
@@ -468,28 +73,33 @@ const LeftTopResult = (props) => {
                                         </div>
                                         <div className={classes.dataPlayerKd} style={
                                             {
-                                                background: e.kd_p < 0.9 ? "#854141" : e.kd_p > 1.05 ? "#528347" : "#a29747"
+                                                background: e.kd_p < 0.9 ? "var(--red)" : e.kd_p > 1.05 ? "var(--green)" : "var(--yellow)",
+                                                color: e.kd_p < 0.9 ? "var(--redDark)" : e.kd_p > 1.05 ? "var(--greenDark)" : "var(--yellowDark)"
                                             }
                                         }>{e.kd_p}
                                         </div>
                                         <div className={classes.dataPlayerKpr} style={
                                             {
-                                                background: e.kpr_p < 0.60 ? "#854141" : e.kpr_p > 0.65 ? e.kpr_p > 0.70 ? "#528347" : "#a29747" : "#a29747"
+                                                background: e.kpr_p < 0.60 ? "var(--red)" : e.kpr_p > 0.65 ? e.kpr_p > 0.70 ? "var(--green)" : "var(--yellow)" : "var(--yellow)",
+                                                color: e.kpr_p < 0.60 ? "var(--redDark)" : e.kpr_p > 0.65 ? e.kpr_p > 0.70 ? "var(--greenDark)" : "var(--yellowDark)" : "var(--yellowDark)"
                                             }
                                         }>{e.kpr_p}</div>
                                         <div className={classes.dataPlayerDpr} style={
                                             {
-                                                background: e.dpr_p < 0.68 ? "#528347" : e.dpr_p > 0.7 ? e.dpr_p > 0.8 ? "#854141" : "#a29747" : "#a29747"
+                                                background: e.dpr_p < 0.68 ? "var(--green)" : e.dpr_p > 0.7 ? e.dpr_p > 0.8 ? "var(--red)" : "var(--yellow)" : "var(--yellow)",
+                                                color: e.dpr_p < 0.68 ? "var(--greenDark)" : e.dpr_p > 0.7 ? e.dpr_p > 0.8 ? "var(--redDark)" : "var(--yellowDark)" : "var(--yellowDark)"
                                             }
                                         }>{e.dpr_p}</div>
                                         <div className={classes.dataPlayerImpact} style={
                                             {
-                                                background: e.impact_p < 1 ? "#854141" : e.impact_p > 1 ? e.impact_p >= 1.15 ? "#528347" : "#a29747" : "#a29747"
+                                                background: e.impact_p < 1 ? "var(--red)" : e.impact_p > 1 ? e.impact_p >= 1.10 ? "var(--green)" : "var(--yellow)" : "var(--yellow)",
+                                                color: e.impact_p < 1 ? "var(--redDark)" : e.impact_p > 1 ? e.impact_p >= 1.10 ? "var(--greenDark)" : "var(--yellowDark)" : "var(--yellowDark)"
                                             }
                                         }>{e.impact_p}</div>
                                         <div className={classes.dataPlayerRating} style={
                                             {
-                                                background: e.rating < 1 ? "#854141" : e.rating > 1 ? e.rating >= 1.10 ? "#528347" : "#a29747" : "#a29747"
+                                                background: e.rating < 1 ? "var(--red)" : e.rating > 1 ? e.rating >= 1.10 ? "var(--green)" : "var(--yellow)" : "var(--yellow)",
+                                                color: e.rating < 1 ? "var(--redDark)" : e.rating > 1 ? e.rating >= 1.10 ? "var(--greenDark)" : "var(--yellowDark)" : "var(--yellowDark)"
                                             }
                                         }>{Math.round(e.rating * 100) / 100}</div>
                                         <div className={classes.dataPlayerMaps}>{e.maps}</div>
@@ -499,12 +109,9 @@ const LeftTopResult = (props) => {
                         }
                     })}
                 </div>
-
             </div>
         )
     }
-
-
 };
 
 export default LeftTopResult;

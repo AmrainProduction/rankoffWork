@@ -7,19 +7,18 @@ import {
 } from "../../../../store/api/apiSlice";
 import CountryFlagPlayer from "../../../../Function/countryFlagPlayer";
 import {calculatePlayersTop} from "../../../../Function/calculatePlayersTop";
+import {calculatePlayersTopV2} from "../../../../Function/calculatePlayersTopV2";
 
 const TopPlayersTourResultLong = (props) => {
 
     const name = props.name
-    const stage = (props.stage === "PLAYOFF" ? "PLAYOFF" : props.stage === "GROUP" ? "GROUP STAGE" : "")
 
     const allPlayers = useGetPlayersQuery()
     const allMatches = useGetMatchesQuery()
-    const allShortMatches = useGetShortMatchesByTournamentQuery({name})
+    const allShortMatches = useGetShortMatchQuery()
     const allShorts = useGetShortMatchQuery()
     const teamsTour = useGetTeamsTournamentsByNameQuery({name})
     const tourInfo = useGetTournamentByNameQuery({name})
-
 
     let filterTours = [
         // "WinlineEpicStandoff2Season14_11_12_24",
@@ -34,9 +33,13 @@ const TopPlayersTourResultLong = (props) => {
         // "WinlineEpicStandoff2Major2_25_11_24",
         // "WinlineEpicStandoff2Major_10_07_24",
         // "GamesOfFuture_03_03_24",
+        // "Standoff2EPICAcademy2025Week1_17_03_25",
+        // "Standoff2EPICAcademy2025Week2_31_03_25",
+        // "Standoff2EPICAcademy2025Week3_28_04_25",
+        // "Standoff2EPICAcademy2025SpringFinals_28_05_25",
     ]
 
-    let players_tournaments = calculatePlayersTop(name, props.stage, allPlayers, allMatches, teamsTour, tourInfo, allShortMatches, filterTours, allShorts)
+    let players_tournaments = calculatePlayersTopV2(name, props.stage, allPlayers, allMatches, teamsTour, tourInfo, allShortMatches, filterTours, allShorts)
 
     if (players_tournaments.length > 0) {
         return (
@@ -48,7 +51,7 @@ const TopPlayersTourResultLong = (props) => {
                             <div className={classes.titleBanner}>ТОП 20 ИГРОКОВ</div>
                         </div>
                         <div className={classes.nameTour}>
-                            {players_tournaments[0].name_tour.toUpperCase()} {stage ? "[" + stage + "]" : ""}
+                            {players_tournaments[0].name_tour.toUpperCase()} {(props.stage && props.stage.length > 0 && props.stage !== "FULL") ? "[" + props.stage.toUpperCase() + "]" : ""}
                         </div>
                     </div>
                     <div className={classes.logoTour}>

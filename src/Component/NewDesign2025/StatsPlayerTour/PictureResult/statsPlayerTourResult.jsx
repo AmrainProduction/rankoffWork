@@ -78,6 +78,18 @@ const PlayerMVPResult = (props) => {
         country_flag = e.country_flag
     })
 
+    //выборка за определенные турниры
+    // matchesPlayer?.data?.map(e => {
+    //     if (e.name_tour_for_sort === "WinlineEPICStandoff2CosmoMajor_04_06_25" ||
+    //         e.name_tour_for_sort === "WinlineEPICStandoff2CosmoCancriE_09_04_25" ||
+    //         e.name_tour_for_sort === "WinlineEPICStandoff2CosmoSaffar_04_03_25" ||
+    //         e.name_tour_for_sort === "RushVTBCUPPro_13_02_25" ||
+    //         e.name_tour_for_sort === "WinlineEPICStandoff2CosmoEarth_09_01_25"
+    //     ) {
+    //         matchesID.push(e.name_match_for_sort)
+    //     }
+    // })
+
     matchesPlayer?.data?.map(e => {
         if (e.name_tour_for_sort === tour) {
             matchesID.push(e.name_match_for_sort)
@@ -347,6 +359,7 @@ const PlayerMVPResult = (props) => {
                         <div className={classes.titleBanner}>STATS</div>
                     </div>
                     <div className={classes.nameTour}>
+                        {/*СТАТИСТИКА {totalStatsPlayer[0]?.nickname.toUpperCase()} ЗА ПЕРВУЮ ПОЛОВИНУ 2025*/}
                         {ifCloseQualification(statsMvpPlayer[0]?.name_tour)?.toUpperCase()} {choiceStage.length > 0 ? "[" + choiceStage?.toUpperCase() + "]" : ""}
                     </div>
                 </div>
@@ -354,9 +367,6 @@ const PlayerMVPResult = (props) => {
                     <div className={classes.statsRowTitle}>
                         <div className={classes.cell}>MATCH</div>
                         <div className={classes.cell}>DATE</div>
-                        {/*<div className={classes.cell}>K</div>*/}
-                        {/*<div className={classes.cell}>A</div>*/}
-                        {/*<div className={classes.cell}>D</div>*/}
                         <div className={classes.cell}>KD</div>
                         <div className={classes.cell}>KPR</div>
                         <div className={classes.cell}>IMPACT</div>
@@ -380,9 +390,6 @@ const PlayerMVPResult = (props) => {
                                     </div>
                                 </div>
                                 <div className={classes.cell}>{e.date_match}</div>
-                                {/*<div className={classes.cell}>{e.k}</div>*/}
-                                {/*<div className={classes.cell}>{e.a}</div>*/}
-                                {/*<div className={classes.cell}>{e.d}</div>*/}
                                 <div className={classes.cell} style={
                                     {
                                         background: e.kd < 0.9 ? "var(--red)" : e.kd > 1.05 ? "var(--green)" : "var(--yellow)",
@@ -419,9 +426,6 @@ const PlayerMVPResult = (props) => {
                         <div className={classes.nicknameRow}>
                             {totalStatsPlayer[0]?.nickname}
                         </div>
-                        {/*<div className={classes.cell}>{totalStatsPlayer[0]?.k}</div>*/}
-                        {/*<div className={classes.cell}>{totalStatsPlayer[0]?.a}</div>*/}
-                        {/*<div className={classes.cell}>{totalStatsPlayer[0]?.d}</div>*/}
                         <div className={classes.cell} style={
                             {
                                 background: totalStatsPlayer[0]?.kd < 0.9 ? "var(--red)" : totalStatsPlayer[0]?.kd > 1.05 ? "var(--green)" : "var(--yellow)",
@@ -454,10 +458,10 @@ const PlayerMVPResult = (props) => {
                         className={classes.nameAndSurname}>{totalStatsPlayer[0]?.name + " " + totalStatsPlayer[0]?.surname}</div>
                 </div>
                 <div className={classes.logoTeamSection}>
-                    <img src={`/images/LogoTeams/${statsMvpPlayer[0]?.logo_team}`} alt="/"/>
+                    <img src={`/images/LogoTeams/${statsMvpPlayer[statsMvpPlayer.length-1]?.logo_team}`} alt="/"/>
                 </div>
                 <div className={classes.photoPlayerSection}>
-                    <img src={`/images/LogoPlayers/${statsMvpPlayer[0]?.logolayer}`} alt="/"/>
+                    <img src={`/images/LogoPlayers/${statsMvpPlayer[statsMvpPlayer.length-1]?.logolayer}`} alt="/"/>
                 </div>
                 <img src={`/images/DataInImage/NEW_DESIGN_2025/MVP_PLAYERS.png`} className={classes.bgImg} alt="/"/>
             </div>

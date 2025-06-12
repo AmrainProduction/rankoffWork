@@ -59,9 +59,14 @@ const TopPlayersTour = () => {
                                 Full
                             </div>
                             <div className={classes.match} onClick={() => {
+                                setChoiceStage("FINAL")
+                            }}>
+                                Final
+                            </div>
+                            <div className={classes.match} onClick={() => {
                                 setChoiceStage("PLAYOFF")
                             }}>
-                                Play-off Stage
+                                Playoff Stage
                             </div>
                             <div className={classes.match} onClick={() => {
                                 setChoiceStage("GROUP")

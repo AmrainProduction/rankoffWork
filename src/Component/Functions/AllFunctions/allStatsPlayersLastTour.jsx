@@ -10,6 +10,9 @@ import {useState} from "react";
 import normalizeRating from "./normalizeRating";
 import normalizeImpact from "./normalizeImpact";
 import normalizeKD from "./normalizeKD";
+import Kpr from "../../Formulas/kpr";
+import Dpr from "../../Formulas/dpr";
+import Rating from "../../Formulas/rating";
 
 const AllStatsPlayersLastTour = () => {
     const tours = useGetTournamentsQuery()
@@ -102,6 +105,8 @@ const AllStatsPlayersLastTour = () => {
                     if (matches.total_r_team1 < matches.total_r_team2) {
                         count_l++
                     }
+
+                    rounds += (matches.total_r_team1 + matches.total_r_team2)
                     rounds_w += matches.total_r_team1
                     rounds_l += matches.total_r_team2
                 }
@@ -113,108 +118,69 @@ const AllStatsPlayersLastTour = () => {
                     if (matches.total_r_team1 > matches.total_r_team2) {
                         count_2_l++
                     }
+
+                    rounds += (matches.total_r_team1 + matches.total_r_team2)
                     rounds_w += matches.total_r_team2
                     rounds_l += matches.total_r_team1
                 }
 
                 if ((matches.t2p1_id === player_id && matches.t2p1 === nickname) || (matches.t2p2_id === player_id && matches.t2p2 === nickname) || (matches.t2p3_id === player_id && matches.t2p3 === nickname) || (matches.t2p4_id === player_id && matches.t2p4 === nickname) || (matches.t2p5_id === player_id && matches.t2p5 === nickname) || (matches.t1p1_id === player_id && matches.t1p1 === nickname) || (matches.t1p2_id === player_id && matches.t1p2 === nickname) || (matches.t1p3_id === player_id && matches.t1p3 === nickname) || (matches.t1p4_id === player_id && matches.t1p4 === nickname) || (matches.t1p5_id === player_id && matches.t1p5 === nickname)) {
-                    rounds += (matches.total_r_team1 + matches.total_r_team2)
                     if (matches.t1p1 === nickname && matches.t1p1_id === player_id) {
-                        rating += normalizeRating(matches.t1p1_rating)
-                        impact += normalizeImpact(matches.t1p1_impact)
-                        kd += normalizeKD(matches.t1p1_kd)
-                        kpr += matches.t1p1_k / (matches.total_r_team1 + matches.total_r_team2)
-                        dpr += matches.t1p1_d / (matches.total_r_team1 + matches.total_r_team2)
+                        impact += matches.t1p1_impact
                         k += matches.t1p1_k
                         a += matches.t1p1_a
                         d += matches.t1p1_d
                     }
                     if (matches.t1p2 === nickname && matches.t1p2_id === player_id) {
-                        rating += normalizeRating(matches.t1p2_rating)
-                        impact += normalizeImpact(matches.t1p2_impact)
-                        kd += normalizeKD(matches.t1p2_kd)
-                        kpr += matches.t1p2_k / (matches.total_r_team1 + matches.total_r_team2)
-                        dpr += matches.t1p2_d / (matches.total_r_team1 + matches.total_r_team2)
+                        impact += matches.t1p2_impact
                         k += matches.t1p2_k
                         a += matches.t1p2_a
                         d += matches.t1p2_d
                     }
                     if (matches.t1p3 === nickname && matches.t1p3_id === player_id) {
-                        rating += normalizeRating(matches.t1p3_rating)
-                        impact += normalizeImpact(matches.t1p3_impact)
-                        kd += normalizeKD(matches.t1p3_kd)
-                        kpr += matches.t1p3_k / (matches.total_r_team1 + matches.total_r_team2)
-                        dpr += matches.t1p3_d / (matches.total_r_team1 + matches.total_r_team2)
+                        impact += matches.t1p3_impact
                         k += matches.t1p3_k
                         a += matches.t1p3_a
                         d += matches.t1p3_d
                     }
                     if (matches.t1p4 === nickname && matches.t1p4_id === player_id) {
-                        rating += normalizeRating(matches.t1p4_rating)
-                        impact += normalizeImpact(matches.t1p4_impact)
-                        kd += normalizeKD(matches.t1p4_kd)
-                        kpr += matches.t1p4_k / (matches.total_r_team1 + matches.total_r_team2)
-                        dpr += matches.t1p4_d / (matches.total_r_team1 + matches.total_r_team2)
+                        impact += matches.t1p4_impact
                         k += matches.t1p4_k
                         a += matches.t1p4_a
                         d += matches.t1p4_d
                     }
                     if (matches.t1p5 === nickname && matches.t1p5_id === player_id) {
-                        rating += normalizeRating(matches.t1p5_rating)
-                        impact += normalizeImpact(matches.t1p5_impact)
-                        kd += normalizeKD(matches.t1p5_kd)
-                        kpr += matches.t1p5_k / (matches.total_r_team1 + matches.total_r_team2)
-                        dpr += matches.t1p5_d / (matches.total_r_team1 + matches.total_r_team2)
+                        impact += matches.t1p5_impact
                         k += matches.t1p5_k
                         a += matches.t1p5_a
                         d += matches.t1p5_d
                     }
                     if (matches.t2p1 === nickname && matches.t2p1_id === player_id) {
-                        rating += normalizeRating(matches.t2p1_rating)
-                        impact += normalizeImpact(matches.t2p1_impact)
-                        kd += normalizeKD(matches.t2p1_kd)
-                        kpr += matches.t2p1_k / (matches.total_r_team1 + matches.total_r_team2)
-                        dpr += matches.t2p1_d / (matches.total_r_team1 + matches.total_r_team2)
+                        impact += matches.t2p1_impact
                         k += matches.t2p1_k
                         a += matches.t2p1_a
                         d += matches.t2p1_d
                     }
                     if (matches.t2p2 === nickname && matches.t2p2_id === player_id) {
-                        rating += normalizeRating(matches.t2p2_rating)
-                        impact += normalizeImpact(matches.t2p2_impact)
-                        kd += normalizeKD(matches.t2p2_kd)
-                        kpr += matches.t2p2_k / (matches.total_r_team1 + matches.total_r_team2)
-                        dpr += matches.t2p2_d / (matches.total_r_team1 + matches.total_r_team2)
+                        impact += matches.t2p2_impact
                         k += matches.t2p2_k
                         a += matches.t2p2_a
                         d += matches.t2p2_d
                     }
                     if (matches.t2p3 === nickname && matches.t2p3_id === player_id) {
-                        rating += normalizeRating(matches.t2p3_rating)
-                        impact += normalizeImpact(matches.t2p3_impact)
-                        kd += normalizeKD(matches.t2p3_kd)
-                        kpr += matches.t2p3_k / (matches.total_r_team1 + matches.total_r_team2)
-                        dpr += matches.t2p3_d / (matches.total_r_team1 + matches.total_r_team2)
+                        impact += matches.t2p3_impact
                         k += matches.t2p3_k
                         a += matches.t2p3_a
                         d += matches.t2p3_d
                     }
                     if (matches.t2p4 === nickname && matches.t2p4_id === player_id) {
-                        rating += normalizeRating(matches.t2p4_rating)
-                        impact += normalizeImpact(matches.t2p4_impact)
-                        kd += normalizeKD(matches.t2p4_kd)
-                        kpr += matches.t2p4_k / (matches.total_r_team1 + matches.total_r_team2)
-                        dpr += matches.t2p4_d / (matches.total_r_team1 + matches.total_r_team2)
+                        impact += matches.t2p4_impact
                         k += matches.t2p4_k
                         a += matches.t2p4_a
                         d += matches.t2p4_d
                     }
                     if (matches.t2p5 === nickname && matches.t2p5_id === player_id) {
-                        rating += normalizeRating(matches.t2p5_rating)
-                        impact += normalizeImpact(matches.t2p5_impact)
-                        kd += normalizeKD(matches.t2p5_kd)
-                        kpr += matches.t2p5_k / (matches.total_r_team1 + matches.total_r_team2)
-                        dpr += matches.t2p5_d / (matches.total_r_team1 + matches.total_r_team2)
+                        impact += matches.t2p5_impact
                         k += matches.t2p5_k
                         a += matches.t2p5_a
                         d += matches.t2p5_d
@@ -227,45 +193,48 @@ const AllStatsPlayersLastTour = () => {
 
             })
 
-            rating = Math.round((rating / maps)* 100) / 100
-            impact = Math.round((impact / maps)* 100) / 100
-            kd = Math.round((k / d)* 100) / 100
-            kpr = Math.round((k / (rounds_w + rounds_l))* 100) / 100
-            dpr = Math.round((d / (rounds_w + rounds_l))* 100) / 100
-            rm = rating + maps
 
-            csv[index] =
-                [{
-                    'logo_player': logo_player,
-                    'name': name,
-                    'nickname': nickname,
-                    'surname': surname,
-                    'player_id': player_id,
-                    'country_flag': country_flag,
-                    'date_birth': date_birth,
-                    'kd': kd,
-                    'kpr': kpr,
-                    'dpr': dpr,
-                    'impact': impact,
-                    'rating': rating,
-                    'k': k,
-                    'a': a,
-                    'd': d,
-                    'rounds_w': rounds_w,
-                    'rounds_l': rounds_l,
-                    'maps': maps,
-                    'maps_w': maps_w,
-                    'maps_l': maps_l,
-                    'rm': rm,
-                    'team': team,
-                    'back_logo_team': back_logo_team,
-                    'link_vk': link_vk,
-                    'link_yt': link_yt,
-                    'link_telegram': link_telegram,
-                    'link_discord': link_discord,
-                }]
+            if (k && d) {
+                let kd = Math.round((k / d) * 100) / 100
+                let kpr = Math.round(Kpr(k, rounds) * 100) / 100
+                let dpr = Math.round(Dpr(d, rounds) * 100) / 100
+                impact = Math.round((impact / maps) * 100) / 100
+                rating = Rating(kd, kpr, dpr, impact)
 
-            query += "UPDATE players SET " + 'kd=' + kd + ',' + 'kpr=' + kpr + ',' + 'dpr=' + dpr + ',' + 'impact=' + impact + ',' + 'rating=' + rating + ',' + 'k=' + k + ',' + 'a=' + a + ',' + 'd=' + d + ',' + 'w_rounds=' + rounds_w + ',' + 'l_rounds=' + rounds_l + ',' + 'maps=' + maps + ',' + 'w_maps=' + maps_w + ',' + 'l_maps=' + maps_l + ',' + 'rm=' + rm + " WHERE player_id=" + player_id + " AND nickname=" + `'` + `${nickname}` + `'; \n`
+                csv[index] =
+                    [{
+                        'logo_player': logo_player,
+                        'name': name,
+                        'nickname': nickname,
+                        'surname': surname,
+                        'player_id': player_id,
+                        'country_flag': country_flag,
+                        'date_birth': date_birth,
+                        'kd': kd,
+                        'kpr': kpr,
+                        'dpr': dpr,
+                        'impact': impact,
+                        'rating': rating,
+                        'k': k,
+                        'a': a,
+                        'd': d,
+                        'rounds_w': rounds_w,
+                        'rounds_l': rounds_l,
+                        'maps': maps,
+                        'maps_w': maps_w,
+                        'maps_l': maps_l,
+                        'rm': rm,
+                        'team': team,
+                        'back_logo_team': back_logo_team,
+                        'link_vk': link_vk,
+                        'link_yt': link_yt,
+                        'link_telegram': link_telegram,
+                        'link_discord': link_discord,
+                    }]
+
+
+                query += "UPDATE players SET " + 'kd=' + kd + ',' + 'kpr=' + kpr + ',' + 'dpr=' + dpr + ',' + 'impact=' + impact + ',' + 'rating=' + rating + ',' + 'k=' + k + ',' + 'a=' + a + ',' + 'd=' + d + ',' + 'w_rounds=' + rounds_w + ',' + 'l_rounds=' + rounds_l + ',' + 'maps=' + maps + ',' + 'w_maps=' + maps_w + ',' + 'l_maps=' + maps_l + ',' + 'rm=' + rm + " WHERE player_id=" + player_id + " AND nickname=" + `'` + `${nickname}` + `'; \n`
+            }
 
             count = 0
             count_2 = 0

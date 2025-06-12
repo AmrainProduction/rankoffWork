@@ -314,7 +314,7 @@
     padding-right: 31%;
     max-height: 4vw;
     background: linear-gradient(to right, var(--grayOpacity) 20%, transparent);
-    margin-bottom: 0.5vw;
+    margin-bottom: 0.3vw;
     font-size: 1vw;
     column-gap: 0.4vw;
     grid-template-rows: 100%;

@@ -157,32 +157,6 @@
     background: var(--buttonColorHover);
 }
 
-.dropdownMenu {
-    max-height: 15vw;
-    max-width: 15vw;
-    width: 100%;
-    margin-top: 0.5rem;
-    border-radius: 0.5rem;
-    background: var(--componentLightBlockColor);
-    color: var(--textPlaceholderColor);
-    border: 0.14rem solid var(--componentLightBlockColor);
-    overflow: hidden;
-    z-index: 99;
-    position: absolute;
-}
-
-.dropdownMenuItem {
-    font-family: 'Montserrat SemiBold', sans-serif;
-    cursor: pointer;
-    width: 100%;
-    padding: 0.2rem 0.5rem;
-    background: var(--componentLightBlockColor);
-}
-
-.dropdownMenuItem:hover {
-    background: var(--componentBlockColorHover);
-}
-
 .wrapperTopResult {
     font-family: "Montserrat Bold", sans-serif;
     display: flex;
@@ -353,7 +327,7 @@
 
 .metric {
     display: grid;
-    height: 7vw;
+    height: 6vw;
     grid-template-rows: 100%;
     grid-template-columns: 35% 30% 35%;
     background: var(--grayOpacity);

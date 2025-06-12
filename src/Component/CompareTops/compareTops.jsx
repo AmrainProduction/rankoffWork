@@ -15,6 +15,7 @@ const CompareTops = () => {
 
     let [choiceMatch, setChoiceMatch] = useState([])
     let [choiceStage, setChoiceStage] = useState([])
+    const [leftTop, setLeftTop] = useState([])
 
     let toursID = []
 
@@ -57,17 +58,22 @@ const CompareTops = () => {
                         <div className={classes.titleBox}>Выбор стадии:</div>
                         <div className={classes.listMatches}>
                             <div className={classes.match} onClick={() => {
-                                setChoiceStage("full")
+                                setChoiceStage("FULL")
                             }}>
                                 Full
                             </div>
                             <div className={classes.match} onClick={() => {
-                                setChoiceStage("playoff")
+                                setChoiceStage("FINAL")
                             }}>
-                                Play-off Stage
+                                Final
                             </div>
                             <div className={classes.match} onClick={() => {
-                                setChoiceStage("group")
+                                setChoiceStage("PLAYOFF")
+                            }}>
+                                Playoff Stage
+                            </div>
+                            <div className={classes.match} onClick={() => {
+                                setChoiceStage("GROUP")
                             }}>
                                 Group Stage
                             </div>
@@ -95,15 +101,22 @@ const CompareTops = () => {
                 </div>
             </div>
             <div className={classes.wrapperPicture} ref={ref}>
-                <div className={classes.wrapperTops}>
-                    <div className={classes.leftTop}>
-                        {choiceMatch.length > 0 ? <LeftTopResult stage={choiceStage} name={choiceMatch}/> : ''}
-                    </div>
-                    <div className={classes.rightTop}>
-                        {choiceMatch.length > 0 ? <RightTopResult stage={choiceStage} name={choiceMatch}/> : ''}
+                <div className={classes.rankoffAndNameEvent}>
+                    <div className={classes.logoRankoff}>
+                        <img src={`/images/DataInImage/NEW_DESIGN_2025/Logo_And_Name.svg`} alt="/"/>
+                        <div className={classes.titleBanner}>COMPARE</div>
                     </div>
                 </div>
-                <img src={`/images/DataInImage/TOP_PLAYERS_TOUR_V4.png`} className={classes.bgImg} alt="/"/>
+                <div className={classes.wrapperTops}>
+                    <div className={classes.leftTop}>
+                        {choiceMatch.length > 0 ? <LeftTopResult stage={choiceStage} name={choiceMatch} setLeftTop={setLeftTop}/> : ''}
+                    </div>
+                    <div className={classes.rightTop}>
+                        {choiceMatch.length > 0 ? <RightTopResult stage={choiceStage} name={choiceMatch} leftTop={leftTop}/> : ''}
+                    </div>
+                </div>
+                <img src={`/images/DataInImage/NEW_DESIGN_2025/TOP_PLAYERS_BANNER.png`} className={classes.bgImg}
+                     alt="/"/>
             </div>
         </div>
     );

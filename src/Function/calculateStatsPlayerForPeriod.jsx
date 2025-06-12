@@ -29,7 +29,7 @@ export default function CalculateStatsPlayerForPeriod(player, date, period) {
 
         return matches.filter((match) => {
             const matchDate = new Date(match.db_date_match)
-            return matchDate >= start && matchDate <= end
+            return matchDate > start && matchDate <= end
         })
     }
 
@@ -40,12 +40,24 @@ export default function CalculateStatsPlayerForPeriod(player, date, period) {
     let maps = 0
     let rounds = 0
     let res = []
+    let photoPlayer = ''
+    let logoTeam = ''
 
     if (player && matchesPlayer.data && matchesPlayer.data.length > 0) {
 
-        const allMatchesPlayerReverse = [...matchesPlayer.data].reverse()
+        const allMatchesPlayerReverse = [...matchesPlayer.data]
 
         const filteredMatchesPlayer = filterMatchesByPeriod(allMatchesPlayerReverse, startDate, endDate)
+
+        // кастомная выборка турниров
+        // let temp = []
+        // allMatchesPlayerReverse.map(e => {
+        //     if (e.name_tour_for_sort === "RushVTBCUPPro_13_02_25" || e.name_tour_for_sort === "WinlineEpicStandoff2Major2_25_11_24" ||
+        //         e.name_tour_for_sort === "WinlineEpicStandoff2Major_10_07_24" || e.name_tour_for_sort === "GamesOfFuture_03_03_24"
+        //     ) {
+        //         temp.push(e)
+        //     }
+        // })
 
         filteredMatchesPlayer.map(e => {
             numberTeam.forEach(team => {
@@ -55,6 +67,8 @@ export default function CalculateStatsPlayerForPeriod(player, date, period) {
                         k += e[`t${team}p${player}_k`]
                         a += e[`t${team}p${player}_a`]
                         d += e[`t${team}p${player}_d`]
+                        photoPlayer = e[`t${team}p${player}_logo`]
+                        logoTeam = e[`team${team}_logo`]
                         maps += 1
                         rounds += e.total_r_team2 + e.total_r_team1
                     }
@@ -80,6 +94,8 @@ export default function CalculateStatsPlayerForPeriod(player, date, period) {
                 "d": d,
                 "w_rounds": rounds,
                 "maps": maps,
+                "photoPlayer": photoPlayer,
+                "logoTeam": logoTeam,
             })
         }
     }

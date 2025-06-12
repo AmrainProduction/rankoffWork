@@ -42,18 +42,44 @@ const RankingTeamsWithCurrentRosters = () => {
         && allTeamsTours.data && allTeamsTours.data.length > 0) {
 
         // let tempPlayersPoints = playersPoints.data.filter(e =>
-        //     e.event_id !== "Standoff2NewYearCup_29_12_24" &&
-        //     e.event_id !== "Standoff2EpicAcademyYEARFINALS17_12_24" &&
-        //     e.event_id !== "ScamOffBeeline_23_08_24" &&
-        //     e.event_id !== "GamesOfFuture_03_03_24" &&
-        //     e.event_id !== "VozwoodenRevialCupSeason1_17_01_24"
+        //     e.event_id !== "WinlineEPICStandoff2CosmoSaffar_04_03_25" &&
+        //     e.event_id !== "WinlineEPICStandoff2CosmoEarth_09_01_25" &&
+        //     e.event_id !== "WinlineEpicStandoff2Season14_11_12_24" &&
+        //     e.event_id !== "WinlineEpicStandoff2Season14CloseQuals_09_12_24" &&
+        //     e.event_id !== "WinlineEpicStandoff2Major2_25_11_24" &&
+        //     e.event_id !== "WinlineEpicStandoff2Major2ClosedQuals_05_11_24" &&
+        //     e.event_id !== "WinlineEpicStandoff2Season13_08_10_24" &&
+        //     e.event_id !== "WinlineEpicStandoff2Season12_04_09_24" &&
+        //     e.event_id !== "WinlineEpicStandoff2Season12_04_09_24" &&
+        //     e.event_id !== "WinlineEpicStandoff2Season11_01_08_24" &&
+        //     e.event_id !== "WinlineEpicStandoff2Major_10_07_24" &&
+        //     e.event_id !== "WinlineEpicStandoff2MajorClosedQuals_21_06_24" &&
+        //     e.event_id !== "WinlineEpicStandoff2Season10_30_05_24" &&
+        //     e.event_id !== "WinlineEpicStandoff2Season10CloseQuals_27_05_24" &&
+        //     e.event_id !== "WinlineEpicStandoff2Season9_25_04_24" &&
+        //     e.event_id !== "WinlineEpicStandoff2Season9ClosedQuals_22_04_24" &&
+        //     e.event_id !== "WinlineEpicStandoff2Season8_28_03_24" &&
+        //     e.event_id !== "WinlineEpicStandoff2Season8ClosedQuals_25_03_24"
         // )
         // let tempTeamsPoints = teamsPoints.data.filter(e =>
-        //     e.event_id !== "Standoff2NewYearCup_29_12_24" &&
-        //     e.event_id !== "Standoff2EpicAcademyYEARFINALS17_12_24" &&
-        //     e.event_id !== "ScamOffBeeline_23_08_24" &&
-        //     e.event_id !== "GamesOfFuture_03_03_24" &&
-        //     e.event_id !== "VozwoodenRevialCupSeason1_17_01_24"
+        //     e.event_id !== "WinlineEPICStandoff2CosmoSaffar_04_03_25" &&
+        //     e.event_id !== "WinlineEPICStandoff2CosmoEarth_09_01_25" &&
+        //     e.event_id !== "WinlineEpicStandoff2Season14_11_12_24" &&
+        //     e.event_id !== "WinlineEpicStandoff2Season14CloseQuals_09_12_24" &&
+        //     e.event_id !== "WinlineEpicStandoff2Major2_25_11_24" &&
+        //     e.event_id !== "WinlineEpicStandoff2Major2ClosedQuals_05_11_24" &&
+        //     e.event_id !== "WinlineEpicStandoff2Season13_08_10_24" &&
+        //     e.event_id !== "WinlineEpicStandoff2Season12_04_09_24" &&
+        //     e.event_id !== "WinlineEpicStandoff2Season12_04_09_24" &&
+        //     e.event_id !== "WinlineEpicStandoff2Season11_01_08_24" &&
+        //     e.event_id !== "WinlineEpicStandoff2Major_10_07_24" &&
+        //     e.event_id !== "WinlineEpicStandoff2MajorClosedQuals_21_06_24" &&
+        //     e.event_id !== "WinlineEpicStandoff2Season10_30_05_24" &&
+        //     e.event_id !== "WinlineEpicStandoff2Season10CloseQuals_27_05_24" &&
+        //     e.event_id !== "WinlineEpicStandoff2Season9_25_04_24" &&
+        //     e.event_id !== "WinlineEpicStandoff2Season9ClosedQuals_22_04_24" &&
+        //     e.event_id !== "WinlineEpicStandoff2Season8_28_03_24" &&
+        //     e.event_id !== "WinlineEpicStandoff2Season8ClosedQuals_25_03_24"
         // )
 
         // посчитали текушие поинты всем игрокам
