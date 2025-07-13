@@ -85,6 +85,9 @@ const PlayerMVPResult = (props) => {
     //         e.name_tour_for_sort === "WinlineEPICStandoff2CosmoSaffar_04_03_25" ||
     //         e.name_tour_for_sort === "RushVTBCUPPro_13_02_25" ||
     //         e.name_tour_for_sort === "WinlineEPICStandoff2CosmoEarth_09_01_25"
+    //         // e.name_tour_for_sort === "WinlineEpicStandoff2Major2_25_11_24"
+    //         // e.name_tour_for_sort === "Standoff2NewYearCup_29_12_24"
+    //         // e.name_tour_for_sort === "WinlineEpicStandoff2Season14_11_12_24"
     //     ) {
     //         matchesID.push(e.name_match_for_sort)
     //     }
@@ -92,7 +95,7 @@ const PlayerMVPResult = (props) => {
 
     matchesPlayer?.data?.map(e => {
         if (e.name_tour_for_sort === tour) {
-            matchesID.push(e.name_match_for_sort)
+        matchesID.push(e.name_match_for_sort)
         }
     })
 
@@ -350,6 +353,11 @@ const PlayerMVPResult = (props) => {
         return name?.toLowerCase().replace(/closed qualifications/gi, 'CQ')
     }
 
+    // сортировка по рейтингу
+    // statsMvpPlayer = statsMvpPlayer.sort((a, b) =>
+    //     (a.rating) - (b.rating)
+    // )
+
     if (matchesID?.length > 0) {
         return (
             <div className={classes.wrapperTopResult}>
@@ -359,7 +367,7 @@ const PlayerMVPResult = (props) => {
                         <div className={classes.titleBanner}>STATS</div>
                     </div>
                     <div className={classes.nameTour}>
-                        {/*СТАТИСТИКА {totalStatsPlayer[0]?.nickname.toUpperCase()} ЗА ПЕРВУЮ ПОЛОВИНУ 2025*/}
+                        {/*ТОП-10 ХУДШИХ МАТЧЕЙ {totalStatsPlayer[0]?.nickname.toUpperCase()} ПО ПОКАЗАТЕЛЮ RATING*/}
                         {ifCloseQualification(statsMvpPlayer[0]?.name_tour)?.toUpperCase()} {choiceStage.length > 0 ? "[" + choiceStage?.toUpperCase() + "]" : ""}
                     </div>
                 </div>
@@ -373,49 +381,51 @@ const PlayerMVPResult = (props) => {
                         <div className={classes.cell}>RATING</div>
                     </div>
                     {statsMvpPlayer?.map((e, index) => {
-                        return (
-                            <div key={index} className={classes.statsRow}>
-                                <div className={classes.cell}>
-                                    <div className={classes.scoreMatch}>
+                        if (index <= 100) {
+                            return (
+                                <div key={index} className={classes.statsRow}>
+                                    <div className={classes.cell}>
+                                        <div className={classes.scoreMatch}>
                                         <span style={{
                                             color: e.scoreWin >= e.scoreLose ? "var(--green)" : "var(--red)",
                                             marginRight: "5%"
                                         }}>{e.scoreWin}</span>:
-                                        <span style={{
-                                            marginLeft: "5%"
-                                        }}>{e.scoreLose}</span>
+                                            <span style={{
+                                                marginLeft: "5%"
+                                            }}>{e.scoreLose}</span>
+                                        </div>
+                                        <div className={classes.opponentLogo}>
+                                            <img src={`/images/LogoTeams/${e.logo_team_opponent}`} alt="/"/>
+                                        </div>
                                     </div>
-                                    <div className={classes.opponentLogo}>
-                                        <img src={`/images/LogoTeams/${e.logo_team_opponent}`} alt="/"/>
-                                    </div>
+                                    <div className={classes.cell}>{e.date_match}</div>
+                                    <div className={classes.cell} style={
+                                        {
+                                            background: e.kd < 0.9 ? "var(--red)" : e.kd > 1.05 ? "var(--green)" : "var(--yellow)",
+                                            color: e.kd < 0.9 ? "var(--redDark)" : e.kd > 1.05 ? "var(--greenDark)" : "var(--yellowDark)"
+                                        }
+                                    }>{e.kd}</div>
+                                    <div className={classes.cell} style={
+                                        {
+                                            background: e.kpr < 0.60 ? "var(--red)" : e.kpr > 0.65 ? e.kpr > 0.70 ? "var(--green)" : "var(--yellow)" : "var(--yellow)",
+                                            color: e.kpr < 0.60 ? "var(--redDark)" : e.kpr > 0.65 ? e.kpr > 0.70 ? "var(--greenDark)" : "var(--yellowDark)" : "var(--yellowDark)"
+                                        }
+                                    }>{e.kpr}</div>
+                                    <div className={classes.cell} style={
+                                        {
+                                            background: e.impact < 1 ? "var(--red)" : e.impact > 1 ? e.impact >= 1.10 ? "var(--green)" : "var(--yellow)" : "var(--yellow)",
+                                            color: e.impact < 1 ? "var(--redDark)" : e.impact > 1 ? e.impact >= 1.10 ? "var(--greenDark)" : "var(--yellowDark)" : "var(--yellowDark)"
+                                        }
+                                    }>{e.impact}</div>
+                                    <div className={classes.cell} style={
+                                        {
+                                            background: e.rating < 1 ? "var(--red)" : e.rating > 1 ? e.rating >= 1.10 ? "var(--green)" : "var(--yellow)" : "var(--yellow)",
+                                            color: e.rating < 1 ? "var(--redDark)" : e.rating > 1 ? e.rating >= 1.10 ? "var(--greenDark)" : "var(--yellowDark)" : "var(--yellowDark)"
+                                        }
+                                    }>{e.rating}</div>
                                 </div>
-                                <div className={classes.cell}>{e.date_match}</div>
-                                <div className={classes.cell} style={
-                                    {
-                                        background: e.kd < 0.9 ? "var(--red)" : e.kd > 1.05 ? "var(--green)" : "var(--yellow)",
-                                        color: e.kd < 0.9 ? "var(--redDark)" : e.kd > 1.05 ? "var(--greenDark)" : "var(--yellowDark)"
-                                    }
-                                }>{e.kd}</div>
-                                <div className={classes.cell} style={
-                                    {
-                                        background: e.kpr < 0.60 ? "var(--red)" : e.kpr > 0.65 ? e.kpr > 0.70 ? "var(--green)" : "var(--yellow)" : "var(--yellow)",
-                                        color: e.kpr < 0.60 ? "var(--redDark)" : e.kpr > 0.65 ? e.kpr > 0.70 ? "var(--greenDark)" : "var(--yellowDark)" : "var(--yellowDark)"
-                                    }
-                                }>{e.kpr}</div>
-                                <div className={classes.cell} style={
-                                    {
-                                        background: e.impact < 1 ? "var(--red)" : e.impact > 1 ? e.impact >= 1.10 ? "var(--green)" : "var(--yellow)" : "var(--yellow)",
-                                        color: e.impact < 1 ? "var(--redDark)" : e.impact > 1 ? e.impact >= 1.10 ? "var(--greenDark)" : "var(--yellowDark)" : "var(--yellowDark)"
-                                    }
-                                }>{e.impact}</div>
-                                <div className={classes.cell} style={
-                                    {
-                                        background: e.rating < 1 ? "var(--red)" : e.rating > 1 ? e.rating >= 1.10 ? "var(--green)" : "var(--yellow)" : "var(--yellow)",
-                                        color: e.rating < 1 ? "var(--redDark)" : e.rating > 1 ? e.rating >= 1.10 ? "var(--greenDark)" : "var(--yellowDark)" : "var(--yellowDark)"
-                                    }
-                                }>{e.rating}</div>
-                            </div>
-                        )
+                            )
+                        }
                     })}
                     <div className={classes.statsRowTotalTitle}>TOTAL STATS:</div>
                     <div className={classes.statsRowTotal}>
@@ -458,10 +468,10 @@ const PlayerMVPResult = (props) => {
                         className={classes.nameAndSurname}>{totalStatsPlayer[0]?.name + " " + totalStatsPlayer[0]?.surname}</div>
                 </div>
                 <div className={classes.logoTeamSection}>
-                    <img src={`/images/LogoTeams/${statsMvpPlayer[statsMvpPlayer.length-1]?.logo_team}`} alt="/"/>
+                    <img src={`/images/LogoTeams/${statsMvpPlayer[statsMvpPlayer.length - 1]?.logo_team}`} alt="/"/>
                 </div>
                 <div className={classes.photoPlayerSection}>
-                    <img src={`/images/LogoPlayers/${statsMvpPlayer[statsMvpPlayer.length-1]?.logolayer}`} alt="/"/>
+                    <img src={`/images/LogoPlayers/${statsMvpPlayer[statsMvpPlayer.length - 1]?.logolayer}`} alt="/"/>
                 </div>
                 <img src={`/images/DataInImage/NEW_DESIGN_2025/MVP_PLAYERS.png`} className={classes.bgImg} alt="/"/>
             </div>

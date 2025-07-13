@@ -10,7 +10,7 @@
     width: 100%;
     height: auto;
     padding: 1% 0;
-    color: white;
+    color: var(--textColor);
 }
 
 .inputData {
@@ -24,7 +24,7 @@
     margin-top: 0.5rem;
     border-radius: 0.5rem;
     background: var(--componentLightBlockColor);
-    color: var(--textPlaceholderColor);
+    color: var(--textColor);
     border: 0.14rem solid var(--componentLightBlockColor);
     overflow: hidden;
     z-index: 99;

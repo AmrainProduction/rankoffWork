@@ -73,7 +73,7 @@
     justify-content: space-between;
     align-items: flex-start;
     width: 100%;
-    height: 160px;
+    height: auto;
     background: var(--mainLightBlack);
     margin-bottom: 10px;
     padding: 5px;
@@ -83,8 +83,9 @@
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    width: 20%;
+    width: 10%;
     height: 100%;
+    margin-right: 5%;
 }
 
 .wrapperLogo img {
@@ -95,25 +96,26 @@
 .menu {
     display: flex;
     justify-content: center;
-    align-items: flex-end;
+    align-items: flex-start;
     height: 100%;
     width: 100%;
+}
+
+.menu div {
+    margin-right: 1vw;
 }
 
 .wrapperList {
     display: block;
     width: 100%;
     height: 100%;
-    margin-right: 2%;
-    margin-left: 2%;
-    padding: 2px;
 }
 
 .titleBox {
     width: 100%;
     height: auto;
     padding: 1% 0;
-    color: white;
+    color: var(--textColor);
 }
 
 .list {
@@ -147,7 +149,7 @@
     border-radius: 3px;
     padding: 1%;
     background: var(--buttonColor);
-    height: 120px;
+    height: 100%;
     width: 100%;
     cursor: pointer;
     color: white;
@@ -222,7 +224,7 @@
 
 .shadowToTop {
     height: 40vw;
-    width: 67.2vw;
+    width: 67.4vw;
     background: linear-gradient(to top, #130407 0.5vw, transparent);
     z-index: 3;
     bottom: 0;

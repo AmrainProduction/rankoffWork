@@ -46,7 +46,6 @@ export function calculatePlayersTopV2(name, stageTour, allPlayers, allMatches, t
     let maps_lose = 0
 
 
-
     if (filterTours && filterTours.length > 0) {
         sortMatches = allMatches?.data?.filter(e1 => filterTours.some(e2 => e2 === e1.name_tour_for_sort))
     } else {
@@ -98,6 +97,8 @@ export function calculatePlayersTopV2(name, stageTour, allPlayers, allMatches, t
             necessaryMatches = allMatches?.data?.filter(e => e.name_tour_for_sort === name)
         }
     }
+
+    necessaryMatches = sortMatches
 
     allPlayers?.data?.map((player, index) => {
         player_id = player.player_id

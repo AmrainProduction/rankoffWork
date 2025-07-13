@@ -6,12 +6,12 @@ import {
 import WhatBirthday from "../../../../Function/whatBirthday";
 import CalculateStatsPlayerForPeriod from "../../../../Function/calculateStatsPlayerForPeriod";
 
-const ComparePlayersResult = ({player1, player2, dateEnd1, days1, dateEnd2, days2}) => {
+const ComparePlayersResult = ({player1, player2, dateEnd1, days1, dateEnd2, days2, dateStart1, dateStart2}) => {
 
     const allMatches = useGetMatchesQuery()
 
-    const player1Stats = CalculateStatsPlayerForPeriod(player1, dateEnd1, days1)
-    const player2Stats = CalculateStatsPlayerForPeriod(player2, dateEnd2, days2)
+    const player1Stats = CalculateStatsPlayerForPeriod(player1, dateStart1, dateEnd1, days1, '')
+    const player2Stats = CalculateStatsPlayerForPeriod(player2, dateStart2, dateEnd2, days2, '')
 
     const daysToMonths = (days) => {
         const daysInMonth = 30.44
@@ -123,7 +123,7 @@ const ComparePlayersResult = ({player1, player2, dateEnd1, days1, dateEnd2, days
                         </div>
                     </div>
                     {/*<div className={classes.description}>{"ЗИМНИЙ МАЖОР 2024 И ЛЕТНИЙ МАЖОР 2025"}</div>*/}
-                    <div className={classes.description}>{days1 === days2 ? `Past ${daysToMonths(days1)} months` : ""}</div>
+                    <div className={classes.description}>{(days1 === days2 && (days1 && days2)) ? `Past ${daysToMonths(days1)} months` : ""}</div>
                 </div>
                 <div className={classes.rightPlayer}>
                     <img src={`/images/LogoPlayers/${player2Stats[0].photoPlayer}`} alt="/"/>

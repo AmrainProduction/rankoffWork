@@ -3,7 +3,6 @@
   height: 100%;
   width: 100%;
   min-height: 100%;
-  /*overflow: hidden;*/
   position: relative;
 }
 
@@ -31,6 +30,29 @@
   --textColorYellow: #BDFF00;
   --textColorDarkYellow: #4E5E21;
 }
+
+/*:root {*/
+/*  --mainBlack: #ffffff;*/
+/*  --mainLightBlack: #f6f6f6;*/
+/*  --componentBlockColor: #ececec;*/
+/*  --componentLightBlockColor: #e1e1e1;*/
+/*  --componentBlockColorOpacity: rgba(206, 206, 206, 0.5);*/
+/*  --componentBlockColorHover: #cccccc;*/
+/*  --componentBlockColorHoverOpacity: rgba(209, 209, 209, 0.5);*/
+/*  --componentVeryLightBlockColor: #b2b2b2;*/
+/*  --textColor: #070707;*/
+/*  --textColorReverse: #f6f6f6;*/
+/*  --textPlaceholderColor: #6e7279;*/
+/*  --buttonDark: #9b9b9b;*/
+/*  --greenStatsColor: #258a00;*/
+/*  --yellowStatsColor: #948900;*/
+/*  --redStatsColor: #de2121;*/
+/*  --redStatsColorDark: #ff9c9c;*/
+/*  --greenStatsColorDark: #8cfd70;*/
+/*  --yellowStatsColorDark: #fdf178;*/
+/*  --buttonColor: #e41242;*/
+/*  --buttonColorHover: #a41335;*/
+/*}*/
 
 .wrapperBgLink {
   height: 100%;

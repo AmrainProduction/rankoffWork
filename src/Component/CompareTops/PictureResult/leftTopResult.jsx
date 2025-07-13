@@ -21,8 +21,10 @@ const LeftTopResult = (props) => {
     const tourInfo = useGetTournamentByNameQuery({name})
 
     let filterTours = [
-        // "WinlineEpicStandoff2Major2_25_11_24",
-        "WinlineEPICStandoff2CosmoCancriE_09_04_25",
+        // "WinlineEPICStandoff2CosmoMajor_04_06_25",
+        // "WinlineEPICStandoff2CosmoCancriE_09_04_25",
+        // "WinlineEPICStandoff2CosmoSaffar_04_03_25",
+        // "WinlineEPICStandoff2CosmoEarth_09_01_25",
     ]
 
     let players_tournaments = calculatePlayersTopV2(name, props.stage, allPlayers, allMatches, teamsTour, tourInfo, allShortMatches, filterTours)
@@ -40,7 +42,7 @@ const LeftTopResult = (props) => {
         return (
             <div className={classes.wrapperTopResult}>
                 <div className={classes.wrapperTourInfo}>
-                    <div className={classes.nameTour}>{"ТОП-20 ИГРОКОВ ЗИМНЕГО МАЖОРА 2024"}</div>
+                    <div className={classes.nameTour}>{"COSMO MAJOR 2025"}</div>
                 </div>
                 <div className={classes.topResult}>
                     <div className={classes.wrapperPlayerTitle}>

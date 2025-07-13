@@ -19,6 +19,7 @@
 }
 
 .wrapperMenu {
+    font-family: "Mazzard M", sans-serif;
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
@@ -27,7 +28,7 @@
     background: var(--mainLightBlack);
     margin-bottom: 10px;
     padding: 5px;
-    color: white;
+    color: var(--textColor);
 }
 
 .wrapperLogo {
@@ -52,7 +53,7 @@
     height: 40px;
     width: 160px;
     cursor: pointer;
-    color: white;
+    color: var(--textColor);
 }
 
 .btnSaveAsImage:hover {
@@ -84,7 +85,7 @@
     min-width: 100px;
     height: 120px;
     background: var(--componentBlockColor);
-    color: white;
+    color: var(--textColor);
 }
 
 .match {

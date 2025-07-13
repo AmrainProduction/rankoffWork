@@ -177,7 +177,7 @@ const GiveAwardsPlayersAndTeams = () => {
                         console.log('Fail copy')
                     })
                 }}>
-                    Copy
+                    Enter
                 </div>
             </div>
             <div className={classes.resultCommand}>

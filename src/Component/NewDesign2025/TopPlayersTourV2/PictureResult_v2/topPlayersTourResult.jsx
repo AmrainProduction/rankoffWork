@@ -20,6 +20,7 @@ const TopPlayersTourResult = (props) => {
     const tourInfo = useGetTournamentByNameQuery({name})
 
     let filterTours = [
+        "WinlineEPICStandoff2PawPawEp1_24_06_25",
         "WinlineEPICStandoff2CosmoMajor_04_06_25",
         "WinlineEPICStandoff2CosmoCancriE_09_04_25",
         "WinlineEPICStandoff2CosmoSaffar_04_03_25",
@@ -43,7 +44,7 @@ const TopPlayersTourResult = (props) => {
                             <div className={classes.titleBanner}>ТОП 20 ИГРОКОВ</div>
                             </div>
                         <div className={classes.nameTour}>
-                            ЗА ВСЕ ТУРНИРЫ ПЕРВОЙ ПОЛОВИНЫ 2025 ГОДА
+                            ЗА ВСЕ КРУПНЫЕ ТУРНИРЫ 2025 ГОДА
                             {/*{players_tournaments[0].name_tour.toUpperCase()} {(props.stage && props.stage.length > 0 && props.stage !== "FULL") ? "[" + props.stage.toUpperCase() + "]" : ""}*/}
                         </div>
                     </div>

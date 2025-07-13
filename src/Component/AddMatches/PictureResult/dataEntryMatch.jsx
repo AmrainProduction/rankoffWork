@@ -478,7 +478,8 @@ const DataEntryMatch = (props) => {
                 </div>
                 {isValidData ?
                     <div className={classes.wrapperCopyButton}>
-                        <div className={classes.copyButton} onClick={copyToClipboard}>Copy command
+                        <div className={classes.copyButton} onClick={copyToClipboard}>
+                            Enter
                         </div>
                     </div>
                     : ""}

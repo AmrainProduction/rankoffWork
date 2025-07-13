@@ -79,7 +79,7 @@ const UpdateRoster = () => {
                     <PlayerSelector label={"Player #4:"} onSelect={setPlayer4}/>
                     <PlayerSelector label={"Player #5:"} onSelect={setPlayer5}/>
                     <div className={classes.btnSaveAsImage} onClick={copyToClipboard}>
-                        Copy
+                        Enter
                     </div>
                 </div>
             </div>

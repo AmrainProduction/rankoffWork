@@ -11,31 +11,67 @@ const ComparePlayers = () => {
     const [player1, setPlayer1] = useState(null)
     const [player2, setPlayer2] = useState(null)
     const [dateEnd1, setDateEnd1] = useState("")
-    const [days1, setDays1] = useState("")
+    const [dateStart1, setDateStart1] = useState("")
+    const [dateStart2, setDateStart2] = useState("")
     const [dateEnd2, setDateEnd2] = useState("")
+    const [days1, setDays1] = useState("")
     const [days2, setDays2] = useState("")
+
+    const validateDate = (value) => {
+        // Проверка формата: YYYY-MM-DD
+        const regex = /^\d{4}-\d{2}-\d{2}$/
+        if (!regex.test(value)) return 'Неверный формат даты (YYYY-MM-DD)'
+
+        // Проверка валидности реальной даты
+        const parsed = Date.parse(value);
+        if (isNaN(parsed)) return 'Некорректная дата'
+
+        return ''
+    }
+
+    const handleInputEndDate1 = (event) => {
+        const value = event.target.value
+        const isValidDate = !isNaN(Date.parse(value))
+        const date = isValidDate ? new Date(value).toISOString().split("T")[0] : "";
+        setDateEnd1(date)
+    }
+
+    const handleInputEndDate2 = (event) => {
+        const value = event.target.value
+        const isValidDate = !isNaN(Date.parse(value))
+        const date = isValidDate ? new Date(value).toISOString().split("T")[0] : "";
+        setDateEnd2(date)
+    }
+
+    const handleInputStartDate1 = (event) => {
+        const value = event.target.value
+        const isValidDate = !isNaN(Date.parse(value))
+        const date = isValidDate ? new Date(value).toISOString().split("T")[0] : "";
+        setDateStart1(date)
+        if (date) setDays1('')
+    }
+
+    const handleInputStartDate2 = (event) => {
+        const value = event.target.value
+        const isValidDate = !isNaN(Date.parse(value))
+        const date = isValidDate ? new Date(value).toISOString().split("T")[0] : "";
+        setDateStart2(date)
+        if (date) setDays2('')
+    }
 
     const handleInputDays1 = (event) => {
         const value = event.target.value
-        setDays1(Number(value))
+        const days = ((value === '' || value < 0) ? '' : Number(value))
+        setDays1(days)
+        if (days !== '') setDateStart1('')
+
     }
 
-    const handleInputDate1 = (event) => {
-        const value = event.target.value
-        const isValidDate = !isNaN(Date.parse(value))
-        const endDate = isValidDate ? new Date(value).toISOString().split("T")[0] : "";
-        setDateEnd1(endDate)
-    }
     const handleInputDays2 = (event) => {
         const value = event.target.value
-        setDays2(Number(value))
-    }
-
-    const handleInputDate2 = (event) => {
-        const value = event.target.value
-        const isValidDate = !isNaN(Date.parse(value))
-        const endDate = isValidDate ? new Date(value).toISOString().split("T")[0] : "";
-        setDateEnd2(endDate)
+        const days = ((value === '' || value < 0) ? '' : Number(value))
+        setDays2(days)
+        if (days !== '') setDateStart2('')
     }
 
 //--------------------------------HTML to IMG def-------------------------------------------------
@@ -70,15 +106,23 @@ const ComparePlayers = () => {
                     <PlayerSelector label={"Player #2:"} onSelect={setPlayer2}/>
                     <div className={classes.wrapperList}>
                         <div className={classes.titleBox}>Date end (Player 1):</div>
-                        <input type="text" placeholder="XXXX-MM-DD" onChange={handleInputDate1}/>
+                        <input type="text" placeholder="XXXX-MM-DD" onChange={handleInputEndDate1}/>
+
+                        <div className={classes.titleBox}>Date start (Player 1):</div>
+                        <input type="text" placeholder="XXXX-MM-DD" disabled={days1 !== ''} onChange={handleInputStartDate1}/>
+
                         <div className={classes.titleBox}>Days interval (Player 1):</div>
-                        <input type="number" value={days1} onChange={handleInputDays1}/>
+                        <input type="number" value={days1} disabled={dateStart1 !== ''} onChange={handleInputDays1}/>
                     </div>
                     <div className={classes.wrapperList}>
                         <div className={classes.titleBox}>Date end (Player 2):</div>
-                        <input type="text" placeholder="XXXX-MM-DD" onChange={handleInputDate2}/>
+                        <input type="text" placeholder="XXXX-MM-DD" onChange={handleInputEndDate2}/>
+
+                        <div className={classes.titleBox}>Date start (Player 2):</div>
+                        <input type="text" placeholder="XXXX-MM-DD" disabled={days2 !== ''} onChange={handleInputStartDate2}/>
+
                         <div className={classes.titleBox}>Days interval (Player 2):</div>
-                        <input type="number" value={days2} onChange={handleInputDays2}/>
+                        <input type="number" value={days2} disabled={dateStart2 !== ''} onChange={handleInputDays2}/>
                     </div>
                     <div className={classes.btnSaveAsImage} onClick={onButtonClick}>
                         Download
@@ -86,7 +130,10 @@ const ComparePlayers = () => {
                 </div>
             </div>
             <div ref={ref}>
-                <ComparePlayersResult player1={player1} player2={player2} dateEnd1={dateEnd1} days1={days1} dateEnd2={dateEnd2} days2={days2}/>
+                <ComparePlayersResult player1={player1} player2={player2}
+                                      dateEnd1={dateEnd1} days1={days1}
+                                      dateEnd2={dateEnd2} days2={days2}
+                                      dateStart1={dateStart1} dateStart2={dateStart2}/>
             </div>
         </>
     );

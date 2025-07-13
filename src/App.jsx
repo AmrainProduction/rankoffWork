@@ -33,6 +33,7 @@ import EmojiPlayers from "./Component/EmojiPlayers/emojiPlayers";
 import EmojiEvents from "./Component/EmojiEvents/emojiEvents";
 import ComparePlayers from "./Component/NewDesign2025/ComparePlayers/comparePlayers";
 import UpdateRoster from "./Component/NewDesign2025/UpdateRoster/updateRoster";
+import {useGetMatchesQuery, useGetPlayersQuery, useGetTeamsTournamentsByNameQuery} from "./store/api/apiSlice";
 
 const router = createBrowserRouter(createRoutesFromElements(
     <Route path='/' element={<Layout/>} errorElement={<ErrorPage/>}>

@@ -3,13 +3,14 @@ import Kpr from "../Component/Formulas/kpr";
 import Dpr from "../Component/Formulas/dpr";
 import Rating from "../Component/Formulas/rating";
 
-export default function CalculateStatsPlayerForPeriod(player, date, period) {
+export default function CalculateStatsPlayerForPeriod(player, startDate, endDate, period, map) {
 
     const numberPlayer = [1, 2, 3, 4, 5]
     const numberTeam = [1, 2]
 
     const name = player?.nickname
-    const endDate = date ? new Date(date).toISOString().split("T")[0] : new Date().toISOString().split("T")[0]
+    const endDateNew = endDate ? new Date(endDate).toISOString().split("T")[0] : new Date().toISOString().split("T")[0]
+    const startDateNew = startDate ? new Date(startDate).toISOString().split("T")[0] : new Date().toISOString().split("T")[0]
     const timeInterval = period ? period : 90
 
     const matchesPlayer = useGetMatchesNecessaryPlayerQuery({name})
@@ -21,15 +22,25 @@ export default function CalculateStatsPlayerForPeriod(player, date, period) {
         return date.toISOString().split("T")[0]
     }
 
-    const startDate = subtractDays(endDate, timeInterval)
+    const startDatePeriod = subtractDays(endDateNew, timeInterval)
 
-    function filterMatchesByPeriod(matches, startDate, endDate) {
+    function filterMatchesByPeriod(matches, startDatePeriod, endDate) {
+        const start = new Date(startDatePeriod)
+        const end = new Date(endDate)
+
+        return matches.filter((match) => {
+            const matchDate = new Date(match.db_date_match)
+            return matchDate >= start && matchDate <= end
+        })
+    }
+
+    function filterMatchesFromStartToEnd(matches, startDate, endDate) {
         const start = new Date(startDate)
         const end = new Date(endDate)
 
         return matches.filter((match) => {
             const matchDate = new Date(match.db_date_match)
-            return matchDate > start && matchDate <= end
+            return matchDate >= start && matchDate <= end
         })
     }
 
@@ -47,7 +58,7 @@ export default function CalculateStatsPlayerForPeriod(player, date, period) {
 
         const allMatchesPlayerReverse = [...matchesPlayer.data]
 
-        const filteredMatchesPlayer = filterMatchesByPeriod(allMatchesPlayerReverse, startDate, endDate)
+        const filteredMatchesPlayer = (period) ? filterMatchesByPeriod(allMatchesPlayerReverse, startDatePeriod, endDateNew) : filterMatchesFromStartToEnd(allMatchesPlayerReverse, startDateNew, endDateNew)
 
         // кастомная выборка турниров
         // let temp = []
@@ -62,7 +73,7 @@ export default function CalculateStatsPlayerForPeriod(player, date, period) {
         filteredMatchesPlayer.map(e => {
             numberTeam.forEach(team => {
                 numberPlayer.forEach(player => {
-                    if(e[`t${team}p${player}`] === name) {
+                    if (e[`t${team}p${player}`] === name) {
                         impact += e[`t${team}p${player}_impact`]
                         k += e[`t${team}p${player}_k`]
                         a += e[`t${team}p${player}_a`]

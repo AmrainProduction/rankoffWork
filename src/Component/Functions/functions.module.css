@@ -5,7 +5,6 @@
     height: 100%;
     width: 100%;
     padding: 1%;
-    background: #584669;
     grid-template-columns: 40% 60%;
 }
 
@@ -15,8 +14,10 @@
     align-items: center;
     height: 100%;
     width: 100%;
-    background: #584669;
-    padding: 0 1% 0 0;
+    border-top-left-radius: 0.5vw;
+    border-bottom-left-radius: 0.5vw;
+    padding: 1%;
+    background: var(--mainLightBlack);
 }
 
 .wrapperOutputRes {
@@ -26,8 +27,10 @@
     height: 100%;
     width: 100%;
     padding: 1%;
-    background: #413749;
-    color: white;
+    border-top-right-radius: 0.5vw;
+    border-bottom-right-radius: 0.5vw;
+    background: var(--mainLightBlack);
+    color: var(--textColor);
 }
 
 .wrapperElement {
@@ -36,16 +39,17 @@
     align-items: center;
     width: 100%;
     height: auto;
-    padding: 5px;
-    background: #8C6899;
-    color: white;
+    padding: 1%;
+    border-radius: 0.5vw;
+    background: var(--componentLightBlockColor);
+    color: var(--textColor);
     margin-bottom: 5px;
     cursor: pointer;
     transition: all 0.4s;
 }
 
 .wrapperElement:hover {
-    background: #6b5175;
+    background: var(--componentBlockColorHover);
 }
 
 .wrapperStatsPlayersTour {
@@ -56,23 +60,25 @@
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    padding: 1%;
+    padding: 0.5%;
     overflow-x: scroll;
     overflow-y: hidden;
     max-width: 100%;
-    height: 30px;
+    height: 100%;
+    border-radius: 0.5vw;
     margin-bottom: 1%;
-    background: #584669;
+    background: var(--componentLightBlockColor);
 }
 
 .actionButtons {
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    padding: 1%;
-    height: 30px;
+    padding: 0.5%;
+    height: 100%;
     margin-bottom: 1%;
-    background: #584669;
+    border-radius: 0.5vw;
+    background: var(--componentLightBlockColor);
 }
 
 .resultCommand {
@@ -81,7 +87,8 @@
     padding: 1%;
     width: 100%;
     overflow: hidden;
-    background: #584669;
+    border-radius: 0.5vw;
+    background: var(--componentLightBlockColor);
 }
 
 .tour {
@@ -89,16 +96,18 @@
     align-items: center;
     justify-content: center;
     margin-right: 1%;
-    padding: 0.2% 2%;
     width: auto;
     min-width: max-content;
     height: auto;
     cursor: pointer;
-    background: #8C6899;
+    border-radius: 0.5vw;
+    padding: 1%;
+    color: var(--textColor);
+    background: var(--componentBlockColor);
 }
 
 .tour:hover {
-    background: #6b5175;
+    background: var(--componentBlockColorHover);
 }
 
 .listTours::-webkit-scrollbar {
