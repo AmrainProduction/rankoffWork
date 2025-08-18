@@ -84,7 +84,7 @@ const RankoffPredicts = () => {
     let matchesData = []
     let matchesID = []
     let toursID = []
-    let predictorsPhotos = ["Andrey Gears", "Postanova", "itsnone", "Nekr0", "Zadrot", "Sir.Fuga", "Shempy", "dstr"]
+    let predictorsPhotos = ["Andrey Gears", "Postanova", "itsnone", "Nekr0", "Zadrot", "Sir.Fuga", "Shempy", "beretta"]
 
     if (listMatches.data && listMatches.data.length > 0 && listTours.data && listTours.data.length > 0) {
 

@@ -3,8 +3,8 @@ import classes from "../comparePlayers.module.css";
 import {
     useGetMatchesQuery
 } from "../../../../store/api/apiSlice";
-import WhatBirthday from "../../../../Function/whatBirthday";
 import CalculateStatsPlayerForPeriod from "../../../../Function/calculateStatsPlayerForPeriod";
+import WhatBirthdayThen from "../../../../Function/whatBirthdayThen";
 
 const ComparePlayersResult = ({player1, player2, dateEnd1, days1, dateEnd2, days2, dateStart1, dateStart2}) => {
 
@@ -32,7 +32,7 @@ const ComparePlayersResult = ({player1, player2, dateEnd1, days1, dateEnd2, days
                             <img
                                 src={`/images/DataInImage/RANKOFF_AWARDS_2024/RegionsFlags/${player1.country_flag}.svg`}
                                 alt="/"/>
-                            лет: {WhatBirthday(player1.date_birth)}
+                            лет: {WhatBirthdayThen(player1.date_birth, dateEnd1)}
                         </div>
                         <div className={classes.nickname}>{player1.nickname}</div>
                         <div className={classes.name}>{player1.name + " " + player1.surname}</div>
@@ -136,7 +136,7 @@ const ComparePlayersResult = ({player1, player2, dateEnd1, days1, dateEnd2, days
                             <img
                                 src={`/images/DataInImage/RANKOFF_AWARDS_2024/RegionsFlags/${player2.country_flag}.svg`}
                                 alt="/"/>
-                            лет: {WhatBirthday(player2.date_birth)}
+                            лет: {WhatBirthdayThen(player2.date_birth, dateEnd2)}
                         </div>
                         <div className={classes.nickname}>{player2.nickname}</div>
                         <div className={classes.name}>{player2.name + " " + player2.surname}</div>

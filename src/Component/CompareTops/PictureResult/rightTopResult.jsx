@@ -22,13 +22,14 @@ const LeftTopResult = (props) => {
     const tourInfo = useGetTournamentByNameQuery({name})
 
     let filterTours = [
-        "WinlineEPICStandoff2PawPawEp1_24_06_25",
+        "WinlineEPICStandoff2PawPawEp2_29_07_25",
     ]
 
     let players_tournaments = calculatePlayersTopV2(name, props.stage, allPlayers, allMatches, teamsTour, tourInfo, allShortMatches, filterTours)
 
     const diffPlayerPosition = (player_id, leftTop, currentPos) => {
         const positionLeft = leftTop.find( e => e.player_id === player_id)?.position
+
         let diff = positionLeft - currentPos
 
         if(diff > 0) {
@@ -51,7 +52,7 @@ const LeftTopResult = (props) => {
         return (
             <div className={classes.wrapperTopResult}>
                 <div className={classes.wrapperTourInfo}>
-                    <div className={classes.nameTour}>{"EPIC PAWPAW: EP.1"}</div>
+                    <div className={classes.nameTour}>{"EPIC PAWPAW EP.2"}</div>
                 </div>
                 <div className={classes.topResult}>
                 <div className={classes.wrapperPlayerTitle}>

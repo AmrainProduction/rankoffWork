@@ -39,25 +39,25 @@ const CurrentTeamsPlayers = () => {
             player5_id = team.player_5_id
 
 
-            if (player1 && player2 && player3 && player4 && player5) {
-                if (player1 && player1 !== 'nickname') {
-                    query += "UPDATE players SET team =" + `'` + `${team.name_team}` + `',` + " back_logo_team" + "=" + `'` + `${team.logo_team}` + `'` + ", team_id=" + team.team_id + " WHERE player_id=" + player1_id + " AND nickname=" + `'` + `${player1}` + `'; \n`
+            if (player1 && player2 && player3 && player4 && player5 && player1_id && player2_id && player3_id && player4_id && player5_id) {
+                if (player1_id && player1 !== 'nickname') {
+                    query += "UPDATE players SET team =" + `'` + `${team.name_team}` + `',` + " back_logo_team" + "=" + `'` + `${team.logo_team}` + `'` + ", team_id=" + team.team_id + " WHERE player_id=" + player1_id + `; \n`
                 }
 
-                if (player2 && player2 !== 'nickname') {
-                    query += "UPDATE players SET team =" + `'` + `${team.name_team}` + `',` + " back_logo_team" + "=" + `'` + `${team.logo_team}` + `'` + ", team_id=" + team.team_id + " WHERE player_id=" + player2_id + " AND nickname=" + `'` + `${player2}` + `'; \n`
+                if (player2_id && player2 !== 'nickname') {
+                    query += "UPDATE players SET team =" + `'` + `${team.name_team}` + `',` + " back_logo_team" + "=" + `'` + `${team.logo_team}` + `'` + ", team_id=" + team.team_id + " WHERE player_id=" + player2_id + `; \n`
                 }
 
-                if (player3 && player3 !== 'nickname') {
-                    query += "UPDATE players SET team =" + `'` + `${team.name_team}` + `',` + " back_logo_team" + "=" + `'` + `${team.logo_team}` + `'` + ", team_id=" + team.team_id + " WHERE player_id=" + player3_id + " AND nickname=" + `'` + `${player3}` + `'; \n`
+                if (player3_id && player3 !== 'nickname') {
+                    query += "UPDATE players SET team =" + `'` + `${team.name_team}` + `',` + " back_logo_team" + "=" + `'` + `${team.logo_team}` + `'` + ", team_id=" + team.team_id + " WHERE player_id=" + player3_id + `; \n`
                 }
 
-                if (player4 && player4 !== 'nickname') {
-                    query += "UPDATE players SET team =" + `'` + `${team.name_team}` + `',` + " back_logo_team" + "=" + `'` + `${team.logo_team}` + `'` + ", team_id=" + team.team_id + " WHERE player_id=" + player4_id + " AND nickname=" + `'` + `${player4}` + `'; \n`
+                if (player4_id && player4 !== 'nickname') {
+                    query += "UPDATE players SET team =" + `'` + `${team.name_team}` + `',` + " back_logo_team" + "=" + `'` + `${team.logo_team}` + `'` + ", team_id=" + team.team_id + " WHERE player_id=" + player4_id + `; \n`
                 }
 
-                if (player5 && player5 !== 'nickname') {
-                    query += "UPDATE players SET team =" + `'` + `${team.name_team}` + `',` + " back_logo_team" + "=" + `'` + `${team.logo_team}` + `'` + ", team_id=" + team.team_id + " WHERE player_id=" + player5_id + " AND nickname=" + `'` + `${player5}` + `'; \n`
+                if (player5_id && player5 !== 'nickname') {
+                    query += "UPDATE players SET team =" + `'` + `${team.name_team}` + `',` + " back_logo_team" + "=" + `'` + `${team.logo_team}` + `'` + ", team_id=" + team.team_id + " WHERE player_id=" + player5_id + `; \n`
                 }
 
             }
@@ -73,25 +73,25 @@ const CurrentTeamsPlayers = () => {
         teams.data.map((team) => {
 
             if (team.player_1 !== 'nickname') {
-                allPlayers = allPlayers.filter(e => e.nickname !== team.player_1 && e.player_id !== team.player_1_id)
+                allPlayers = allPlayers.filter(e => e.player_id !== team.player_1_id)
             }
             if (team.player_2 !== 'nickname') {
-                allPlayers = allPlayers.filter(e => e.nickname !== team.player_2 && e.player_id !== team.player_2_id)
+                allPlayers = allPlayers.filter(e => e.player_id !== team.player_2_id)
             }
             if (team.player_3 !== 'nickname') {
-                allPlayers = allPlayers.filter(e => e.nickname !== team.player_3 && e.player_id !== team.player_3_id)
+                allPlayers = allPlayers.filter(e => e.player_id !== team.player_3_id)
             }
             if (team.player_4 !== 'nickname') {
-                allPlayers = allPlayers.filter(e => e.nickname !== team.player_4 && e.player_id !== team.player_4_id)
+                allPlayers = allPlayers.filter(e => e.player_id !== team.player_4_id)
             }
             if (team.player_5 !== 'nickname') {
-                allPlayers = allPlayers.filter(e => e.nickname !== team.player_5 && e.player_id !== team.player_5_id)
+                allPlayers = allPlayers.filter(e => e.player_id !== team.player_5_id)
             }
 
         })
 
         allPlayers.map((player) => {
-            query += "UPDATE players SET team =" + `'` + `teamDefaults` + `',` + " back_logo_team" + "=" + `'` + `teamDefaults.svg` + `'` + ", team_id=" + "NULL" + " WHERE player_id=" + player.player_id + " AND nickname=" + `'` + `${player.nickname}` + `'; \n`
+            query += "UPDATE players SET team =" + `'` + `teamDefaults` + `',` + " back_logo_team" + "=" + `'` + `teamDefaults.svg` + `'` + ", team_id=" + "NULL" + " WHERE player_id=" + player.player_id + `; \n`
         })
 
         // console.log(query) //вывод всех игроков с командой и без

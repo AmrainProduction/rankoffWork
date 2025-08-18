@@ -37,6 +37,12 @@ const TopPlayersTourResultLong = (props) => {
         // "Standoff2EPICAcademy2025Week2_31_03_25",
         // "Standoff2EPICAcademy2025Week3_28_04_25",
         // "Standoff2EPICAcademy2025SpringFinals_28_05_25",
+        // "WinlineEPICStandoff2PawPawEp1_24_06_25",
+        // "WinlineEPICStandoff2CosmoMajor_04_06_25",
+        // "WinlineEPICStandoff2CosmoCancriE_09_04_25",
+        // "WinlineEPICStandoff2CosmoSaffar_04_03_25",
+        // "RushVTBCUPPro_13_02_25",
+        // "WinlineEPICStandoff2CosmoEarth_09_01_25",
     ]
 
     let players_tournaments = calculatePlayersTopV2(name, props.stage, allPlayers, allMatches, teamsTour, tourInfo, allShortMatches, filterTours, allShorts)

@@ -93,9 +93,10 @@ const RankingTeamsWithCurrentRosters = () => {
             })
         })
 
+        // сколько очков у конкретного игрока
         // let t = 0
         //
-        // players.filter(e => e.player_id === 63).map(e => {
+        // players.filter(e => e.player_id === 10).map(e => {
         //     console.log(e.points)
         //     t += e.points
         // })
@@ -175,6 +176,11 @@ const RankingTeamsWithCurrentRosters = () => {
                     player3: playersInfo[2]?.nickname ? playersInfo[2]?.nickname : "",
                     player4: playersInfo[3]?.nickname ? playersInfo[3]?.nickname : "",
                     player5: playersInfo[4]?.nickname ? playersInfo[4]?.nickname : "",
+                    player1_id: playersInfo[0]?.player_id ? playersInfo[0]?.player_id : "",
+                    player2_id: playersInfo[1]?.player_id ? playersInfo[1]?.player_id : "",
+                    player3_id: playersInfo[2]?.player_id ? playersInfo[2]?.player_id : "",
+                    player4_id: playersInfo[3]?.player_id ? playersInfo[3]?.player_id : "",
+                    player5_id: playersInfo[4]?.player_id ? playersInfo[4]?.player_id : "",
                     logo_player1: playersInfo[0]?.logo_player ? playersInfo[0]?.logo_player : "PlayerDefaultLogo.png",
                     logo_player2: playersInfo[1]?.logo_player ? playersInfo[1]?.logo_player : "PlayerDefaultLogo.png",
                     logo_player3: playersInfo[2]?.logo_player ? playersInfo[2]?.logo_player : "PlayerDefaultLogo.png",

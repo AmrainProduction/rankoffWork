@@ -98,7 +98,7 @@ const AllStatsPlayersLastTour = () => {
             link_discord = players.link_discord
 
             matchesData.data.map(matches => {
-                if (((matches.t1p1_id === player_id && matches.t1p1 === nickname) || (matches.t1p2_id === player_id && matches.t1p2 === nickname) || (matches.t1p3_id === player_id && matches.t1p3 === nickname) || (matches.t1p4_id === player_id && matches.t1p4 === nickname) || (matches.t1p5_id === player_id && matches.t1p5 === nickname))) {
+                if ((matches.t1p1_id === player_id || matches.t1p2_id === player_id || matches.t1p3_id === player_id || matches.t1p4_id === player_id || matches.t1p5_id === player_id)) {
                     if (matches.total_r_team1 > matches.total_r_team2) {
                         count++
                     }
@@ -111,7 +111,7 @@ const AllStatsPlayersLastTour = () => {
                     rounds_l += matches.total_r_team2
                 }
 
-                if (((matches.t2p1_id === player_id && matches.t2p1 === nickname) || (matches.t2p2_id === player_id && matches.t2p2 === nickname) || (matches.t2p3_id === player_id && matches.t2p3 === nickname) || (matches.t2p4_id === player_id && matches.t2p4 === nickname) || (matches.t2p5_id === player_id && matches.t2p5 === nickname))) {
+                if ((matches.t2p1_id === player_id || matches.t2p2_id === player_id || matches.t2p3_id === player_id || matches.t2p4_id === player_id || matches.t2p5_id === player_id)) {
                     if (matches.total_r_team1 < matches.total_r_team2) {
                         count_2++
                     }
@@ -124,62 +124,62 @@ const AllStatsPlayersLastTour = () => {
                     rounds_l += matches.total_r_team1
                 }
 
-                if ((matches.t2p1_id === player_id && matches.t2p1 === nickname) || (matches.t2p2_id === player_id && matches.t2p2 === nickname) || (matches.t2p3_id === player_id && matches.t2p3 === nickname) || (matches.t2p4_id === player_id && matches.t2p4 === nickname) || (matches.t2p5_id === player_id && matches.t2p5 === nickname) || (matches.t1p1_id === player_id && matches.t1p1 === nickname) || (matches.t1p2_id === player_id && matches.t1p2 === nickname) || (matches.t1p3_id === player_id && matches.t1p3 === nickname) || (matches.t1p4_id === player_id && matches.t1p4 === nickname) || (matches.t1p5_id === player_id && matches.t1p5 === nickname)) {
-                    if (matches.t1p1 === nickname && matches.t1p1_id === player_id) {
+                if (matches.t2p1_id === player_id || matches.t2p2_id === player_id || matches.t2p3_id === player_id || matches.t2p4_id === player_id || matches.t2p5_id === player_id || matches.t1p1_id === player_id || matches.t1p2_id === player_id || matches.t1p3_id === player_id || matches.t1p4_id === player_id || matches.t1p5_id === player_id) {
+                    if (matches.t1p1_id === player_id) {
                         impact += matches.t1p1_impact
                         k += matches.t1p1_k
                         a += matches.t1p1_a
                         d += matches.t1p1_d
                     }
-                    if (matches.t1p2 === nickname && matches.t1p2_id === player_id) {
+                    if (matches.t1p2_id === player_id) {
                         impact += matches.t1p2_impact
                         k += matches.t1p2_k
                         a += matches.t1p2_a
                         d += matches.t1p2_d
                     }
-                    if (matches.t1p3 === nickname && matches.t1p3_id === player_id) {
+                    if (matches.t1p3_id === player_id) {
                         impact += matches.t1p3_impact
                         k += matches.t1p3_k
                         a += matches.t1p3_a
                         d += matches.t1p3_d
                     }
-                    if (matches.t1p4 === nickname && matches.t1p4_id === player_id) {
+                    if (matches.t1p4_id === player_id) {
                         impact += matches.t1p4_impact
                         k += matches.t1p4_k
                         a += matches.t1p4_a
                         d += matches.t1p4_d
                     }
-                    if (matches.t1p5 === nickname && matches.t1p5_id === player_id) {
+                    if (matches.t1p5_id === player_id) {
                         impact += matches.t1p5_impact
                         k += matches.t1p5_k
                         a += matches.t1p5_a
                         d += matches.t1p5_d
                     }
-                    if (matches.t2p1 === nickname && matches.t2p1_id === player_id) {
+                    if (matches.t2p1_id === player_id) {
                         impact += matches.t2p1_impact
                         k += matches.t2p1_k
                         a += matches.t2p1_a
                         d += matches.t2p1_d
                     }
-                    if (matches.t2p2 === nickname && matches.t2p2_id === player_id) {
+                    if (matches.t2p2_id === player_id) {
                         impact += matches.t2p2_impact
                         k += matches.t2p2_k
                         a += matches.t2p2_a
                         d += matches.t2p2_d
                     }
-                    if (matches.t2p3 === nickname && matches.t2p3_id === player_id) {
+                    if (matches.t2p3_id === player_id) {
                         impact += matches.t2p3_impact
                         k += matches.t2p3_k
                         a += matches.t2p3_a
                         d += matches.t2p3_d
                     }
-                    if (matches.t2p4 === nickname && matches.t2p4_id === player_id) {
+                    if (matches.t2p4_id === player_id) {
                         impact += matches.t2p4_impact
                         k += matches.t2p4_k
                         a += matches.t2p4_a
                         d += matches.t2p4_d
                     }
-                    if (matches.t2p5 === nickname && matches.t2p5_id === player_id) {
+                    if (matches.t2p5_id === player_id) {
                         impact += matches.t2p5_impact
                         k += matches.t2p5_k
                         a += matches.t2p5_a
@@ -233,7 +233,7 @@ const AllStatsPlayersLastTour = () => {
                     }]
 
 
-                query += "UPDATE players SET " + 'kd=' + kd + ',' + 'kpr=' + kpr + ',' + 'dpr=' + dpr + ',' + 'impact=' + impact + ',' + 'rating=' + rating + ',' + 'k=' + k + ',' + 'a=' + a + ',' + 'd=' + d + ',' + 'w_rounds=' + rounds_w + ',' + 'l_rounds=' + rounds_l + ',' + 'maps=' + maps + ',' + 'w_maps=' + maps_w + ',' + 'l_maps=' + maps_l + ',' + 'rm=' + rm + " WHERE player_id=" + player_id + " AND nickname=" + `'` + `${nickname}` + `'; \n`
+                query += "UPDATE players SET " + 'kd=' + kd + ',' + 'kpr=' + kpr + ',' + 'dpr=' + dpr + ',' + 'impact=' + impact + ',' + 'rating=' + rating + ',' + 'k=' + k + ',' + 'a=' + a + ',' + 'd=' + d + ',' + 'w_rounds=' + rounds_w + ',' + 'l_rounds=' + rounds_l + ',' + 'maps=' + maps + ',' + 'w_maps=' + maps_w + ',' + 'l_maps=' + maps_l + ',' + 'rm=' + rm + " WHERE player_id=" + player_id + `; \n`
             }
 
             count = 0

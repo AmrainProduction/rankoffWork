@@ -125,10 +125,20 @@ const RosterTeamFromNecessaryTour = () => {
                 allPlayers = allPlayers.filter(e => e.nickname !== tempmatches[0].t2p5 && e.player_id !== tempmatches[0].t2p5_id )
             }
 
-
-
-
-            query += "UPDATE teams SET name_team " + "=" + `'` + `${playersTeams[index].team}` + `'` + "," + " team_id " + "=" + `${playersTeams[index].team_id}` + "," + " player_1 " + "=" + `'` + `${playersTeams[index].player1}` + `'` + "," + " player_2 " + "=" + `'` + `${playersTeams[index].player2}` + `'` + "," + " player_3 " + "=" + `'` + `${playersTeams[index].player3}` + `'` + "," + " player_4 " + "=" + `'` + `${playersTeams[index].player4}` + `'` + "," + " player_5 " + "=" + `'` + `${playersTeams[index].player5}` + `'` + "," + " player_1_id " + "=" + `${playersTeams[index].player1_id}` + "," + " player_2_id " + "=" + `${playersTeams[index].player2_id}` + "," + " player_3_id " + "=" + `${playersTeams[index].player3_id}` + "," + " player_4_id " + "=" + `${playersTeams[index].player4_id}` + "," + " player_5_id " + "=" + `${playersTeams[index].player5_id}` + " WHERE name_team " + "=" + `'` + `${playersTeams[index].team}` + `'` + " AND team_id " + "=" + `${playersTeams[index].team_id}` + ";\n\n"
+            query += "UPDATE teams SET name_team " + "=" + `'` + `${playersTeams[index].team}` + `'` + ","
+                + " team_id " + "=" + `${playersTeams[index].team_id}` + ","
+                + " player_1 " + "=" + `'` + `${playersTeams[index].player1}` + `'` + ","
+                + " player_2 " + "=" + `'` + `${playersTeams[index].player2}` + `'` + ","
+                + " player_3 " + "=" + `'` + `${playersTeams[index].player3}` + `'` + ","
+                + " player_4 " + "=" + `'` + `${playersTeams[index].player4}` + `'` + ","
+                + " player_5 " + "=" + `'` + `${playersTeams[index].player5}` + `'` + ","
+                + " player_1_id " + "=" + `${playersTeams[index].player1_id}` + ","
+                + " player_2_id " + "=" + `${playersTeams[index].player2_id}` + ","
+                + " player_3_id " + "=" + `${playersTeams[index].player3_id}` + ","
+                + " player_4_id " + "=" + `${playersTeams[index].player4_id}` + ","
+                + " player_5_id " + "=" + `${playersTeams[index].player5_id}`
+                + " WHERE name_team " + "=" + `'` + `${playersTeams[index].team}` + `'`
+                + " AND team_id " + "=" + `${playersTeams[index].team_id}` + ";\n\n"
 
             tempmatches = []
         })

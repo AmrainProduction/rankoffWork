@@ -7,7 +7,6 @@ import {
     useGetTeamsTournamentsByNameQuery, useGetTournamentByNameQuery
 } from "../../../../store/api/apiSlice";
 import CountryFlagPlayer from "../../../../Function/countryFlagPlayer";
-import normalizeImpact from "../../../Functions/AllFunctions/normalizeImpact";
 import Kpr from "../../../Formulas/kpr";
 import Dpr from "../../../Formulas/dpr";
 import Rating from "../../../Formulas/rating";
@@ -95,7 +94,7 @@ const PlayerMVPResult = (props) => {
 
     matchesPlayer?.data?.map(e => {
         if (e.name_tour_for_sort === tour) {
-        matchesID.push(e.name_match_for_sort)
+            matchesID.push(e.name_match_for_sort)
         }
     })
 
@@ -137,7 +136,7 @@ const PlayerMVPResult = (props) => {
 
                 if (match.t1p1 === nickname) {
                     logolayer = match.t1p1_logo
-                    impact += normalizeImpact(match.t1p1_impact)
+                    impact += match.t1p1_impact
                     k += match.t1p1_k
                     a += match.t1p1_a
                     d += match.t1p1_d
@@ -146,7 +145,7 @@ const PlayerMVPResult = (props) => {
 
                 if (match.t1p2 === nickname) {
                     logolayer = match.t1p2_logo
-                    impact += normalizeImpact(match.t1p2_impact)
+                    impact += match.t1p2_impact
                     k += match.t1p2_k
                     a += match.t1p2_a
                     d += match.t1p2_d
@@ -155,7 +154,7 @@ const PlayerMVPResult = (props) => {
 
                 if (match.t1p3 === nickname) {
                     logolayer = match.t1p3_logo
-                    impact += normalizeImpact(match.t1p3_impact)
+                    impact += match.t1p3_impact
                     k += match.t1p3_k
                     a += match.t1p3_a
                     d += match.t1p3_d
@@ -164,7 +163,7 @@ const PlayerMVPResult = (props) => {
 
                 if (match.t1p4 === nickname) {
                     logolayer = match.t1p4_logo
-                    impact += normalizeImpact(match.t1p4_impact)
+                    impact += match.t1p4_impact
                     k += match.t1p4_k
                     a += match.t1p4_a
                     d += match.t1p4_d
@@ -173,7 +172,7 @@ const PlayerMVPResult = (props) => {
 
                 if (match.t1p5 === nickname) {
                     logolayer = match.t1p5_logo
-                    impact += normalizeImpact(match.t1p5_impact)
+                    impact += match.t1p5_impact
                     k += match.t1p5_k
                     a += match.t1p5_a
                     d += match.t1p5_d
@@ -209,7 +208,7 @@ const PlayerMVPResult = (props) => {
 
                 if (match.t2p1 === nickname) {
                     logolayer = match.t2p1_logo
-                    impact += normalizeImpact(match.t2p1_impact)
+                    impact += match.t2p1_impact
                     k += match.t2p1_k
                     a += match.t2p1_a
                     d += match.t2p1_d
@@ -218,7 +217,7 @@ const PlayerMVPResult = (props) => {
 
                 if (match.t2p2 === nickname) {
                     logolayer = match.t2p2_logo
-                    impact += normalizeImpact(match.t2p2_impact)
+                    impact += match.t2p2_impact
                     k += match.t2p2_k
                     a += match.t2p2_a
                     d += match.t2p2_d
@@ -227,7 +226,7 @@ const PlayerMVPResult = (props) => {
 
                 if (match.t2p3 === nickname) {
                     logolayer = match.t2p3_logo
-                    impact += normalizeImpact(match.t2p3_impact)
+                    impact += match.t2p3_impact
                     k += match.t2p3_k
                     a += match.t2p3_a
                     d += match.t2p3_d
@@ -236,7 +235,7 @@ const PlayerMVPResult = (props) => {
 
                 if (match.t2p4 === nickname) {
                     logolayer = match.t2p4_logo
-                    impact += normalizeImpact(match.t2p4_impact)
+                    impact += match.t2p4_impact
                     k += match.t2p4_k
                     a += match.t2p4_a
                     d += match.t2p4_d
@@ -245,7 +244,7 @@ const PlayerMVPResult = (props) => {
 
                 if (match.t2p5 === nickname) {
                     logolayer = match.t2p5_logo
-                    impact += normalizeImpact(match.t2p5_impact)
+                    impact += match.t2p5_impact
                     k += match.t2p5_k
                     a += match.t2p5_a
                     d += match.t2p5_d
@@ -358,6 +357,9 @@ const PlayerMVPResult = (props) => {
     //     (a.rating) - (b.rating)
     // )
 
+    //убираем empty из массива
+    statsMvpPlayer = statsMvpPlayer.filter(e => Object.keys(e).length > 0)
+
     if (matchesID?.length > 0) {
         return (
             <div className={classes.wrapperTopResult}>
@@ -381,7 +383,7 @@ const PlayerMVPResult = (props) => {
                         <div className={classes.cell}>RATING</div>
                     </div>
                     {statsMvpPlayer?.map((e, index) => {
-                        if (index <= 100) {
+                        if (index <= 20) {
                             return (
                                 <div key={index} className={classes.statsRow}>
                                     <div className={classes.cell}>
@@ -469,9 +471,11 @@ const PlayerMVPResult = (props) => {
                 </div>
                 <div className={classes.logoTeamSection}>
                     <img src={`/images/LogoTeams/${statsMvpPlayer[statsMvpPlayer.length - 1]?.logo_team}`} alt="/"/>
+                    {/*<img src={`/images/LogoTeams/AMKAL.PARI.png`} alt="/"/>*/}
                 </div>
                 <div className={classes.photoPlayerSection}>
                     <img src={`/images/LogoPlayers/${statsMvpPlayer[statsMvpPlayer.length - 1]?.logolayer}`} alt="/"/>
+                    {/*<img src={`/images/LogoPlayers/Nekr06.png`} alt="/"/>*/}
                 </div>
                 <img src={`/images/DataInImage/NEW_DESIGN_2025/MVP_PLAYERS.png`} className={classes.bgImg} alt="/"/>
             </div>

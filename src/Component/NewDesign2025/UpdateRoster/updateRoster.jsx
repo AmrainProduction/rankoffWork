@@ -61,7 +61,7 @@ const UpdateRoster = () => {
     + "player_4_id=" + player4?.player_id + ", "
     + "player_5_id=" + player5?.player_id
     + " WHERE "
-    + "team_id=" + team?.team_id
+    + "team_id=" + team?.team_id + ";"
 
     return (
         <div className={classes.wrapperMenu}>
