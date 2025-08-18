@@ -3,13 +3,16 @@ import classes from './updateRoster.module.css'
 import {toJpeg, toPng} from 'html-to-image';
 import logo from "../../../logo.svg";
 import UpdateRosterResult from "./PictureResult_v2/updateRosterResult";
-import {useGetPlayersQuery} from "../../../store/api/apiSlice";
+import {useGetPlayersQuery, useGetTeamsQuery} from "../../../store/api/apiSlice";
 import PlayerSelector from "../../UI/PlayerSelector/playerSelector";
 import TeamSelector from "../../UI/TeamSelector/teamSelector";
 import toSQLCommandAddMatch from "../../AddMatches/PictureResult/toSQLCommandAddMatch";
 import toSQLCommandUpdateShortMatch from "../../AddMatches/PictureResult/toSQLCommandUpdateShortMatch";
 
 const UpdateRoster = () => {
+
+    const listTeams = useGetTeamsQuery()
+    const listPlayers = useGetPlayersQuery()
 
     const [player1, setPlayer1] = useState(null)
     const [player2, setPlayer2] = useState(null)
@@ -63,6 +66,8 @@ const UpdateRoster = () => {
     + " WHERE "
     + "team_id=" + team?.team_id + ";"
 
+    let currentTeam = listTeams.data?.find(item => item.team_id === team?.team_id)
+
     return (
         <div className={classes.wrapperMenu}>
             <div className={classes.menu}>
@@ -73,11 +78,11 @@ const UpdateRoster = () => {
             <div>
                 <div className={classes.addPlayers}>
                     <TeamSelector label={"Team:"} onSelect={setTeam}/>
-                    <PlayerSelector label={"Player #1:"} onSelect={setPlayer1}/>
-                    <PlayerSelector label={"Player #2:"} onSelect={setPlayer2}/>
-                    <PlayerSelector label={"Player #3:"} onSelect={setPlayer3}/>
-                    <PlayerSelector label={"Player #4:"} onSelect={setPlayer4}/>
-                    <PlayerSelector label={"Player #5:"} onSelect={setPlayer5}/>
+                    <PlayerSelector label={"Player #1:"} onSelect={setPlayer1} defaultPlayerValue={currentTeam?.player_1_id}/>
+                    <PlayerSelector label={"Player #2:"} onSelect={setPlayer2} defaultPlayerValue={currentTeam?.player_2_id}/>
+                    <PlayerSelector label={"Player #3:"} onSelect={setPlayer3} defaultPlayerValue={currentTeam?.player_3_id}/>
+                    <PlayerSelector label={"Player #4:"} onSelect={setPlayer4} defaultPlayerValue={currentTeam?.player_4_id}/>
+                    <PlayerSelector label={"Player #5:"} onSelect={setPlayer5} defaultPlayerValue={currentTeam?.player_5_id}/>
                     <div className={classes.btnSaveAsImage} onClick={copyToClipboard}>
                         Enter
                     </div>
