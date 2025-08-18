@@ -148,6 +148,9 @@ input[type="number"] {
     display: grid;
     width: 100%;
     gap: 0.4rem;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    background-color: var(--componentBlockColorHover);
     grid-template-columns: auto auto auto auto;
 }
 
@@ -155,8 +158,11 @@ input[type="number"] {
     display: grid;
     width: 100%;
     gap: 0.4rem;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
     grid-template-columns: auto auto auto auto;
     grid-template-rows: repeat(10, 1fr);
+    background-color: var(--componentBlockColorHover);
 }
 
 .titleCell {
@@ -166,17 +172,17 @@ input[type="number"] {
     padding: 0.3rem;
     border-radius: 0.5rem;
     background: var(--mainLightBlack);
-    width: 100px;
+    width: 120px;
 }
 
 .dataPlayersMatch input {
-    max-width: 100px;
+    max-width: 120px;
 }
 
-.dataPlayersMatch > :nth-child(n + 1):nth-child(-n + 20)
+/* .dataPlayersMatch > :nth-child(n + 1):nth-child(-n + 20)
 {
     background-color: var(--componentBlockColorHover);
-}
+} */
 
 .wrapperCopyButton {
     display: flex;

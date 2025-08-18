@@ -3,7 +3,7 @@ import classes from "./playerSelector.module.css";
 import {useGetPlayersQuery} from "../../../store/api/apiSlice";
 
 
-const PlayerSelector = ({label, onSelect}) => {
+const PlayerSelector = ({label, onSelect, defaultPlayerValue}) => {
     const listPlayers = useGetPlayersQuery();
 
     const [inputValue, setInputValue] = useState("");
@@ -12,6 +12,18 @@ const PlayerSelector = ({label, onSelect}) => {
     const [selectedIndex, setSelectedIndex] = useState(-1);
 
     const wrapperRef = useRef(null);
+
+    
+
+    useEffect(() => {
+        if (defaultPlayerValue) {
+        let defaultPlayer = listPlayers.data?.filter(e =>
+                e.player_id === defaultPlayerValue
+            )
+        setInputValue(defaultPlayer[0])
+        onSelect(defaultPlayer[0]);
+    }
+    }, [defaultPlayerValue])
 
     useEffect(() => {
         function handleClickOutside(event) {

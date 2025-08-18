@@ -13,6 +13,7 @@ import {toJpeg} from "html-to-image";
 import toSQLCommandUpdateShortMatch from "./toSQLCommandUpdateShortMatch";
 import Impact from "../../Formulas/impact";
 import Rating from "../../Formulas/rating";
+import PlayerSelector from '../../UI/PlayerSelector/playerSelector';
 
 const DataEntryMatch = (props) => {
     const name = props.match_id
@@ -21,6 +22,17 @@ const DataEntryMatch = (props) => {
     const teams = useGetTeamsQuery()
     const shortMatches = useGetShortMatchByNameQuery({name})
     const currentMatch = useGetMatchesByNameQuery({name})
+
+    const [player11, setPlayer11] = useState(null)
+    const [player12, setPlayer12] = useState(null)
+    const [player13, setPlayer13] = useState(null)
+    const [player14, setPlayer14] = useState(null)
+    const [player15, setPlayer15] = useState(null)
+    const [player21, setPlayer21] = useState(null)
+    const [player22, setPlayer22] = useState(null)
+    const [player23, setPlayer23] = useState(null)
+    const [player24, setPlayer24] = useState(null)
+    const [player25, setPlayer25] = useState(null)
 
     let resultData = []
 
@@ -220,36 +232,36 @@ const DataEntryMatch = (props) => {
             half2_team2: (+matchInfo.half2_team2 - matchInfo.half1_team2),
             start_side_team1: selectedSide,
             start_side_team2: selectedSide === "CT" ? "T" : "CT",
-            t1p1: matchInfo.t1p1,
-            t1p2: matchInfo.t1p2,
-            t1p3: matchInfo.t1p3,
-            t1p4: matchInfo.t1p4,
-            t1p5: matchInfo.t1p5,
-            t2p1: matchInfo.t2p1,
-            t2p2: matchInfo.t2p2,
-            t2p3: matchInfo.t2p3,
-            t2p4: matchInfo.t2p4,
-            t2p5: matchInfo.t2p5,
-            t1p1_logo: t1p1Data?.logo_player,
-            t1p2_logo: t1p2Data?.logo_player,
-            t1p3_logo: t1p3Data?.logo_player,
-            t1p4_logo: t1p4Data?.logo_player,
-            t1p5_logo: t1p5Data?.logo_player,
-            t2p1_logo: t2p1Data?.logo_player,
-            t2p2_logo: t2p2Data?.logo_player,
-            t2p3_logo: t2p3Data?.logo_player,
-            t2p4_logo: t2p4Data?.logo_player,
-            t2p5_logo: t2p5Data?.logo_player,
-            t1p1_id: +t1p1Data.player_id,
-            t1p2_id: +t1p2Data.player_id,
-            t1p3_id: +t1p3Data.player_id,
-            t1p4_id: +t1p4Data.player_id,
-            t1p5_id: +t1p5Data.player_id,
-            t2p1_id: +t2p1Data.player_id,
-            t2p2_id: +t2p2Data.player_id,
-            t2p3_id: +t2p3Data.player_id,
-            t2p4_id: +t2p4Data.player_id,
-            t2p5_id: +t2p5Data.player_id,
+            t1p1: player11?.nickname,
+            t1p2: player12?.nickname,
+            t1p3: player13?.nickname,
+            t1p4: player14?.nickname,
+            t1p5: player15?.nickname,
+            t2p1: player21?.nickname,
+            t2p2: player22?.nickname,
+            t2p3: player23?.nickname,
+            t2p4: player24?.nickname,
+            t2p5: player25?.nickname,
+            t1p1_logo: player11?.logo_player,
+            t1p2_logo: player12?.logo_player,
+            t1p3_logo: player13?.logo_player,
+            t1p4_logo: player14?.logo_player,
+            t1p5_logo: player15?.logo_player,
+            t2p1_logo: player21?.logo_player,
+            t2p2_logo: player22?.logo_player,
+            t2p3_logo: player23?.logo_player,
+            t2p4_logo: player24?.logo_player,
+            t2p5_logo: player25?.logo_player,
+            t1p1_id: +player11?.player_id,
+            t1p2_id: +player12?.player_id,
+            t1p3_id: +player13?.player_id,
+            t1p4_id: +player14?.player_id,
+            t1p5_id: +player15?.player_id,
+            t2p1_id: +player21?.player_id,
+            t2p2_id: +player22?.player_id,
+            t2p3_id: +player23?.player_id,
+            t2p4_id: +player24?.player_id,
+            t2p5_id: +player25?.player_id,
             t1p1_kd: +(+matchInfo.t1p1_k / +matchInfo.t1p1_d).toFixed(2),
             t1p2_kd: +(+matchInfo.t1p2_k / +matchInfo.t1p2_d).toFixed(2),
             t1p3_kd: +(+matchInfo.t1p3_k / +matchInfo.t1p3_d).toFixed(2),
@@ -492,9 +504,7 @@ const DataEntryMatch = (props) => {
                     </div>
                     <div className={classes.dataPlayersMatch}>
 
-                        <input type="text" className={classes.inputEntryData} name="t1p1" autoComplete="off"
-                               value={matchInfo.t1p1 ? matchInfo.t1p1 : matchInfo.t1p1 = team1Data.player_1}
-                               onChange={handleChangeInfoMatch}/>
+                               <PlayerSelector onSelect={setPlayer11} defaultPlayerValue={t1p1Data.player_id}/>
                         <input type="number" className={classes.inputEntryData} name="t1p1_k" value={matchInfo.t1p1_k}
                                onChange={handleChangeInfoMatch} autoComplete="off"/>
                         <input type="number" className={classes.inputEntryData} name="t1p1_a" value={matchInfo.t1p1_a}
@@ -502,9 +512,7 @@ const DataEntryMatch = (props) => {
                         <input type="number" className={classes.inputEntryData} name="t1p1_d" value={matchInfo.t1p1_d}
                                onChange={handleChangeInfoMatch} autoComplete="off"/>
 
-                        <input type="text" className={classes.inputEntryData} name="t1p2" autoComplete="off"
-                               value={matchInfo.t1p2 ? matchInfo.t1p2 : matchInfo.t1p2 = team1Data.player_2}
-                               onChange={handleChangeInfoMatch}/>
+                               <PlayerSelector onSelect={setPlayer12} defaultPlayerValue={t1p2Data.player_id}/>
                         <input type="number" className={classes.inputEntryData} name="t1p2_k" value={matchInfo.t1p2_k}
                                onChange={handleChangeInfoMatch} autoComplete="off"/>
                         <input type="number" className={classes.inputEntryData} name="t1p2_a" value={matchInfo.t1p2_a}
@@ -512,9 +520,7 @@ const DataEntryMatch = (props) => {
                         <input type="number" className={classes.inputEntryData} name="t1p2_d" value={matchInfo.t1p2_d}
                                onChange={handleChangeInfoMatch} autoComplete="off"/>
 
-                        <input type="text" className={classes.inputEntryData} name="t1p3" autoComplete="off"
-                               value={matchInfo.t1p3 ? matchInfo.t1p3 : matchInfo.t1p3 = team1Data.player_3}
-                               onChange={handleChangeInfoMatch}/>
+                               <PlayerSelector onSelect={setPlayer13} defaultPlayerValue={t1p3Data.player_id}/>
                         <input type="number" className={classes.inputEntryData} name="t1p3_k" value={matchInfo.t1p3_k}
                                onChange={handleChangeInfoMatch} autoComplete="off"/>
                         <input type="number" className={classes.inputEntryData} name="t1p3_a" value={matchInfo.t1p3_a}
@@ -522,9 +528,7 @@ const DataEntryMatch = (props) => {
                         <input type="number" className={classes.inputEntryData} name="t1p3_d" value={matchInfo.t1p3_d}
                                onChange={handleChangeInfoMatch} autoComplete="off"/>
 
-                        <input type="text" className={classes.inputEntryData} name="t1p4" autoComplete="off"
-                               value={matchInfo.t1p4 ? matchInfo.t1p4 : matchInfo.t1p4 = team1Data.player_4}
-                               onChange={handleChangeInfoMatch}/>
+                               <PlayerSelector onSelect={setPlayer14} defaultPlayerValue={t1p4Data.player_id}/>
                         <input type="number" className={classes.inputEntryData} name="t1p4_k" value={matchInfo.t1p4_k}
                                onChange={handleChangeInfoMatch} autoComplete="off"/>
                         <input type="number" className={classes.inputEntryData} name="t1p4_a" value={matchInfo.t1p4_a}
@@ -532,9 +536,7 @@ const DataEntryMatch = (props) => {
                         <input type="number" className={classes.inputEntryData} name="t1p4_d" value={matchInfo.t1p4_d}
                                onChange={handleChangeInfoMatch} autoComplete="off"/>
 
-                        <input type="text" className={classes.inputEntryData} name="t1p5" autoComplete="off"
-                               value={matchInfo.t1p5 ? matchInfo.t1p5 : matchInfo.t1p5 = team1Data.player_5}
-                               onChange={handleChangeInfoMatch}/>
+                               <PlayerSelector onSelect={setPlayer15} defaultPlayerValue={t1p5Data.player_id}/>
                         <input type="number" className={classes.inputEntryData} name="t1p5_k" value={matchInfo.t1p5_k}
                                onChange={handleChangeInfoMatch} autoComplete="off"/>
                         <input type="number" className={classes.inputEntryData} name="t1p5_a" value={matchInfo.t1p5_a}
@@ -542,9 +544,7 @@ const DataEntryMatch = (props) => {
                         <input type="number" className={classes.inputEntryData} name="t1p5_d" value={matchInfo.t1p5_d}
                                onChange={handleChangeInfoMatch} autoComplete="off"/>
 
-                        <input type="text" className={classes.inputEntryData} name="t2p1" autoComplete="off"
-                               value={matchInfo.t2p1 ? matchInfo.t2p1 : matchInfo.t2p1 = team2Data.player_1}
-                               onChange={handleChangeInfoMatch}/>
+                               <PlayerSelector onSelect={setPlayer21} defaultPlayerValue={t2p1Data.player_id}/>
                         <input type="number" className={classes.inputEntryData} name="t2p1_k" value={matchInfo.t2p1_k}
                                onChange={handleChangeInfoMatch} autoComplete="off"/>
                         <input type="number" className={classes.inputEntryData} name="t2p1_a" value={matchInfo.t2p1_a}
@@ -552,9 +552,7 @@ const DataEntryMatch = (props) => {
                         <input type="number" className={classes.inputEntryData} name="t2p1_d" value={matchInfo.t2p1_d}
                                onChange={handleChangeInfoMatch} autoComplete="off"/>
 
-                        <input type="text" className={classes.inputEntryData} name="t2p2" autoComplete="off"
-                               value={matchInfo.t2p2 ? matchInfo.t2p2 : matchInfo.t2p2 = team2Data.player_2}
-                               onChange={handleChangeInfoMatch}/>
+                               <PlayerSelector onSelect={setPlayer22} defaultPlayerValue={t2p2Data.player_id}/>
                         <input type="number" className={classes.inputEntryData} name="t2p2_k" value={matchInfo.t2p2_k}
                                onChange={handleChangeInfoMatch} autoComplete="off"/>
                         <input type="number" className={classes.inputEntryData} name="t2p2_a" value={matchInfo.t2p2_a}
@@ -562,9 +560,7 @@ const DataEntryMatch = (props) => {
                         <input type="number" className={classes.inputEntryData} name="t2p2_d" value={matchInfo.t2p2_d}
                                onChange={handleChangeInfoMatch} autoComplete="off"/>
 
-                        <input type="text" className={classes.inputEntryData} name="t2p3" autoComplete="off"
-                               value={matchInfo.t2p3 ? matchInfo.t2p3 : matchInfo.t2p3 = team2Data.player_3}
-                               onChange={handleChangeInfoMatch}/>
+                               <PlayerSelector onSelect={setPlayer23} defaultPlayerValue={t2p3Data.player_id}/>
                         <input type="number" className={classes.inputEntryData} name="t2p3_k" value={matchInfo.t2p3_k}
                                onChange={handleChangeInfoMatch} autoComplete="off"/>
                         <input type="number" className={classes.inputEntryData} name="t2p3_a" value={matchInfo.t2p3_a}
@@ -572,9 +568,7 @@ const DataEntryMatch = (props) => {
                         <input type="number" className={classes.inputEntryData} name="t2p3_d" value={matchInfo.t2p3_d}
                                onChange={handleChangeInfoMatch} autoComplete="off"/>
 
-                        <input type="text" className={classes.inputEntryData} name="t2p4" autoComplete="off"
-                               value={matchInfo.t2p4 ? matchInfo.t2p4 : matchInfo.t2p4 = team2Data.player_4}
-                               onChange={handleChangeInfoMatch}/>
+                               <PlayerSelector onSelect={setPlayer24} defaultPlayerValue={t2p4Data.player_id}/>
                         <input type="number" className={classes.inputEntryData} name="t2p4_k" value={matchInfo.t2p4_k}
                                onChange={handleChangeInfoMatch} autoComplete="off"/>
                         <input type="number" className={classes.inputEntryData} name="t2p4_a" value={matchInfo.t2p4_a}
@@ -582,9 +576,7 @@ const DataEntryMatch = (props) => {
                         <input type="number" className={classes.inputEntryData} name="t2p4_d" value={matchInfo.t2p4_d}
                                onChange={handleChangeInfoMatch} autoComplete="off"/>
 
-                        <input type="text" className={classes.inputEntryData} name="t2p5" autoComplete="off"
-                               value={matchInfo.t2p5 ? matchInfo.t2p5 : matchInfo.t2p5 = team2Data.player_5}
-                               onChange={handleChangeInfoMatch}/>
+                               <PlayerSelector onSelect={setPlayer25} defaultPlayerValue={t2p5Data.player_id}/>
                         <input type="number" className={classes.inputEntryData} name="t2p5_k" value={matchInfo.t2p5_k}
                                onChange={handleChangeInfoMatch} autoComplete="off"/>
                         <input type="number" className={classes.inputEntryData} name="t2p5_a" value={matchInfo.t2p5_a}

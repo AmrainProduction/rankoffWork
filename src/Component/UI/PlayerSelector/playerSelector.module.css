@@ -26,7 +26,7 @@
     background: var(--componentLightBlockColor);
     color: var(--textColor);
     border: 0.14rem solid var(--componentLightBlockColor);
-    overflow: hidden;
+    overflow: scroll;
     z-index: 99;
     position: absolute;
 }
