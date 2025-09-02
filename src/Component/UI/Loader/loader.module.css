@@ -1,0 +1,19 @@
+.loaderWrapper {
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	min-height: 300px;
+}
+
+.loaderWrapper img {
+	width: 1vw;
+	height: auto;
+	animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+	100% {
+		transform: rotate(360deg);
+	}
+}

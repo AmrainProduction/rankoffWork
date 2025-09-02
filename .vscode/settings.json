@@ -1,0 +1,36 @@
+{
+	"github.copilot.nextEditSuggestions.enabled": true,
+	"workbench.editor.limit.value": 50,
+	"workbench.editor.limit.enabled": true,
+	"workbench.editor.limit.perEditorGroup": true,
+	"editor.language.brackets": [],
+	// 🚀 Основные
+	"editor.tabSize": 2,
+	"editor.insertSpaces": true,
+	"editor.formatOnSave": true,
+	"files.autoSave": "onFocusChange",
+	// 🎨 Темы и интерфейс
+	"workbench.colorTheme": "Default Dark+",
+	"workbench.iconTheme": "material-icon-theme",
+	// 🔄 Вкладки
+	"workbench.editor.enablePreview": false,
+	"workbench.editor.enablePreviewFromQuickOpen": false,
+	// ✨ Подсказки и автокомплит
+	"editor.quickSuggestions": {
+		"strings": true
+	},
+	"editor.suggest.snippetsPreventQuickSuggestions": false,
+	"editor.suggest.showWords": true,
+	"editor.suggest.showClasses": true,
+	"editor.suggest.showFunctions": true,
+	"editor.defaultFormatter": "esbenp.prettier-vscode",
+	// 📦 CSS Modules support
+	"cssModules.camelCase": true, // подсказки будут и для my-class, и для myClass
+	// 🧹 ESLint / Prettier
+	"editor.codeActionsOnSave": {
+		"source.fixAll.eslint": "explicit"
+	},
+	// 🐙 Git
+	"git.enableSmartCommit": true,
+	"git.confirmSync": false
+}

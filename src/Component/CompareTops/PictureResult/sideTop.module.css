@@ -1,43 +1,45 @@
 @font-face {
-    font-family: "DrukCyrMedium";
-    src: url("../../../Fonts/DrukCyr-Medium.eot");
-    src: url("../../../Fonts/DrukCyr-Medium.eot?#iefix") format("embedded-opentype"),
-    url("../../../Fonts/DrukCyr-Medium.woff") format("woff"),
-    url("../../../Fonts/DrukCyr-Medium.ttf") format("truetype");
+    font-family: 'DrukCyrMedium';
+    src: url('../../../Fonts/DrukCyr-Medium.eot');
+    src: url('../../../Fonts/DrukCyr-Medium.eot?#iefix')
+            format('embedded-opentype'),
+        url('../../../Fonts/DrukCyr-Medium.woff') format('woff'),
+        url('../../../Fonts/DrukCyr-Medium.ttf') format('truetype');
     font-style: normal;
     font-weight: 500;
 }
 
 @font-face {
-    font-family: "Mazzard M";
-    src: url("../../../Fonts/Mazzard/MazzardM-SemiBold.eot");
-    src: url("../../../Fonts/Mazzard/MazzardM-SemiBold.eot?#iefix") format("embedded-opentype"),
-    url("../../../Fonts/Mazzard/MazzardM-SemiBold.woff") format("woff"),
-    url("../../../Fonts/Mazzard/MazzardM-SemiBold.ttf") format("truetype");
+    font-family: 'Mazzard M';
+    src: url('../../../Fonts/Mazzard/MazzardM-SemiBold.eot');
+    src: url('../../../Fonts/Mazzard/MazzardM-SemiBold.eot?#iefix')
+            format('embedded-opentype'),
+        url('../../../Fonts/Mazzard/MazzardM-SemiBold.woff') format('woff'),
+        url('../../../Fonts/Mazzard/MazzardM-SemiBold.ttf') format('truetype');
     font-style: normal;
     font-weight: 500;
 }
 
 @font-face {
-    font-family: "DrukCyr Bold";
-    src: url("../../../Fonts/DrukCyr-Bold.ttf") format("truetype");
+    font-family: 'DrukCyr Bold';
+    src: url('../../../Fonts/DrukCyr-Bold.ttf') format('truetype');
 }
 
 @font-face {
-    font-family: "DrukTextWide";
-    src: url("../../../Fonts/DRUKTEXTWIDECYR-BOLD.otf") format("truetype");
+    font-family: 'DrukTextWide';
+    src: url('../../../Fonts/DRUKTEXTWIDECYR-BOLD.otf') format('truetype');
 }
 
 @font-face {
-    font-family: "Montserrat SemiBold";
-    src: url("../../../Fonts/Montserrat/MONTSERRAT-SEMIBOLD.ttf") format("truetype");
+    font-family: 'Montserrat SemiBold';
+    src: url('../../../Fonts/Montserrat/MONTSERRAT-SEMIBOLD.ttf')
+        format('truetype');
 }
 
 @font-face {
-    font-family: "Montserrat Bold";
-    src: url("../../../Fonts/Montserrat/MONTSERRAT-BOLD.TTF") format("truetype");
+    font-family: 'Montserrat Bold';
+    src: url('../../../Fonts/Montserrat/MONTSERRAT-BOLD.TTF') format('truetype');
 }
-
 
 .wrapperTopResult {
     --red: #c24f4f;
@@ -63,7 +65,7 @@
 }
 
 .wrapperTopResult {
-    font-family: "DrukCyrMedium", sans-serif;
+    font-family: 'DrukCyrMedium', sans-serif;
     display: block;
     justify-content: center;
     align-items: flex-start;
@@ -86,7 +88,7 @@
 }
 
 .nameTour {
-    font-family: "Mazzard M", sans-serif;
+    font-family: 'Mazzard M', sans-serif;
     width: 100%;
     height: 20%;
     color: white;
@@ -127,7 +129,7 @@
     color: var(--goldDark);
     justify-content: center;
     align-items: center;
-    font-family: "Montserrat Bold", sans-serif;
+    font-family: 'Montserrat Bold', sans-serif;
     font-size: 1.1vw;
 }
 
@@ -140,7 +142,7 @@
     position: relative;
 }
 
-.wrapperPlayer div:not(:last-child){
+.wrapperPlayer div:not(:last-child) {
     margin-right: 0.4vw;
 }
 
@@ -156,7 +158,7 @@
     background: var(--grayOpacity);
 }
 
-.player div{
+.player div {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -353,10 +355,3 @@
 /*    height: 80%;*/
 /*    width: auto;*/
 /*}*/
-
-
-
-
-
-
-

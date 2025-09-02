@@ -1,34 +1,34 @@
 .App {
-  font-family: Arial, sans-serif;
-  height: 100%;
-  width: 100%;
-  min-height: 100%;
-  position: relative;
+	font-family: Arial, sans-serif;
+	height: 100%;
+	width: 100%;
+	min-height: 100%;
+	position: relative;
 }
 
 :root {
-  --mainBlack: #070707;
-  --mainLightBlack: #111;
-  --componentBlockColor: #15161a;
-  --componentLightBlockColor: #1a1a20;
-  --componentBlockColorHover: #2c2c33;
-  --componentBlockColorHoverOpacity: rgba(44, 44, 51, 0.5);
-  --textColor: #d5dae0;
-  --textPlaceholderColor: #6e7279;
-  --DrawScoreColor: #bdc3c9;
-  --greenStatsColor: #30a806;
-  --yellowStatsColor: #cab600;
-  --redStatsColor: #ea2f2f;
-  --buttonColor: #e41242;
-  --buttonColorHover: #a41335;
-  --buttonDark: #1F1F25;
-  --textColorWhite: #d5dae0;
-  --textColorGreen: #33FF00;
-  --textColorDarkGreen: #2D5F21;
-  --textColorRed: #e41242;
-  --textColorDarkRed: #4A1F29;
-  --textColorYellow: #BDFF00;
-  --textColorDarkYellow: #4E5E21;
+	--mainBlack: #070707;
+	--mainLightBlack: #111;
+	--componentBlockColor: #15161a;
+	--componentLightBlockColor: #1a1a20;
+	--componentBlockColorHover: #2c2c33;
+	--componentBlockColorHoverOpacity: rgba(44, 44, 51, 0.5);
+	--textColor: #d5dae0;
+	--textPlaceholderColor: #6e7279;
+	--DrawScoreColor: #bdc3c9;
+	--greenStatsColor: #30a806;
+	--yellowStatsColor: #cab600;
+	--redStatsColor: #ea2f2f;
+	--buttonColor: #e41242;
+	--buttonColorHover: #a41335;
+	--buttonDark: #1f1f25;
+	--textColorWhite: #d5dae0;
+	--textColorGreen: #33ff00;
+	--textColorDarkGreen: #2d5f21;
+	--textColorRed: #e41242;
+	--textColorDarkRed: #4a1f29;
+	--textColorYellow: #bdff00;
+	--textColorDarkYellow: #4e5e21;
 }
 
 /*:root {*/
@@ -55,80 +55,77 @@
 /*}*/
 
 .wrapperBgLink {
-  height: 100%;
-  width: 100%;
-  z-index: 1;
-  min-height: 100%;
-  position: absolute;
-  cursor: pointer;
+	height: 100%;
+	width: 100%;
+	z-index: 1;
+	min-height: 100%;
+	position: absolute;
+	cursor: pointer;
 }
 
 .header {
-  width: 100%;
-  background: var(--mainBlack);
-  position: fixed;
-  z-index: 99;
+	width: 100%;
+	background: var(--mainBlack);
+	position: fixed;
+	z-index: 99;
 }
 
 .main {
-  padding: 0 0 5px 0;
-  height: 100%;
-  min-height: 1200px;
-  max-width: 100%;
-  margin: 0 auto;
-  position: relative;
-  z-index: 90;
-  overflow: hidden;
-  background: var(--mainBlack);
+	padding: 0 0 5px 0;
+	height: 100%;
+	min-height: 1200px;
+	max-width: 100%;
+	margin: 0 auto;
+	position: relative;
+	z-index: 90;
+	overflow: hidden;
+	background: var(--mainBlack);
 }
 
 .footer {
-  width: 100%;
-  height: auto;
-  z-index: 99;
+	width: 100%;
+	height: auto;
+	z-index: 99;
 }
 
 .wrapperErrorPage {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  width: 100%;
-  height: 500px;
-  color: var(--textColor);
-  font-size: 22px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	width: 100%;
+	height: 500px;
+	color: var(--textColor);
+	font-size: 22px;
 }
 
-.wrapperErrorPage a{
-  color: var(--textColor);
-  transition: ease-in-out 1s;
+.wrapperErrorPage a {
+	color: var(--textColor);
+	transition: ease-in-out 1s;
 }
 
 .btnHome {
-  justify-content: center;
-  align-items: center;
-  padding: 3px;
-  width: auto;
-  height: 10px;
-  background: var(--buttonColor);
-  border-radius: 5px;
-  transition: ease-in-out 1s;
+	justify-content: center;
+	align-items: center;
+	padding: 3px;
+	width: auto;
+	height: 10px;
+	background: var(--buttonColor);
+	border-radius: 5px;
+	transition: ease-in-out 1s;
 }
 
-.wrapperErrorPage a:hover{
-  color: var(--textColor);
-  font-size: 20px;
+.wrapperErrorPage a:hover {
+	color: var(--textColor);
+	font-size: 20px;
 }
 
 .btnHome:hover {
-  background: var(--buttonColorHover);
+	background: var(--buttonColorHover);
 }
 
 @media (max-width: 767px) {
-
-  /*.main {*/
-  /*  padding: 80px 5px 5px 5px;*/
-  /*}*/
+	/*.main {*/
+	/*  padding: 80px 5px 5px 5px;*/
+	/*}*/
 }
-
-

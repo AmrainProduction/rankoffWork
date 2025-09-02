@@ -1,0 +1,150 @@
+import React from 'react'
+import classes from './sideTop.module.css'
+import { useGetMatchesQuery, useGetPlayersQuery, useGetShortMatchesByTournamentQuery, useGetTeamsTournamentsByNameQuery, useGetTournamentByNameQuery } from '../../../../store/api/apiSlice'
+import { calculatePlayersTopV2 } from '../../../../Function/calculatePlayersTopV2'
+import CountryFlagPlayer from '../../../../Function/countryFlagPlayer'
+import Loader from '../../../UI/Loader/loader'
+
+const RightTopResult = (props) => {
+	const name = props.name
+	let leftTop = props.leftTop
+	const allPlayers = useGetPlayersQuery()
+	const allMatches = useGetMatchesQuery()
+	const allShortMatches = useGetShortMatchesByTournamentQuery({ name })
+	const teamsTour = useGetTeamsTournamentsByNameQuery({ name })
+	const tourInfo = useGetTournamentByNameQuery({ name })
+
+	let filterTours = [
+		// 'WinlineEPICStandoff2CosmoEarth_09_01_25',
+		// 'RushVTBCUPPro_13_02_25',
+		// 'WinlineEPICStandoff2CosmoCancriE_09_04_25',
+		// 'WinlineEPICStandoff2CosmoSaffar_04_03_25',
+		// 'WinlineEPICStandoff2CosmoMajor_04_06_25',
+		// 'WinlineEPICStandoff2PawPawEp1_24_06_25',
+		// 'WinlineEPICStandoff2PawPawEp2_29_07_25',
+		'Standoff2EPICAcademy2025SummerWeek3_11_08_25',
+		'Standoff2EPICAcademy2025SummerWeek2_21_07_25',
+		'Standoff2EPICAcademy2025SummerWeek1_30_06_25',
+		'Standoff2EPICAcademy2025SummerFinals_27_08_25',
+	]
+
+	let players_tournaments = calculatePlayersTopV2(name, props.stage, allPlayers, allMatches, teamsTour, tourInfo, allShortMatches, filterTours)
+
+	const diffPlayerPosition = (player_id, leftTop, currentPos) => {
+		const positionLeft = leftTop.find((e) => e.player_id === player_id)?.position
+
+		let diff = positionLeft - currentPos
+
+		if (diff > 0) {
+			return `+${diff}`
+		} else if (diff < 0) {
+			return `${diff}`
+		} else if (diff === 0) {
+			return ``
+		} else {
+			return `NEW`
+		}
+	}
+
+	const playersWithIndex = players_tournaments?.map((item, index) => ({
+		...item,
+		position: index + 1,
+	}))
+
+	const isLoading = allPlayers.isLoading || allMatches.isLoading || allShortMatches.isLoading || teamsTour.isLoading || tourInfo.isLoading
+
+	if (isLoading) {
+		return <Loader />
+	}
+
+	if (playersWithIndex.length > 0) {
+		return (
+			<div className={classes.wrapperTopResult}>
+				<div className={classes.wrapperTourInfo}>
+					<div className={classes.nameTour}>{'ТОП 20 ЛУЧШИХ ИГРОКОВ EPIC ACADEMY SUMMER 2025'.toUpperCase()}</div>
+				</div>
+				<div className={classes.topResult}>
+					<div className={classes.wrapperPlayerTitle}>
+						<div className={classes.playerTitle}>
+							<div className={classes.dataNumberPlayerTitle}>#</div>
+							<div className={classes.logoTeamTeam}>Team</div>
+							<div className={classes.dataNicknamePlayerNickname}>Nickname</div>
+							<div className={classes.dataFlagPlayerCountry}>CTR</div>
+							<div className={classes.dataPlayerKd}>KD</div>
+							<div className={classes.dataPlayerKpr}>KPR</div>
+							<div className={classes.dataPlayerDpr}>DPR</div>
+							<div className={classes.dataPlayerImpact}>Impact</div>
+							<div className={classes.dataPlayerRating}>Rating</div>
+							<div className={classes.dataPlayerMaps}>Maps</div>
+						</div>
+					</div>
+					<div className={classes.wrapperPlayer}>
+						{playersWithIndex.map((e, index) => {
+							if (index < 20) {
+								return (
+									<div key={index} className={classes.wrapperDiffPosition}>
+										<div
+											className={classes.diffPositionPlayer}
+											style={{
+												background: !diffPlayerPosition(e.player_id, leftTop, e.position) ? '' : diffPlayerPosition(e.player_id, leftTop, e.position) > 0 ? 'var(--green)' : 'var(--red)',
+											}}>
+											{diffPlayerPosition(e.player_id, leftTop, e.position)}
+										</div>
+										<div className={classes.player}>
+											<div className={classes.dataNumberPlayerTitle}>{e.position}</div>
+											<div className={classes.logoTeam}>
+												<img src={`/images/LogoTeams/${e.logo_team}`} alt="/" />
+											</div>
+											<div className={classes.dataNicknamePlayerNickname}>{e.nickname}</div>
+											<div className={classes.dataFlagPlayerCountry}>
+												<CountryFlagPlayer nickname={e.nickname} width={'20px'} height={'13px'} margin={'0 0 0 5px'} />
+											</div>
+											<div
+												className={classes.dataPlayerKd}
+												style={{
+													background: e.kd_p < 0.9 ? 'var(--redOpacity)' : e.kd_p > 1.05 ? 'var(--greenOpacity)' : 'var(--yellowOpacity)',
+												}}>
+												{e.kd_p}
+											</div>
+											<div
+												className={classes.dataPlayerKpr}
+												style={{
+													background: e.kpr_p < 0.6 ? 'var(--redOpacity)' : e.kpr_p > 0.65 ? (e.kpr_p > 0.7 ? 'var(--greenOpacity)' : 'var(--yellowOpacity)') : 'var(--yellowOpacity)',
+												}}>
+												{e.kpr_p}
+											</div>
+											<div
+												className={classes.dataPlayerDpr}
+												style={{
+													background: e.dpr_p < 0.68 ? 'var(--greenOpacity)' : e.dpr_p > 0.7 ? (e.dpr_p > 0.8 ? 'var(--redOpacity)' : 'var(--yellowOpacity)') : 'var(--yellowOpacity)',
+												}}>
+												{e.dpr_p}
+											</div>
+											<div
+												className={classes.dataPlayerImpact}
+												style={{
+													background: e.impact_p < 1 ? 'var(--redOpacity)' : e.impact_p > 1 ? (e.impact_p >= 1.1 ? 'var(--greenOpacity)' : 'var(--yellowOpacity)') : 'var(--yellowOpacity)',
+												}}>
+												{e.impact_p}
+											</div>
+											<div
+												className={classes.dataPlayerRating}
+												style={{
+													background: e.rating < 1 ? 'var(--redOpacity)' : e.rating > 1 ? (e.rating >= 1.1 ? 'var(--greenOpacity)' : 'var(--yellowOpacity)') : 'var(--yellowOpacity)',
+												}}>
+												{e.rating}
+											</div>
+											<div className={classes.dataPlayerMaps}>{e.maps}</div>
+										</div>
+									</div>
+								)
+							}
+						})}
+					</div>
+				</div>
+			</div>
+		)
+	}
+}
+
+export default RightTopResult
