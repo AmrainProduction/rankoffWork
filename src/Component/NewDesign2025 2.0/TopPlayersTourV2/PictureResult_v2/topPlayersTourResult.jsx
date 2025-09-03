@@ -40,6 +40,8 @@ const TopPlayersTourResult = (props) => {
 		// 'WinlineEPICStandoff2PawPawEp3_18_08_25',
 		// 'WinlineEPICStandoff2CosmoBrasilCrux_31_02_25',
 		// 'WinlineEPICStandoff2CosmoBrasilOctans_03_02_25',
+		// 'UnitedNorthTournament_12_01_25',
+		// 'NorthAmericanProLeague_17_06_25',
 	]
 
 	let players_tournaments = calculatePlayersTopV2(name, props.stage, allPlayers, allMatches, teamsTour, tourInfo, allShortMatches, filterTours)

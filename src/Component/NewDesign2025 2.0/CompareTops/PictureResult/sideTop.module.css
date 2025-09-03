@@ -40,6 +40,10 @@
 	--rowDark: #96002d;
 	--rowLight: #ba013f;
 
+	/* --titleRowDark: #97103f;
+	--rowDark: #c3094b;
+	--rowLight: #ec0358; */
+
 	--redOpacity: #ff181899;
 	--greenOpacity: #00db0099;
 	--yellowOpacity: #ff961599;
@@ -85,7 +89,7 @@
 	align-items: center;
 	height: 100%;
 	padding: 0vw 1vw 0 1vw;
-	background: var(--rowDark);
+	background: var(--titleRowDark);
 	border-radius: 1vw;
 }
 

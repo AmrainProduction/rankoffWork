@@ -164,6 +164,8 @@ const PictureResult2 = (props) => {
 				mapPick: el.team1_logo.indexOf(`${el.map_pick.replace(/\s/g, '')}`) >= 0 ? el.team1_logo : el.team2_logo.indexOf(`${el.map_pick.replace(/\s/g, '')}`) >= 0 ? el.team2_logo : 'Decider',
 				scoreT1: el.total_r_team1,
 				scoreT2: el.total_r_team2,
+				team1: el.team1,
+				team2: el.team2,
 				team1Logo: el.team1_logo,
 				team2Logo: el.team2_logo,
 			})
@@ -494,117 +496,78 @@ const PictureResult2 = (props) => {
 
 		return (
 			<div className={classes.wrapperMatchResult}>
-				<div className={classes.titleAndMapsSection}>
-					<div className={classes.titleBanner}>
-						<div className={classes.logoRankoff}>
-							<img src={`/images/DataInImage/NEW_DESIGN_2025/Logo_And_Name.svg`} alt="/" />
-							<div className={classes.textTitleBanner}>RESULT MATCH</div>
-						</div>
+				<div className={classes.wrapperTitleBanner}>
+					<div className={classes.logoAndTitleBanner}>
+						<img src={`/images/DataInImage/NEW_DESIGN_2025_2_0/RANKOFF_LOGO.svg`} alt="/" />
+						<div className={classes.titleBanner}>RANKOFF STATISTICS</div>
 					</div>
+					<div className={classes.themeBanner}>MATCH RESULT</div>
+				</div>
+
+				<div className={classes.wrapperInfoMatch}>
 					<div className={classes.infoMatch}>
-						<div className={classes.nameTour}>
-							<img src={`/images/LogoAndBannerTour/${players[0].logoTour}`} alt="/" />
-							<span>{players[0].NameTour}</span>
+						<div className={classes.wrapperTeamScore}>
+							<div className={classes.teamLogo}>
+								<img src={`/images/LogoTeams/${matchTeamsInfo[0].team1Logo}`} alt="/" />
+							</div>
+							<div className={classes.teamScore}>{choiceMap.length > 0 && choiceMap !== 'AllMaps' ? matchMaps.filter((e) => e.name === choiceMap)[0].scoreT1 : players[0].scoreT1}</div>
 						</div>
-						<div className={classes.dateMatch}>{players[0].dateMatch}</div>
+						<span>:</span>
+						<div className={classes.wrapperTeamScore}>
+							<div className={classes.teamScore}>{choiceMap.length > 0 && choiceMap !== 'AllMaps' ? matchMaps.filter((e) => e.name === choiceMap)[0].scoreT2 : players[0].scoreT2}</div>
+							<div className={classes.teamLogo}>
+								<img src={`/images/LogoTeams/${matchTeamsInfo[0].team2Logo}`} alt="/" />
+							</div>
+						</div>
 					</div>
-					<div className={classes.mapsMatch}>
-						{matchMaps.map((e, index) => {
-							return (
-								<div key={index} className={classes.map}>
-									<div className={classes.scoreMap}>
-										<img src={`/images/LogoTeams/${e.team1Logo}`} alt="/" />
-										<div className={classes.totalScoreMap}>
-											{e.scoreT1}:{e.scoreT2}
-										</div>
-										<img src={`/images/LogoTeams/${e.team2Logo}`} alt="/" />
-									</div>
-									<div className={classes.imgMap}>
-										<img src={`/images/LogoMaps/${e.map}`} alt="" />
-										<div className={classes.mapColor}></div>
+					<div className={classes.wrapperInfoTour}>
+						<div className={classes.wrapperNameAndLogoTour}>
+							<div className={classes.tourLogo}>
+								<img src={`/images/LogoAndBannerTour/${players[0].logoTour}`} alt="/" />
+							</div>
+							<div className={classes.tourName}>{players[0].NameTour.toUpperCase()}</div>
+						</div>
+						<div className={classes.tourDate}>{players[0].dateMatch}</div>
+					</div>
+				</div>
+
+				<div className={classes.wrapperMapsMatch}>
+					{matchMaps.map((e, index) => {
+						return (
+							<div key={index} className={matchMaps?.length > 2 ? classes.wrapperMapMore : classes.wrapperMap}>
+								<div className={matchMaps?.length > 2 ? classes.infoMapMore : classes.infoMap}>
+									<div className={classes.nameMap}>
+										<div className={classes.pickMapTitle}>MAP:</div>
+										{e.name.toUpperCase()}
 									</div>
 									<div className={classes.pickMap}>
-										<div className={classes.mapTeamPick}>
-											<img
-												src={`/images/LogoTeams/${e.mapPick === 'Decider' ? e.team2Logo : e.mapPick}`}
-												alt="/"
-												style={{
-													opacity: e.mapPick === 'Decider' ? '0' : '1',
-												}}
-											/>
+										<div className={classes.pickMapTitle}>PICK:</div>
+										<div className={classes.pickMapTeam}>{e.mapPick === 'Decider' ? 'Decider' : e.mapPickTeam.toUpperCase()}</div>
+									</div>
+									<div className={classes.scoreT1}>
+										<div className={classes.scoreTLogo}>
+											<img src={`/images/LogoTeams/${e.team1Logo}`} alt="/" />
 										</div>
-										<div className={classes.mapName}>{e.name.replace(/(\D)(\d)/, '$1 $2')}</div>
-										<div className={classes.teamName}>
-											<span>{e.mapPickTeam}</span>
+										<div className={classes.score}>{e.scoreT1}</div>
+									</div>
+									<div className={classes.scoreT2}>
+										<div className={classes.scoreTLogo}>
+											<img src={`/images/LogoTeams/${e.team2Logo}`} alt="/" />
 										</div>
+										<div className={classes.score}>{e.scoreT2}</div>
 									</div>
 								</div>
-							)
-						})}
-					</div>
+								<div className={classes.logoMap}>
+									<img src={`/images/LogoMaps/${e.map}`} alt="" />
+								</div>
+							</div>
+						)
+					})}
 				</div>
-				<div className={classes.playersAndScoreSection}>
-					<div
-						className={classes.playersTeam}
-						style={{
-							background: players[0].scoreT1 >= players[0].scoreT2 ? 'var(--greenOpacity)' : 'var(--redOpacity)',
-						}}>
-						<div className={classes.playersTeamLogo}>
-							<img src={`/images/LogoTeams/${matchTeamsInfo[0].team1Logo}`} alt="/" />
-						</div>
-						<div className={classes.players}>
-							<img src={`/images/LogoPlayers/${players[0].t1p1_logo}`} className={classes.player1} alt="/" />
-							<img src={`/images/LogoPlayers/${players[0].t1p2_logo}`} className={classes.player2} alt="/" />
-							<img src={`/images/LogoPlayers/${players[0].t1p3_logo}`} className={classes.player3} alt="/" />
-							<img src={`/images/LogoPlayers/${players[0].t1p4_logo}`} className={classes.player4} alt="/" />
-							<img src={`/images/LogoPlayers/${players[0].t1p5_logo}`} className={classes.player5} alt="/" />
-						</div>
-					</div>
-					<div className={classes.scoreMatch}>
-						<div
-							className={classes.scoreLogoTeam}
-							style={
-								{
-									// background: players[0].scoreT1 >= players[0].scoreT2 ? "linear-gradient(to right, var(--greenLowOpacity), transparent)" : "linear-gradient(to right, var(--redLowOpacity), transparent)"
-								}
-							}>
-							<img src={`/images/LogoTeams/${matchTeamsInfo[0].team1Logo}`} alt="/" />
-						</div>
-						<div className={classes.totalScore}>
-							{choiceMap.length > 0 && choiceMap !== 'AllMaps'
-								? matchMaps.filter((e) => e.name === choiceMap)[0].scoreT1 + ':' + matchMaps.filter((e) => e.name === choiceMap)[0].scoreT2
-								: players[0].scoreT1 + ':' + players[0].scoreT2}
-						</div>
-						<div
-							className={classes.scoreLogoTeam}
-							style={
-								{
-									// background: players[0].scoreT2 >= players[0].scoreT1 ? "linear-gradient(to left, var(--greenLowOpacity), transparent)" : "linear-gradient(to left, var(--redLowOpacity), transparent)"
-								}
-							}>
-							<img src={`/images/LogoTeams/${matchTeamsInfo[0].team2Logo}`} alt="/" />
-						</div>
-					</div>
-					<div
-						className={classes.playersTeam}
-						style={{
-							background: players[0].scoreT2 >= players[0].scoreT1 ? 'var(--greenOpacity)' : 'var(--redOpacity)',
-						}}>
-						<div className={classes.playersTeamLogo}>
-							<img src={`/images/LogoTeams/${matchTeamsInfo[0].team2Logo}`} alt="/" />
-						</div>
-						<div className={classes.players}>
-							<img src={`/images/LogoPlayers/${players[0].t2p1_logo}`} className={classes.player1} alt="/" />
-							<img src={`/images/LogoPlayers/${players[0].t2p2_logo}`} className={classes.player2} alt="/" />
-							<img src={`/images/LogoPlayers/${players[0].t2p3_logo}`} className={classes.player3} alt="/" />
-							<img src={`/images/LogoPlayers/${players[0].t2p4_logo}`} className={classes.player4} alt="/" />
-							<img src={`/images/LogoPlayers/${players[0].t2p5_logo}`} className={classes.player5} alt="/" />
-						</div>
-					</div>
-				</div>
-				<div className={classes.statsSection}>
-					<div className={classes.teamSection}>
-						<div className={classes.titleRowTable}>
+
+				<div className={classes.wrapperStatsT1}>
+					<div className={classes.wrapperTable}>
+						<div className={classes.tableRowTitle}>
 							<div className={classes.cell}>PLAYER</div>
 							<div className={classes.cell}>K</div>
 							<div className={classes.cell}>A</div>
@@ -619,17 +582,17 @@ const PictureResult2 = (props) => {
 						{[1].map((team) =>
 							[1, 2, 3, 4, 5].map((player) => {
 								return (
-									<div
-										className={classes.rowTable}
-										style={{
-											background: players[0][`t${team}p${player}`] === mvp.nickname ? 'var(--gold)' : '',
-										}}>
-										<div className={classes.startCell}>
+									<div className={classes.tableRow}>
+										<div className={classes.cellPlayer}>
 											<div className={classes.dataFlagPlayer}>
 												<CountryFlagPlayer nickname={players[0][`t${team}p${player}`]} />
 											</div>
-											{players[0][`t${team}p${player}`]}
+											<div className={classes.photoPlayer}>
+												<img src={`/images/LogoPlayers/${players[0][`t${team}p${player}_logo`]}`} className={classes.player1} alt="/" />
+											</div>
+											<div className={classes.nickname}>{players[0][`t${team}p${player}`]}</div>
 										</div>
+
 										<div className={classes.cell}>{players[0][`t${team}p${player}_k`]}</div>
 										<div className={classes.cell}>{players[0][`t${team}p${player}_a`]}</div>
 										<div className={classes.cell}>{players[0][`t${team}p${player}_d`]}</div>
@@ -637,7 +600,6 @@ const PictureResult2 = (props) => {
 											className={classes.cell}
 											style={{
 												background: players[0][`t${team}p${player}_k`] - players[0][`t${team}p${player}_d`] < 0 ? 'var(--red)' : 'var(--green)',
-												color: players[0][`t${team}p${player}_k`] - players[0][`t${team}p${player}_d`] < 0 ? 'var(--redDark)' : 'var(--greenDark)',
 											}}>
 											{players[0][`t${team}p${player}_k`] - players[0][`t${team}p${player}_d`]}
 										</div>
@@ -645,7 +607,6 @@ const PictureResult2 = (props) => {
 											className={classes.cell}
 											style={{
 												background: players[0][`t${team}p${player}_kd`] < 0.9 ? 'var(--red)' : players[0][`t${team}p${player}_kd`] > 1.05 ? 'var(--green)' : 'var(--yellow)',
-												color: players[0][`t${team}p${player}_kd`] < 0.9 ? 'var(--redDark)' : players[0][`t${team}p${player}_kd`] > 1.05 ? 'var(--greenDark)' : 'var(--yellowDark)',
 											}}>
 											{players[0][`t${team}p${player}_kd`]}
 										</div>
@@ -660,14 +621,6 @@ const PictureResult2 = (props) => {
 															? 'var(--green)'
 															: 'var(--yellow)'
 														: 'var(--yellow)',
-												color:
-													players[0][`t${team}p${player}_kpr`] < 0.6
-														? 'var(--redDark)'
-														: players[0][`t${team}p${player}_kpr`] > 0.65
-														? players[0][`t${team}p${player}_kpr`] > 0.7
-															? 'var(--greenDark)'
-															: 'var(--yellowDark)'
-														: 'var(--yellowDark)',
 											}}>
 											{players[0][`t${team}p${player}_kpr`]}
 										</div>
@@ -682,14 +635,6 @@ const PictureResult2 = (props) => {
 															? 'var(--red)'
 															: 'var(--yellow)'
 														: 'var(--yellow)',
-												color:
-													players[0][`t${team}p${player}_dpr`] < 0.68
-														? 'var(--greenDark)'
-														: players[0][`t${team}p${player}_dpr`] > 0.7
-														? players[0][`t${team}p${player}_dpr`] > 0.8
-															? 'var(--redDark)'
-															: 'var(--yellowDark)'
-														: 'var(--yellowDark)',
 											}}>
 											{players[0][`t${team}p${player}_dpr`]}
 										</div>
@@ -704,14 +649,6 @@ const PictureResult2 = (props) => {
 															? 'var(--green)'
 															: 'var(--yellow)'
 														: 'var(--yellow)',
-												color:
-													players[0][`t${team}p${player}_impact`] < 1
-														? 'var(--redDark)'
-														: players[0][`t${team}p${player}_impact`] > 1
-														? players[0][`t${team}p${player}_impact`] >= 1.1
-															? 'var(--greenDark)'
-															: 'var(--yellowDark)'
-														: 'var(--yellowDark)',
 											}}>
 											{players[0][`t${team}p${player}_impact`]}
 										</div>
@@ -726,14 +663,6 @@ const PictureResult2 = (props) => {
 															? 'var(--green)'
 															: 'var(--yellow)'
 														: 'var(--yellow)',
-												color:
-													players[0][`t${team}p${player}_rating`] < 1
-														? 'var(--redDark)'
-														: players[0][`t${team}p${player}_rating`] > 1
-														? players[0][`t${team}p${player}_rating`] >= 1.1
-															? 'var(--greenDark)'
-															: 'var(--yellowDark)'
-														: 'var(--yellowDark)',
 											}}>
 											{players[0][`t${team}p${player}_rating`]}
 										</div>
@@ -742,8 +671,10 @@ const PictureResult2 = (props) => {
 							})
 						)}
 					</div>
-					<div className={classes.teamSection}>
-						<div className={classes.titleRowTable}>
+				</div>
+				<div className={classes.wrapperStatsT2}>
+					<div className={classes.wrapperTable}>
+						<div className={classes.tableRowTitle}>
 							<div className={classes.cell}>PLAYER</div>
 							<div className={classes.cell}>K</div>
 							<div className={classes.cell}>A</div>
@@ -758,17 +689,17 @@ const PictureResult2 = (props) => {
 						{[2].map((team) =>
 							[1, 2, 3, 4, 5].map((player) => {
 								return (
-									<div
-										className={classes.rowTable}
-										style={{
-											background: players[0][`t${team}p${player}`] === mvp.nickname ? 'var(--gold)' : '',
-										}}>
-										<div className={classes.startCell}>
+									<div className={classes.tableRow}>
+										<div className={classes.cellPlayer}>
 											<div className={classes.dataFlagPlayer}>
 												<CountryFlagPlayer nickname={players[0][`t${team}p${player}`]} />
 											</div>
-											{players[0][`t${team}p${player}`]}
+											<div className={classes.photoPlayer}>
+												<img src={`/images/LogoPlayers/${players[0][`t${team}p${player}_logo`]}`} className={classes.player1} alt="/" />
+											</div>
+											<div className={classes.nickname}>{players[0][`t${team}p${player}`]}</div>
 										</div>
+
 										<div className={classes.cell}>{players[0][`t${team}p${player}_k`]}</div>
 										<div className={classes.cell}>{players[0][`t${team}p${player}_a`]}</div>
 										<div className={classes.cell}>{players[0][`t${team}p${player}_d`]}</div>
@@ -776,7 +707,6 @@ const PictureResult2 = (props) => {
 											className={classes.cell}
 											style={{
 												background: players[0][`t${team}p${player}_k`] - players[0][`t${team}p${player}_d`] < 0 ? 'var(--red)' : 'var(--green)',
-												color: players[0][`t${team}p${player}_k`] - players[0][`t${team}p${player}_d`] < 0 ? 'var(--redDark)' : 'var(--greenDark)',
 											}}>
 											{players[0][`t${team}p${player}_k`] - players[0][`t${team}p${player}_d`]}
 										</div>
@@ -784,7 +714,6 @@ const PictureResult2 = (props) => {
 											className={classes.cell}
 											style={{
 												background: players[0][`t${team}p${player}_kd`] < 0.9 ? 'var(--red)' : players[0][`t${team}p${player}_kd`] > 1.05 ? 'var(--green)' : 'var(--yellow)',
-												color: players[0][`t${team}p${player}_kd`] < 0.9 ? 'var(--redDark)' : players[0][`t${team}p${player}_kd`] > 1.05 ? 'var(--greenDark)' : 'var(--yellowDark)',
 											}}>
 											{players[0][`t${team}p${player}_kd`]}
 										</div>
@@ -799,14 +728,6 @@ const PictureResult2 = (props) => {
 															? 'var(--green)'
 															: 'var(--yellow)'
 														: 'var(--yellow)',
-												color:
-													players[0][`t${team}p${player}_kpr`] < 0.6
-														? 'var(--redDark)'
-														: players[0][`t${team}p${player}_kpr`] > 0.65
-														? players[0][`t${team}p${player}_kpr`] > 0.7
-															? 'var(--greenDark)'
-															: 'var(--yellowDark)'
-														: 'var(--yellowDark)',
 											}}>
 											{players[0][`t${team}p${player}_kpr`]}
 										</div>
@@ -821,14 +742,6 @@ const PictureResult2 = (props) => {
 															? 'var(--red)'
 															: 'var(--yellow)'
 														: 'var(--yellow)',
-												color:
-													players[0][`t${team}p${player}_dpr`] < 0.68
-														? 'var(--greenDark)'
-														: players[0][`t${team}p${player}_dpr`] > 0.7
-														? players[0][`t${team}p${player}_dpr`] > 0.8
-															? 'var(--redDark)'
-															: 'var(--yellowDark)'
-														: 'var(--yellowDark)',
 											}}>
 											{players[0][`t${team}p${player}_dpr`]}
 										</div>
@@ -843,14 +756,6 @@ const PictureResult2 = (props) => {
 															? 'var(--green)'
 															: 'var(--yellow)'
 														: 'var(--yellow)',
-												color:
-													players[0][`t${team}p${player}_impact`] < 1
-														? 'var(--redDark)'
-														: players[0][`t${team}p${player}_impact`] > 1
-														? players[0][`t${team}p${player}_impact`] >= 1.1
-															? 'var(--greenDark)'
-															: 'var(--yellowDark)'
-														: 'var(--yellowDark)',
 											}}>
 											{players[0][`t${team}p${player}_impact`]}
 										</div>
@@ -865,14 +770,6 @@ const PictureResult2 = (props) => {
 															? 'var(--green)'
 															: 'var(--yellow)'
 														: 'var(--yellow)',
-												color:
-													players[0][`t${team}p${player}_rating`] < 1
-														? 'var(--redDark)'
-														: players[0][`t${team}p${player}_rating`] > 1
-														? players[0][`t${team}p${player}_rating`] >= 1.1
-															? 'var(--greenDark)'
-															: 'var(--yellowDark)'
-														: 'var(--yellowDark)',
 											}}>
 											{players[0][`t${team}p${player}_rating`]}
 										</div>
@@ -882,7 +779,8 @@ const PictureResult2 = (props) => {
 						)}
 					</div>
 				</div>
-				<img src={`/images/DataInImage/NEW_DESIGN_2025_2_0/MATCH_RESULT.png`} className={classes.bgImg} alt="/" />
+
+				<img src={`/images/DataInImage/NEW_DESIGN_2025_2_0/TOP_PLAYERS_BANNER.png`} className={classes.bgImg} alt="/" />
 			</div>
 		)
 	}

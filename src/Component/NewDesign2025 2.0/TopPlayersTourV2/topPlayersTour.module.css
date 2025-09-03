@@ -40,6 +40,10 @@
 }
 
 :local(.wrapperTopResult) {
+	/* --titleRowDark: #97103f;
+	--rowDark: #c3094b;
+	--rowLight: #ec0358; */
+
 	--titleRowDark: #6c0124;
 	--rowDark: #96002d;
 	--rowLight: #ba013f;
@@ -47,10 +51,6 @@
 	--red: #ff181899;
 	--green: #00db0099;
 	--yellow: #ff961599;
-
-	/* --redDark: #ff1818; */
-	/* --greenDark: #00db00; */
-	/* --yellowDark: #ff9615; */
 
 	--white: #fff;
 	--black: #000;
@@ -197,8 +197,8 @@
 	justify-content: center;
 	align-items: center;
 	height: 100%;
-	padding: 0.3vw 1vw 0 1vw;
-	background: var(--rowDark);
+	padding: 0vw 1vw;
+	background: var(--titleRowDark);
 	border-radius: 1vw;
 }
 

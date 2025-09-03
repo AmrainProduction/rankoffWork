@@ -401,7 +401,6 @@
 	grid-auto-rows: minmax(3vw, 3.8vw);
 	grid-template-columns: 10% 10% 20% repeat(6, 10%);
 	height: auto;
-
 	flex: 1 1 auto;
 	align-items: stretch;
 	color: var(--white);
