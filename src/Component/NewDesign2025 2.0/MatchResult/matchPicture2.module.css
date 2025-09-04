@@ -27,6 +27,7 @@
 	--greenDark: #00db00;
 	--yellowDark: #ff9615;
 
+	--gold: #dbbb2f99;
 	--white: #fff;
 	--black: #000;
 }
@@ -525,7 +526,7 @@
 	color: var(--white);
 	overflow: hidden;
 	background: var(--titleRowDark);
-	font-size: 1.1vw;
+	font-size: 1.3vw;
 }
 
 .tableRowTitle {

@@ -422,56 +422,56 @@ const PictureResult2 = (props) => {
 			t2p3_d: t2p3_d,
 			t2p4_d: t2p4_d,
 			t2p5_d: t2p5_d,
-			t1p1_kd: Math.round((t1p1_k / t1p1_d) * 100) / 100,
-			t1p2_kd: Math.round((t1p2_k / t1p2_d) * 100) / 100,
-			t1p3_kd: Math.round((t1p3_k / t1p3_d) * 100) / 100,
-			t1p4_kd: Math.round((t1p4_k / t1p4_d) * 100) / 100,
-			t1p5_kd: Math.round((t1p5_k / t1p5_d) * 100) / 100,
-			t2p1_kd: Math.round((t2p1_k / t2p1_d) * 100) / 100,
-			t2p2_kd: Math.round((t2p2_k / t2p2_d) * 100) / 100,
-			t2p3_kd: Math.round((t2p3_k / t2p3_d) * 100) / 100,
-			t2p4_kd: Math.round((t2p4_k / t2p4_d) * 100) / 100,
-			t2p5_kd: Math.round((t2p5_k / t2p5_d) * 100) / 100,
-			t1p1_kpr: Math.round(Kpr(t1p1_k, allRounds) * 100) / 100,
-			t1p2_kpr: Math.round(Kpr(t1p2_k, allRounds) * 100) / 100,
-			t1p3_kpr: Math.round(Kpr(t1p3_k, allRounds) * 100) / 100,
-			t1p4_kpr: Math.round(Kpr(t1p4_k, allRounds) * 100) / 100,
-			t1p5_kpr: Math.round(Kpr(t1p5_k, allRounds) * 100) / 100,
-			t2p1_kpr: Math.round(Kpr(t2p1_k, allRounds) * 100) / 100,
-			t2p2_kpr: Math.round(Kpr(t2p2_k, allRounds) * 100) / 100,
-			t2p3_kpr: Math.round(Kpr(t2p3_k, allRounds) * 100) / 100,
-			t2p4_kpr: Math.round(Kpr(t2p4_k, allRounds) * 100) / 100,
-			t2p5_kpr: Math.round(Kpr(t2p5_k, allRounds) * 100) / 100,
-			t1p1_dpr: Math.round(Dpr(t1p1_d, allRounds) * 100) / 100,
-			t1p2_dpr: Math.round(Dpr(t1p2_d, allRounds) * 100) / 100,
-			t1p3_dpr: Math.round(Dpr(t1p3_d, allRounds) * 100) / 100,
-			t1p4_dpr: Math.round(Dpr(t1p4_d, allRounds) * 100) / 100,
-			t1p5_dpr: Math.round(Dpr(t1p5_d, allRounds) * 100) / 100,
-			t2p1_dpr: Math.round(Dpr(t2p1_d, allRounds) * 100) / 100,
-			t2p2_dpr: Math.round(Dpr(t2p2_d, allRounds) * 100) / 100,
-			t2p3_dpr: Math.round(Dpr(t2p3_d, allRounds) * 100) / 100,
-			t2p4_dpr: Math.round(Dpr(t2p4_d, allRounds) * 100) / 100,
-			t2p5_dpr: Math.round(Dpr(t2p5_d, allRounds) * 100) / 100,
-			t1p1_impact: Math.round((t1p1_impact / t1p1_count_maps) * 100) / 100,
-			t1p2_impact: Math.round((t1p2_impact / t1p2_count_maps) * 100) / 100,
-			t1p3_impact: Math.round((t1p3_impact / t1p3_count_maps) * 100) / 100,
-			t1p4_impact: Math.round((t1p4_impact / t1p4_count_maps) * 100) / 100,
-			t1p5_impact: Math.round((t1p5_impact / t1p5_count_maps) * 100) / 100,
-			t2p1_impact: Math.round((t2p1_impact / t2p1_count_maps) * 100) / 100,
-			t2p2_impact: Math.round((t2p2_impact / t2p2_count_maps) * 100) / 100,
-			t2p3_impact: Math.round((t2p3_impact / t2p3_count_maps) * 100) / 100,
-			t2p4_impact: Math.round((t2p4_impact / t2p4_count_maps) * 100) / 100,
-			t2p5_impact: Math.round((t2p5_impact / t2p5_count_maps) * 100) / 100,
-			t1p1_rating: Rating(t1p1_k / t1p1_d, t1p1_k / allRounds, t1p1_d / allRounds, t1p1_impact / t1p1_count_maps),
-			t1p2_rating: Rating(t1p2_k / t1p2_d, t1p2_k / allRounds, t1p2_d / allRounds, t1p2_impact / t1p2_count_maps),
-			t1p3_rating: Rating(t1p3_k / t1p3_d, t1p3_k / allRounds, t1p3_d / allRounds, t1p3_impact / t1p3_count_maps),
-			t1p4_rating: Rating(t1p4_k / t1p4_d, t1p4_k / allRounds, t1p4_d / allRounds, t1p4_impact / t1p4_count_maps),
-			t1p5_rating: Rating(t1p5_k / t1p5_d, t1p5_k / allRounds, t1p5_d / allRounds, t1p5_impact / t1p5_count_maps),
-			t2p1_rating: Rating(t2p1_k / t2p1_d, t2p1_k / allRounds, t2p1_d / allRounds, t2p1_impact / t2p1_count_maps),
-			t2p2_rating: Rating(t2p2_k / t2p2_d, t2p2_k / allRounds, t2p2_d / allRounds, t2p2_impact / t2p2_count_maps),
-			t2p3_rating: Rating(t2p3_k / t2p3_d, t2p3_k / allRounds, t2p3_d / allRounds, t2p3_impact / t2p3_count_maps),
-			t2p4_rating: Rating(t2p4_k / t2p4_d, t2p4_k / allRounds, t2p4_d / allRounds, t2p4_impact / t2p4_count_maps),
-			t2p5_rating: Rating(t2p5_k / t2p5_d, t2p5_k / allRounds, t2p5_d / allRounds, t2p5_impact / t2p5_count_maps),
+			t1p1_kd: (Math.round((t1p1_k / t1p1_d) * 100) / 100).toFixed(2),
+			t1p2_kd: (Math.round((t1p2_k / t1p2_d) * 100) / 100).toFixed(2),
+			t1p3_kd: (Math.round((t1p3_k / t1p3_d) * 100) / 100).toFixed(2),
+			t1p4_kd: (Math.round((t1p4_k / t1p4_d) * 100) / 100).toFixed(2),
+			t1p5_kd: (Math.round((t1p5_k / t1p5_d) * 100) / 100).toFixed(2),
+			t2p1_kd: (Math.round((t2p1_k / t2p1_d) * 100) / 100).toFixed(2),
+			t2p2_kd: (Math.round((t2p2_k / t2p2_d) * 100) / 100).toFixed(2),
+			t2p3_kd: (Math.round((t2p3_k / t2p3_d) * 100) / 100).toFixed(2),
+			t2p4_kd: (Math.round((t2p4_k / t2p4_d) * 100) / 100).toFixed(2),
+			t2p5_kd: (Math.round((t2p5_k / t2p5_d) * 100) / 100).toFixed(2),
+			t1p1_kpr: (Math.round(Kpr(t1p1_k, allRounds) * 100) / 100).toFixed(2),
+			t1p2_kpr: (Math.round(Kpr(t1p2_k, allRounds) * 100) / 100).toFixed(2),
+			t1p3_kpr: (Math.round(Kpr(t1p3_k, allRounds) * 100) / 100).toFixed(2),
+			t1p4_kpr: (Math.round(Kpr(t1p4_k, allRounds) * 100) / 100).toFixed(2),
+			t1p5_kpr: (Math.round(Kpr(t1p5_k, allRounds) * 100) / 100).toFixed(2),
+			t2p1_kpr: (Math.round(Kpr(t2p1_k, allRounds) * 100) / 100).toFixed(2),
+			t2p2_kpr: (Math.round(Kpr(t2p2_k, allRounds) * 100) / 100).toFixed(2),
+			t2p3_kpr: (Math.round(Kpr(t2p3_k, allRounds) * 100) / 100).toFixed(2),
+			t2p4_kpr: (Math.round(Kpr(t2p4_k, allRounds) * 100) / 100).toFixed(2),
+			t2p5_kpr: (Math.round(Kpr(t2p5_k, allRounds) * 100) / 100).toFixed(2),
+			t1p1_dpr: (Math.round(Dpr(t1p1_d, allRounds) * 100) / 100).toFixed(2),
+			t1p2_dpr: (Math.round(Dpr(t1p2_d, allRounds) * 100) / 100).toFixed(2),
+			t1p3_dpr: (Math.round(Dpr(t1p3_d, allRounds) * 100) / 100).toFixed(2),
+			t1p4_dpr: (Math.round(Dpr(t1p4_d, allRounds) * 100) / 100).toFixed(2),
+			t1p5_dpr: (Math.round(Dpr(t1p5_d, allRounds) * 100) / 100).toFixed(2),
+			t2p1_dpr: (Math.round(Dpr(t2p1_d, allRounds) * 100) / 100).toFixed(2),
+			t2p2_dpr: (Math.round(Dpr(t2p2_d, allRounds) * 100) / 100).toFixed(2),
+			t2p3_dpr: (Math.round(Dpr(t2p3_d, allRounds) * 100) / 100).toFixed(2),
+			t2p4_dpr: (Math.round(Dpr(t2p4_d, allRounds) * 100) / 100).toFixed(2),
+			t2p5_dpr: (Math.round(Dpr(t2p5_d, allRounds) * 100) / 100).toFixed(2),
+			t1p1_impact: (Math.round((t1p1_impact / t1p1_count_maps) * 100) / 100).toFixed(2),
+			t1p2_impact: (Math.round((t1p2_impact / t1p2_count_maps) * 100) / 100).toFixed(2),
+			t1p3_impact: (Math.round((t1p3_impact / t1p3_count_maps) * 100) / 100).toFixed(2),
+			t1p4_impact: (Math.round((t1p4_impact / t1p4_count_maps) * 100) / 100).toFixed(2),
+			t1p5_impact: (Math.round((t1p5_impact / t1p5_count_maps) * 100) / 100).toFixed(2),
+			t2p1_impact: (Math.round((t2p1_impact / t2p1_count_maps) * 100) / 100).toFixed(2),
+			t2p2_impact: (Math.round((t2p2_impact / t2p2_count_maps) * 100) / 100).toFixed(2),
+			t2p3_impact: (Math.round((t2p3_impact / t2p3_count_maps) * 100) / 100).toFixed(2),
+			t2p4_impact: (Math.round((t2p4_impact / t2p4_count_maps) * 100) / 100).toFixed(2),
+			t2p5_impact: (Math.round((t2p5_impact / t2p5_count_maps) * 100) / 100).toFixed(2),
+			t1p1_rating: Rating(t1p1_k / t1p1_d, t1p1_k / allRounds, t1p1_d / allRounds, t1p1_impact / t1p1_count_maps).toFixed(2),
+			t1p2_rating: Rating(t1p2_k / t1p2_d, t1p2_k / allRounds, t1p2_d / allRounds, t1p2_impact / t1p2_count_maps).toFixed(2),
+			t1p3_rating: Rating(t1p3_k / t1p3_d, t1p3_k / allRounds, t1p3_d / allRounds, t1p3_impact / t1p3_count_maps).toFixed(2),
+			t1p4_rating: Rating(t1p4_k / t1p4_d, t1p4_k / allRounds, t1p4_d / allRounds, t1p4_impact / t1p4_count_maps).toFixed(2),
+			t1p5_rating: Rating(t1p5_k / t1p5_d, t1p5_k / allRounds, t1p5_d / allRounds, t1p5_impact / t1p5_count_maps).toFixed(2),
+			t2p1_rating: Rating(t2p1_k / t2p1_d, t2p1_k / allRounds, t2p1_d / allRounds, t2p1_impact / t2p1_count_maps).toFixed(2),
+			t2p2_rating: Rating(t2p2_k / t2p2_d, t2p2_k / allRounds, t2p2_d / allRounds, t2p2_impact / t2p2_count_maps).toFixed(2),
+			t2p3_rating: Rating(t2p3_k / t2p3_d, t2p3_k / allRounds, t2p3_d / allRounds, t2p3_impact / t2p3_count_maps).toFixed(2),
+			t2p4_rating: Rating(t2p4_k / t2p4_d, t2p4_k / allRounds, t2p4_d / allRounds, t2p4_impact / t2p4_count_maps).toFixed(2),
+			t2p5_rating: Rating(t2p5_k / t2p5_d, t2p5_k / allRounds, t2p5_d / allRounds, t2p5_impact / t2p5_count_maps).toFixed(2),
 		}
 
 		let ratingPlayers = []
@@ -583,7 +583,13 @@ const PictureResult2 = (props) => {
 							[1, 2, 3, 4, 5].map((player) => {
 								return (
 									<div className={classes.tableRow}>
-										<div className={classes.cellPlayer}>
+										<div
+											className={classes.cellPlayer}
+											style={
+												{
+													// background: players[0][`t${team}p${player}`] === mvp.nickname ? 'var(--gold)' : '',
+												}
+											}>
 											<div className={classes.dataFlagPlayer}>
 												<CountryFlagPlayer nickname={players[0][`t${team}p${player}`]} />
 											</div>
@@ -690,7 +696,13 @@ const PictureResult2 = (props) => {
 							[1, 2, 3, 4, 5].map((player) => {
 								return (
 									<div className={classes.tableRow}>
-										<div className={classes.cellPlayer}>
+										<div
+											className={classes.cellPlayer}
+											style={
+												{
+													// background: players[0][`t${team}p${player}`] === mvp.nickname ? 'var(--gold)' : '',
+												}
+											}>
 											<div className={classes.dataFlagPlayer}>
 												<CountryFlagPlayer nickname={players[0][`t${team}p${player}`]} />
 											</div>

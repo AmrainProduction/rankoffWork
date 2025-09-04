@@ -283,7 +283,7 @@
 	z-index: 5;
 	padding-top: 6vw;
 	color: var(--white);
-	background: radial-gradient(ellipse 15vw 25vw at bottom, var(--titleRowDark) 5vw, transparent);
+	background: radial-gradient(ellipse 15vw 25vw at bottom, var(--rowDark) 5vw, transparent);
 	position: absolute;
 }
 
@@ -460,7 +460,7 @@
 }
 
 .gradientToTop {
-	background: linear-gradient(to top, var(--titleRowDark) 4vw, transparent);
+	background: linear-gradient(to top, var(--rowDark) 4vw, transparent);
 	width: 100%;
 	height: 20vw;
 	z-index: 2;

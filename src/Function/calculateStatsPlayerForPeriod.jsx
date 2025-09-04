@@ -1,115 +1,113 @@
-import {useGetMatchesNecessaryPlayerQuery} from "../store/api/apiSlice";
-import Kpr from "../Component/Formulas/kpr";
-import Dpr from "../Component/Formulas/dpr";
-import Rating from "../Component/Formulas/rating";
+import { useGetMatchesNecessaryPlayerQuery } from '../store/api/apiSlice'
+import Kpr from '../Component/Formulas/kpr'
+import Dpr from '../Component/Formulas/dpr'
+import Rating from '../Component/Formulas/rating'
 
 export default function CalculateStatsPlayerForPeriod(player, startDate, endDate, period, map) {
+	const numberPlayer = [1, 2, 3, 4, 5]
+	const numberTeam = [1, 2]
 
-    const numberPlayer = [1, 2, 3, 4, 5]
-    const numberTeam = [1, 2]
+	const name = player?.nickname
+	const endDateNew = endDate ? new Date(endDate).toISOString().split('T')[0] : new Date().toISOString().split('T')[0]
+	const startDateNew = startDate ? new Date(startDate).toISOString().split('T')[0] : new Date().toISOString().split('T')[0]
+	const timeInterval = period ? period : 90
 
-    const name = player?.nickname
-    const endDateNew = endDate ? new Date(endDate).toISOString().split("T")[0] : new Date().toISOString().split("T")[0]
-    const startDateNew = startDate ? new Date(startDate).toISOString().split("T")[0] : new Date().toISOString().split("T")[0]
-    const timeInterval = period ? period : 90
+	const matchesPlayer = useGetMatchesNecessaryPlayerQuery({ name })
 
-    const matchesPlayer = useGetMatchesNecessaryPlayerQuery({name})
+	const subtractDays = (dateEnd, days) => {
+		const date = new Date(dateEnd)
+		date.setDate(date.getDate() - days)
 
-    const subtractDays = (dateEnd, days) => {
-        const date = new Date(dateEnd)
-        date.setDate(date.getDate() - days)
+		return date.toISOString().split('T')[0]
+	}
 
-        return date.toISOString().split("T")[0]
-    }
+	const startDatePeriod = subtractDays(endDateNew, timeInterval)
 
-    const startDatePeriod = subtractDays(endDateNew, timeInterval)
+	function filterMatchesByPeriod(matches, startDatePeriod, endDate) {
+		const start = new Date(startDatePeriod)
+		const end = new Date(endDate)
 
-    function filterMatchesByPeriod(matches, startDatePeriod, endDate) {
-        const start = new Date(startDatePeriod)
-        const end = new Date(endDate)
+		return matches.filter((match) => {
+			const matchDate = new Date(match.db_date_match)
+			return matchDate >= start && matchDate <= end
+		})
+	}
 
-        return matches.filter((match) => {
-            const matchDate = new Date(match.db_date_match)
-            return matchDate >= start && matchDate <= end
-        })
-    }
+	function filterMatchesFromStartToEnd(matches, startDate, endDate) {
+		const start = new Date(startDate)
+		const end = new Date(endDate)
 
-    function filterMatchesFromStartToEnd(matches, startDate, endDate) {
-        const start = new Date(startDate)
-        const end = new Date(endDate)
+		return matches.filter((match) => {
+			const matchDate = new Date(match.db_date_match)
+			return matchDate >= start && matchDate <= end
+		})
+	}
 
-        return matches.filter((match) => {
-            const matchDate = new Date(match.db_date_match)
-            return matchDate >= start && matchDate <= end
-        })
-    }
+	let impact = 0
+	let k = 0
+	let a = 0
+	let d = 0
+	let maps = 0
+	let rounds = 0
+	let res = []
+	let photoPlayer = ''
+	let logoTeam = ''
 
-    let impact = 0
-    let k = 0
-    let a = 0
-    let d = 0
-    let maps = 0
-    let rounds = 0
-    let res = []
-    let photoPlayer = ''
-    let logoTeam = ''
+	if (player && matchesPlayer.data && matchesPlayer.data.length > 0) {
+		const allMatchesPlayerReverse = [...matchesPlayer.data]
 
-    if (player && matchesPlayer.data && matchesPlayer.data.length > 0) {
+		const filteredMatchesPlayer = period ? filterMatchesByPeriod(allMatchesPlayerReverse, startDatePeriod, endDateNew) : filterMatchesFromStartToEnd(allMatchesPlayerReverse, startDateNew, endDateNew)
 
-        const allMatchesPlayerReverse = [...matchesPlayer.data]
+		// кастомная выборка турниров
+		// let temp = []
+		// allMatchesPlayerReverse.map(e => {
+		//     if (e.name_tour_for_sort === "RushVTBCUPPro_13_02_25" || e.name_tour_for_sort === "WinlineEpicStandoff2Major2_25_11_24" ||
+		//         e.name_tour_for_sort === "WinlineEpicStandoff2Major_10_07_24" || e.name_tour_for_sort === "GamesOfFuture_03_03_24"
+		//     ) {
+		//         temp.push(e)
+		//     }
+		// })
 
-        const filteredMatchesPlayer = (period) ? filterMatchesByPeriod(allMatchesPlayerReverse, startDatePeriod, endDateNew) : filterMatchesFromStartToEnd(allMatchesPlayerReverse, startDateNew, endDateNew)
+		filteredMatchesPlayer.map((e) => {
+			numberTeam.forEach((team) => {
+				numberPlayer.forEach((player) => {
+					if (e[`t${team}p${player}`] === name) {
+						impact += e[`t${team}p${player}_impact`]
+						k += e[`t${team}p${player}_k`]
+						a += e[`t${team}p${player}_a`]
+						d += e[`t${team}p${player}_d`]
+						photoPlayer = e[`t${team}p${player}_logo`]
+						logoTeam = e[`team${team}_logo`]
+						maps += 1
+						rounds += e.total_r_team2 + e.total_r_team1
+					}
+				})
+			})
+		})
 
-        // кастомная выборка турниров
-        // let temp = []
-        // allMatchesPlayerReverse.map(e => {
-        //     if (e.name_tour_for_sort === "RushVTBCUPPro_13_02_25" || e.name_tour_for_sort === "WinlineEpicStandoff2Major2_25_11_24" ||
-        //         e.name_tour_for_sort === "WinlineEpicStandoff2Major_10_07_24" || e.name_tour_for_sort === "GamesOfFuture_03_03_24"
-        //     ) {
-        //         temp.push(e)
-        //     }
-        // })
+		if (k && d) {
+			let kd = k / d
+			let kpr = Kpr(k, rounds)
+			let dpr = Dpr(d, rounds)
+			impact = impact / maps
+			let rating = Rating(kd, kpr, dpr, impact)
 
-        filteredMatchesPlayer.map(e => {
-            numberTeam.forEach(team => {
-                numberPlayer.forEach(player => {
-                    if (e[`t${team}p${player}`] === name) {
-                        impact += e[`t${team}p${player}_impact`]
-                        k += e[`t${team}p${player}_k`]
-                        a += e[`t${team}p${player}_a`]
-                        d += e[`t${team}p${player}_d`]
-                        photoPlayer = e[`t${team}p${player}_logo`]
-                        logoTeam = e[`team${team}_logo`]
-                        maps += 1
-                        rounds += e.total_r_team2 + e.total_r_team1
-                    }
-                })
-            })
-        })
+			res.push({
+				kd: (Math.round(kd * 100) / 100).toFixed(2),
+				kpr: (Math.round(kpr * 100) / 100).toFixed(2),
+				dpr: (Math.round(dpr * 100) / 100).toFixed(2),
+				impact: (Math.round(impact * 100) / 100).toFixed(2),
+				rating: rating.toFixed(2),
+				k: k,
+				a: a,
+				d: d,
+				w_rounds: rounds,
+				maps: maps,
+				photoPlayer: photoPlayer,
+				logoTeam: logoTeam,
+			})
+		}
+	}
 
-        if (k && d) {
-            let kd = (k / d)
-            let kpr = Kpr(k, rounds)
-            let dpr = Dpr(d, rounds)
-            impact = impact / maps
-            let rating = Rating(kd, kpr, dpr, impact)
-
-            res.push({
-                "kd": Math.round(kd * 100) / 100,
-                "kpr": Math.round(kpr * 100) / 100,
-                "dpr": Math.round(dpr * 100) / 100,
-                "impact": Math.round(impact * 100) / 100,
-                "rating": rating,
-                "k": k,
-                "a": a,
-                "d": d,
-                "w_rounds": rounds,
-                "maps": maps,
-                "photoPlayer": photoPlayer,
-                "logoTeam": logoTeam,
-            })
-        }
-    }
-
-    return res
+	return res
 }
