@@ -1,252 +1,240 @@
 @font-face {
-    font-family: "DrukCyrMedium";
-    src: url("../../../Fonts/DrukCyr-Medium.eot");
-    src: url("../../../Fonts/DrukCyr-Medium.eot?#iefix") format("embedded-opentype"),
-    url("../../../Fonts/DrukCyr-Medium.woff") format("woff"),
-    url("../../../Fonts/DrukCyr-Medium.ttf") format("truetype");
-    font-style: normal;
-    font-weight: 500;
+	font-family: 'DrukCyrMedium';
+	src: url('../../../Fonts/DrukCyr-Medium.eot');
+	src: url('../../../Fonts/DrukCyr-Medium.eot?#iefix') format('embedded-opentype'), url('../../../Fonts/DrukCyr-Medium.woff') format('woff'), url('../../../Fonts/DrukCyr-Medium.ttf') format('truetype');
+	font-style: normal;
+	font-weight: 500;
 }
 
 @font-face {
-    font-family: "Mazzard M";
-    src: url("../../../Fonts/Mazzard/MazzardM-SemiBold.eot");
-    src: url("../../../Fonts/Mazzard/MazzardM-SemiBold.eot?#iefix") format("embedded-opentype"),
-    url("../../../Fonts/Mazzard/MazzardM-SemiBold.woff") format("woff"),
-    url("../../../Fonts/Mazzard/MazzardM-SemiBold.ttf") format("truetype");
-    font-style: normal;
-    font-weight: 500;
+	font-family: 'Mazzard M';
+	src: url('../../../Fonts/Mazzard/MazzardM-SemiBold.eot');
+	src: url('../../../Fonts/Mazzard/MazzardM-SemiBold.eot?#iefix') format('embedded-opentype'), url('../../../Fonts/Mazzard/MazzardM-SemiBold.woff') format('woff'), url('../../../Fonts/Mazzard/MazzardM-SemiBold.ttf') format('truetype');
+	font-style: normal;
+	font-weight: 500;
 }
 
 @font-face {
-    font-family: "DrukCyr Bold";
-    src: url("../../../Fonts/DrukCyr-Bold.ttf") format("truetype");
+	font-family: 'DrukCyr Bold';
+	src: url('../../../Fonts/DrukCyr-Bold.ttf') format('truetype');
 }
 
 @font-face {
-    font-family: "DrukTextWide";
-    src: url("../../../Fonts/DRUKTEXTWIDECYR-BOLD.otf") format("truetype");
+	font-family: 'DrukTextWide';
+	src: url('../../../Fonts/DRUKTEXTWIDECYR-BOLD.otf') format('truetype');
 }
 
 @font-face {
-    font-family: "Montserrat Medium";
-    src: url("../../../Fonts/Montserrat/MONTSERRAT-MEDIUM.TTF") format("truetype");
+	font-family: 'Montserrat Medium';
+	src: url('../../../Fonts/Montserrat/MONTSERRAT-MEDIUM.TTF') format('truetype');
 }
 
 @font-face {
-    font-family: "Montserrat SemiBold";
-    src: url("../../../Fonts/Montserrat/MONTSERRAT-SEMIBOLD.ttf") format("truetype");
+	font-family: 'Montserrat SemiBold';
+	src: url('../../../Fonts/Montserrat/MONTSERRAT-SEMIBOLD.ttf') format('truetype');
 }
 
 @font-face {
-    font-family: "Montserrat Bold";
-    src: url("../../../Fonts/Montserrat/MONTSERRAT-BOLD.TTF") format("truetype");
+	font-family: 'Montserrat Bold';
+	src: url('../../../Fonts/Montserrat/MONTSERRAT-BOLD.TTF') format('truetype');
 }
 
+:local(.wrapperTopResult) {
+	/* --titleRowDark: #97103f;
+	--rowDark: #c3094b;
+	--rowLight: #ec0358; */
 
-.wrapperTopResult {
-    --red: #c24f4f;
-    --green: #6cc24f;
-    --yellow: #c2ab4f;
-    --gold: #c2ab4f;
-    --gray: #b6b6b6;
-    --bronze: #c2904f;
-    --redDark: #3f1a1a;
-    --greenDark: #203a17;
-    --yellowDark: #3f381a;
-    --goldDark: #3f381a;
-    --grayDark: #363636;
-    --bronzeDark: #3d2d19;
-    --grayOpacity: rgb(159, 159, 159, 0.2);
-    --grayDarkOpacity: rgb(37, 37, 37, 0.5);
-    --redDarkOpacity: rgb(63, 26, 26, 0.8);
-    --goldOpacity: rgb(192, 160, 92, 0.5);
-    --bronzeOpacity: rgb(190, 140, 99, 0.5);
-    --silverOpacity: rgb(159, 159, 159, 0.5);
-    --dark: #030404;
-    --white: #fff;
+	--titleRowDark: #6c0124;
+	--rowDark: #96002d;
+	--rowLight: #ba013f;
+
+	--red: #ff1818;
+	--green: #00db00;
+	--yellow: #ff9615;
+
+	--white: #fff;
+	--black: #000;
 }
 
 .bgImg {
-    height: auto;
-    width: 100%;
+	height: auto;
+	width: 100%;
 }
 
 .wrapperMenu {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    width: 100%;
-    height: 150px;
-    background: var(--mainLightBlack);
-    margin-bottom: 10px;
-    padding: 5px;
-    color: white;
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-start;
+	width: 100%;
+	height: 150px;
+	background: var(--mainLightBlack);
+	margin-bottom: 10px;
+	padding: 5px;
+	color: white;
 }
 
 .wrapperLogo {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: auto;
-    height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: auto;
+	height: 100%;
 }
 
 .wrapperLogo img {
-    height: 70%;
-    width: auto;
+	height: 70%;
+	width: auto;
 }
 
 .btnSaveAsImage {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 3px;
-    background: var(--buttonColor);
-    height: 40px;
-    width: 160px;
-    cursor: pointer;
-    color: white;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-radius: 3px;
+	background: var(--buttonColor);
+	height: 40px;
+	width: 160px;
+	cursor: pointer;
+	color: white;
 }
 
 .btnSaveAsImage:hover {
-    background: var(--buttonColorHover);
+	background: var(--buttonColorHover);
 }
 
 .wrapperButtons {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 20%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	width: 20%;
 }
 
 .wrapperButtons button:not(:last-child) {
-    margin-bottom: 3%;
+	margin-bottom: 3%;
 }
 
 .menu {
-    display: flex;
-    justify-content: center;
-    align-items: flex-end;
-    height: 100%;
-    width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: flex-end;
+	height: 100%;
+	width: 100%;
 }
 
 .wrapperListMatches {
-    display: block;
-    width: 100%;
-    height: 100%;
-    margin-right: 2%;
-    margin-left: 2%;
-    padding: 2px;
+	display: block;
+	width: 100%;
+	height: 100%;
+	margin-right: 2%;
+	margin-left: 2%;
+	padding: 2px;
 }
 
 .listMatches {
-    display: block;
-    overflow-y: scroll;
-    border-radius: 3px;
-    width: 100%;
-    min-width: 150px;
-    height: 120px;
-    background: var(--componentBlockColor);
-    color: white;
+	display: block;
+	overflow-y: scroll;
+	border-radius: 3px;
+	width: 100%;
+	min-width: 150px;
+	height: 120px;
+	background: var(--componentBlockColor);
+	color: white;
 }
 
 .match {
-    background: var(--componentLightBlockColor);
-    margin-bottom: 2px;
-    padding: 5px;
-    cursor: pointer;
-    transition: all 0.5s;
+	background: var(--componentLightBlockColor);
+	margin-bottom: 2px;
+	padding: 5px;
+	cursor: pointer;
+	transition: all 0.5s;
 }
 
 .match:hover {
-    background: var(--componentBlockColorHover);
+	background: var(--componentBlockColorHover);
 }
 
-
 .wrapperPredicters {
-    font-family: "Mazzard M", sans-serif;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    height: 20%;
-    width: 100%;
-    padding: 0.3%;
-    margin-bottom: 10px;
-    background: var(--componentLightBlockColor)
+	font-family: 'Mazzard M', sans-serif;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	height: 20%;
+	width: 100%;
+	padding: 0.3%;
+	margin-bottom: 10px;
+	background: var(--componentLightBlockColor);
 }
 
 .wrapperPredicters div:not(:last-child) {
-    margin-right: 0.5%;
+	margin-right: 0.5%;
 }
 
 .choicePredicter {
-    display: flex;
-    flex-flow: column;
-    justify-content: flex-start;
-    align-items: center;
-    height: 100%;
-    width: 100%;
-    padding: 0.4%;
-    background: var(--componentBlockColorHover);
-    color: white;
+	display: flex;
+	flex-flow: column;
+	justify-content: flex-start;
+	align-items: center;
+	height: 100%;
+	width: 100%;
+	padding: 0.4%;
+	background: var(--componentBlockColorHover);
+	color: white;
 }
 
 .wrapperTeams {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    height: 100%;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	width: 100%;
+	height: 100%;
 }
 
 .wrapperTeams div:not(:last-child) {
-    margin-right: 3%;
+	margin-right: 3%;
 }
 
 .name {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 2%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-bottom: 2%;
 }
 
 .team {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    height: 100%;
-    padding: 5%;
-    background: var(--componentLightBlockColor);
-    cursor: pointer;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	width: 100%;
+	height: 100%;
+	padding: 5%;
+	background: var(--componentLightBlockColor);
+	cursor: pointer;
 }
 
 .team:hover {
-    background: var(--componentBlockColorHover);
+	background: var(--componentBlockColorHover);
 }
 
 .team img {
-    height: 70%;
-    width: auto;
+	height: 70%;
+	width: auto;
 }
 
 .wrapperTopResult {
-    font-family: "DrukCyrMedium", sans-serif;
-    display: block;
-    justify-content: center;
-    align-items: flex-start;
-    height: 100%;
-    width: 100%;
-    z-index: 20;
-    position: relative;
+	font-family: 'DrukCyrMedium', sans-serif;
+	display: block;
+	justify-content: center;
+	align-items: flex-start;
+	height: 100%;
+	width: 100%;
+	z-index: 20;
+	position: relative;
 }
 
 .wrapperTopResult img {
-    height: auto;
-    width: 100%;
+	height: auto;
+	width: 100%;
 }
 
 /*.wrapperPickTeams {*/
@@ -342,8 +330,3 @@
 /*    height: 90%;*/
 /*    width: auto;*/
 /*}*/
-
-
-
-
-

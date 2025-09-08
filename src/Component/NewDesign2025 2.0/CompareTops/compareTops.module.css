@@ -97,7 +97,7 @@
 	width: 100%;
 	grid-template-columns: 1fr 1fr;
 	column-gap: 1vw;
-	padding: 11.8vw 1vw 1vw 1vw;
+	padding: 12vw 1vw 1vw 1vw;
 	min-height: 100%;
 	position: absolute;
 }

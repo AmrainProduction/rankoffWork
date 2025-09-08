@@ -15,23 +15,23 @@ const LeftTopResult = (props) => {
 	const tourInfo = useGetTournamentByNameQuery({ name })
 
 	let filterTours = [
-		// 'WinlineEpicStandoff2Season14_11_12_24',
+		'WinlineEpicStandoff2Season14_11_12_24',
 		// 'Standoff2NewYearCup_29_12_24',
 		// 'WinlineEpicStandoff2Major2_25_11_24',
-		// 'WinlineEpicStandoff2Season13_08_10_24',
-		// 'WinlineEpicStandoff2Season12_04_09_24',
+		'WinlineEpicStandoff2Season13_08_10_24',
+		'WinlineEpicStandoff2Season12_04_09_24',
 		// 'ScamOffBeeline_23_08_24',
-		// 'WinlineEpicStandoff2Season11_01_08_24',
+		'WinlineEpicStandoff2Season11_01_08_24',
 		// 'WinlineEpicStandoff2Major_10_07_24',
-		// 'WinlineEpicStandoff2Season10_30_05_24',
-		// 'WinlineEpicStandoff2Season9_25_04_24',
-		// 'WinlineEpicStandoff2Season8_28_03_24',
+		'WinlineEpicStandoff2Season10_30_05_24',
+		'WinlineEpicStandoff2Season9_25_04_24',
+		'WinlineEpicStandoff2Season8_28_03_24',
 		// 'GamesOfFuture_03_03_24',
-		// 'WinlineEpicStandoff2Season7_11_02_24',
-		'Standoff2EPICAcademy2025Week1_17_03_25',
-		'Standoff2EPICAcademy2025Week2_31_03_25',
-		'Standoff2EPICAcademy2025Week3_28_04_25',
-		'Standoff2EPICAcademy2025SpringFinals_28_05_25',
+		'WinlineEpicStandoff2Season7_11_02_24',
+		// 'Standoff2EPICAcademy2025Week1_17_03_25',
+		// 'Standoff2EPICAcademy2025Week2_31_03_25',
+		// 'Standoff2EPICAcademy2025Week3_28_04_25',
+		// 'Standoff2EPICAcademy2025SpringFinals_28_05_25',
 	]
 
 	let players_tournaments = calculatePlayersTopV2(name, props.stage, allPlayers, allMatches, teamsTour, tourInfo, allShortMatches, filterTours)
@@ -55,7 +55,7 @@ const LeftTopResult = (props) => {
 		return (
 			<div className={classes.wrapperTopResult}>
 				<div className={classes.wrapperTourInfo}>
-					<div className={classes.nameTour}>{'ТОП 20 ЛУЧШИХ ИГРОКОВ EPIC ACADEMY SPRING 2025'.toUpperCase()}</div>
+					<div className={classes.nameTour}>{'ТОП 20 ЛУЧШИХ ИГРОКОВ EPIC SEASON 7 - 14 2024'.toUpperCase()}</div>
 				</div>
 				<div className={classes.topResult}>
 					<div className={classes.wrapperPlayerTitle}>

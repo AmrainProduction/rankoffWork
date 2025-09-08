@@ -15,17 +15,17 @@ const RightTopResult = (props) => {
 	const tourInfo = useGetTournamentByNameQuery({ name })
 
 	let filterTours = [
-		// 'WinlineEPICStandoff2CosmoEarth_09_01_25',
+		'WinlineEPICStandoff2CosmoEarth_09_01_25',
 		// 'RushVTBCUPPro_13_02_25',
-		// 'WinlineEPICStandoff2CosmoCancriE_09_04_25',
-		// 'WinlineEPICStandoff2CosmoSaffar_04_03_25',
-		// 'WinlineEPICStandoff2CosmoMajor_04_06_25',
-		// 'WinlineEPICStandoff2PawPawEp1_24_06_25',
-		// 'WinlineEPICStandoff2PawPawEp2_29_07_25',
-		'Standoff2EPICAcademy2025SummerWeek3_11_08_25',
-		'Standoff2EPICAcademy2025SummerWeek2_21_07_25',
-		'Standoff2EPICAcademy2025SummerWeek1_30_06_25',
-		'Standoff2EPICAcademy2025SummerFinals_27_08_25',
+		'WinlineEPICStandoff2CosmoCancriE_09_04_25',
+		'WinlineEPICStandoff2CosmoSaffar_04_03_25',
+		'WinlineEPICStandoff2CosmoMajor_04_06_25',
+		'WinlineEPICStandoff2PawPawEp1_24_06_25',
+		'WinlineEPICStandoff2PawPawEp2_29_07_25',
+		// 'Standoff2EPICAcademy2025SummerWeek3_11_08_25',
+		// 'Standoff2EPICAcademy2025SummerWeek2_21_07_25',
+		// 'Standoff2EPICAcademy2025SummerWeek1_30_06_25',
+		// 'Standoff2EPICAcademy2025SummerFinals_27_08_25',
 	]
 
 	let players_tournaments = calculatePlayersTopV2(name, props.stage, allPlayers, allMatches, teamsTour, tourInfo, allShortMatches, filterTours)
@@ -61,7 +61,7 @@ const RightTopResult = (props) => {
 		return (
 			<div className={classes.wrapperTopResult}>
 				<div className={classes.wrapperTourInfo}>
-					<div className={classes.nameTour}>{'ТОП 20 ЛУЧШИХ ИГРОКОВ EPIC ACADEMY SUMMER 2025'.toUpperCase()}</div>
+					<div className={classes.nameTour}>{'ТОП 20 ЛУЧШИХ ИГРОКОВ EPIC COSMO И PAWPAW 2025'.toUpperCase()}</div>
 				</div>
 				<div className={classes.topResult}>
 					<div className={classes.wrapperPlayerTitle}>

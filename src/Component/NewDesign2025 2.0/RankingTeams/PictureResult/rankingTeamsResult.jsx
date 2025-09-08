@@ -53,23 +53,29 @@ const RankingTeamsResult = (props) => {
 						if (diff > 0) {
 							return (
 								<div
+									className={classes.wrapperMetric}
 									key={index}
 									style={{
-										// background: 'linear-gradient(to left, var(--green) 1%, transparent 100%)',
-										color: 'var(--greenDark)',
+										color: 'var(--green)',
 									}}>
-									+{diff}
+									<div className={classes.metricSign}>
+										<img src="/images/DataInImage/greenSign.svg" alt="" />
+									</div>
+									<div className={classes.metricValue}>{diff}</div>
 								</div>
 							)
 						} else if (diff < 0) {
 							return (
 								<div
+									className={classes.wrapperMetric}
 									key={index}
 									style={{
-										// background: 'linear-gradient(to left, var(--red) 1%, transparent 100%)',
-										color: 'var(--redDark)',
+										color: 'var(--red)',
 									}}>
-									{diff}
+									<div className={classes.metricSign}>
+										<img src="/images/DataInImage/redSign.svg" alt="" />
+									</div>
+									<div className={classes.metricValue}>{Math.abs(diff)}</div>
 								</div>
 							)
 						} else {
@@ -108,6 +114,7 @@ const RankingTeamsResult = (props) => {
 						</div>
 						{rankingsTeam.data.map((e, index) => {
 							let diffPos = diffPositionTeam(e.position_team, e.name_team, e.team_id)
+							console.log(diffPos)
 							if (index < 10) {
 								return (
 									<div key={index} className={classes.wrapperTable}>

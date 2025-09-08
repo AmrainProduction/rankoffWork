@@ -92,7 +92,7 @@ const ComparePlayersResult = ({ player1, player2, dateEnd1, days1, dateEnd2, day
 						<div className={classes.metric}>
 							<div className={classes.valuePlayer}>{player1Stats[0]?.kd}</div>
 							<div className={classes.metricSign}>
-								{player1Stats[0]?.kd > player2Stats[0]?.kd ? <img src="/images/DataInImage/greenSign.svg" alt="" /> : player1Stats[0]?.kd === player2Stats[0]?.kd ? <img src="/images/DataInImage/redSign.svg" alt="" /> : null}
+								{player1Stats[0]?.kd > player2Stats[0]?.kd ? <img src="/images/DataInImage/greenSign.svg" alt="" /> : player1Stats[0]?.kd === player2Stats[0]?.kd ? null : <img src="/images/DataInImage/redSign.svg" alt="" />}
 							</div>
 							<div className={classes.nameMetric}>KD</div>
 							<div className={classes.metricSign}>
@@ -177,7 +177,7 @@ const ComparePlayersResult = ({ player1, player2, dateEnd1, days1, dateEnd2, day
 							<div className={classes.valuePlayer}>{player2Stats[0]?.maps}</div>
 						</div>
 					</div>
-					{/*<div className={classes.description}>{"ЗИМНИЙ МАЖОР 2024 И ЛЕТНИЙ МАЖОР 2025"}</div>*/}
+					{/* <div className={classes.description}>{'ЗА ВСЕ ТУРНИРЫ 2025'}</div> */}
 					<div className={classes.description}>{days1 === days2 && days1 && days2 ? `Past ${daysToMonths(days1)} months` : ''}</div>
 				</div>
 				<div className={classes.rightPlayer}>
