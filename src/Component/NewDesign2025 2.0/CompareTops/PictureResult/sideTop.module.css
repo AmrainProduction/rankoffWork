@@ -36,22 +36,19 @@
 }
 
 :local(.wrapperTopResult) {
-	--titleRowDark: #6c0124;
-	--rowDark: #96002d;
-	--rowLight: #ba013f;
+	--titleRowDark: #850533;
+	--rowDark: #94103e;
+	--rowLight: #b00745;
 
-	/* --titleRowDark: #97103f;
-	--rowDark: #c3094b;
-	--rowLight: #ec0358; */
+	--red: #ff181899;
+	--green: #00db0099;
+	--yellow: #ff961599;
 
-	--redOpacity: #ff181899;
-	--greenOpacity: #00db0099;
-	--yellowOpacity: #ff961599;
+	--redDark: #ff1818;
+	--greenDark: #00db00;
+	--yellowDark: #ff9615;
 
-	--red: #ff1818;
-	--green: #00db00;
-	--yellow: #ff9615;
-
+	--gold: #efc60c95;
 	--white: #fff;
 	--black: #000;
 }
@@ -136,7 +133,7 @@
 	width: 100%;
 	border-bottom-left-radius: 1vw;
 	border-bottom-right-radius: 1vw;
-	font-family: 'DRUKTEXTWIDECYR-BOLD', sans-serif;
+	font-family: 'DrukTextWide', sans-serif;
 	position: relative;
 }
 
@@ -198,166 +195,3 @@
 	text-shadow: 1px 1px 1px var(--titleRowDark);
 	position: absolute;
 }
-
-/*.dataNumberPlayerTitle {*/
-/*    display: flex;*/
-/*    justify-content: center;*/
-/*    align-items: center;*/
-/*    height: 100%;*/
-/*    width: 4%;*/
-/*    font-size: 1.1vw;*/
-/*    color: white;*/
-/*}*/
-
-/*.logoTeamTeam {*/
-/*    display: flex;*/
-/*    justify-content: center;*/
-/*    align-items: center;*/
-/*    height: 100%;*/
-/*    width: 5%;*/
-/*}*/
-
-/*.dataNicknamePlayerNickname {*/
-/*    display: flex;*/
-/*    justify-content: center;*/
-/*    align-items: center;*/
-/*    height: 100%;*/
-/*    width: 12%;*/
-/*    font-size: 1.1vw;*/
-/*    color: white;*/
-/*}*/
-
-/*.dataFlagPlayerCountry {*/
-/*    display: flex;*/
-/*    justify-content: center;*/
-/*    align-items: center;*/
-/*    height: 100%;*/
-/*    width: 3%;*/
-/*}*/
-
-/*.dataPlayerKd {*/
-/*    display: flex;*/
-/*    justify-content: center;*/
-/*    align-items: center;*/
-/*    height: 100%;*/
-/*    width: 7%;*/
-/*    font-size: 1.2vw;*/
-/*}*/
-
-/*.dataPlayerKpr {*/
-/*    display: flex;*/
-/*    justify-content: center;*/
-/*    align-items: center;*/
-/*    height: 100%;*/
-/*    width: 7%;*/
-/*    font-size: 1.2vw;*/
-/*}*/
-
-/*.dataPlayerDpr {*/
-/*    display: flex;*/
-/*    justify-content: center;*/
-/*    align-items: center;*/
-/*    height: 100%;*/
-/*    width: 7%;*/
-/*    font-size: 1.2vw;*/
-/*}*/
-
-/*!*.dataPlayerK {*!*/
-/*!*    display: flex;*!*/
-/*!*    justify-content: center;*!*/
-/*!*    align-items: center;*!*/
-/*!*    height: 100%;*!*/
-/*!*    width: 6%;*!*/
-/*!*    color: white;*!*/
-/*!*    font-size: 1.2vw;*!*/
-/*!*}*!*/
-
-/*!*.dataPlayerA {*!*/
-/*!*    display: flex;*!*/
-/*!*    justify-content: center;*!*/
-/*!*    align-items: center;*!*/
-/*!*    height: 100%;*!*/
-/*!*    width: 6%;*!*/
-/*!*    color: white;*!*/
-/*!*    font-size: 1.2vw;*!*/
-/*!*}*!*/
-
-/*!*.dataPlayerD {*!*/
-/*!*    display: flex;*!*/
-/*!*    justify-content: center;*!*/
-/*!*    align-items: center;*!*/
-/*!*    height: 100%;*!*/
-/*!*    width: 6%;*!*/
-/*!*    color: white;*!*/
-/*!*    font-size: 1.2vw;*!*/
-/*!*}*!*/
-
-/*.dataPlayerDiff {*/
-/*    display: flex;*/
-/*    justify-content: center;*/
-/*    align-items: center;*/
-/*    height: 100%;*/
-/*    width: 6%;*/
-/*    font-size: 1.2vw;*/
-/*}*/
-
-/*.dataPlayerImpact {*/
-/*    display: flex;*/
-/*    justify-content: center;*/
-/*    align-items: center;*/
-/*    height: 100%;*/
-/*    width: 7%;*/
-/*    font-size: 1.2vw;*/
-/*}*/
-
-/*.dataPlayerRating {*/
-/*    display: flex;*/
-/*    justify-content: center;*/
-/*    align-items: center;*/
-/*    height: 100%;*/
-/*    width: 7%;*/
-/*    font-size: 1.2vw;*/
-/*}*/
-
-/*!*.dataPlayerW_rounds {*!*/
-/*!*    display: flex;*!*/
-/*!*    justify-content: center;*!*/
-/*!*    align-items: center;*!*/
-/*!*    height: 100%;*!*/
-/*!*    width: 7%;*!*/
-/*!*    font-size: 1.2vw;*!*/
-/*!*    color: white;*!*/
-/*!*}*!*/
-
-/*!*.dataPlayerL_rounds {*!*/
-/*!*    display: flex;*!*/
-/*!*    justify-content: center;*!*/
-/*!*    align-items: center;*!*/
-/*!*    height: 100%;*!*/
-/*!*    width: 7%;*!*/
-/*!*    font-size: 1.2vw;*!*/
-/*!*    color: white;*!*/
-/*!*}*!*/
-
-/*.dataPlayerMaps {*/
-/*    display: flex;*/
-/*    justify-content: center;*/
-/*    align-items: center;*/
-/*    height: 100%;*/
-/*    width: 6%;*/
-/*    font-size: 1.2vw;*/
-/*    color: white;*/
-/*}*/
-
-/*.logoTeam {*/
-/*    display: flex;*/
-/*    justify-content: center;*/
-/*    align-items: center;*/
-/*    width: 5%;*/
-/*    height: 100%;*/
-/*}*/
-
-/*.logoTeam img {*/
-/*    height: 80%;*/
-/*    width: auto;*/
-/*}*/

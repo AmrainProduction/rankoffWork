@@ -11,7 +11,7 @@ const ResultPredicts5 = (props) => {
 				</div>
 				<div className={classes.wrapperTitleBanner}>
 					<div className={classes.dateMatches}>{props.matches[0].date.replaceAll('-', '.')}</div>
-					<div className={classes.titleBanner}>ПРЕДИКТЫ</div>
+					<div className={classes.titleBanner}>PREDICTS</div>
 				</div>
 			</div>
 			<div className={classes.wrapperPredictors}>

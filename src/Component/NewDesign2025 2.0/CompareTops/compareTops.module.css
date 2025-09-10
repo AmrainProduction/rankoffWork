@@ -15,26 +15,21 @@
 }
 
 .wrapperTopResult {
-	--red: #c24f4f;
-	--green: #6cc24f;
-	--yellow: #c2ab4f;
-	--gold: #c0a05c;
-	--gray: #b6b6b6;
-	--bronze: #c2904f;
-	--redDark: #3f1a1a;
-	--greenDark: #203a17;
-	--yellowDark: #3f381a;
-	--goldDark: #3f381a;
-	--grayDark: #363636;
-	--bronzeDark: #3d2d19;
-	--grayOpacity: rgb(159, 159, 159, 0.1);
-	--grayDarkOpacity: rgb(37, 37, 37, 0.5);
-	--redDarkOpacity: rgb(63, 26, 26, 0.8);
-	--goldOpacity: rgb(192, 160, 92, 0.5);
-	--bronzeOpacity: rgb(190, 140, 99, 0.5);
-	--silverOpacity: rgb(159, 159, 159, 0.5);
-	--dark: #030404;
+	--titleRowDark: #850533;
+	--rowDark: #94103e;
+	--rowLight: #b00745;
+
+	--red: #ff181899;
+	--green: #00db0099;
+	--yellow: #ff961599;
+
+	--redDark: #ff1818;
+	--greenDark: #00db00;
+	--yellowDark: #ff9615;
+
+	--gold: #efc60c95;
 	--white: #fff;
+	--black: #000;
 }
 
 .wrapperPicture {

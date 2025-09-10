@@ -44,14 +44,19 @@
 	--rowDark: #c3094b;
 	--rowLight: #ec0358; */
 
-	--titleRowDark: #6c0124;
-	--rowDark: #96002d;
-	--rowLight: #ba013f;
+	--titleRowDark: #850533;
+	--rowDark: #94103e;
+	--rowLight: #b00745;
 
 	--red: #ff181899;
 	--green: #00db0099;
 	--yellow: #ff961599;
 
+	--redDark: #ff1818;
+	--greenDark: #00db00;
+	--yellowDark: #ff9615;
+
+	--gold: #efc60c95;
 	--white: #fff;
 	--black: #000;
 }
@@ -242,7 +247,7 @@
 }
 
 .topResult {
-	font-family: 'MONTSERRAT-EXTRABOLD', sans-serif;
+	font-family: 'Montserrat ExtraBold', sans-serif;
 	top: 16.4vw;
 	height: 100%;
 	width: 100%;
@@ -260,7 +265,7 @@
 }
 
 .playerTitle {
-	font-family: 'MONTSERRAT-BOLD', sans-serif;
+	font-family: 'Montserrat Bold', sans-serif;
 	display: grid;
 	grid-template-columns: 5% 8% 20% repeat(12, 1fr);
 	height: 100%;
@@ -286,7 +291,7 @@
 	display: block;
 	border-bottom-left-radius: 1vw;
 	border-bottom-right-radius: 1vw;
-	font-family: 'DRUKTEXTWIDECYR-BOLD', sans-serif;
+	font-family: 'DrukTextWide', sans-serif;
 	font-size: 1.05vw;
 	overflow: hidden;
 }

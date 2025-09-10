@@ -40,9 +40,9 @@
 }
 
 :local(.wrapperTopResult) {
-	--titleRowDark: #6c0124;
-	--rowDark: #96002d;
-	--rowLight: #ba013f;
+	--titleRowDark: #850533;
+	--rowDark: #94103e;
+	--rowLight: #b00745;
 
 	--red: #ff181899;
 	--green: #00db0099;
@@ -52,7 +52,7 @@
 	--greenDark: #00db00;
 	--yellowDark: #ff9615;
 
-	--gold: #dbbb2f99;
+	--gold: #efc60c95;
 	--white: #fff;
 	--black: #000;
 }
@@ -200,7 +200,7 @@
 }
 
 .themeBanner {
-	font-family: 'MONTSERRAT-BOLD', sans-serif;
+	font-family: 'Montserrat Bold', sans-serif;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -267,7 +267,7 @@
 }
 
 .tableTitle {
-	font-family: 'DRUKTEXTWIDECYR-BOLD', sans-serif;
+	font-family: 'DrukTextWide', sans-serif;
 	display: flex;
 	justify-content: flex-start;
 	align-items: center;
@@ -290,7 +290,7 @@
 }
 
 .wrapperTable {
-	font-family: 'DRUKTEXTWIDECYR-BOLD', sans-serif;
+	font-family: 'DrukTextWide', sans-serif;
 	display: grid;
 	grid-template-columns: 5% 26% 53% 8% 8%;
 	width: 100%;

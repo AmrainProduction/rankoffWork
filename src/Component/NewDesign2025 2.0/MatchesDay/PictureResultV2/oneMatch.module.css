@@ -1,16 +1,17 @@
 :local(.wrapperTopResult) {
-	/* --titleRowDark: #97103f;
-	--rowDark: #c3094b;
-	--rowLight: #ec0358; */
-
-	--titleRowDark: #6c0124;
-	--rowDark: #96002d;
-	--rowLight: #ba013f;
+	--titleRowDark: #850533;
+	--rowDark: #94103e;
+	--rowLight: #b00745;
 
 	--red: #ff181899;
 	--green: #00db0099;
 	--yellow: #ff961599;
 
+	--redDark: #ff1818;
+	--greenDark: #00db00;
+	--yellowDark: #ff9615;
+
+	--gold: #efc60c95;
 	--white: #fff;
 	--black: #000;
 }
@@ -137,7 +138,7 @@
 	justify-content: center;
 	align-items: flex-end;
 	height: 100%;
-	font-family: 'MONTSERRAT-BOLD', sans-serif;
+	font-family: 'Montserrat Bold', sans-serif;
 	font-size: 1.5vw;
 	background: var(--rowLight);
 }
@@ -147,7 +148,7 @@
 	justify-content: center;
 	align-items: flex-start;
 	height: 100%;
-	font-family: 'DRUKTEXTWIDECYR-BOLD', sans-serif;
+	font-family: 'DrukTextWide', sans-serif;
 	font-size: 5vw;
 	background: var(--rowLight);
 }
@@ -189,7 +190,7 @@
 }
 
 .time {
-	font-family: 'MONTSERRAT-BOLD', sans-serif;
+	font-family: 'Montserrat Bold', sans-serif;
 	grid-area: time;
 	display: flex;
 	justify-content: center;
@@ -203,13 +204,13 @@
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	font-size: 2vw;
+	font-size: 1.5vw;
 	background: var(--titleRowDark);
 }
 
 .tourInfo {
 	grid-area: tourInfo;
-	font-family: 'MONTSERRAT-BOLD', sans-serif;
+	font-family: 'Montserrat Bold', sans-serif;
 	display: flex;
 	justify-content: center;
 	grid-template-rows: 100%;

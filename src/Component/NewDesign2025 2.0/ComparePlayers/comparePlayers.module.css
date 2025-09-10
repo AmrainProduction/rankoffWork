@@ -35,19 +35,19 @@
 }
 
 :local(.wrapperTopResult) {
-	/* --titleRowDark: #97103f;
-	--rowDark: #c3094b;
-	--rowDark: #c3094b;
-	--rowLight: #ec0358; */
-
-	--titleRowDark: #6c0124;
-	--rowDark: #96002d;
-	--rowLight: #ba013f;
+	--titleRowDark: #850533;
+	--rowDark: #94103e;
+	--rowLight: #b00745;
 
 	--red: #ff181899;
 	--green: #00db0099;
 	--yellow: #ff961599;
 
+	--redDark: #ff1818;
+	--greenDark: #00db00;
+	--yellowDark: #ff9615;
+
+	--gold: #efc60c95;
 	--white: #fff;
 	--black: #000;
 }
@@ -278,7 +278,7 @@
 }
 
 .flagAndAge {
-	font-family: 'DRUKTEXTWIDECYR-BOLD', sans-serif;
+	font-family: 'Montserrat Bold', sans-serif;
 	display: flex;
 	justify-content: center;
 	width: 100%;

@@ -30,9 +30,13 @@ const PictureResult2 = (props) => {
 		return <Loader />
 	}
 
-	let players = []
+	let playersTemp = []
 	let matchTeamsInfo = []
 	let matchMaps = []
+	let players = []
+	let players2 = []
+	let numbersT = [1, 2]
+	let numbersP = [1, 2, 3, 4, 5]
 
 	let count = 0
 
@@ -52,6 +56,8 @@ const PictureResult2 = (props) => {
 	let dateMatch
 	let NameTour
 	let logoTour
+	let team1_id
+	let team2_id
 
 	let t1p1
 	let t1p2
@@ -146,6 +152,8 @@ const PictureResult2 = (props) => {
 			dateMatch = el.db_date_match
 			NameTour = el.name_tour
 			logoTour = el.name_tour_for_sort + '.png'
+			team1_id = el.team1_id
+			team2_id = el.team2_id
 
 			// команды матча
 			matchTeamsInfo[0] = {
@@ -366,10 +374,12 @@ const PictureResult2 = (props) => {
 			}
 		})
 
-		players[0] = {
+		playersTemp[0] = {
 			dateMatch: dateMatch,
 			NameTour: NameTour,
 			logoTour: logoTour,
+			team1_id: team1_id,
+			team2_id: team2_id,
 			scoreT1: scoreT1,
 			scoreT2: scoreT2,
 			t1p1: t1p1,
@@ -474,25 +484,46 @@ const PictureResult2 = (props) => {
 			t2p5_rating: Rating(t2p5_k / t2p5_d, t2p5_k / allRounds, t2p5_d / allRounds, t2p5_impact / t2p5_count_maps).toFixed(2),
 		}
 
-		let ratingPlayers = []
-		let maxRating = 0
-		let mvp = []
-
-		for (let i = 1; i < 3; i++) {
-			for (let j = 1; j < 6; j++) {
-				ratingPlayers.push({
-					nickname: players[0][`t${i}p${j}`],
-					rating: players[0][`t${i}p${j}_rating`],
+		numbersT.forEach((team) => {
+			if (team === 1) {
+				numbersP.forEach((player) => {
+					players.push({
+						nickname: playersTemp[0][`t${team}p${player}`],
+						logo: playersTemp[0][`t${team}p${player}_logo`],
+						k: playersTemp[0][`t${team}p${player}_k`],
+						a: playersTemp[0][`t${team}p${player}_a`],
+						d: playersTemp[0][`t${team}p${player}_d`],
+						kd: playersTemp[0][`t${team}p${player}_kd`],
+						kpr: playersTemp[0][`t${team}p${player}_kpr`],
+						dpr: playersTemp[0][`t${team}p${player}_dpr`],
+						impact: playersTemp[0][`t${team}p${player}_impact`],
+						rating: playersTemp[0][`t${team}p${player}_rating`],
+					})
 				})
 			}
-		}
 
-		ratingPlayers.forEach((e) => {
-			if (e.rating > maxRating) {
-				maxRating = e.rating
-				mvp = e
+			if (team === 2) {
+				numbersP.forEach((player) => {
+					players2.push({
+						nickname: playersTemp[0][`t${team}p${player}`],
+						logo: playersTemp[0][`t${team}p${player}_logo`],
+						k: playersTemp[0][`t${team}p${player}_k`],
+						a: playersTemp[0][`t${team}p${player}_a`],
+						d: playersTemp[0][`t${team}p${player}_d`],
+						kd: playersTemp[0][`t${team}p${player}_kd`],
+						kpr: playersTemp[0][`t${team}p${player}_kpr`],
+						dpr: playersTemp[0][`t${team}p${player}_dpr`],
+						impact: playersTemp[0][`t${team}p${player}_impact`],
+						rating: playersTemp[0][`t${team}p${player}_rating`],
+					})
+				})
 			}
 		})
+
+		players = players.sort((a, b) => b.rating - a.rating)
+		players2 = players2.sort((a, b) => b.rating - a.rating)
+
+		let mvp = [...players, ...players2].sort((a, b) => b.rating - a.rating)
 
 		return (
 			<div className={classes.wrapperMatchResult}>
@@ -510,11 +541,11 @@ const PictureResult2 = (props) => {
 							<div className={classes.teamLogo}>
 								<img src={`/images/LogoTeams/${matchTeamsInfo[0].team1Logo}`} alt="/" />
 							</div>
-							<div className={classes.teamScore}>{choiceMap.length > 0 && choiceMap !== 'AllMaps' ? matchMaps.filter((e) => e.name === choiceMap)[0].scoreT1 : players[0].scoreT1}</div>
+							<div className={classes.teamScore}>{choiceMap.length > 0 && choiceMap !== 'AllMaps' ? matchMaps.filter((e) => e.name === choiceMap)[0].scoreT1 : playersTemp[0].scoreT1}</div>
 						</div>
 						<span>:</span>
 						<div className={classes.wrapperTeamScore}>
-							<div className={classes.teamScore}>{choiceMap.length > 0 && choiceMap !== 'AllMaps' ? matchMaps.filter((e) => e.name === choiceMap)[0].scoreT2 : players[0].scoreT2}</div>
+							<div className={classes.teamScore}>{choiceMap.length > 0 && choiceMap !== 'AllMaps' ? matchMaps.filter((e) => e.name === choiceMap)[0].scoreT2 : playersTemp[0].scoreT2}</div>
 							<div className={classes.teamLogo}>
 								<img src={`/images/LogoTeams/${matchTeamsInfo[0].team2Logo}`} alt="/" />
 							</div>
@@ -523,11 +554,11 @@ const PictureResult2 = (props) => {
 					<div className={classes.wrapperInfoTour}>
 						<div className={classes.wrapperNameAndLogoTour}>
 							<div className={classes.tourLogo}>
-								<img src={`/images/LogoAndBannerTour/${players[0].logoTour}`} alt="/" />
+								<img src={`/images/LogoAndBannerTour/${playersTemp[0].logoTour}`} alt="/" />
 							</div>
-							<div className={classes.tourName}>{players[0].NameTour.toUpperCase()}</div>
+							<div className={classes.tourName}>{playersTemp[0].NameTour.toUpperCase()}</div>
 						</div>
-						<div className={classes.tourDate}>{players[0].dateMatch}</div>
+						<div className={classes.tourDate}>{playersTemp[0].dateMatch}</div>
 					</div>
 				</div>
 
@@ -579,103 +610,71 @@ const PictureResult2 = (props) => {
 							<div className={classes.cell}>IMPACT</div>
 							<div className={classes.cell}>RATING</div>
 						</div>
-						{[1].map((team) =>
-							[1, 2, 3, 4, 5].map((player) => {
-								return (
-									<div className={classes.tableRow}>
-										<div
-											className={classes.cellPlayer}
-											style={
-												{
-													// background: players[0][`t${team}p${player}`] === mvp.nickname ? 'var(--gold)' : '',
-												}
-											}>
-											<div className={classes.dataFlagPlayer}>
-												<CountryFlagPlayer nickname={players[0][`t${team}p${player}`]} />
-											</div>
-											<div className={classes.photoPlayer}>
-												<img src={`/images/LogoPlayers/${players[0][`t${team}p${player}_logo`]}`} className={classes.player1} alt="/" />
-											</div>
-											<div className={classes.nickname}>{players[0][`t${team}p${player}`]}</div>
+						{players.map((e, index) => {
+							return (
+								<div className={classes.tableRow}>
+									<div
+										className={classes.cellPlayer}
+										style={{
+											background: e.nickname === mvp[0].nickname ? 'var(--gold)' : '',
+										}}>
+										<div className={classes.dataFlagPlayer}>
+											<CountryFlagPlayer nickname={e.nickname} />
 										</div>
-
-										<div className={classes.cell}>{players[0][`t${team}p${player}_k`]}</div>
-										<div className={classes.cell}>{players[0][`t${team}p${player}_a`]}</div>
-										<div className={classes.cell}>{players[0][`t${team}p${player}_d`]}</div>
-										<div
-											className={classes.cell}
-											style={{
-												background: players[0][`t${team}p${player}_k`] - players[0][`t${team}p${player}_d`] < 0 ? 'var(--red)' : 'var(--green)',
-											}}>
-											{players[0][`t${team}p${player}_k`] - players[0][`t${team}p${player}_d`]}
+										<div className={classes.photoPlayer}>
+											<img src={`/images/LogoPlayers/${e.logo}`} className={classes.player1} alt="/" />
 										</div>
-										<div
-											className={classes.cell}
-											style={{
-												background: players[0][`t${team}p${player}_kd`] < 0.9 ? 'var(--red)' : players[0][`t${team}p${player}_kd`] > 1.05 ? 'var(--green)' : 'var(--yellow)',
-											}}>
-											{players[0][`t${team}p${player}_kd`]}
-										</div>
-										<div
-											className={classes.cell}
-											style={{
-												background:
-													players[0][`t${team}p${player}_kpr`] < 0.6
-														? 'var(--red)'
-														: players[0][`t${team}p${player}_kpr`] > 0.65
-														? players[0][`t${team}p${player}_kpr`] > 0.7
-															? 'var(--green)'
-															: 'var(--yellow)'
-														: 'var(--yellow)',
-											}}>
-											{players[0][`t${team}p${player}_kpr`]}
-										</div>
-										<div
-											className={classes.cell}
-											style={{
-												background:
-													players[0][`t${team}p${player}_dpr`] < 0.68
-														? 'var(--green)'
-														: players[0][`t${team}p${player}_dpr`] > 0.7
-														? players[0][`t${team}p${player}_dpr`] > 0.8
-															? 'var(--red)'
-															: 'var(--yellow)'
-														: 'var(--yellow)',
-											}}>
-											{players[0][`t${team}p${player}_dpr`]}
-										</div>
-										<div
-											className={classes.cell}
-											style={{
-												background:
-													players[0][`t${team}p${player}_impact`] < 1
-														? 'var(--red)'
-														: players[0][`t${team}p${player}_impact`] > 1
-														? players[0][`t${team}p${player}_impact`] >= 1.1
-															? 'var(--green)'
-															: 'var(--yellow)'
-														: 'var(--yellow)',
-											}}>
-											{players[0][`t${team}p${player}_impact`]}
-										</div>
-										<div
-											className={classes.cell}
-											style={{
-												background:
-													players[0][`t${team}p${player}_rating`] < 1
-														? 'var(--red)'
-														: players[0][`t${team}p${player}_rating`] > 1
-														? players[0][`t${team}p${player}_rating`] >= 1.1
-															? 'var(--green)'
-															: 'var(--yellow)'
-														: 'var(--yellow)',
-											}}>
-											{players[0][`t${team}p${player}_rating`]}
-										</div>
+										<div className={classes.nickname}>{e.nickname}</div>
 									</div>
-								)
-							})
-						)}
+
+									<div className={classes.cell}>{e.k}</div>
+									<div className={classes.cell}>{e.a}</div>
+									<div className={classes.cell}>{e.d}</div>
+									<div
+										className={classes.cell}
+										style={{
+											background: e.k - e.d < 0 ? 'var(--red)' : 'var(--green)',
+										}}>
+										{e.k - e.d}
+									</div>
+									<div
+										className={classes.cell}
+										style={{
+											background: e.kd < 0.9 ? 'var(--red)' : e.kd > 1.05 ? 'var(--green)' : 'var(--yellow)',
+										}}>
+										{e.kd}
+									</div>
+									<div
+										className={classes.cell}
+										style={{
+											background: e.kpr < 0.6 ? 'var(--red)' : e.kpr > 0.65 ? (e.kpr > 0.7 ? 'var(--green)' : 'var(--yellow)') : 'var(--yellow)',
+										}}>
+										{e.kpr}
+									</div>
+									<div
+										className={classes.cell}
+										style={{
+											background: e.dpr < 0.68 ? 'var(--green)' : e.dpr > 0.7 ? (e.dpr > 0.8 ? 'var(--red)' : 'var(--yellow)') : 'var(--yellow)',
+										}}>
+										{e.dpr}
+									</div>
+									<div
+										className={classes.cell}
+										style={{
+											background: e.impact < 1 ? 'var(--red)' : e.impact > 1 ? (e.impact >= 1.1 ? 'var(--green)' : 'var(--yellow)') : 'var(--yellow)',
+										}}>
+										{e.impact}
+									</div>
+									<div
+										className={classes.cell}
+										style={{
+											background: e.rating < 1 ? 'var(--red)' : e.rating > 1 ? (e.rating >= 1.1 ? 'var(--green)' : 'var(--yellow)') : 'var(--yellow)',
+										}}>
+										{e.rating}
+									</div>
+								</div>
+							)
+						})}
 					</div>
 				</div>
 				<div className={classes.wrapperStatsT2}>
@@ -692,103 +691,71 @@ const PictureResult2 = (props) => {
 							<div className={classes.cell}>IMPACT</div>
 							<div className={classes.cell}>RATING</div>
 						</div>
-						{[2].map((team) =>
-							[1, 2, 3, 4, 5].map((player) => {
-								return (
-									<div className={classes.tableRow}>
-										<div
-											className={classes.cellPlayer}
-											style={
-												{
-													// background: players[0][`t${team}p${player}`] === mvp.nickname ? 'var(--gold)' : '',
-												}
-											}>
-											<div className={classes.dataFlagPlayer}>
-												<CountryFlagPlayer nickname={players[0][`t${team}p${player}`]} />
-											</div>
-											<div className={classes.photoPlayer}>
-												<img src={`/images/LogoPlayers/${players[0][`t${team}p${player}_logo`]}`} className={classes.player1} alt="/" />
-											</div>
-											<div className={classes.nickname}>{players[0][`t${team}p${player}`]}</div>
+						{players2.map((e, index) => {
+							return (
+								<div className={classes.tableRow}>
+									<div
+										className={classes.cellPlayer}
+										style={{
+											background: e.nickname === mvp[0].nickname ? 'var(--gold)' : '',
+										}}>
+										<div className={classes.dataFlagPlayer}>
+											<CountryFlagPlayer nickname={e.nickname} />
 										</div>
-
-										<div className={classes.cell}>{players[0][`t${team}p${player}_k`]}</div>
-										<div className={classes.cell}>{players[0][`t${team}p${player}_a`]}</div>
-										<div className={classes.cell}>{players[0][`t${team}p${player}_d`]}</div>
-										<div
-											className={classes.cell}
-											style={{
-												background: players[0][`t${team}p${player}_k`] - players[0][`t${team}p${player}_d`] < 0 ? 'var(--red)' : 'var(--green)',
-											}}>
-											{players[0][`t${team}p${player}_k`] - players[0][`t${team}p${player}_d`]}
+										<div className={classes.photoPlayer}>
+											<img src={`/images/LogoPlayers/${e.logo}`} className={classes.player1} alt="/" />
 										</div>
-										<div
-											className={classes.cell}
-											style={{
-												background: players[0][`t${team}p${player}_kd`] < 0.9 ? 'var(--red)' : players[0][`t${team}p${player}_kd`] > 1.05 ? 'var(--green)' : 'var(--yellow)',
-											}}>
-											{players[0][`t${team}p${player}_kd`]}
-										</div>
-										<div
-											className={classes.cell}
-											style={{
-												background:
-													players[0][`t${team}p${player}_kpr`] < 0.6
-														? 'var(--red)'
-														: players[0][`t${team}p${player}_kpr`] > 0.65
-														? players[0][`t${team}p${player}_kpr`] > 0.7
-															? 'var(--green)'
-															: 'var(--yellow)'
-														: 'var(--yellow)',
-											}}>
-											{players[0][`t${team}p${player}_kpr`]}
-										</div>
-										<div
-											className={classes.cell}
-											style={{
-												background:
-													players[0][`t${team}p${player}_dpr`] < 0.68
-														? 'var(--green)'
-														: players[0][`t${team}p${player}_dpr`] > 0.7
-														? players[0][`t${team}p${player}_dpr`] > 0.8
-															? 'var(--red)'
-															: 'var(--yellow)'
-														: 'var(--yellow)',
-											}}>
-											{players[0][`t${team}p${player}_dpr`]}
-										</div>
-										<div
-											className={classes.cell}
-											style={{
-												background:
-													players[0][`t${team}p${player}_impact`] < 1
-														? 'var(--red)'
-														: players[0][`t${team}p${player}_impact`] > 1
-														? players[0][`t${team}p${player}_impact`] >= 1.1
-															? 'var(--green)'
-															: 'var(--yellow)'
-														: 'var(--yellow)',
-											}}>
-											{players[0][`t${team}p${player}_impact`]}
-										</div>
-										<div
-											className={classes.cell}
-											style={{
-												background:
-													players[0][`t${team}p${player}_rating`] < 1
-														? 'var(--red)'
-														: players[0][`t${team}p${player}_rating`] > 1
-														? players[0][`t${team}p${player}_rating`] >= 1.1
-															? 'var(--green)'
-															: 'var(--yellow)'
-														: 'var(--yellow)',
-											}}>
-											{players[0][`t${team}p${player}_rating`]}
-										</div>
+										<div className={classes.nickname}>{e.nickname}</div>
 									</div>
-								)
-							})
-						)}
+
+									<div className={classes.cell}>{e.k}</div>
+									<div className={classes.cell}>{e.a}</div>
+									<div className={classes.cell}>{e.d}</div>
+									<div
+										className={classes.cell}
+										style={{
+											background: e.k - e.d < 0 ? 'var(--red)' : 'var(--green)',
+										}}>
+										{e.k - e.d}
+									</div>
+									<div
+										className={classes.cell}
+										style={{
+											background: e.kd < 0.9 ? 'var(--red)' : e.kd > 1.05 ? 'var(--green)' : 'var(--yellow)',
+										}}>
+										{e.kd}
+									</div>
+									<div
+										className={classes.cell}
+										style={{
+											background: e.kpr < 0.6 ? 'var(--red)' : e.kpr > 0.65 ? (e.kpr > 0.7 ? 'var(--green)' : 'var(--yellow)') : 'var(--yellow)',
+										}}>
+										{e.kpr}
+									</div>
+									<div
+										className={classes.cell}
+										style={{
+											background: e.dpr < 0.68 ? 'var(--green)' : e.dpr > 0.7 ? (e.dpr > 0.8 ? 'var(--red)' : 'var(--yellow)') : 'var(--yellow)',
+										}}>
+										{e.dpr}
+									</div>
+									<div
+										className={classes.cell}
+										style={{
+											background: e.impact < 1 ? 'var(--red)' : e.impact > 1 ? (e.impact >= 1.1 ? 'var(--green)' : 'var(--yellow)') : 'var(--yellow)',
+										}}>
+										{e.impact}
+									</div>
+									<div
+										className={classes.cell}
+										style={{
+											background: e.rating < 1 ? 'var(--red)' : e.rating > 1 ? (e.rating >= 1.1 ? 'var(--green)' : 'var(--yellow)') : 'var(--yellow)',
+										}}>
+										{e.rating}
+									</div>
+								</div>
+							)
+						})}
 					</div>
 				</div>
 

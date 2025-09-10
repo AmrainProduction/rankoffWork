@@ -102,35 +102,35 @@ const RightTopResult = (props) => {
 											<div
 												className={classes.dataPlayerKd}
 												style={{
-													background: e.kd_p < 0.9 ? 'var(--redOpacity)' : e.kd_p > 1.05 ? 'var(--greenOpacity)' : 'var(--yellowOpacity)',
+													background: e.kd_p < 0.9 ? 'var(--red)' : e.kd_p > 1.05 ? 'var(--green)' : 'var(--yellow)',
 												}}>
 												{e.kd_p}
 											</div>
 											<div
 												className={classes.dataPlayerKpr}
 												style={{
-													background: e.kpr_p < 0.6 ? 'var(--redOpacity)' : e.kpr_p > 0.65 ? (e.kpr_p > 0.7 ? 'var(--greenOpacity)' : 'var(--yellowOpacity)') : 'var(--yellowOpacity)',
+													background: e.kpr_p < 0.6 ? 'var(--red)' : e.kpr_p > 0.65 ? (e.kpr_p > 0.7 ? 'var(--green)' : 'var(--yellow)') : 'var(--yellow)',
 												}}>
 												{e.kpr_p}
 											</div>
 											<div
 												className={classes.dataPlayerDpr}
 												style={{
-													background: e.dpr_p < 0.68 ? 'var(--greenOpacity)' : e.dpr_p > 0.7 ? (e.dpr_p > 0.8 ? 'var(--redOpacity)' : 'var(--yellowOpacity)') : 'var(--yellowOpacity)',
+													background: e.dpr_p < 0.68 ? 'var(--green)' : e.dpr_p > 0.7 ? (e.dpr_p > 0.8 ? 'var(--red)' : 'var(--yellow)') : 'var(--yellow)',
 												}}>
 												{e.dpr_p}
 											</div>
 											<div
 												className={classes.dataPlayerImpact}
 												style={{
-													background: e.impact_p < 1 ? 'var(--redOpacity)' : e.impact_p > 1 ? (e.impact_p >= 1.1 ? 'var(--greenOpacity)' : 'var(--yellowOpacity)') : 'var(--yellowOpacity)',
+													background: e.impact_p < 1 ? 'var(--red)' : e.impact_p > 1 ? (e.impact_p >= 1.1 ? 'var(--green)' : 'var(--yellow)') : 'var(--yellow)',
 												}}>
 												{e.impact_p}
 											</div>
 											<div
 												className={classes.dataPlayerRating}
 												style={{
-													background: e.rating < 1 ? 'var(--redOpacity)' : e.rating > 1 ? (e.rating >= 1.1 ? 'var(--greenOpacity)' : 'var(--yellowOpacity)') : 'var(--yellowOpacity)',
+													background: e.rating < 1 ? 'var(--red)' : e.rating > 1 ? (e.rating >= 1.1 ? 'var(--green)' : 'var(--yellow)') : 'var(--yellow)',
 												}}>
 												{e.rating}
 											</div>

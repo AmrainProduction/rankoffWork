@@ -123,17 +123,17 @@ const ComparePlayersResult = ({ player1, player2, dateEnd1, days1, dateEnd2, day
 							<div className={classes.valuePlayer}>{player1Stats[0]?.dpr}</div>
 							<div className={classes.metricSign}>
 								{player1Stats[0]?.dpr > player2Stats[0]?.dpr ? (
-									<img src="/images/DataInImage/greenSign.svg" alt="" />
-								) : player2Stats[0]?.dpr === player1Stats[0]?.dpr ? null : (
 									<img src="/images/DataInImage/redSign.svg" alt="" />
+								) : player2Stats[0]?.dpr === player1Stats[0]?.dpr ? null : (
+									<img src="/images/DataInImage/greenSign.svg" alt="" />
 								)}
 							</div>
 							<div className={classes.nameMetric}>DPR</div>
 							<div className={classes.metricSign}>
 								{player2Stats[0]?.dpr > player1Stats[0]?.dpr ? (
-									<img src="/images/DataInImage/greenSign.svg" alt="" />
-								) : player2Stats[0]?.dpr === player1Stats[0]?.dpr ? null : (
 									<img src="/images/DataInImage/redSign.svg" alt="" />
+								) : player2Stats[0]?.dpr === player1Stats[0]?.dpr ? null : (
+									<img src="/images/DataInImage/greenSign.svg" alt="" />
 								)}
 							</div>
 							<div className={classes.valuePlayer}>{player2Stats[0]?.dpr}</div>

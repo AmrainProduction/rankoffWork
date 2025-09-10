@@ -40,9 +40,9 @@
 }
 
 :local(.wrapperTopResult) {
-	--titleRowDark: #6c0124;
-	--rowDark: #96002d;
-	--rowLight: #ba013f;
+	--titleRowDark: #850533;
+	--rowDark: #94103e;
+	--rowLight: #b00745;
 
 	--red: #ff181899;
 	--green: #00db0099;
@@ -52,6 +52,7 @@
 	--greenDark: #00db00;
 	--yellowDark: #ff9615;
 
+	--gold: #efc60c95;
 	--white: #fff;
 	--black: #000;
 }
@@ -301,7 +302,7 @@
 }
 
 .nickname {
-	font-family: 'DRUKTEXTWIDECYR-BOLD', sans-serif;
+	font-family: 'DrukTextWide', sans-serif;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -310,7 +311,7 @@
 }
 
 .flagAndName {
-	font-family: 'MONTSERRAT-BOLD', sans-serif;
+	font-family: 'Montserrat Bold', sans-serif;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -353,7 +354,7 @@
 }
 
 .age {
-	font-family: 'MONTSERRAT-SEMIBOLD', sans-serif;
+	font-family: 'Montserrat SemiBold', sans-serif;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -370,7 +371,7 @@
 }
 
 .wrapperTable {
-	font-family: 'MONTSERRAT-EXTRABOLD', sans-serif;
+	font-family: 'Montserrat ExtraBold', sans-serif;
 	max-height: 43vw;
 	border-radius: 1vw;
 	font-size: 1.1vw;
@@ -396,7 +397,7 @@
 }
 
 .rowTable {
-	font-family: 'DRUKTEXTWIDECYR-BOLD', sans-serif;
+	font-family: 'DrukTextWide', sans-serif;
 	display: grid;
 	grid-auto-rows: minmax(3vw, 3.8vw);
 	grid-template-columns: 10% 10% 20% repeat(6, 10%);
@@ -419,7 +420,7 @@
 }
 
 .rowTableTotal {
-	font-family: 'DRUKTEXTWIDECYR-BOLD', sans-serif;
+	font-family: 'DrukTextWide', sans-serif;
 	display: grid;
 	grid-template-columns: 40% repeat(6, 10%);
 	height: 3.6vw;

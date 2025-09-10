@@ -1,9 +1,10 @@
 {
   "files": {
-    "main.css": "/static/css/main.7d2d222e.css",
-    "main.js": "/static/js/main.1a834b4d.js",
+    "main.css": "/static/css/main.ca64bf13.css",
+    "main.js": "/static/js/main.b43b2d03.js",
     "static/media/Refinery-95-Medium.ttf": "/static/media/Refinery-95-Medium.c7cbbed36f82cf9d555f.ttf",
     "static/media/refinery-95-bold.ttf": "/static/media/refinery-95-bold.8cf439da42671411771e.ttf",
+    "static/media/MONTSERRAT-EXTRABOLD.TTF": "/static/media/MONTSERRAT-EXTRABOLD.0eac3d0f226f458230a2.TTF",
     "static/media/MONTSERRAT-BOLD.TTF": "/static/media/MONTSERRAT-BOLD.0915f0a8c3367a6d05ec.TTF",
     "static/media/MONTSERRAT-SEMIBOLD.ttf": "/static/media/MONTSERRAT-SEMIBOLD.2f7a846126c7d5ee9163.ttf",
     "static/media/MONTSERRAT-MEDIUM.TTF": "/static/media/MONTSERRAT-MEDIUM.647f0e61af3a76a138c3.TTF",
@@ -21,11 +22,11 @@
     "static/media/marsek-demi-webfont.woff2": "/static/media/marsek-demi-webfont.7ca31594c29432707ea7.woff2",
     "static/media/logo.svg": "/static/media/logo.e2b8bddc55272e2d01feb8656795b2f7.svg",
     "index.html": "/index.html",
-    "main.7d2d222e.css.map": "/static/css/main.7d2d222e.css.map",
-    "main.1a834b4d.js.map": "/static/js/main.1a834b4d.js.map"
+    "main.ca64bf13.css.map": "/static/css/main.ca64bf13.css.map",
+    "main.b43b2d03.js.map": "/static/js/main.b43b2d03.js.map"
   },
   "entrypoints": [
-    "static/css/main.7d2d222e.css",
-    "static/js/main.1a834b4d.js"
+    "static/css/main.ca64bf13.css",
+    "static/js/main.b43b2d03.js"
   ]
 }

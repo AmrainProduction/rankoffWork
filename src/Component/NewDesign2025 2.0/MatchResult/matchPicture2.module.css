@@ -1,5 +1,5 @@
 @font-face {
-	font-family: 'DrukCyrMedium';
+	font-family: 'DrukCyr Medium';
 	src: url('../../../Fonts/DrukCyr-Medium.eot');
 	src: url('../../../Fonts/DrukCyr-Medium.eot?#iefix') format('embedded-opentype'), url('../../../Fonts/DrukCyr-Medium.woff') format('woff'), url('../../../Fonts/DrukCyr-Medium.ttf') format('truetype');
 	font-style: normal;
@@ -14,10 +14,39 @@
 	font-weight: 500;
 }
 
+@font-face {
+	font-family: 'DrukCyr Bold';
+	src: url('../../../Fonts/DrukCyr-Bold.ttf') format('truetype');
+}
+
+@font-face {
+	font-family: 'DrukTextWide';
+	src: url('../../../Fonts/DRUKTEXTWIDECYR-BOLD.otf') format('truetype');
+}
+
+@font-face {
+	font-family: 'Montserrat SemiBold';
+	src: url('../../../Fonts/Montserrat/MONTSERRAT-SEMIBOLD.ttf') format('truetype');
+}
+
+@font-face {
+	font-family: 'Montserrat Bold';
+	src: url('../../../Fonts/Montserrat/MONTSERRAT-BOLD.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'Montserrat ExtraBold';
+	src: url('../../../Fonts/Montserrat/MONTSERRAT-EXTRABOLD.TTF') format('truetype');
+}
+
 :local(.wrapperMatchResult) {
-	--titleRowDark: #6c0124;
+	/* --titleRowDark: #6c0124;
 	--rowDark: #96002d;
-	--rowLight: #ba013f;
+	--rowLight: #ba013f; */
+
+	--titleRowDark: #850533;
+	--rowDark: #94103e;
+	--rowLight: #b00745;
 
 	--red: #ff181899;
 	--green: #00db0099;
@@ -27,7 +56,7 @@
 	--greenDark: #00db00;
 	--yellowDark: #ff9615;
 
-	--gold: #dbbb2f99;
+	--gold: #efc60c95;
 	--white: #fff;
 	--black: #000;
 }
@@ -199,7 +228,7 @@
 }
 
 .themeBanner {
-	font-family: 'DRUKTEXTWIDECYR-BOLD', sans-serif;
+	font-family: 'Montserrat Bold', sans-serif;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -554,7 +583,7 @@
 	width: 100%;
 }
 
-.tableRow:nth-child(even) div {
+.tableRow:nth-child(even) > * {
 	background: var(--rowLight);
 }
 

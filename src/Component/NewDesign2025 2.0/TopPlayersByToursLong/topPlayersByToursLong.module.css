@@ -1,467 +1,375 @@
 @font-face {
-    font-family: "DrukCyrMedium";
-    src: url("../../../Fonts/DrukCyr-Medium.eot");
-    src: url("../../../Fonts/DrukCyr-Medium.eot?#iefix") format("embedded-opentype"),
-    url("../../../Fonts/DrukCyr-Medium.woff") format("woff"),
-    url("../../../Fonts/DrukCyr-Medium.ttf") format("truetype");
-    font-style: normal;
-    font-weight: 500;
+	font-family: 'DrukCyr Medium';
+	src: url('../../../Fonts/DrukCyr-Medium.eot');
+	src: url('../../../Fonts/DrukCyr-Medium.eot?#iefix') format('embedded-opentype'), url('../../../Fonts/DrukCyr-Medium.woff') format('woff'), url('../../../Fonts/DrukCyr-Medium.ttf') format('truetype');
+	font-style: normal;
+	font-weight: 500;
 }
 
 @font-face {
-    font-family: "Mazzard M";
-    src: url("../../../Fonts/Mazzard/MazzardM-SemiBold.eot");
-    src: url("../../../Fonts/Mazzard/MazzardM-SemiBold.eot?#iefix") format("embedded-opentype"),
-    url("../../../Fonts/Mazzard/MazzardM-SemiBold.woff") format("woff"),
-    url("../../../Fonts/Mazzard/MazzardM-SemiBold.ttf") format("truetype");
-    font-style: normal;
-    font-weight: 500;
+	font-family: 'Mazzard M';
+	src: url('../../../Fonts/Mazzard/MazzardM-SemiBold.eot');
+	src: url('../../../Fonts/Mazzard/MazzardM-SemiBold.eot?#iefix') format('embedded-opentype'), url('../../../Fonts/Mazzard/MazzardM-SemiBold.woff') format('woff'), url('../../../Fonts/Mazzard/MazzardM-SemiBold.ttf') format('truetype');
+	font-style: normal;
+	font-weight: 500;
 }
 
 @font-face {
-    font-family: "DrukCyr Bold";
-    src: url("../../../Fonts/DrukCyr-Bold.ttf") format("truetype");
+	font-family: 'DrukCyr Bold';
+	src: url('../../../Fonts/DrukCyr-Bold.ttf') format('truetype');
 }
 
 @font-face {
-    font-family: "DrukTextWide";
-    src: url("../../../Fonts/DRUKTEXTWIDECYR-BOLD.otf") format("truetype");
+	font-family: 'DrukTextWide';
+	src: url('../../../Fonts/DRUKTEXTWIDECYR-BOLD.otf') format('truetype');
 }
 
 @font-face {
-    font-family: "Montserrat SemiBold";
-    src: url("../../../Fonts/Montserrat/MONTSERRAT-SEMIBOLD.ttf") format("truetype");
+	font-family: 'Montserrat SemiBold';
+	src: url('../../../Fonts/Montserrat/MONTSERRAT-SEMIBOLD.ttf') format('truetype');
 }
 
 @font-face {
-    font-family: "Montserrat Bold";
-    src: url("../../../Fonts/Montserrat/MONTSERRAT-BOLD.TTF") format("truetype");
+	font-family: 'Montserrat Bold';
+	src: url('../../../Fonts/Montserrat/MONTSERRAT-BOLD.TTF') format('truetype');
 }
 
-.wrapperTopResult {
-    --red: #c24f4f;
-    --green: #6cc24f;
-    --yellow: #c2ab4f;
-    --gold: #c0a05c;
-    --gray: #b6b6b6;
-    --bronze: #c2904f;
-    --redDark: #3f1a1a;
-    --greenDark: #203a17;
-    --yellowDark: #3f381a;
-    --goldDark: #3f381a;
-    --grayDark: #363636;
-    --bronzeDark: #3d2d19;
-    --grayOpacity: rgb(159, 159, 159, 0.1);
-    --grayDarkOpacity: rgb(37, 37, 37, 0.5);
-    --redDarkOpacity: rgb(63, 26, 26, 0.8);
-    --goldOpacity: rgb(192, 160, 92, 0.5);
-    --bronzeOpacity: rgb(190, 140, 99, 0.5);
-    --silverOpacity: rgb(159, 159, 159, 0.5);
-    --dark: #030404;
-    --white: #fff;
+@font-face {
+	font-family: 'Montserrat ExtraBold';
+	src: url('../../../Fonts/Montserrat/MONTSERRAT-EXTRABOLD.TTF') format('truetype');
+}
+
+:local(.wrapperTopResult) {
+	/* --titleRowDark: #97103f;
+	--rowDark: #c3094b;
+	--rowLight: #ec0358; */
+
+	--titleRowDark: #850533;
+	--rowDark: #94103e;
+	--rowLight: #b00745;
+
+	--red: #ff181899;
+	--green: #00db0099;
+	--yellow: #ff961599;
+
+	--redDark: #ff1818;
+	--greenDark: #00db00;
+	--yellowDark: #ff9615;
+
+	--gold: #efc60c95;
+	--white: #fff;
+	--black: #000;
 }
 
 .bgImg {
-    height: auto;
-    width: 100%;
+	height: auto;
+	width: 100%;
 }
 
 .wrapperMenu {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    width: 100%;
-    height: 15%;
-    background: var(--mainLightBlack);
-    margin-bottom: 10px;
-    padding: 5px;
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-start;
+	width: 100%;
+	height: 15%;
+	background: var(--mainLightBlack);
+	margin-bottom: 10px;
+	padding: 5px;
 }
 
 .wrapperLogo {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    width: 10%;
-    height: 100%;
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	width: 10%;
+	height: 100%;
 }
 
 .wrapperLogo img {
-    height: auto;
-    width: 100%;
+	height: auto;
+	width: 100%;
 }
 
 .menu {
-    display: flex;
-    justify-content: center;
-    align-items: flex-end;
-    height: 100%;
-    width: 60%;
+	display: flex;
+	justify-content: center;
+	align-items: flex-end;
+	height: 100%;
+	width: 60%;
 }
 
 .wrapperListMatches {
-    display: block;
-    width: 100%;
-    height: 100%;
-    margin-right: 2%;
-    margin-left: 2%;
-    padding: 2px;
+	display: block;
+	width: 100%;
+	height: 100%;
+	margin-right: 2%;
+	margin-left: 2%;
+	padding: 2px;
 }
 
 .titleBox {
-    width: 100%;
-    height: auto;
-    padding: 1% 0;
-    color: white;
+	width: 100%;
+	height: auto;
+	padding: 1% 0;
+	color: var(--textColor);
 }
 
 .listMatches {
-    display: block;
-    overflow-y: scroll;
-    border-radius: 3px;
-    width: 100%;
-    min-width: 150px;
-    height: 120px;
-    background: var(--componentBlockColor);
-    color: white;
+	display: block;
+	overflow-y: scroll;
+	border-radius: 3px;
+	width: 100%;
+	min-width: 150px;
+	height: 120px;
+	background: var(--componentBlockColor);
+	color: var(--textColor);
 }
 
 .match {
-    background: var(--componentLightBlockColor);
-    margin-bottom: 2px;
-    padding: 5px;
-    cursor: pointer;
-    transition: all 0.5s;
+	background: var(--componentLightBlockColor);
+	margin-bottom: 2px;
+	padding: 5px;
+	cursor: pointer;
+	transition: all 0.5s;
 }
 
 .match:hover {
-    background: var(--componentBlockColorHover);
+	background: var(--componentBlockColorHover);
 }
 
-
 .btnSaveAsImage {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 3px;
-    padding: 1%;
-    background: var(--buttonColor);
-    height: 120px;
-    width: 100%;
-    cursor: pointer;
-    color: white;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-radius: 3px;
+	padding: 1%;
+	background: var(--buttonColor);
+	height: 120px;
+	width: 100%;
+	cursor: pointer;
+	color: var(--textColor);
 }
 
 .btnSaveAsImage:hover {
-    background: var(--buttonColorHover);
+	background: var(--buttonColorHover);
 }
 
 .wrapperTopResult {
-    font-family: "DrukCyrMedium", sans-serif;
-    display: block;
-    justify-content: center;
-    align-items: flex-start;
-    height: 100%;
-    width: 100%;
-    z-index: 20;
-    position: relative;
+	display: block;
+	justify-content: center;
+	align-items: flex-start;
+	height: 100%;
+	width: 100%;
+	z-index: 20;
+	position: relative;
 }
 
 .wrapperTopResult img {
-    height: auto;
-    width: 100%;
+	height: auto;
+	width: 100%;
 }
 
 .wrapperTourInfo {
-    display: flex;
-    align-items: flex-end;
-    top: 1vw;
-    height: 12vw;
-    width: 100%;
-    padding: 0 3vw 0 3vw;
-    position: absolute;
+	display: grid;
+	justify-items: start;
+	align-items: center;
+	top: 3.9vw;
+	height: 11.3vw;
+	width: 100%;
+	padding: 0 3vw;
+	grid-template-rows: calc(70% - 1.3vw) 30%;
+	grid-template-columns: 80% 20%;
+	row-gap: 1.3vw;
+	grid-template-areas:
+		'logoRankoff logoTour'
+		'nameTour logoTour';
+	position: absolute;
 }
 
-.rankoffAndNameEvent {
-    display: block;
-    height: 100%;
-    width: 85%;
+.nameTourWrapper {
+	grid-area: nameTour;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-family: 'Montserrat Bold', sans-serif;
+	height: 100%;
+	color: var(--white);
+	font-size: 1.7vw;
 }
 
 .nameTour {
-    font-family: "Mazzard M", sans-serif;
-    width: 100%;
-    height: 20%;
-    color: white;
-    font-size: 1.7vw;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100%;
+	padding: 0vw 1vw;
+	background: var(--titleRowDark);
+	border-radius: 1vw;
 }
 
 .logoRankoff {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    width: 100%;
-    height: 80%;
+	grid-area: logoRankoff;
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	width: 100%;
+	height: 100%;
 }
 
-.logoRankoff img{
-    width: auto;
-    height: 67%;
+.logoRankoff img {
+	width: auto;
+	height: 100%;
 }
 
 .titleBanner {
-    font-family: 'DrukCyrMedium', sans-serif;
-    display: flex;
-    justify-content: flex-start;
-    align-items: flex-start;
-    font-size: 7.85vw;
-    padding-bottom: 0.071vw;
-    margin-left: 1.2vw;
-    color: white;
+	font-family: 'DrukCyr Medium', sans-serif;
+	display: flex;
+	justify-content: flex-start;
+	align-items: flex-start;
+	font-size: 7.85vw;
+	padding-bottom: 0.071vw;
+	margin-left: 1.2vw;
+	color: var(--white);
 }
 
 .logoTour {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 15%;
-    height: 100%;
+	grid-area: logoTour;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	height: 100%;
 }
 
-.logoTour img{
-    width: auto;
-    height: 70%;
+.logoTour img {
+	width: auto;
+	height: 100%;
 }
 
 .topResult {
-    top: 14.5vw;
-    height: 100%;
-    width: 100%;
-    padding: 0 3vw 0 3vw;
-    position: absolute;
+	font-family: 'Montserrat ExtraBold', sans-serif;
+	top: 16.4vw;
+	height: 100%;
+	width: 100%;
+	color: var(--white);
+	padding: 0 3vw;
+	position: absolute;
 }
 
 .wrapperPlayerTitle {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 2vw;
-    margin-bottom: 0.5vw;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	height: 3.4vw;
 }
 
 .playerTitle {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    height: 100%;
-    width: 100%;
-    border-radius: 0.8vw;
-    background: var(--gold);
+	font-family: 'Montserrat Bold', sans-serif;
+	display: grid;
+	grid-template-columns: 5% 8% 20% repeat(12, 1fr);
+	height: 100%;
+	width: 100%;
+	border-top-left-radius: 1vw;
+	border-top-right-radius: 1vw;
+	overflow: hidden;
+	background: var(--titleRowDark);
 }
 
 .playerTitle div {
-    font-family: "Montserrat Bold", sans-serif;
-    font-size: 1.1vw;
-    display: flex;
-    color: var(--goldDark);
-    justify-content: center;
-    align-items: center;
+	font-size: 1.1vw;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
-.playerTitle div:not(:last-child){
-    margin-right: 0.4vw;
+.playerTitle div:not(:last-child) {
+	margin-right: 0.4vw;
 }
 
 .wrapperPlayer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 3.68vw;
-    margin-bottom: 0.5vw;
+	display: block;
+	border-bottom-left-radius: 1vw;
+	border-bottom-right-radius: 1vw;
+	font-family: 'DrukTextWide', sans-serif;
+	font-size: 1.05vw;
+	overflow: hidden;
 }
 
-.wrapperPlayer div:not(:last-child){
-    margin-right: 0.4vw;
+.wrapperPlayer div:not(:last-child) {
+	margin-right: 0.4vw;
+}
+
+.wrapperPlayer .player:nth-child(even) {
+	background: var(--rowLight);
 }
 
 .player {
-    font-family: 'DrukTextWide', sans-serif;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    height: 100%;
-    width: 100%;
-    border-radius: 0.8vw;
-    background: var(--grayOpacity);
+	display: grid;
+	grid-template-columns: 5% 8% 20% repeat(12, 1fr);
+	height: 3.85vw;
+	width: 100%;
+	background: var(--rowDark);
 }
 
-.dataNumberPlayerTitle {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-    width: 4%;
-    font-size: 1.1vw;
-    color: white;
-}
-
-.logoTeamTeam {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-    width: 5%;
+.player div {
+	text-shadow: 1px 1px 1px var(--titleRowDark);
 }
 
 .dataNicknamePlayerNickname {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-    width: 12%;
-    font-size: 1.1vw;
-    color: white;
+	display: grid;
+	grid-template-columns: 30% calc(70% - 0.4vw);
+	grid-template-rows: 100%;
+	grid-template-areas: 'logoPlayer nickname';
+	height: 100%;
+	width: 100%;
+	overflow: hidden;
+	color: var(--white);
+	position: relative;
 }
 
-.dataFlagPlayerCountry {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-    width: 3%;
+.nickname {
+	grid-area: nickname;
+	display: flex;
+	justify-content: flex-start;
+	padding-left: 0.5vw;
+	align-items: center;
+	width: 100%;
+	height: 100%;
 }
 
-.dataPlayerKd {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-    width: 7%;
-    font-size: 1.2vw;
+.logoPlayer {
+	grid-area: logoPlayer;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+	position: absolute;
 }
 
-.dataPlayerKpr {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-    width: 7%;
-    font-size: 1.2vw;
+.logoPlayer img {
+	width: auto;
+	height: 220%;
+	position: absolute;
+	top: 0.1vw;
 }
 
-.dataPlayerDpr {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-    width: 7%;
-    font-size: 1.2vw;
-}
-
-.dataPlayerK {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-    width: 6%;
-    color: white;
-    font-size: 1.2vw;
-}
-
-.dataPlayerA {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-    width: 6%;
-    color: white;
-    font-size: 1.2vw;
-}
-
-.dataPlayerD {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-    width: 6%;
-    color: white;
-    font-size: 1.2vw;
-}
-
-.dataPlayerDiff {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-    width: 6%;
-    font-size: 1.2vw;
-}
-
-.dataPlayerImpact {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-    width: 7%;
-    font-size: 1.2vw;
-}
-
-.dataPlayerRating {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-    width: 7%;
-    font-size: 1.2vw;
-}
-
-.dataPlayerW_rounds {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-    width: 7%;
-    font-size: 1.2vw;
-    color: white;
-}
-
-.dataPlayerL_rounds {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-    width: 7%;
-    font-size: 1.2vw;
-    color: white;
-}
-
-.dataPlayerMaps {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-    width: 6%;
-    font-size: 1.2vw;
-    color: white;
+.contnentCenter {
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
 .logoTeam {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 5%;
-    height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100%;
 }
 
 .logoTeam img {
-    height: 80%;
-    width: auto;
+	height: auto;
+	width: 45%;
 }
-
-
-
-
-
-
-
