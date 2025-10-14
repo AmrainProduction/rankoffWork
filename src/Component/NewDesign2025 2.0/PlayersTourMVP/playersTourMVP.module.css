@@ -399,9 +399,9 @@
 .rowTable {
 	font-family: 'DrukTextWide', sans-serif;
 	display: grid;
-	grid-auto-rows: minmax(3vw, 3.8vw);
+	grid-auto-rows: minmax(3vw, 3.5vw);
 	grid-template-columns: 10% 10% 20% repeat(6, 10%);
-	height: auto;
+	height: 100%;
 	flex: 1 1 auto;
 	align-items: stretch;
 	color: var(--white);
@@ -423,7 +423,8 @@
 	font-family: 'DrukTextWide', sans-serif;
 	display: grid;
 	grid-template-columns: 40% repeat(6, 10%);
-	height: 3.6vw;
+	min-height: 3.6vw;
+	height: 100%;
 	color: var(--black);
 	background: var(--white);
 }

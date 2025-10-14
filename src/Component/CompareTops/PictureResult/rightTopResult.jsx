@@ -91,7 +91,7 @@ const LeftTopResult = (props) => {
 										</div>
 										<div className={classes.dataNicknamePlayerNickname}>{e.nickname}</div>
 										<div className={classes.dataFlagPlayerCountry}>
-											<CountryFlagPlayer nickname={e.nickname} width={'20px'} height={'13px'} margin={'0 0 0 5px'} />
+											<CountryFlagPlayer player_id={e.player_id} width={'20px'} height={'13px'} margin={'0 0 0 5px'} />
 										</div>
 										<div
 											className={classes.dataPlayerKd}

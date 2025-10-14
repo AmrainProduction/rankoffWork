@@ -1,35 +1,31 @@
-import React from 'react';
-import {useGetPlayersQuery} from "../store/api/apiSlice";
-import {findFlagUrlByCountryName} from "country-flags-svg";
+import React from 'react'
+import { useGetPlayersQuery } from '../store/api/apiSlice'
+import { findFlagUrlByCountryName } from 'country-flags-svg'
 
 const CountryFlagPlayer = (props) => {
+	const { data } = useGetPlayersQuery()
 
-    const {data} = useGetPlayersQuery()
+	let style, styleDefault
 
-    let style, styleDefault
+	if (props.width) {
+		style = {
+			width: `${props.width}`,
+			height: `${props.height}`,
+			margin: `${props.margin}`,
+		}
+	} else {
+		style = {
+			// width: "12px", height: "9px"
+		}
+	}
 
-    if(props.width) {
-        style = {
-            width: `${props.width}`, height: `${props.height}`, margin: `${props.margin}`
-        }
-    } else {
-        style = {
-            // width: "12px", height: "9px"
-        }
-    }
+	return data
+		?.filter((e) => e.player_id === props.player_id)
+		.map((e, index) => {
+			if (props.player_id === e.player_id) {
+				return <img key={index} style={style} src={`${findFlagUrlByCountryName(`${e.country_flag}`)}`} alt="" title={`${e.country_flag}`} onError={(event) => (event.target.style.display = 'none')} />
+			}
+		})
+}
 
-    return (
-        data?.filter(e => e.nickname === props.nickname).map((e, index) => {
-            if (props.nickname === e.nickname) {
-                return (
-                    <img key={index} style={style}
-                         src={`${findFlagUrlByCountryName(`${e.country_flag}`)}`}
-                         alt='' title={`${e.country_flag}`} onError={(event) => event.target.style.display = 'none'}/>
-                );
-            }
-        })
-    )
-
-};
-
-export default CountryFlagPlayer;
+export default CountryFlagPlayer

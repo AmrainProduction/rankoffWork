@@ -330,6 +330,7 @@ const PlayerMVPResult = (props) => {
 
 	totalStatsPlayer[0] = {
 		name: nameP,
+		player_id: player_id,
 		nickname: nickname,
 		surname: surname,
 		date_birth: date_birth,
@@ -388,7 +389,7 @@ const PlayerMVPResult = (props) => {
 						<div className={classes.nickname}>{totalStatsPlayer[0]?.nickname.toUpperCase()}</div>
 						<div className={classes.flagAndName}>
 							<div className={classes.flag}>
-								<CountryFlagPlayer nickname={totalStatsPlayer[0]?.nickname} width={'20px'} height={'13px'} margin={'0 0 0 5px'} />
+								<CountryFlagPlayer player_id={totalStatsPlayer[0]?.player_id} width={'20px'} height={'13px'} margin={'0 0 0 5px'} />
 							</div>
 							<div className={classes.nameSurname}>
 								<div className={classes.name}>{totalStatsPlayer[0]?.name.toUpperCase()}</div>
@@ -441,7 +442,7 @@ const PlayerMVPResult = (props) => {
 										<div
 											className={classes.cell}
 											style={{
-												background: e.dpr < 0.6 ? 'var(--red)' : e.dpr > 0.65 ? (e.dpr > 0.7 ? 'var(--green)' : 'var(--yellow)') : 'var(--yellow)',
+												background: e.dpr < 0.6 ? 'var(--green)' : e.dpr > 0.65 ? (e.dpr > 0.7 ? 'var(--red)' : 'var(--yellow)') : 'var(--yellow)',
 												// color: e.kpr < 0.6 ? 'var(--redDark)' : e.kpr > 0.65 ? (e.kpr > 0.7 ? 'var(--greenDark)' : 'var(--yellowDark)') : 'var(--yellowDark)',
 											}}>
 											{e.dpr}
@@ -485,7 +486,7 @@ const PlayerMVPResult = (props) => {
 								</div>
 								<div
 									style={{
-										color: totalStatsPlayer[0]?.dpr < 0.6 ? 'var(--redDark)' : totalStatsPlayer[0]?.dpr > 0.65 ? (totalStatsPlayer[0]?.dpr > 0.7 ? 'var(--greenDark)' : 'var(--yellowDark)') : 'var(--yellowDark)',
+										color: totalStatsPlayer[0]?.dpr < 0.6 ? 'var(--greenDark)' : totalStatsPlayer[0]?.dpr > 0.65 ? (totalStatsPlayer[0]?.dpr > 0.7 ? 'var(--redDark)' : 'var(--yellowDark)') : 'var(--yellowDark)',
 									}}>
 									{totalStatsPlayer[0]?.dpr}
 								</div>

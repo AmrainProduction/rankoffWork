@@ -40,16 +40,16 @@ const PictureResult2 = (props) => {
 
 	let count = 0
 
-	let t1p1_nickname
-	let t1p2_nickname
-	let t1p3_nickname
-	let t1p4_nickname
-	let t1p5_nickname
-	let t2p1_nickname
-	let t2p2_nickname
-	let t2p3_nickname
-	let t2p4_nickname
-	let t2p5_nickname
+	let t1p1_idCheck
+	let t1p2_idCheck
+	let t1p3_idCheck
+	let t1p4_idCheck
+	let t1p5_idCheck
+	let t2p1_idCheck
+	let t2p2_idCheck
+	let t2p3_idCheck
+	let t2p4_idCheck
+	let t2p5_idCheck
 
 	let scoreT1 = 0
 	let scoreT2 = 0
@@ -69,6 +69,18 @@ const PictureResult2 = (props) => {
 	let t2p3
 	let t2p4
 	let t2p5
+
+	let t1p1_id
+	let t1p2_id
+	let t1p3_id
+	let t1p4_id
+	let t1p5_id
+	let t2p1_id
+	let t2p2_id
+	let t2p3_id
+	let t2p4_id
+	let t2p5_id
+
 	let t1p1_logo
 	let t1p2_logo
 	let t1p3_logo
@@ -164,7 +176,6 @@ const PictureResult2 = (props) => {
 			}
 
 			// карты матча
-
 			matchMaps.push({
 				map: el.map + '.jpg',
 				name: el.map,
@@ -189,18 +200,19 @@ const PictureResult2 = (props) => {
 			allRounds += el.total_r_team1 + el.total_r_team2
 
 			count++
-			t1p1_nickname = t1p1
-			t1p2_nickname = t1p2
-			t1p3_nickname = t1p3
-			t1p4_nickname = t1p4
-			t1p5_nickname = t1p5
-			t2p1_nickname = t2p1
-			t2p2_nickname = t2p2
-			t2p3_nickname = t2p3
-			t2p4_nickname = t2p4
-			t2p5_nickname = t2p5
+			t1p1_idCheck = t1p1_id
+			t1p2_idCheck = t1p2_id
+			t1p3_idCheck = t1p3_id
+			t1p4_idCheck = t1p4_id
+			t1p5_idCheck = t1p5_id
+			t2p1_idCheck = t2p1_id
+			t2p2_idCheck = t2p2_id
+			t2p3_idCheck = t2p3_id
+			t2p4_idCheck = t2p4_id
+			t2p5_idCheck = t2p5_id
 
-			if (el.t1p1 && el.t1p1 === t1p1_nickname) {
+			if (el.t1p1_id && el.t1p1_id === t1p1_idCheck) {
+				t1p1_id = el.t1p1_id
 				t1p1 = el.t1p1
 				t1p1_logo = el.t1p1_logo
 				t1p1_k += el.t1p1_k
@@ -209,6 +221,7 @@ const PictureResult2 = (props) => {
 				t1p1_impact += el.t1p1_impact
 				t1p1_count_maps += 1
 			} else {
+				t1p1_id = el.t1p1_id
 				t1p1 = el.t1p1
 				t1p1_logo = el.t1p1_logo
 				t1p1_k = el.t1p1_k
@@ -217,7 +230,8 @@ const PictureResult2 = (props) => {
 				t1p1_impact = el.t1p1_impact
 				t1p1_count_maps = 1
 			}
-			if (el.t1p2 && el.t1p2 === t1p2_nickname) {
+			if (el.t1p2_id && el.t1p2_id === t1p2_idCheck) {
+				t1p2_id = el.t1p2_id
 				t1p2 = el.t1p2
 				t1p2_logo = el.t1p2_logo
 				t1p2_k += el.t1p2_k
@@ -226,6 +240,7 @@ const PictureResult2 = (props) => {
 				t1p2_impact += el.t1p2_impact
 				t1p2_count_maps += 1
 			} else {
+				t1p2_id = el.t1p2_id
 				t1p2 = el.t1p2
 				t1p2_logo = el.t1p2_logo
 				t1p2_k = el.t1p2_k
@@ -234,7 +249,8 @@ const PictureResult2 = (props) => {
 				t1p2_impact = el.t1p2_impact
 				t1p2_count_maps = 1
 			}
-			if (el.t1p3 && el.t1p3 === t1p3_nickname) {
+			if (el.t1p3_id && el.t1p3_id === t1p3_idCheck) {
+				t1p3_id = el.t1p3_id
 				t1p3 = el.t1p3
 				t1p3_logo = el.t1p3_logo
 				t1p3_k += el.t1p3_k
@@ -243,6 +259,7 @@ const PictureResult2 = (props) => {
 				t1p3_impact += el.t1p3_impact
 				t1p3_count_maps += 1
 			} else {
+				t1p3_id = el.t1p3_id
 				t1p3 = el.t1p3
 				t1p3_logo = el.t1p3_logo
 				t1p3_k = el.t1p3_k
@@ -251,7 +268,8 @@ const PictureResult2 = (props) => {
 				t1p3_impact = el.t1p3_impact
 				t1p3_count_maps = 1
 			}
-			if (el.t1p4 && el.t1p4 === t1p4_nickname) {
+			if (el.t1p4_id && el.t1p4_id === t1p4_idCheck) {
+				t1p4_id = el.t1p4_id
 				t1p4 = el.t1p4
 				t1p4_logo = el.t1p4_logo
 				t1p4_k += el.t1p4_k
@@ -260,6 +278,7 @@ const PictureResult2 = (props) => {
 				t1p4_impact += el.t1p4_impact
 				t1p4_count_maps += 1
 			} else {
+				t1p4_id = el.t1p4_id
 				t1p4 = el.t1p4
 				t1p4_logo = el.t1p4_logo
 				t1p4_k = el.t1p4_k
@@ -268,7 +287,8 @@ const PictureResult2 = (props) => {
 				t1p4_impact = el.t1p4_impact
 				t1p4_count_maps = 1
 			}
-			if (el.t1p5 && el.t1p5 === t1p5_nickname) {
+			if (el.t1p5_id && el.t1p5_id === t1p5_idCheck) {
+				t1p5_id = el.t1p5_id
 				t1p5 = el.t1p5
 				t1p5_logo = el.t1p5_logo
 				t1p5_k += el.t1p5_k
@@ -277,6 +297,7 @@ const PictureResult2 = (props) => {
 				t1p5_impact += el.t1p5_impact
 				t1p5_count_maps += 1
 			} else {
+				t1p5_id = el.t1p5_id
 				t1p5 = el.t1p5
 				t1p5_logo = el.t1p5_logo
 				t1p5_k = el.t1p5_k
@@ -286,7 +307,8 @@ const PictureResult2 = (props) => {
 				t1p5_count_maps = 1
 			}
 
-			if (el.t2p1 && el.t2p1 === t2p1_nickname) {
+			if (el.t2p1_id && el.t2p1_id === t2p1_idCheck) {
+				t2p1_id = el.t2p1_id
 				t2p1 = el.t2p1
 				t2p1_logo = el.t2p1_logo
 				t2p1_k += el.t2p1_k
@@ -295,6 +317,7 @@ const PictureResult2 = (props) => {
 				t2p1_impact += el.t2p1_impact
 				t2p1_count_maps += 1
 			} else {
+				t2p1_id = el.t2p1_id
 				t2p1 = el.t2p1
 				t2p1_logo = el.t2p1_logo
 				t2p1_k = el.t2p1_k
@@ -303,7 +326,8 @@ const PictureResult2 = (props) => {
 				t2p1_impact = el.t2p1_impact
 				t2p1_count_maps = 1
 			}
-			if (el.t2p2 && el.t2p2 === t2p2_nickname) {
+			if (el.t2p2_id && el.t2p2_id === t2p2_idCheck) {
+				t2p2_id = el.t2p2_id
 				t2p2 = el.t2p2
 				t2p2_logo = el.t2p2_logo
 				t2p2_k += el.t2p2_k
@@ -312,6 +336,7 @@ const PictureResult2 = (props) => {
 				t2p2_impact += el.t2p2_impact
 				t2p2_count_maps += 1
 			} else {
+				t2p2_id = el.t2p2_id
 				t2p2 = el.t2p2
 				t2p2_logo = el.t2p2_logo
 				t2p2_k = el.t2p2_k
@@ -320,7 +345,8 @@ const PictureResult2 = (props) => {
 				t2p2_impact = el.t2p2_impact
 				t2p2_count_maps = 1
 			}
-			if (el.t2p3 && el.t2p3 === t2p3_nickname) {
+			if (el.t2p3_id && el.t2p3_id === t2p3_idCheck) {
+				t2p3_id = el.t2p3_id
 				t2p3 = el.t2p3
 				t2p3_logo = el.t2p3_logo
 				t2p3_k += el.t2p3_k
@@ -329,6 +355,7 @@ const PictureResult2 = (props) => {
 				t2p3_impact += el.t2p3_impact
 				t2p3_count_maps += 1
 			} else {
+				t2p3_id = el.t2p3_id
 				t2p3 = el.t2p3
 				t2p3_logo = el.t2p3_logo
 				t2p3_k = el.t2p3_k
@@ -338,7 +365,8 @@ const PictureResult2 = (props) => {
 				t2p3_count_maps = 1
 			}
 
-			if (el.t2p4 && el.t2p4 === t2p4_nickname) {
+			if (el.t2p4_id && el.t2p4_id === t2p4_idCheck) {
+				t2p4_id = el.t2p4_id
 				t2p4 = el.t2p4
 				t2p4_logo = el.t2p4_logo
 				t2p4_k += el.t2p4_k
@@ -347,6 +375,7 @@ const PictureResult2 = (props) => {
 				t2p4_impact += el.t2p4_impact
 				t2p4_count_maps += 1
 			} else {
+				t2p4_id = el.t2p4_id
 				t2p4 = el.t2p4
 				t2p4_logo = el.t2p4_logo
 				t2p4_k = el.t2p4_k
@@ -355,7 +384,8 @@ const PictureResult2 = (props) => {
 				t2p4_impact = el.t2p4_impact
 				t2p4_count_maps = 1
 			}
-			if (el.t2p5 && el.t2p5 === t2p5_nickname) {
+			if (el.t2p5_id && el.t2p5_id === t2p5_idCheck) {
+				t2p5_id = el.t2p5_id
 				t2p5 = el.t2p5
 				t2p5_logo = el.t2p5_logo
 				t2p5_k += el.t2p5_k
@@ -364,6 +394,7 @@ const PictureResult2 = (props) => {
 				t2p5_impact += el.t2p5_impact
 				t2p5_count_maps += 1
 			} else {
+				t2p5_id = el.t2p5_id
 				t2p5 = el.t2p5
 				t2p5_logo = el.t2p5_logo
 				t2p5_k = el.t2p5_k
@@ -392,6 +423,16 @@ const PictureResult2 = (props) => {
 			t2p3: t2p3,
 			t2p4: t2p4,
 			t2p5: t2p5,
+			t1p1_id: t1p1_id,
+			t1p2_id: t1p2_id,
+			t1p3_id: t1p3_id,
+			t1p4_id: t1p4_id,
+			t1p5_id: t1p5_id,
+			t2p1_id: t2p1_id,
+			t2p2_id: t2p2_id,
+			t2p3_id: t2p3_id,
+			t2p4_id: t2p4_id,
+			t2p5_id: t2p5_id,
 			t1p1_logo: t1p1_logo,
 			t1p2_logo: t1p2_logo,
 			t1p3_logo: t1p3_logo,
@@ -489,6 +530,7 @@ const PictureResult2 = (props) => {
 				numbersP.forEach((player) => {
 					players.push({
 						nickname: playersTemp[0][`t${team}p${player}`],
+						player_id: playersTemp[0][`t${team}p${player}_id`],
 						logo: playersTemp[0][`t${team}p${player}_logo`],
 						k: playersTemp[0][`t${team}p${player}_k`],
 						a: playersTemp[0][`t${team}p${player}_a`],
@@ -506,6 +548,7 @@ const PictureResult2 = (props) => {
 				numbersP.forEach((player) => {
 					players2.push({
 						nickname: playersTemp[0][`t${team}p${player}`],
+						player_id: playersTemp[0][`t${team}p${player}_id`],
 						logo: playersTemp[0][`t${team}p${player}_logo`],
 						k: playersTemp[0][`t${team}p${player}_k`],
 						a: playersTemp[0][`t${team}p${player}_a`],
@@ -619,7 +662,7 @@ const PictureResult2 = (props) => {
 											background: e.nickname === mvp[0].nickname ? 'var(--gold)' : '',
 										}}>
 										<div className={classes.dataFlagPlayer}>
-											<CountryFlagPlayer nickname={e.nickname} />
+											<CountryFlagPlayer player_id={e.player_id} />
 										</div>
 										<div className={classes.photoPlayer}>
 											<img src={`/images/LogoPlayers/${e.logo}`} className={classes.player1} alt="/" />
@@ -700,7 +743,7 @@ const PictureResult2 = (props) => {
 											background: e.nickname === mvp[0].nickname ? 'var(--gold)' : '',
 										}}>
 										<div className={classes.dataFlagPlayer}>
-											<CountryFlagPlayer nickname={e.nickname} />
+											<CountryFlagPlayer player_id={e.player_id} />
 										</div>
 										<div className={classes.photoPlayer}>
 											<img src={`/images/LogoPlayers/${e.logo}`} className={classes.player1} alt="/" />

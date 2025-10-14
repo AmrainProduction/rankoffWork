@@ -83,7 +83,7 @@ const CompareTops = () => {
 						</div>
 					</div>
 
-					<div className={classes.wrapperListMatches}>
+					{/* <div className={classes.wrapperListMatches}>
 						<div className={classes.titleBox}>Выбор турнира:</div>
 						<div className={classes.listMatches}>
 							{toursID.map((e, index) => {
@@ -99,7 +99,7 @@ const CompareTops = () => {
 								)
 							})}
 						</div>
-					</div>
+					</div> */}
 
 					<div className={classes.btnSaveAsImage} onClick={onButtonClick}>
 						Скачать
@@ -114,8 +114,12 @@ const CompareTops = () => {
 					</div>
 				</div>
 				<div className={classes.wrapperTops}>
-					<div className={classes.leftTop}>{choiceMatch.length > 0 ? <LeftTopResult stage={choiceStage} name={choiceMatch} setLeftTop={setLeftTop} /> : ''}</div>
-					<div className={classes.rightTop}>{choiceMatch.length > 0 ? <RightTopResult stage={choiceStage} name={choiceMatch} leftTop={leftTop} /> : ''}</div>
+					<div className={classes.leftTop}>
+						<LeftTopResult stage={choiceStage} setLeftTop={setLeftTop} />
+					</div>
+					<div className={classes.rightTop}>
+						<RightTopResult stage={choiceStage} leftTop={leftTop} />
+					</div>
 				</div>
 				<img src={`/images/DataInImage/NEW_DESIGN_2025_2_0/TOP_PLAYERS_BANNER.png`} className={classes.bgImg} alt="/" />
 			</div>

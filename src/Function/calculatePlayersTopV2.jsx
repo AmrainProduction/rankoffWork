@@ -71,7 +71,7 @@ export function calculatePlayersTopV2(name, stageTour, allPlayers, allMatches, t
 			})
 		}
 		if (stage === 'FINAL') {
-			sortByStageMatches = allShortMatches?.data?.filter((e) => e.name_stage.toUpperCase().includes(stage))
+			sortByStageMatches = allShortMatches?.data?.filter((e) => e.name_stage.toUpperCase() === stage.toUpperCase())
 			sortByStageMatches?.map((e) => {
 				sortMatches?.map((e2, index) => {
 					if (e.name_match_for_sort === e2.name_match_for_sort) {
@@ -95,7 +95,9 @@ export function calculatePlayersTopV2(name, stageTour, allPlayers, allMatches, t
 		}
 	}
 
-	necessaryMatches = sortMatches
+	// necessaryMatches = sortMatches
+	// necessaryMatches = sortMatches?.filter((e) => e.map === 'Breeze')
+	// necessaryMatches = allMatches?.data?.filter((e) => e.team1_id === 1)
 
 	allPlayers?.data?.map((player, index) => {
 		player_id = player.player_id
@@ -340,7 +342,7 @@ export function calculatePlayersTopV2(name, stageTour, allPlayers, allMatches, t
 		}
 	})
 
-	let divider = 2
+	let divider = 3
 
 	while (max_maps > 1) {
 		tempArr = []

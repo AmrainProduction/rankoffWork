@@ -37,6 +37,38 @@ const TopPlayersTourResult = (props) => {
 		// 'WinlineEPICStandoff2CosmoMajor_04_06_25',
 		// 'WinlineEPICStandoff2PawPawEp1_24_06_25',
 		// 'WinlineEPICStandoff2PawPawEp2_29_07_25',
+		// 'WinlineEPICStandoff2PawPawEp4_09_09_25',
+		// 'Standoff2NewYearCup_29_12_24',
+		// 'WinlineEpicStandoff2Season14_11_12_24',
+		// 'WinlineEpicStandoff2Major2_25_11_24',
+		// 'WinlineEpicStandoff2Season13_08_10_24',
+		// 'WinlineEpicStandoff2Season12_04_09_24',
+		// 'ScamOffBeeline_23_08_24',
+		// 'WinlineEpicStandoff2Season11_01_08_24',
+		// 'WinlineEpicStandoff2Major_10_07_24',
+		// 'WinlineEpicStandoff2Season10_30_05_24',
+		// 'WinlineEpicStandoff2Season9_25_04_24',
+		// 'WinlineEpicStandoff2Season8_28_03_24',
+		// 'GamesOfFuture_03_03_24',
+		// 'WinlineEpicStandoff2Season7_11_02_24',
+		// 'VozwoodenRevialCupSeason1_17_01_24',
+		// 'WinlineEpicStandoff2Season6_15_12_23',
+		// 'WinlineEpicStandoff2Major_06_12_23',
+		// 'WinlineEpicStandoff2Season5_17_11_23',
+		// 'WinlineEpicMinor_28_10_23',
+		// 'WinlineEpic_23_09_23',
+		// 'Epic_02_09_23',
+		// 'Epic_11_08_23',
+		// 'MastersWay_28_07_23',
+		// 'Epic_09_07_23',
+		// 'Major_06_06_23',
+		// 'GamesOfFuture_27_05_23',
+		// 'Minor1_18_02_23',
+		// 'MastersWay_24_12_22',
+		// 'StudentTournament_13_12_22',
+		// 'Major_13_09_22',
+		// 'Minor2_25_07_22',
+		// 'Minor1_15_06_22',
 		// 'WinlineEPICStandoff2PawPawEp3_18_08_25',
 		// 'WinlineEPICStandoff2CosmoBrasilCrux_31_02_25',
 		// 'WinlineEPICStandoff2CosmoBrasilOctans_03_02_25',
@@ -55,8 +87,8 @@ const TopPlayersTourResult = (props) => {
 						<div className={classes.titleBanner}>RANKOFF TOP 20 PLAYERS</div>
 					</div>
 					<div className={classes.nameTourWrapper}>
-						{/* <div className={classes.nameTour}>ТОП-20 ЛУЧШИХ ИГРОКОВ ВЕСЕННЕЙ И ЛЕТНЕЙ АКАДЕМИЧЕСКОЙ СЕРИИ</div> */}
 						<div className={classes.nameTour}>
+							{/* {'ТОП-20 игроков CYBERHERO (ABSOLUTE) за все время'.toUpperCase()} */}
 							{players_tournaments[0].name_tour.toUpperCase()} {props.stage && props.stage.length > 0 && props.stage !== 'FULL' ? '[' + props.stage.toUpperCase() + ']' : ''}
 						</div>
 					</div>
@@ -93,12 +125,18 @@ const TopPlayersTourResult = (props) => {
 										</div>
 										<div className={classes.dataNicknamePlayerNickname}>
 											<div className={classes.logoPlayer}>
-												<img src={`/images/LogoPlayers/${e.logo_player}`} alt="/" />
+												<img
+													src={`/images/LogoPlayers/${e.logo_player}`}
+													alt="/"
+													onError={(e) => {
+														e.target.src = '/images/LogoPlayers/PlayerDefaultLogo.png'
+													}}
+												/>
 											</div>
 											<div className={classes.nickname}>{e.nickname}</div>
 										</div>
 										<div className={classes.contnentCenter}>
-											<CountryFlagPlayer nickname={e.nickname} width={'20px'} height={'13px'} margin={'0 0 0 5px'} />
+											<CountryFlagPlayer player_id={e.player_id} width={'20px'} height={'13px'} margin={'0 0 0 5px'} />
 										</div>
 										<div
 											className={classes.contnentCenter}
