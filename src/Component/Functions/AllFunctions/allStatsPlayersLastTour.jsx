@@ -22,7 +22,7 @@ const AllStatsPlayersLastTour = () => {
 	let nameTour = choiceTour
 
 	const playersFromTour = useGetPlayersTournamentsByNameTourQuery({ nameTour }) // получение игроков с последнего турнира
-	// const playersFromTour = useGetPlayersTournamentsQuery() // получение всех игроков со всех турниров
+	// const playersFromTour = useGetPlayersQuery() // получение всех игроков со всех турниров
 
 	let arr = []
 	let count = 0
@@ -335,7 +335,7 @@ const AllStatsPlayersLastTour = () => {
 							},
 							() => {
 								console.log('Fail copy')
-							}
+							},
 						)
 					}}>
 					Enter

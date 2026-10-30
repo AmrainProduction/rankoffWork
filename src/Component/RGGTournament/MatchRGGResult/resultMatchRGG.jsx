@@ -3,7 +3,6 @@ import classes from './resultMatchRGG.module.css'
 import {toBlob, toCanvas, toJpeg, toPixelData, toPng, toSvg} from 'html-to-image';
 
 import PictureResultRGG from "./PictureResult/pictureResultRGG";
-import logo from "../../../logo.svg";
 import {useGetShortMatchQuery} from "../../../store/api/apiSlice";
 
 
@@ -48,9 +47,6 @@ const ResultMatchRGG = () => {
     return (
         <>
             <div className={classes.wrapperMenu}>
-                <div className={classes.wrapperLogo}>
-                    <img src={logo} alt="logo"/>
-                </div>
                 <div className={classes.menu}>
                     <div className={classes.listMatches}>
                         {matchesID.map((e, index) => {

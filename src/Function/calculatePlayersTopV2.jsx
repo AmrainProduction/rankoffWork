@@ -95,9 +95,30 @@ export function calculatePlayersTopV2(name, stageTour, allPlayers, allMatches, t
 		}
 	}
 
+	// раскомментить для статы с определенной карты
+	// necessaryMatches = sortMatches?.filter((e) => e.map === 'Hanami')
+	// раскомментить для статы со всех карт
 	// necessaryMatches = sortMatches
-	// necessaryMatches = sortMatches?.filter((e) => e.map === 'Breeze')
-	// necessaryMatches = allMatches?.data?.filter((e) => e.team1_id === 1)
+	// раскомментить для статы с определенных турниров
+	// necessaryMatches = allMatches?.data?.filter(
+	// 	(e) =>
+	// 		e.name_tour_for_sort === 'WINLINEEPICStandoff2JumbleRumbleSeason4_03_05_26' ||
+	// 		e.name_tour_for_sort === 'WINLINEEPICStandoff2JumbleRumbleSeason3_30_03_26' ||
+	// 		e.name_tour_for_sort === 'WINLINEEPICStandoff2JumbleRumbleSeason1_24_02_26',
+	// 	// e.name_tour_for_sort === 'WinlineEPICStandoff2CosmoEarth_09_01_25' ||
+	// 	// e.name_tour_for_sort === 'RushVTBCUPPro_13_02_25' ||
+	// 	// e.name_tour_for_sort === 'WinlineEPICStandoff2CosmoCancriE_09_04_25' ||
+	// 	// e.name_tour_for_sort === 'WinlineEPICStandoff2CosmoSaffar_04_03_25' ||
+	// 	// e.name_tour_for_sort === 'WinlineEPICStandoff2CosmoMajor_04_06_25' ||
+	// 	// e.name_tour_for_sort === 'WinlineEPICStandoff2PawPawEp1_24_06_25' ||
+	// 	// e.name_tour_for_sort === 'WinlineEPICStandoff2PawPawEp2_29_07_25' ||
+	// 	// e.name_tour_for_sort === 'WinlineEPICStandoff2PawPawEp4_09_09_25' ||
+	// 	// e.name_tour_for_sort === 'WinlineEPICStandoff2PawPawEp6_14_10_25' ||
+	// 	// e.name_tour_for_sort === 'WinlineEPICStandoff2PawPawMajor_19_11_25' ||
+	// 	// e.name_tour_for_sort === 'WINLINEEPICStandoff2NewYearBounty_08_12_25'
+	// )
+
+	// necessaryMatches = sortMatches?.filter((e) => e.db_date_match >= '2026-07-31')
 
 	allPlayers?.data?.map((player, index) => {
 		player_id = player.player_id
@@ -105,12 +126,9 @@ export function calculatePlayersTopV2(name, stageTour, allPlayers, allMatches, t
 		nickname = player.nickname
 		surname = player.surname
 		country_flag = player.country_flag
-
-		teamsTour?.data?.map((e) => {
-			if (player.team === e.name_team && e.name_tour_sort === name) {
-				position_team = e.position_team
-			}
-		})
+		// team = player.team
+		// team_id = player.team_id
+		// logo_team = player.back_logo_team
 
 		tourInfo?.data?.map((e) => {
 			if (e.name_tour_sort === name) {
@@ -155,6 +173,7 @@ export function calculatePlayersTopV2(name, stageTour, allPlayers, allMatches, t
 				k += match.t1p1_k
 				a += match.t1p1_a
 				d += match.t1p1_d
+				position_team = teamsTour?.data?.find((e) => e.team_id === team_id)?.position_team
 			}
 
 			if (match.t1p2_id === player_id) {
@@ -163,6 +182,7 @@ export function calculatePlayersTopV2(name, stageTour, allPlayers, allMatches, t
 				k += match.t1p2_k
 				a += match.t1p2_a
 				d += match.t1p2_d
+				position_team = teamsTour?.data?.find((e) => e.team_id === team_id)?.position_team
 			}
 
 			if (match.t1p3_id === player_id) {
@@ -171,6 +191,7 @@ export function calculatePlayersTopV2(name, stageTour, allPlayers, allMatches, t
 				k += match.t1p3_k
 				a += match.t1p3_a
 				d += match.t1p3_d
+				position_team = teamsTour?.data?.find((e) => e.team_id === team_id)?.position_team
 			}
 
 			if (match.t1p4_id === player_id) {
@@ -179,6 +200,7 @@ export function calculatePlayersTopV2(name, stageTour, allPlayers, allMatches, t
 				k += match.t1p4_k
 				a += match.t1p4_a
 				d += match.t1p4_d
+				position_team = teamsTour?.data?.find((e) => e.team_id === team_id)?.position_team
 			}
 
 			if (match.t1p5_id === player_id) {
@@ -187,6 +209,7 @@ export function calculatePlayersTopV2(name, stageTour, allPlayers, allMatches, t
 				k += match.t1p5_k
 				a += match.t1p5_a
 				d += match.t1p5_d
+				position_team = teamsTour?.data?.find((e) => e.team_id === team_id)?.position_team
 			}
 
 			//----------сбор статистики игрока из второй команды------------------------------
@@ -218,6 +241,7 @@ export function calculatePlayersTopV2(name, stageTour, allPlayers, allMatches, t
 				k += match.t2p1_k
 				a += match.t2p1_a
 				d += match.t2p1_d
+				position_team = teamsTour?.data?.find((e) => e.team_id === team_id)?.position_team
 			}
 
 			if (match.t2p2_id === player_id) {
@@ -226,6 +250,7 @@ export function calculatePlayersTopV2(name, stageTour, allPlayers, allMatches, t
 				k += match.t2p2_k
 				a += match.t2p2_a
 				d += match.t2p2_d
+				position_team = teamsTour?.data?.find((e) => e.team_id === team_id)?.position_team
 			}
 
 			if (match.t2p3_id === player_id) {
@@ -234,6 +259,7 @@ export function calculatePlayersTopV2(name, stageTour, allPlayers, allMatches, t
 				k += match.t2p3_k
 				a += match.t2p3_a
 				d += match.t2p3_d
+				position_team = teamsTour?.data?.find((e) => e.team_id === team_id)?.position_team
 			}
 
 			if (match.t2p4_id === player_id) {
@@ -242,6 +268,7 @@ export function calculatePlayersTopV2(name, stageTour, allPlayers, allMatches, t
 				k += match.t2p4_k
 				a += match.t2p4_a
 				d += match.t2p4_d
+				position_team = teamsTour?.data?.find((e) => e.team_id === team_id)?.position_team
 			}
 
 			if (match.t2p5_id === player_id) {
@@ -250,6 +277,7 @@ export function calculatePlayersTopV2(name, stageTour, allPlayers, allMatches, t
 				k += match.t2p5_k
 				a += match.t2p5_a
 				d += match.t2p5_d
+				position_team = teamsTour?.data?.find((e) => e.team_id === team_id)?.position_team
 			}
 
 			//----------сбор общей информации о трунире------------------------------
@@ -261,7 +289,7 @@ export function calculatePlayersTopV2(name, stageTour, allPlayers, allMatches, t
 
 		//фиксируем статистику каждого игрока
 
-		if (k && d) {
+		if (d) {
 			let kd = k / d
 			let kpr = Kpr(k, rounds_win + rounds_lose)
 			let dpr = Dpr(d, rounds_win + rounds_lose)
@@ -280,11 +308,11 @@ export function calculatePlayersTopV2(name, stageTour, allPlayers, allMatches, t
 				nickname: nickname,
 				surname: surname,
 				country_flag: country_flag,
-				kd_p: (Math.round(kd * 100) / 100).toFixed(2),
-				kpr_p: (Math.round(kpr * 100) / 100).toFixed(2),
-				dpr_p: (Math.round(dpr * 100) / 100).toFixed(2),
-				impact_p: (Math.round(impact * 100) / 100).toFixed(2),
-				rating: (Math.round(rating * 100) / 100).toFixed(2),
+				kd: (Math.round(kd * 100) / 100).toFixed(2),
+				kpr: (Math.round(kpr * 100) / 100).toFixed(2),
+				dpr: (Math.round(dpr * 100) / 100).toFixed(2),
+				impact: (Math.round(impact * 100) / 100).toFixed(2),
+				rating: rating.toFixed(2),
 				k: k,
 				a: a,
 				d: d,

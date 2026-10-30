@@ -501,7 +501,7 @@ const PictureResult2 = (props) => {
                                 MATCH RESULT
                             </div>
                             <div className={classes.rankoff}>
-                                Rankoff.ru
+                                Rankoff.org
                             </div>
                         </div>
                         <div className={classes.wrapperTeamAndScore}>

@@ -1,0 +1,516 @@
+@font-face {
+	font-family: 'DrukCyr Medium';
+	src: url('../../../Fonts/DrukCyr-Medium.eot');
+	src:
+		url('../../../Fonts/DrukCyr-Medium.eot?#iefix') format('embedded-opentype'),
+		url('../../../Fonts/DrukCyr-Medium.woff') format('woff'),
+		url('../../../Fonts/DrukCyr-Medium.ttf') format('truetype');
+	font-style: normal;
+	font-weight: 500;
+}
+
+@font-face {
+	font-family: 'Mazzard M';
+	src: url('../../../Fonts/Mazzard/MazzardM-SemiBold.eot');
+	src:
+		url('../../../Fonts/Mazzard/MazzardM-SemiBold.eot?#iefix') format('embedded-opentype'),
+		url('../../../Fonts/Mazzard/MazzardM-SemiBold.woff') format('woff'),
+		url('../../../Fonts/Mazzard/MazzardM-SemiBold.ttf') format('truetype');
+	font-style: normal;
+	font-weight: 500;
+}
+
+@font-face {
+	font-family: 'DrukCyr Bold';
+	src: url('../../../Fonts/DrukCyr-Bold.ttf') format('truetype');
+}
+
+@font-face {
+	font-family: 'SpaceGrotesk';
+	src: url('../../../Fonts/SpaceGrotesk.ttf') format('truetype');
+}
+
+@font-face {
+	font-family: 'square';
+	src: url('../../../Fonts/square.otf') format('truetype');
+}
+
+@font-face {
+	font-family: 'DrukTextWide';
+	src: url('../../../Fonts/DRUKTEXTWIDECYR-BOLD.otf') format('truetype');
+}
+
+@font-face {
+	font-family: 'Montserrat SemiBold';
+	src: url('../../../Fonts/Montserrat/MONTSERRAT-SEMIBOLD.ttf') format('truetype');
+}
+
+@font-face {
+	font-family: 'Montserrat Bold';
+	src: url('../../../Fonts/Montserrat/MONTSERRAT-BOLD.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'Montserrat ExtraBold';
+	src: url('../../../Fonts/Montserrat/MONTSERRAT-EXTRABOLD.TTF') format('truetype');
+}
+
+:local(.wrapperMatchResult) {
+	--titleRowDark: #4e0922;
+	--rowDark: #781236;
+	--rowLight: #b00745;
+
+	--darkBlue: #272636;
+	--red: #ff181899;
+	--green: #00db0099;
+	--yellow: #ff961599;
+
+	--redDark: #ff1818;
+	--greenDark: #00db00;
+	--yellowDark: #ff9615;
+
+	--gold: #efc60c95;
+	--white: #fff;
+	--black: #000;
+}
+
+.bgImg {
+	height: auto;
+	width: 100%;
+}
+
+.wrapperMenu {
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-start;
+	width: 100%;
+	height: 160px;
+	background: var(--mainLightBlack);
+	margin-bottom: 10px;
+	padding: 5px;
+}
+
+.wrapperLogo {
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	width: 20%;
+	height: 100%;
+}
+
+.wrapperLogo img {
+	height: 70%;
+	width: auto;
+}
+
+.menu {
+	display: flex;
+	justify-content: center;
+	align-items: flex-end;
+	height: 100%;
+	width: 100%;
+}
+
+.wrapperListMatches {
+	display: block;
+	width: 100%;
+	height: 100%;
+	margin-right: 2%;
+	margin-left: 2%;
+	padding: 2px;
+}
+
+.titleBox {
+	width: 100%;
+	height: auto;
+	padding: 1% 0;
+	color: white;
+}
+
+.listMatches {
+	display: block;
+	overflow-y: scroll;
+	border-radius: 3px;
+	width: 100%;
+	min-width: 150px;
+	height: 120px;
+	background: var(--componentBlockColor);
+	color: white;
+}
+
+.match {
+	background: var(--componentLightBlockColor);
+	margin-bottom: 2px;
+	padding: 5px;
+	cursor: pointer;
+	transition: all 0.5s;
+}
+
+.match:hover {
+	background: var(--componentBlockColorHover);
+}
+
+.wrapperMain {
+	display: flex;
+	height: 100%;
+	width: 100%;
+	padding: 3.4%;
+	position: absolute;
+}
+
+.main {
+	display: block;
+	height: 100%;
+	width: 100%;
+}
+
+.wrapperButtons {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	width: 20%;
+}
+
+.wrapperButtons button:not(:last-child) {
+	margin-bottom: 3%;
+}
+
+.btnSaveAsImage {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-radius: 3px;
+	background: var(--buttonColor);
+	height: 40px;
+	width: 160px;
+	cursor: pointer;
+	color: white;
+}
+
+.btnSaveAsImage:hover {
+	background: var(--buttonColorHover);
+}
+
+.wrapperMatchResult {
+	font-family: 'DrukTextWide', sans-serif;
+	display: flex;
+	justify-content: center;
+	align-items: flex-start;
+	height: 100%;
+	width: 100%;
+	z-index: 20;
+	position: relative;
+}
+
+.wrapperMatchResult img {
+	height: auto;
+	width: 100%;
+}
+
+.wrapperTopSection {
+	display: flex;
+	position: absolute;
+	width: 100%;
+	height: 8vw;
+	top: 3vw;
+	padding: 0 3vw 0 3vw;
+	overflow: hidden;
+}
+
+.titleBanner {
+	display: flex;
+	align-items: center;
+	min-width: 31vw;
+	height: 8vw;
+	padding: 0 1vw;
+	color: var(--white);
+	background: var(--black);
+}
+
+.titleBanner img {
+	margin-right: 1vw;
+	width: 6vw;
+	height: auto;
+}
+
+.titleText {
+	font-family: 'SpaceGrotesk', sans-serif;
+	font-weight: 1000;
+	font-size: 3.4vw;
+}
+
+.wrapperMaps {
+	display: flex;
+	align-items: center;
+	margin-left: 1vw;
+	width: 100%;
+	height: 100%;
+	padding: 0.5vw;
+	color: var(--white);
+	background: var(--white);
+}
+
+.mapItem {
+	display: grid;
+	grid-template-rows: auto auto;
+	height: 100%;
+	overflow: hidden;
+	width: 20%;
+	position: relative;
+}
+
+.scoreTeams img {
+	width: 3vw;
+	height: 100%;
+}
+
+.totalScoreMap {
+	font-family: 'SpaceGrotesk', sans-serif;
+	font-weight: 1000;
+	font-size: 1.8vw;
+	padding: 0 0.5vw;
+}
+
+.wrapperMaps .mapItem:not(:last-child) {
+	margin-right: 0.5vw;
+}
+
+.scoreTeams {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 5.5vw;
+	width: 100%;
+	position: absolute;
+}
+
+.imgMap {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 4vw;
+	width: 100%;
+}
+
+.imgMap img {
+	height: 100%;
+	width: auto;
+	position: absolute;
+}
+
+.mapColor {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100%;
+	width: 100%;
+	position: absolute;
+	opacity: 0.6;
+	color: white;
+	overflow: hidden;
+	background: var(--black);
+}
+
+.teamPickLogo {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 7vw;
+	width: 100%;
+	overflow: hidden;
+	position: absolute;
+}
+
+.teamPickLogo img {
+	padding-top: 1.5vw;
+	height: 10vw;
+	width: 100%;
+}
+
+.nameMap {
+	font-family: 'SpaceGrotesk', sans-serif;
+	font-weight: 600;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding-top: 1.2vw;
+	font-size: 1vw;
+	width: 100%;
+	height: 100%;
+	background: var(--black);
+}
+
+.wrapperMainSection {
+	display: flex;
+	position: absolute;
+	width: 100%;
+	height: 40vw;
+	top: 13vw;
+	padding: 0 3vw 0 3vw;
+}
+
+.wrapperMVPPlayer {
+	display: flex;
+	min-width: 31vw;
+	height: 100%;
+	position: relative;
+	overflow: hidden;
+	background: var(--white);
+}
+
+.photoPlayer img {
+	top: -1vw;
+	left: -16vw;
+	height: 70vw;
+	width: auto;
+	position: absolute;
+}
+
+.teamPlayer img {
+	padding: 2vw;
+	top: 0;
+	right: 0;
+	height: 7vw;
+	filter: brightness(0);
+	width: auto;
+	position: absolute;
+}
+
+.nameTeamPlayer {
+	top: 5.5vw;
+	right: 2.5vw;
+	writing-mode: vertical-rl;
+	font-size: 1.5vw;
+	position: absolute;
+}
+
+.MVPtext {
+	font-family: 'square', sans-serif;
+	font-weight: 1000;
+	bottom: 2.5vw;
+	right: 1vw;
+	font-size: 7vw;
+	color: var(--black);
+	background: var(--white);
+	position: absolute;
+}
+
+.MVPnickname {
+	font-family: 'SpaceGrotesk', sans-serif;
+	font-weight: 300;
+	bottom: 1vw;
+	right: 1vw;
+	font-size: 2.3vw;
+	color: var(--black);
+	background: var(--white);
+	position: absolute;
+}
+
+.wrapperStatsPlayers {
+	display: block;
+	margin-left: 1vw;
+	width: 100%;
+}
+
+.titleSectionTable {
+	font-family: 'SpaceGrotesk', sans-serif;
+	font-weight: 1000;
+	font-size: 2.2vw;
+	display: grid;
+	grid-template-columns: 42% 16% 42%;
+	color: var(--white);
+	min-height: 4vw;
+	background: var(--black);
+	width: 100%;
+}
+
+.tableTeamScore {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.tableTeam1 {
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+	max-height: 4vw;
+	overflow: hidden;
+}
+
+.tableTeam2 {
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	max-height: 4vw;
+	overflow: hidden;
+}
+
+.statsSectionTable {
+	display: flex;
+	justify-content: center;
+	height: 100%;
+	margin-top: 1vw;
+	width: 100%;
+}
+
+.leftStatsSection {
+	width: 100%;
+}
+
+.rightStatsSection {
+	width: 100%;
+}
+
+.rowTitleTable {
+	font-family: 'SpaceGrotesk', sans-serif;
+	font-weight: 400;
+	display: grid;
+	height: 5vw;
+	background: var(--white);
+	color: var(--black);
+	border-bottom: 0.1vw solid var(--black);
+	grid-template-columns: 25% repeat(5, 15%);
+	font-size: 1vw;
+}
+
+.rowTitleTable .item {
+	align-items: flex-end;
+}
+
+.leftStatsSection .rowTable {
+	border-right: 0.1vw solid var(--black);
+}
+
+.leftStatsSection .rowTitleTable {
+	border-right: 0.1vw solid var(--black);
+}
+
+.rowTable {
+	font-family: 'SpaceGrotesk', sans-serif;
+	font-weight: 800;
+	display: grid;
+	height: 6vw;
+	background: var(--white);
+	color: var(--black);
+	border-bottom: 0.1vw solid var(--black);
+	grid-template-columns: 25% repeat(5, 15%);
+	font-size: 1vw;
+}
+
+.item {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.poweredByRankoff {
+	font-family: 'SpaceGrotesk', sans-serif;
+	font-weight: 400;
+	position: absolute;
+	bottom: -1.5vw;
+	right: 3vw;
+	font-size: 1vw;
+	color: var(--white);
+}

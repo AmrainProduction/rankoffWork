@@ -1,1 +1,1 @@
-export const URL = 'https://api.rankoff.ru/api'
+export const URL = 'https://api.rankoff.org/api'

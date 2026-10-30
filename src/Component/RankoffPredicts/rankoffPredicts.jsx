@@ -8,7 +8,6 @@ import {
     useGetShortMatchQuery, useGetTournamentsQuery
 } from "../../store/api/apiSlice";
 import ResultPredicts from "./PictureResult/resultPredicts";
-import logo from "../../logo.svg";
 import ResultPredicts2 from "./PictureResult/resultPredicts2";
 import ResultPredicts3 from "./PictureResult/resultPredicts3";
 import ResultPredicts4 from "./PictureResult/resultPredicts4";
@@ -155,9 +154,6 @@ const RankoffPredicts = () => {
     return (
         <>
             <div className={classes.wrapperMenu}>
-                <div className={classes.wrapperLogo}>
-                    <img src={logo} alt="logo"/>
-                </div>
                 <div className={classes.menu}>
 
                     <div className={classes.wrapperListMatches}>

@@ -6,6 +6,7 @@ import normalizeRating from './normalizeRating'
 import normalizeImpact from './normalizeImpact'
 import normalizeKD from './normalizeKD'
 import { calculatePlayersTop } from '../../../Function/calculatePlayersTop'
+import { calculatePlayersTopV2 } from '../../../Function/calculatePlayersTopV2'
 
 const StatsPlayersNecessaryTour = () => {
 	const tours = useGetTournamentsQuery()
@@ -20,7 +21,7 @@ const StatsPlayersNecessaryTour = () => {
 	const tourInfo = useGetTournamentByNameQuery({ name })
 
 	let query = ''
-	let players_tournaments = calculatePlayersTop(name, '', allPlayers, allMatches, teamsTour, tourInfo, '')
+	let players_tournaments = calculatePlayersTopV2(name, '', allPlayers, allMatches, teamsTour, tourInfo, '')
 
 	players_tournaments.map((e) => {
 		query +=
@@ -71,11 +72,11 @@ const StatsPlayersNecessaryTour = () => {
 			',' +
 			Math.round((e.k / e.d) * 100) / 100 +
 			',' +
-			Math.round(e.kpr_p * 100) / 100 +
+			Math.round(e.kpr * 100) / 100 +
 			',' +
-			Math.round(e.dpr_p * 100) / 100 +
+			Math.round(e.dpr * 100) / 100 +
 			',' +
-			Math.round(e.impact_p * 100) / 100 +
+			Math.round(e.impact * 100) / 100 +
 			',' +
 			Math.round(e.rating * 100) / 100 +
 			',' +
@@ -109,8 +110,6 @@ const StatsPlayersNecessaryTour = () => {
 			'); \n'
 	})
 
-	// console.log(sortPlayersArr)
-
 	return (
 		<div className={classes.wrapperStatsPlayersTour}>
 			<div className={classes.listTours}>
@@ -137,7 +136,7 @@ const StatsPlayersNecessaryTour = () => {
 							},
 							() => {
 								console.log('Fail copy')
-							}
+							},
 						)
 					}}>
 					Copy

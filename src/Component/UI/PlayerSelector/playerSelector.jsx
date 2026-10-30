@@ -16,8 +16,10 @@ const PlayerSelector = ({ label, onSelect, defaultPlayerValue }) => {
 	useEffect(() => {
 		if (defaultPlayerValue) {
 			let defaultPlayer = listPlayers.data?.filter((e) => e.player_id === defaultPlayerValue)
-			setInputValue(defaultPlayer[0])
-			onSelect(defaultPlayer[0])
+			if (defaultPlayer) {
+				setInputValue(defaultPlayer[0])
+				onSelect(defaultPlayer[0])
+			}
 		}
 	}, [defaultPlayerValue])
 
@@ -45,7 +47,7 @@ const PlayerSelector = ({ label, onSelect, defaultPlayerValue }) => {
 		} else {
 			const filtered = listPlayers.data?.filter((e) => e.nickname.toLowerCase().includes(value.toLowerCase()))
 			setFilteredPlayers(filtered)
-			setShowDropdownMenu(filtered.length > 0)
+			setShowDropdownMenu(filtered?.length > 0)
 		}
 	}
 

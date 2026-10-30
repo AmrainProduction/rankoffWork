@@ -42,6 +42,7 @@ const StatsTeamsNecessaryTour = () => {
 	let played_dune = 0
 	let played_zone7 = 0
 	let played_hanami = 0
+	let played_prison = 0
 	let w_sandstone = 0
 	let w_rust = 0
 	let w_province = 0
@@ -51,6 +52,7 @@ const StatsTeamsNecessaryTour = () => {
 	let w_dune = 0
 	let w_zone7 = 0
 	let w_hanami = 0
+	let w_prison = 0
 	let l_sandstone = 0
 	let l_rust = 0
 	let l_province = 0
@@ -60,6 +62,7 @@ const StatsTeamsNecessaryTour = () => {
 	let l_dune = 0
 	let l_zone7 = 0
 	let l_hanami = 0
+	let l_prison = 0
 	let pick_sandstone = 0
 	let pick_rust = 0
 	let pick_province = 0
@@ -69,6 +72,7 @@ const StatsTeamsNecessaryTour = () => {
 	let pick_dune = 0
 	let pick_zone7 = 0
 	let pick_hanami = 0
+	let pick_prison = 0
 	let awards_team
 	let link_vk
 	let link_yt
@@ -76,16 +80,14 @@ const StatsTeamsNecessaryTour = () => {
 	let link_dis
 	let points_team = 0
 
-	if (allMatchesData.data && allTeamsData.data && allMatchesData.data.length > 0 && allTeamsData.data.length > 0) {
-		if (allTeamsFromTourData.data && allTeamsFromTourData.data.length > 0) {
-			allTeamsFromTourData.data.map((e, index) => {
-				allTeamsData.data.map((e1) => {
-					if (e1.name_team === e.name_team && e1.team_id === e.team_id) {
-						allTeams[index] = e1
-					}
-				})
+	if (allMatchesData.data && allTeamsData.data && allMatchesData.data.length > 0 && allTeamsData.data.length > 0 && allTeamsFromTourData.data && allTeamsFromTourData.data.length > 0) {
+		allTeamsFromTourData.data.map((e, index) => {
+			allTeamsData.data.map((e1) => {
+				if (e1.team_id === e.team_id) {
+					allTeams[index] = e1
+				}
 			})
-		}
+		})
 
 		allMatches = allMatchesData.data
 
@@ -260,6 +262,23 @@ const StatsTeamsNecessaryTour = () => {
 							l_hanami++
 						}
 					}
+
+					if (matches.map === 'Prison') {
+						w_rounds += matches.total_r_team1
+						l_rounds += matches.total_r_team2
+						played_prison++
+						if (matches.map_pick === teams.name_team) {
+							pick_prison++
+						}
+						if (matches.total_r_team1 > matches.total_r_team2) {
+							w_map++
+							w_prison++
+						}
+						if (matches.total_r_team1 < matches.total_r_team2) {
+							l_map++
+							l_prison++
+						}
+					}
 				}
 				if (matches.team2_id === teams.team_id) {
 					if (matches.map === 'Rust') {
@@ -293,6 +312,23 @@ const StatsTeamsNecessaryTour = () => {
 						if (matches.total_r_team1 > matches.total_r_team2) {
 							l_dune++
 							l_map++
+						}
+					}
+
+					if (matches.map === 'Zone7') {
+						w_rounds += matches.total_r_team2
+						l_rounds += matches.total_r_team1
+						played_zone7++
+						if (matches.map_pick === teams.name_team) {
+							pick_zone7++
+						}
+						if (matches.total_r_team2 > matches.total_r_team1) {
+							w_map++
+							w_zone7++
+						}
+						if (matches.total_r_team2 < matches.total_r_team1) {
+							l_map++
+							l_zone7++
 						}
 					}
 
@@ -394,6 +430,23 @@ const StatsTeamsNecessaryTour = () => {
 						}
 						if (matches.total_r_team1 > matches.total_r_team2) {
 							l_hanami++
+							l_map++
+						}
+					}
+
+					if (matches.map === 'Prison') {
+						w_rounds += matches.total_r_team2
+						l_rounds += matches.total_r_team1
+						played_prison++
+						if (matches.map_pick === teams.name_team) {
+							pick_prison++
+						}
+						if (matches.total_r_team1 < matches.total_r_team2) {
+							w_prison++
+							w_map++
+						}
+						if (matches.total_r_team1 > matches.total_r_team2) {
+							l_prison++
 							l_map++
 						}
 					}
@@ -525,6 +578,11 @@ const StatsTeamsNecessaryTour = () => {
 				played_hanami +
 				`'` +
 				',' +
+				'played_prison=' +
+				`'` +
+				played_prison +
+				`'` +
+				',' +
 				'w_sandstone=' +
 				`'` +
 				w_sandstone +
@@ -568,6 +626,11 @@ const StatsTeamsNecessaryTour = () => {
 				'w_hanami=' +
 				`'` +
 				w_hanami +
+				`'` +
+				',' +
+				'w_prison=' +
+				`'` +
+				w_prison +
 				`'` +
 				',' +
 				'l_sandstone=' +
@@ -615,6 +678,11 @@ const StatsTeamsNecessaryTour = () => {
 				l_hanami +
 				`'` +
 				',' +
+				'l_prison=' +
+				`'` +
+				l_prison +
+				`'` +
+				',' +
 				'pick_sandstone=' +
 				`'` +
 				pick_sandstone +
@@ -659,6 +727,11 @@ const StatsTeamsNecessaryTour = () => {
 				`'` +
 				pick_hanami +
 				`'` +
+				',' +
+				'pick_prison=' +
+				`'` +
+				pick_prison +
+				`'` +
 				' WHERE team_id=' +
 				`'` +
 				team_id +
@@ -685,6 +758,7 @@ const StatsTeamsNecessaryTour = () => {
 			played_dune = 0
 			played_zone7 = 0
 			played_hanami = 0
+			played_prison = 0
 			w_sandstone = 0
 			w_rust = 0
 			w_province = 0
@@ -694,6 +768,7 @@ const StatsTeamsNecessaryTour = () => {
 			w_dune = 0
 			w_zone7 = 0
 			w_hanami = 0
+			w_prison = 0
 			l_sandstone = 0
 			l_rust = 0
 			l_province = 0
@@ -703,6 +778,7 @@ const StatsTeamsNecessaryTour = () => {
 			l_dune = 0
 			l_zone7 = 0
 			l_hanami = 0
+			l_prison = 0
 			pick_sandstone = 0
 			pick_rust = 0
 			pick_province = 0
@@ -712,6 +788,7 @@ const StatsTeamsNecessaryTour = () => {
 			pick_dune = 0
 			pick_zone7 = 0
 			pick_hanami = 0
+			pick_prison = 0
 			awards_team = 0
 			link_vk = 0
 			link_yt = 0
@@ -745,7 +822,7 @@ const StatsTeamsNecessaryTour = () => {
 							},
 							() => {
 								console.log('Fail copy')
-							}
+							},
 						)
 					}}>
 					Copy

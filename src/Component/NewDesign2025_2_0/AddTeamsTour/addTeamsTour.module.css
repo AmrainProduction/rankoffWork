@@ -1,0 +1,316 @@
+@font-face {
+	font-family: 'Mazzard M';
+	src: url('../../../Fonts/Mazzard/MazzardM-SemiBold.ttf') format('truetype');
+	font-style: normal;
+	font-weight: 500;
+}
+
+.wrapperPage {
+	font-family: 'Mazzard M', sans-serif;
+	display: block;
+	width: 100%;
+	color: var(--textColor);
+}
+
+.wrapperMenu {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: stretch;
+	gap: 16px;
+	width: 100%;
+	background: var(--mainLightBlack);
+	margin-bottom: 10px;
+	padding: 10px;
+	box-sizing: border-box;
+}
+
+.wrapperLogo {
+	display: flex;
+	align-items: center;
+	flex: 0 0 auto;
+	height: 120px;
+}
+
+.wrapperLogo img {
+	height: 100%;
+	width: auto;
+	max-width: 100%;
+	object-fit: contain;
+}
+
+.wrapperList {
+	display: flex;
+	flex-direction: column;
+	flex: 2 1 280px;
+	min-width: 0;
+}
+
+.wrapperInfo {
+	display: flex;
+	flex-direction: column;
+	flex: 1 1 220px;
+	min-width: 0;
+}
+
+.titleBox {
+	width: 100%;
+	height: auto;
+	padding: 1% 0;
+	color: var(--textColor);
+}
+
+.infoText {
+	min-height: 1.5em;
+	padding-bottom: 5px;
+}
+
+.inputData {
+	width: 100%;
+	min-width: 0;
+	box-sizing: border-box;
+}
+
+.list {
+	display: block;
+	overflow-y: scroll;
+	border-radius: 0.5vw;
+	width: 100%;
+	height: 120px;
+	margin-top: 5px;
+	background: var(--componentBlockColor);
+	color: white;
+}
+
+.item {
+	background: var(--componentLightBlockColor);
+	margin-bottom: 2px;
+	padding: 5px;
+	cursor: pointer;
+	transition: all 0.5s;
+	word-break: break-all;
+}
+
+.item:hover {
+	background: var(--componentBlockColorHover);
+}
+
+.btnEnter {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex: 0 1 180px;
+	min-height: 60px;
+	border-radius: 0.5vw;
+	background: var(--buttonColor);
+	cursor: pointer;
+	color: white;
+}
+
+.btnEnter:hover {
+	background: var(--buttonColorHover);
+}
+
+.btnDisabled {
+	opacity: 0.4;
+	cursor: not-allowed;
+}
+
+.wrapperTeams {
+	display: block;
+	padding: 0 1vw;
+}
+
+.rowTitle,
+.row {
+	display: grid;
+	grid-template-columns: 40px 2fr 1fr 1fr 1fr;
+	gap: 10px;
+	align-items: end;
+	margin-bottom: 6px;
+}
+
+.row > * {
+	min-width: 0;
+}
+
+.rowTitle {
+	color: var(--textColor);
+	opacity: 0.7;
+}
+
+.number {
+	padding-bottom: 3px;
+}
+
+.warning {
+	color: #c24f4f;
+	padding-bottom: 3px;
+}
+
+.sqlPreview {
+	display: block;
+	width: calc(100% - 2vw);
+	min-height: 150px;
+	margin: 10px 1vw;
+	font-family: monospace;
+	font-size: 12px;
+}
+
+.infoText {
+	word-break: break-word;
+}
+
+/* Планшеты: кнопка уходит на всю ширину под списками */
+@media (max-width: 1000px) {
+	.btnEnter {
+		flex: 1 1 100%;
+	}
+
+	.rowTitle,
+	.row {
+		grid-template-columns: 30px 2fr 1fr 1fr;
+	}
+
+	.warning {
+		grid-column: 2 / -1;
+		padding-bottom: 0;
+	}
+}
+
+/* Телефоны: логотип меньше, строка команды складывается в столбик */
+@media (max-width: 600px) {
+	.wrapperLogo {
+		height: 70px;
+	}
+
+	.wrapperList,
+	.wrapperInfo {
+		flex: 1 1 100%;
+	}
+
+	.rowTitle {
+		display: none;
+	}
+
+	.row {
+		grid-template-columns: 30px 1fr;
+		padding-bottom: 10px;
+		border-bottom: 1px solid var(--componentLightBlockColor);
+	}
+
+	.row > *:not(.number) {
+		grid-column: 2;
+	}
+
+	.number {
+		grid-row: 1;
+	}
+}
+
+/* Результаты уже добавленных команд */
+.wrapperResults {
+	display: block;
+	margin-top: 20px;
+	padding: 10px 1vw 0;
+	border-top: 1px solid var(--componentLightBlockColor);
+}
+
+.resultsHeader {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	align-items: center;
+	gap: 10px;
+	margin-bottom: 10px;
+}
+
+.sectionTitle {
+	font-size: 1.2em;
+}
+
+.btnResults {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	min-height: 40px;
+	padding: 0 20px;
+	border-radius: 0.5vw;
+	background: var(--buttonColor);
+	cursor: pointer;
+	color: white;
+}
+
+.btnResults:hover {
+	background: var(--buttonColorHover);
+}
+
+.resultTitle,
+.resultRow {
+	display: grid;
+	grid-template-columns: minmax(0, 2fr) minmax(0, 0.7fr) minmax(0, 0.7fr) minmax(0, 1.2fr);
+	gap: 10px;
+	align-items: center;
+	margin-bottom: 6px;
+}
+
+.resultTitle {
+	opacity: 0.7;
+}
+
+.resultRow {
+	padding: 2px 4px;
+	border-radius: 4px;
+	border-left: 3px solid transparent;
+}
+
+.resultRowChanged {
+	border-left-color: #7db489;
+}
+
+.resultTeam {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	min-width: 0;
+}
+
+.resultTeam img {
+	width: 28px;
+	height: 28px;
+	object-fit: contain;
+	flex: 0 0 auto;
+}
+
+.resultTeam span {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.inputError {
+	outline: 1px solid #c24f4f;
+}
+
+.withDelete {
+	grid-template-columns: minmax(0, 2fr) minmax(0, 0.7fr) minmax(0, 0.7fr) minmax(0, 1.2fr) auto;
+}
+
+@media (max-width: 600px) {
+	.resultTitle {
+		display: none;
+	}
+
+	.resultRow {
+		grid-template-columns: 1fr 1fr;
+		padding-bottom: 10px;
+		border-bottom: 1px solid var(--componentLightBlockColor);
+	}
+
+	.resultTeam {
+		grid-column: 1 / -1;
+	}
+
+	.resultRow input:last-child {
+		grid-column: 1 / -1;
+	}
+}

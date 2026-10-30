@@ -37,7 +37,7 @@ const UpdateRosterResult = ({ player1, player2, dateEnd1, days1, dateEnd2, days2
 					</div>
 				</div>
 				<div className={classes.statsSection}>
-					<div className={classes.rankoff}>RANKOFF.RU</div>
+					<div className={classes.rankoff}>RANKOFF.ORG</div>
 					<div className={classes.wrapperStats}>
 						<div className={classes.metric}>
 							<div

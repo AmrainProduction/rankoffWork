@@ -1,0 +1,334 @@
+@font-face {
+	font-family: 'DrukCyrMedium';
+	src: url('../../../Fonts/DrukCyr-Medium.eot');
+	src:
+		url('../../../Fonts/DrukCyr-Medium.eot?#iefix') format('embedded-opentype'),
+		url('../../../Fonts/DrukCyr-Medium.woff') format('woff'),
+		url('../../../Fonts/DrukCyr-Medium.ttf') format('truetype');
+	font-style: normal;
+	font-weight: 500;
+}
+
+@font-face {
+	font-family: 'Mazzard M';
+	src: url('../../../Fonts/Mazzard/MazzardM-SemiBold.eot');
+	src:
+		url('../../../Fonts/Mazzard/MazzardM-SemiBold.eot?#iefix') format('embedded-opentype'),
+		url('../../../Fonts/Mazzard/MazzardM-SemiBold.woff') format('woff'),
+		url('../../../Fonts/Mazzard/MazzardM-SemiBold.ttf') format('truetype');
+	font-style: normal;
+	font-weight: 500;
+}
+
+@font-face {
+	font-family: 'DrukCyr Bold';
+	src: url('../../../Fonts/DrukCyr-Bold.ttf') format('truetype');
+}
+
+@font-face {
+	font-family: 'DrukTextWide';
+	src: url('../../../Fonts/DRUKTEXTWIDECYR-BOLD.otf') format('truetype');
+}
+
+@font-face {
+	font-family: 'Montserrat Medium';
+	src: url('../../../Fonts/Montserrat/MONTSERRAT-MEDIUM.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'Montserrat SemiBold';
+	src: url('../../../Fonts/Montserrat/MONTSERRAT-SEMIBOLD.ttf') format('truetype');
+}
+
+@font-face {
+	font-family: 'Montserrat Bold';
+	src: url('../../../Fonts/Montserrat/MONTSERRAT-BOLD.TTF') format('truetype');
+}
+
+:local(.wrapperTopResult) {
+	--titleRowDark: #4e0922;
+	--rowDark: #781236;
+	--rowLight: #b00745;
+
+	--red: #ff1818;
+	--green: #00db00;
+	--yellow: #ff9615;
+
+	--white: #fff;
+	--black: #000;
+}
+
+.bgImg {
+	height: auto;
+	width: 100%;
+}
+
+.wrapperMenu {
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-start;
+	width: 100%;
+	height: 150px;
+	background: var(--mainLightBlack);
+	margin-bottom: 10px;
+	padding: 5px;
+	color: white;
+}
+
+.wrapperLogo {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: auto;
+	height: 100%;
+}
+
+.wrapperLogo img {
+	height: 70%;
+	width: auto;
+}
+
+.btnSaveAsImage {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-radius: 3px;
+	background: var(--buttonColor);
+	height: 40px;
+	width: 160px;
+	cursor: pointer;
+	color: white;
+}
+
+.btnSaveAsImage:hover {
+	background: var(--buttonColorHover);
+}
+
+.wrapperButtons {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	width: 20%;
+}
+
+.wrapperButtons button:not(:last-child) {
+	margin-bottom: 3%;
+}
+
+.menu {
+	display: flex;
+	justify-content: center;
+	align-items: flex-end;
+	height: 100%;
+	width: 100%;
+}
+
+.wrapperListMatches {
+	display: block;
+	width: 100%;
+	height: 100%;
+	margin-right: 2%;
+	margin-left: 2%;
+	padding: 2px;
+}
+
+.listMatches {
+	display: block;
+	overflow-y: scroll;
+	border-radius: 3px;
+	width: 100%;
+	min-width: 150px;
+	height: 120px;
+	background: var(--componentBlockColor);
+	color: white;
+}
+
+.match {
+	background: var(--componentLightBlockColor);
+	margin-bottom: 2px;
+	padding: 5px;
+	cursor: pointer;
+	transition: all 0.5s;
+}
+
+.match:hover {
+	background: var(--componentBlockColorHover);
+}
+
+.wrapperPredicters {
+	font-family: 'Mazzard M', sans-serif;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	height: 20%;
+	width: 100%;
+	padding: 0.3%;
+	margin-bottom: 10px;
+	background: var(--componentLightBlockColor);
+}
+
+.wrapperPredicters div:not(:last-child) {
+	margin-right: 0.5%;
+}
+
+.choicePredicter {
+	display: flex;
+	flex-flow: column;
+	justify-content: flex-start;
+	align-items: center;
+	height: 100%;
+	width: 100%;
+	padding: 0.4%;
+	background: var(--componentBlockColorHover);
+	color: white;
+}
+
+.wrapperTeams {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	width: 100%;
+	height: 100%;
+}
+
+.wrapperTeams div:not(:last-child) {
+	margin-right: 3%;
+}
+
+.name {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-bottom: 2%;
+}
+
+.team {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	width: 100%;
+	height: 100%;
+	padding: 5%;
+	background: var(--componentLightBlockColor);
+	cursor: pointer;
+}
+
+.team:hover {
+	background: var(--componentBlockColorHover);
+}
+
+.team img {
+	height: 70%;
+	width: auto;
+}
+
+.wrapperTopResult {
+	font-family: 'DrukCyrMedium', sans-serif;
+	display: block;
+	justify-content: center;
+	align-items: flex-start;
+	height: 100%;
+	width: 100%;
+	z-index: 20;
+	position: relative;
+}
+
+.wrapperTopResult img {
+	height: auto;
+	width: 100%;
+}
+
+/*.wrapperPickTeams {*/
+/*    display: flex;*/
+/*    justify-content: flex-start;*/
+/*    align-items: center;*/
+/*    width: 100%;*/
+/*    height: 11.4%;*/
+/*    top: 29.9%;*/
+/*    padding-left: 3%;*/
+/*    padding-right: 3%;*/
+/*    position: absolute;*/
+/*}*/
+
+/*.wrapperPickTeams2 {*/
+/*    display: flex;*/
+/*    justify-content: flex-start;*/
+/*    align-items: center;*/
+/*    width: 100%;*/
+/*    height: 11.4%;*/
+/*    top: 43.8%;*/
+/*    padding-left: 3%;*/
+/*    padding-right: 3%;*/
+/*    position: absolute;*/
+/*}*/
+
+/*.wrapperPickTeams3 {*/
+/*    display: flex;*/
+/*    justify-content: flex-start;*/
+/*    align-items: center;*/
+/*    width: 100%;*/
+/*    height: 11.4%;*/
+/*    top: 57.6%;*/
+/*    padding-left: 3%;*/
+/*    padding-right: 3%;*/
+/*    position: absolute;*/
+/*}*/
+
+/*.wrapperPickTeams4 {*/
+/*    display: flex;*/
+/*    justify-content: flex-start;*/
+/*    align-items: center;*/
+/*    width: 100%;*/
+/*    height: 11.4%;*/
+/*    top: 71.4%;*/
+/*    padding-left: 3%;*/
+/*    padding-right: 3%;*/
+/*    position: absolute;*/
+/*}*/
+
+/*.wrapperPickTeams5 {*/
+/*    display: flex;*/
+/*    justify-content: flex-start;*/
+/*    align-items: center;*/
+/*    width: 100%;*/
+/*    height: 11.4%;*/
+/*    top: 85.3%;*/
+/*    padding-left: 3%;*/
+/*    padding-right: 3%;*/
+/*    position: absolute;*/
+/*}*/
+
+/*.wrapperPickTeams div:not(:last-child) {*/
+/*    margin-right: 1.8%;*/
+/*}*/
+
+/*.wrapperPickTeams2 div:not(:last-child) {*/
+/*    margin-right: 1.8%;*/
+/*}*/
+
+/*.wrapperPickTeams3 div:not(:last-child) {*/
+/*    margin-right: 1.8%;*/
+/*}*/
+
+/*.wrapperPickTeams4 div:not(:last-child) {*/
+/*    margin-right: 1.8%;*/
+/*}*/
+
+/*.wrapperPickTeams5 div:not(:last-child) {*/
+/*    margin-right: 1.8%;*/
+/*}*/
+
+/*.pickTeamItem {*/
+/*    display: flex;*/
+/*    justify-content: center;*/
+/*    align-items: center;*/
+/*    width: 12.5%;*/
+/*    padding: 0.5%;*/
+/*    height: 100%;*/
+/*}*/
+
+/*.pickTeamItem img {*/
+/*    height: 90%;*/
+/*    width: auto;*/
+/*}*/

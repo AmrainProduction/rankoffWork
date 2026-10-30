@@ -4,7 +4,6 @@ import {toJpeg, toPng} from 'html-to-image';
 import {useGetTournamentsQuery} from "../../store/api/apiSlice";
 import PictureResult from "./PictureResult/topPlayersTourResultLong";
 import TopPlayersTourResultLong from "./PictureResult/topPlayersTourResultLong";
-import logo from "../../logo.svg";
 import PictureResult2 from "../MatchPicture2/PictureResult/pictureResult2";
 import TopPlayersTourResultML from "../MOBLIVE_TopPlayersTour/PictureResult/topPlayersTourResultML";
 
@@ -49,9 +48,6 @@ const TopPlayersByToursLong = () => {
     return (
         <>
             <div className={classes.wrapperMenu}>
-                <div className={classes.wrapperLogo}>
-                    <img src={logo} alt="logo"/>
-                </div>
                 <div className={classes.menu}>
                     <div className={classes.wrapperListMatches}>
                         <div className={classes.titleBox}>Выбор стадии:</div>

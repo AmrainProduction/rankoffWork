@@ -1,7 +1,6 @@
-import React, { createRef, useCallback, useState } from 'react'
+import React, { useRef, useCallback, useState } from 'react'
 import classes from './comparePlayers.module.css'
 import { toJpeg, toPng } from 'html-to-image'
-import logo from '../../../logo.svg'
 import ComparePlayersResult from './PictureResult_v2/comparePlayersResult'
 import { useGetPlayersQuery } from '../../../store/api/apiSlice'
 import PlayerSelector from '../../UI/PlayerSelector/playerSelector'
@@ -74,10 +73,10 @@ const ComparePlayers = () => {
 
 	//--------------------------------HTML to IMG def-------------------------------------------------
 
-	const ref = createRef(null)
+	const ref = useRef(null)
 
 	const onButtonClick = useCallback(() => {
-		if (ref.current === null) {
+		if (ref.current === null || !player1 || !player2) {
 			return
 		}
 
@@ -91,14 +90,11 @@ const ComparePlayers = () => {
 			.catch((err) => {
 				console.log(err)
 			})
-	}, [ref])
+	}, [player1, player2])
 
 	return (
 		<>
 			<div className={classes.wrapperMenu}>
-				<div className={classes.wrapperLogo}>
-					<img src={logo} alt="logo" />
-				</div>
 				<div className={classes.menu}>
 					<PlayerSelector label={'Player #1:'} onSelect={setPlayer1} />
 					<PlayerSelector label={'Player #2:'} onSelect={setPlayer2} />

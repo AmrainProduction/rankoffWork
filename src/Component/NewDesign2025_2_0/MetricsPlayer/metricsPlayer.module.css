@@ -1,0 +1,458 @@
+@font-face {
+	font-family: 'DrukCyr Medium';
+	src: url('../../../Fonts/DrukCyr-Medium.eot');
+	src:
+		url('../../../Fonts/DrukCyr-Medium.eot?#iefix') format('embedded-opentype'),
+		url('../../../Fonts/DrukCyr-Medium.woff') format('woff'),
+		url('../../../Fonts/DrukCyr-Medium.ttf') format('truetype');
+	font-style: normal;
+	font-weight: 500;
+}
+
+@font-face {
+	font-family: 'Mazzard M';
+	src: url('../../../Fonts/Mazzard/MazzardM-SemiBold.eot');
+	src:
+		url('../../../Fonts/Mazzard/MazzardM-SemiBold.eot?#iefix') format('embedded-opentype'),
+		url('../../../Fonts/Mazzard/MazzardM-SemiBold.woff') format('woff'),
+		url('../../../Fonts/Mazzard/MazzardM-SemiBold.ttf') format('truetype');
+	font-style: normal;
+	font-weight: 500;
+}
+
+@font-face {
+	font-family: 'DrukCyr Bold';
+	src: url('../../../Fonts/DrukCyr-Bold.ttf') format('truetype');
+}
+
+@font-face {
+	font-family: 'DrukTextWide';
+	src: url('../../../Fonts/DRUKTEXTWIDECYR-BOLD.otf') format('truetype');
+}
+
+@font-face {
+	font-family: 'Montserrat SemiBold';
+	src: url('../../../Fonts/Montserrat/MONTSERRAT-SEMIBOLD.ttf') format('truetype');
+}
+
+@font-face {
+	font-family: 'Montserrat Bold';
+	src: url('../../../Fonts/Montserrat/MONTSERRAT-BOLD.TTF') format('truetype');
+}
+
+@font-face {
+	font-family: 'Montserrat ExtraBold';
+	src: url('../../../Fonts/Montserrat/MONTSERRAT-EXTRABOLD.TTF') format('truetype');
+}
+
+:local(.wrapperTopResult) {
+	--titleRowDark: #4e0922;
+	--rowDark: #781236;
+	--rowLight: #b00745;
+
+	--red: #ff181899;
+	--green: #00db0099;
+	--yellow: #ff961599;
+
+	--redDark: #ff1818;
+	--greenDark: #00db00;
+	--yellowDark: #ff9615;
+
+	--gold: #efc60c95;
+	--white: #fff;
+	--black: #000;
+}
+
+.wrapperMenu {
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-start;
+	width: 100%;
+	height: auto;
+	background: var(--mainLightBlack);
+	margin-bottom: 10px;
+	padding: 5px;
+}
+
+.wrapperLogo {
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	width: 10%;
+	height: 100%;
+	margin-right: 5%;
+}
+
+.wrapperLogo img {
+	height: 70%;
+	width: auto;
+}
+
+.menu {
+	display: flex;
+	justify-content: center;
+	align-items: flex-start;
+	height: 100%;
+	width: 100%;
+}
+
+.menu div {
+	margin-right: 1vw;
+}
+
+.wrapperList {
+	display: block;
+	width: 100%;
+	max-width: 14vw;
+	height: 100%;
+	margin-right: 1vw;
+}
+
+.titleBox {
+	width: 100%;
+	height: auto;
+	padding: 1% 0;
+	color: var(--textColor);
+}
+
+.list {
+	display: block;
+	overflow-y: scroll;
+	border-radius: 0.5vw;
+	width: 100%;
+	min-width: 150px;
+	height: 120px;
+	background: var(--componentBlockColor);
+	color: white;
+}
+
+.match {
+	background: var(--componentLightBlockColor);
+	margin-bottom: 2px;
+	padding: 5px;
+	cursor: pointer;
+	transition: all 0.5s;
+}
+
+.match:hover {
+	background: var(--componentBlockColorHover);
+}
+
+.btnSaveAsImage {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-radius: 0.5vw;
+	padding: 1%;
+	background: var(--buttonColor);
+	height: 100%;
+	width: 100%;
+	cursor: pointer;
+	color: white;
+}
+
+.btnSaveAsImage:hover {
+	background: var(--buttonColorHover);
+}
+
+.wrapperTopResult {
+	display: block;
+	justify-content: center;
+	align-items: flex-start;
+	height: 100%;
+	width: 100%;
+	z-index: 20;
+	overflow: hidden;
+	position: relative;
+}
+
+.wrapperTopResult img {
+	height: auto;
+	width: 100%;
+}
+
+.wrapperMainContent {
+	display: block;
+	height: 100%;
+	width: 100%;
+	position: absolute;
+}
+
+.wrapperStatsSection {
+	height: 100%;
+	margin: 3vw 0 3vw 3vw;
+	width: 53vw;
+	z-index: 4;
+	position: absolute;
+}
+
+.wrapperTitleSection {
+	display: block;
+	height: 9vw;
+	width: 100%;
+}
+
+.titleBanner {
+	display: flex;
+	align-items: center;
+	width: 100%;
+	height: 100%;
+	color: var(--white);
+	font-family: 'DrukCyrMedium', sans-serif;
+	font-size: 10.6vw;
+}
+
+.titleBanner img {
+	width: auto;
+	height: 100%;
+	margin-right: 0.8vw;
+}
+
+.nameTourWrapper {
+	display: flex;
+	height: 5vw;
+	width: auto;
+	padding: 0 2vw;
+	border-radius: 1vw;
+	margin-top: 2vw;
+	background: var(--titleRowDark);
+	color: var(--white);
+	box-shadow: 0 0 2vw var(--titleRowDark);
+}
+
+.nameTour {
+	font-family: 'DrukTextWide', sans-serif;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100%;
+	font-size: 1.4vw;
+	overflow: hidden;
+}
+
+.logoTour {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100%;
+}
+
+.logoTour img {
+	height: 80%;
+	width: auto;
+}
+
+.wrapperStats {
+	display: flex;
+	justify-content: center;
+	align-items: flex-start;
+	margin-top: 2vw;
+	width: 100%;
+	height: auto;
+	padding: 1.5vw;
+	border-radius: 1vw;
+	box-shadow: 0 0 2vw var(--titleRowDark);
+	background: var(--titleRowDark);
+}
+
+.stats {
+	display: grid;
+	grid-template-rows: repeat(3, 1fr);
+	grid-template-columns: repeat(2, 1fr);
+	gap: 1vw;
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+}
+
+.statsItem {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	border-radius: 1vw;
+	padding: 2vw 1vw;
+	background: var(--rowLight);
+	color: var(--white);
+}
+
+.titleMetric {
+	font-family: 'Montserrat Bold', sans-serif;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 2vw;
+	width: 100%;
+	font-size: 2vw;
+}
+
+.metric {
+	font-family: 'DrukCyrMedium', sans-serif;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 9vw;
+	width: 100%;
+	margin-bottom: 1vw;
+	font-size: 9vw;
+}
+
+.colorIndex {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 0.5vw;
+	width: 6vw;
+	border-radius: 0.5vw;
+}
+
+.wrapperInfoPlayer {
+	right: 0;
+	height: 100%;
+	width: 55vw;
+	color: var(--white);
+	background: radial-gradient(ellipse 15vw 25vw at bottom, var(--rowDark) 5vw, transparent);
+	position: absolute;
+}
+
+.wrapperPlayerTeam {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	height: 100%;
+	bottom: 0;
+	right: -5vw;
+	z-index: 1;
+	position: absolute;
+}
+
+.wrapperPlayerTeam img {
+	height: 100%;
+	opacity: 0.8;
+	width: auto;
+	top: 1vw;
+	filter: blur(0.2vw);
+	opacity: 0.4;
+	position: absolute;
+}
+
+.wrapperPlayerPhoto {
+	width: 100%;
+	height: 100%;
+	bottom: 0;
+	z-index: 2;
+	left: 5vw;
+	position: absolute;
+}
+
+.playerPhoto {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100%;
+	width: 100%;
+}
+
+.playerPhoto img {
+	height: 100%;
+	width: auto;
+	filter: drop-shadow(0 0 1vw var(--titleRowDark));
+}
+
+.wrapperPlayerPersonalInfo {
+	width: 45vw;
+	height: 30vw;
+	left: 10vw;
+	bottom: 0;
+	z-index: 6;
+	padding-top: 6vw;
+	color: var(--white);
+	background: radial-gradient(ellipse 25vw 30vw at bottom, var(--rowDark) 5vw, transparent);
+	position: absolute;
+}
+
+.logoTeam {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	height: 5vw;
+}
+
+.logoTeam img {
+	width: auto;
+	height: 100%;
+}
+
+.nickname {
+	font-family: 'DrukTextWide', sans-serif;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 3.5vw;
+	width: 100%;
+}
+
+.flagAndName {
+	font-family: 'Montserrat Bold', sans-serif;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	height: 3vw;
+	font-size: 2vw;
+}
+
+.flag {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100%;
+	margin-right: 0.5vw;
+}
+
+.flag img {
+	height: 1.8vw;
+	border-radius: 0.5vw;
+	width: auto;
+}
+
+.nameSurname {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	overflow: hidden;
+}
+
+.name {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	margin-right: 1vw;
+}
+
+.surname {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.age {
+	font-family: 'Montserrat SemiBold', sans-serif;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	height: 2vw;
+	font-size: 1.5vw;
+}
+
+.gradientToTop {
+	background: linear-gradient(to top, var(--rowDark) 4vw, transparent);
+	width: 100%;
+	height: 30vw;
+	z-index: 3;
+	bottom: 0;
+	position: absolute;
+}

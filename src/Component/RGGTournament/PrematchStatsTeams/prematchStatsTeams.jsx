@@ -3,7 +3,6 @@ import classes from './prematchStatsTeams.module.css'
 import {toBlob, toCanvas, toJpeg, toPixelData, toPng, toSvg} from 'html-to-image';
 
 import PicturePrematch from "./PictureResult/picturePrematch";
-import logo from "../../../logo.svg";
 import {
     useGetMatchesNecessaryTeamQuery,
     useGetShortMatchQuery, useGetTeamsTournamentsByNameQuery,
@@ -69,9 +68,6 @@ const PrematchStatsTeams = () => {
     return (
         <>
             <div className={classes.wrapperMenu}>
-                <div className={classes.wrapperLogo}>
-                    <img src={logo} alt="logo"/>
-                </div>
                 <div className={classes.menu}>
                     <div className={classes.listMatches}>
                         {teamsTour.map((e, index) => {

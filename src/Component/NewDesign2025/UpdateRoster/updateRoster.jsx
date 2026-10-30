@@ -1,95 +1,67 @@
-import React, {createRef, useCallback, useState} from 'react';
+import React, { useState } from 'react'
 import classes from './updateRoster.module.css'
-import {toJpeg, toPng} from 'html-to-image';
-import logo from "../../../logo.svg";
-import UpdateRosterResult from "./PictureResult_v2/updateRosterResult";
-import {useGetPlayersQuery, useGetTeamsQuery} from "../../../store/api/apiSlice";
-import PlayerSelector from "../../UI/PlayerSelector/playerSelector";
-import TeamSelector from "../../UI/TeamSelector/teamSelector";
-import toSQLCommandAddMatch from "../../AddMatches/PictureResult/toSQLCommandAddMatch";
-import toSQLCommandUpdateShortMatch from "../../AddMatches/PictureResult/toSQLCommandUpdateShortMatch";
+import { useGetTeamsQuery, useUpdateAdminRosterMutation } from '../../../store/api/apiSlice'
+import PlayerSelector from '../../UI/PlayerSelector/playerSelector'
+import TeamSelector from '../../UI/TeamSelector/teamSelector'
+
+const SLOTS = [0, 1, 2, 3, 4]
+const PLACEHOLDER_ID = 200 // заглушка пустого слота, может повторяться
 
 const UpdateRoster = () => {
+	const listTeams = useGetTeamsQuery()
+	const [updateRoster, { isLoading: isSaving }] = useUpdateAdminRosterMutation()
 
-    const listTeams = useGetTeamsQuery()
-    const listPlayers = useGetPlayersQuery()
+	const [players, setPlayers] = useState([null, null, null, null, null])
+	const [team, setTeam] = useState(null)
+	const [status, setStatus] = useState(null) // { ok: bool, text }
 
-    const [player1, setPlayer1] = useState(null)
-    const [player2, setPlayer2] = useState(null)
-    const [player3, setPlayer3] = useState(null)
-    const [player4, setPlayer4] = useState(null)
-    const [player5, setPlayer5] = useState(null)
-    const [team, setTeam] = useState(null)
+	const selectTeam = (value) => {
+		setTeam(value)
+		setPlayers([null, null, null, null, null]) // слоты нового состава заполнятся из выбранной команды
+		setStatus(null)
+	}
 
-    let query = ""
+	const selectPlayer = (index) => (player) => {
+		setPlayers((prev) => prev.map((p, i) => (i === index ? player : p)))
+		setStatus(null)
+	}
 
-    const copyToClipboard = () => {
-        const textToCopy = query
+	// Пустой слот — заглушка 200
+	const ids = players.map((p) => p?.player_id ?? PLACEHOLDER_ID)
+	const hasTeam = team && Object.keys(team).length > 0
+	const real = ids.filter((id) => id !== PLACEHOLDER_ID)
+	const hasDuplicates = new Set(real).size !== real.length
+	const isReady = hasTeam && !hasDuplicates
 
-        if (navigator.clipboard && navigator.clipboard.writeText) {
-            // Попытка использовать API Clipboard
-            navigator.clipboard.writeText(textToCopy).then(() => {
-                console.log('Copy good');
-            }, () => {
-                console.log('Fail copy');
-            });
-        } else {
-            // Альтернативный способ для iOS и старых браузеров
-            const textArea = document.createElement("textarea");
-            textArea.value = textToCopy;
-            // Прячем текстовое поле из видимости
-            textArea.style.position = "absolute";
-            textArea.style.left = "-9999px";
-            document.body.appendChild(textArea);
-            textArea.select();
-            try {
-                document.execCommand("copy"); // Используем устаревший метод
-                console.log('Copy good');
-            } catch (err) {
-                console.log('Fail copy');
-            }
-            document.body.removeChild(textArea); // Удаляем текстовое поле после копирования
-        }
-    };
+	const submit = async () => {
+		if (!isReady || isSaving) return
+		setStatus(null)
+		try {
+			await updateRoster({ teamId: team.team_id, players: ids }).unwrap()
+			setStatus({ ok: true, text: 'Roster saved' })
+			listTeams.refetch()
+		} catch (error) {
+			setStatus({ ok: false, text: error?.data?.message || 'Failed to save the roster, try again' })
+		}
+	}
 
-    query = "UPDATE teams SET "
-    + "player_1='" + `${player1?.nickname}` + "', "
-    + "player_2='" + `${player2?.nickname}` + "', "
-    + "player_3='" + `${player3?.nickname}` + "', "
-    + "player_4='" + `${player4?.nickname}` + "', "
-    + "player_5='" + `${player5?.nickname}` + "', "
-    + "player_1_id=" + player1?.player_id + ", "
-    + "player_2_id=" + player2?.player_id + ", "
-    + "player_3_id=" + player3?.player_id + ", "
-    + "player_4_id=" + player4?.player_id + ", "
-    + "player_5_id=" + player5?.player_id
-    + " WHERE "
-    + "team_id=" + team?.team_id + ";"
+	return (
+		<div className={classes.wrapperMenu}>
+			<div>
+				<div className={classes.addPlayers}>
+					<TeamSelector label={'Team:'} onSelect={selectTeam} />
+					{hasTeam && SLOTS.map((i) => <PlayerSelector key={`${team.team_id}-${i}`} label={`Player #${i + 1}:`} onSelect={selectPlayer(i)} defaultPlayerValue={team[`player_${i + 1}_id`]} />)}
 
-    let currentTeam = listTeams.data?.find(item => item.team_id === team?.team_id)
+					{hasDuplicates && <div style={{ color: '#bd5d5d' }}>The same player is selected twice</div>}
+					{status && <div style={{ color: status.ok ? '#7db489' : '#bd5d5d' }}>{status.text}</div>}
 
-    return (
-        <div className={classes.wrapperMenu}>
-            <div className={classes.menu}>
-                <div className={classes.wrapperLogo}>
-                    <img src={logo} alt="logo"/>
-                </div>
-            </div>
-            <div>
-                <div className={classes.addPlayers}>
-                    <TeamSelector label={"Team:"} onSelect={setTeam}/>
-                    <PlayerSelector label={"Player #1:"} onSelect={setPlayer1} defaultPlayerValue={currentTeam?.player_1_id}/>
-                    <PlayerSelector label={"Player #2:"} onSelect={setPlayer2} defaultPlayerValue={currentTeam?.player_2_id}/>
-                    <PlayerSelector label={"Player #3:"} onSelect={setPlayer3} defaultPlayerValue={currentTeam?.player_3_id}/>
-                    <PlayerSelector label={"Player #4:"} onSelect={setPlayer4} defaultPlayerValue={currentTeam?.player_4_id}/>
-                    <PlayerSelector label={"Player #5:"} onSelect={setPlayer5} defaultPlayerValue={currentTeam?.player_5_id}/>
-                    <div className={classes.btnSaveAsImage} onClick={copyToClipboard}>
-                        Enter
-                    </div>
-                </div>
-            </div>
-        </div>
-    );
-};
+					<div className={classes.btnSaveAsImage} style={{ opacity: isReady && !isSaving ? 1 : 0.4 }} onClick={submit}>
+						{isSaving ? 'Saving...' : 'Save'}
+					</div>
+				</div>
+			</div>
+		</div>
+	)
+}
 
-export default UpdateRoster;
+export default UpdateRoster

@@ -72,6 +72,10 @@
     font-family: "Mazzard M", sans-serif;
     display: block;
     width: 100%;
+    min-height: 420px; /* место под выпадающие списки поиска команды и игроков */
+    padding: 10px;
+    background: var(--mainLightBlack);
+    box-sizing: border-box;
 }
 
 .menu {

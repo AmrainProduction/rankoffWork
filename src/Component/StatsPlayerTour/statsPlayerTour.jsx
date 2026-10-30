@@ -2,7 +2,6 @@ import React, {createRef, useCallback, useState} from 'react';
 import classes from './statsPlayerTour.module.css'
 import {toJpeg, toPng} from 'html-to-image';
 import {useGetMatchesByNameTourQuery, useGetTournamentsQuery} from "../../store/api/apiSlice";
-import logo from "../../logo.svg";
 import StatsPlayerTourResult from "./PictureResult/statsPlayerTourResult";
 
 const StatsPlayerTour = () => {
@@ -99,9 +98,6 @@ const StatsPlayerTour = () => {
     return (
         <>
             <div className={classes.wrapperMenu}>
-                <div className={classes.wrapperLogo}>
-                    <img src={logo} alt="logo"/>
-                </div>
                 <div className={classes.menu}>
                     <div className={classes.wrapperListMatches}>
                         <div className={classes.titleBox}>Выбор стадии:</div>

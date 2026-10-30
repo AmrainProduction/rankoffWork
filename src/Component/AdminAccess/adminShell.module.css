@@ -1,0 +1,177 @@
+.shell {
+	min-height: 100vh;
+	width: 100%;
+	box-sizing: border-box;
+}
+
+.side {
+	position: fixed;
+	top: 10px;
+	left: 10px;
+	bottom: 10px;
+	width: 250px;
+	box-sizing: border-box;
+	padding: 12px 10px;
+	background: var(--componentBlockColor);
+	color: var(--textColor);
+	border-radius: 0.5vw;
+	display: flex;
+	flex-direction: column;
+	gap: 6px;
+	z-index: 40;
+}
+
+.nav {
+	flex: 1 1 auto;
+	min-height: 0;
+	overflow-y: auto;
+	display: flex;
+	flex-direction: column;
+	gap: 6px;
+}
+
+.brand {
+	display: block;
+	padding: 4px 8px 10px;
+}
+
+.brand img {
+	display: block;
+	width: 100%;
+	max-width: 150px;
+	height: auto;
+}
+
+.section {
+	display: flex;
+	flex-direction: column;
+}
+
+.sectionHead {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 8px;
+	font-size: 0.8em;
+	font-weight: 700;
+	text-transform: uppercase;
+	letter-spacing: 0.04em;
+	color: var(--textPlaceholderColor);
+	cursor: pointer;
+	user-select: none;
+}
+
+.link {
+	display: block;
+	padding: 7px 10px;
+	border-radius: 6px;
+	color: var(--textColor);
+	text-decoration: none;
+	font-size: 0.95em;
+}
+
+.link:hover {
+	background: rgba(127, 127, 127, 0.15);
+}
+
+.active {
+	background: rgba(127, 127, 127, 0.28);
+	font-weight: 700;
+}
+
+
+.footer {
+	flex: 0 0 auto;
+	padding: 10px 8px 0;
+	border-top: 1px solid rgba(127, 127, 127, 0.3);
+	display: flex;
+	flex-direction: column;
+	gap: 4px;
+}
+
+.who {
+	font-weight: 700;
+	word-break: break-all;
+}
+
+.muted {
+	color: var(--textPlaceholderColor);
+	font-size: 0.85em;
+}
+
+.signOut {
+	cursor: pointer;
+	color: var(--textColor);
+	text-decoration: underline;
+	font-size: 0.9em;
+	background: none;
+	border: 0;
+	padding: 0;
+	text-align: left;
+}
+
+.content {
+	min-width: 0;
+	overflow-x: auto;
+	padding: 10px;
+	box-sizing: border-box;
+}
+
+.contentShifted {
+	margin-left: 260px;
+}
+
+/* Верхние блоки меню страниц (выбор турнира, матча и т.д.): скругление и отступы как у остальных элементов */
+.content :global([class*='wrapperMenu']),
+.content :global([class*='wrapperTabs']) {
+	border-radius: 0.5vw;
+	box-sizing: border-box;
+}
+
+.toggle {
+	position: fixed;
+	left: 10px;
+	bottom: 10px;
+	z-index: 50;
+	padding: 6px 10px;
+	border: 0;
+	border-radius: 6px;
+	background: var(--componentBlockColor);
+	color: var(--textColor);
+	cursor: pointer;
+	opacity: 0.85;
+}
+
+.toggleOpen {
+	display: none;
+}
+
+.home {
+	max-width: 640px;
+	margin: 60px auto;
+	padding: 20px;
+	box-sizing: border-box;
+	background: var(--componentBlockColor);
+	color: var(--textColor);
+	border-radius: 0.5vw;
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+}
+
+.hideBtn {
+	cursor: pointer;
+	background: none;
+	border: 0;
+	padding: 0;
+	text-align: left;
+	color: var(--textColor);
+	text-decoration: underline;
+	font-size: 0.9em;
+}
+
+@media (max-width: 800px) {
+	.contentShifted {
+		margin-left: 0;
+	}
+}

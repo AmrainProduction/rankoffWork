@@ -1,10 +1,9 @@
-import React, { createRef, useCallback, useState } from 'react'
+import React, { useRef, useCallback, useState } from 'react'
 import classes from './compareTops.module.css'
 import { toJpeg, toPng } from 'html-to-image'
 import { useGetTournamentsQuery } from '../../store/api/apiSlice'
 import PictureResult from './PictureResult/leftTopResult'
 import LeftTopResult from './PictureResult/leftTopResult'
-import logo from '../../logo.svg'
 import PictureResult2 from '../MatchPicture2/PictureResult/pictureResult2'
 import TopPlayersTourResultML from '../MOBLIVE_TopPlayersTour/PictureResult/topPlayersTourResultML'
 import RightTopResult from './PictureResult/rightTopResult'
@@ -12,8 +11,8 @@ import RightTopResult from './PictureResult/rightTopResult'
 const CompareTops = () => {
 	const listTours = useGetTournamentsQuery()
 
-	let [choiceMatch, setChoiceMatch] = useState([])
-	let [choiceStage, setChoiceStage] = useState([])
+	let [choiceMatch, setChoiceMatch] = useState('')
+	let [choiceStage, setChoiceStage] = useState('')
 	const [leftTop, setLeftTop] = useState([])
 
 	let toursID = []
@@ -26,7 +25,7 @@ const CompareTops = () => {
 
 	//--------------------------------HTML to IMG def-------------------------------------------------
 
-	const ref = createRef(null)
+	const ref = useRef(null)
 
 	const onButtonClick = useCallback(() => {
 		if (ref.current === null) {
@@ -43,14 +42,11 @@ const CompareTops = () => {
 			.catch((err) => {
 				console.log(err)
 			})
-	}, [ref])
+	}, [choiceMatch])
 
 	return (
 		<div className={classes.container}>
 			<div className={classes.wrapperMenu}>
-				<div className={classes.wrapperLogo}>
-					<img src={logo} alt="logo" />
-				</div>
 				<div className={classes.menu}>
 					<div className={classes.wrapperListMatches}>
 						<div className={classes.titleBox}>Выбор стадии:</div>

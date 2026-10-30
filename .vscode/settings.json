@@ -5,12 +5,13 @@
 	"workbench.editor.limit.perEditorGroup": true,
 	"editor.language.brackets": [],
 	// 🚀 Основные
+	"editor.tabCompletion": "on",
 	"editor.tabSize": 2,
 	"editor.insertSpaces": true,
 	"editor.formatOnSave": true,
 	"files.autoSave": "onFocusChange",
 	// 🎨 Темы и интерфейс
-	"workbench.colorTheme": "Default Dark+",
+	"workbench.colorTheme": "Dark+",
 	"workbench.iconTheme": "material-icon-theme",
 	// 🔄 Вкладки
 	"workbench.editor.enablePreview": false,

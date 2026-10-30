@@ -2,7 +2,6 @@ import React, {createRef, useCallback, useState} from 'react';
 import classes from './topPlayersByTours.module.css'
 
 import TopPlayersTourResult from "./PictureResult/topPlayersTourResult";
-import logo from "../../../logo.svg";
 import {useGetTournamentsQuery} from "../../../store/api/apiSlice";
 import {toJpeg} from "html-to-image";
 
@@ -47,9 +46,6 @@ const TopPlayersYear = () => {
     return (
         <>
             <div className={classes.wrapperMenu}>
-                <div className={classes.wrapperLogo}>
-                    <img src={logo} alt="logo"/>
-                </div>
                 <div className={classes.menu}>
                     <div className={classes.wrapperListMatches}>
                         <div className={classes.titleBox}>Выбор стадии:</div>

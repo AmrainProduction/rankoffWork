@@ -1,15 +1,14 @@
-import React, { createRef, useCallback, useState } from 'react'
+import React, { useRef, useCallback, useState } from 'react'
 import classes from './topPlayersTour.module.css'
 import { toJpeg, toPng } from 'html-to-image'
-import logo from '../../../logo.svg'
 import TopPlayersTourResult from './PictureResult_v2/topPlayersTourResult'
 import { useGetTournamentsQuery } from '../../../store/api/apiSlice'
 
 const TopPlayersTour = () => {
 	const listTours = useGetTournamentsQuery()
 
-	let [choiceMatch, setChoiceMatch] = useState([])
-	let [choiceStage, setChoiceStage] = useState([])
+	let [choiceMatch, setChoiceMatch] = useState('')
+	let [choiceStage, setChoiceStage] = useState('')
 
 	let toursID = []
 
@@ -21,7 +20,7 @@ const TopPlayersTour = () => {
 
 	//--------------------------------HTML to IMG def-------------------------------------------------
 
-	const ref = createRef(null)
+	const ref = useRef(null)
 
 	const onButtonClick = useCallback(() => {
 		if (ref.current === null) {
@@ -38,14 +37,11 @@ const TopPlayersTour = () => {
 			.catch((err) => {
 				console.log(err)
 			})
-	}, [ref])
+	}, [choiceMatch])
 
 	return (
 		<>
 			<div className={classes.wrapperMenu}>
-				<div className={classes.wrapperLogo}>
-					<img src={logo} alt="logo" />
-				</div>
 				<div className={classes.menu}>
 					<div className={classes.wrapperListMatches}>
 						<div className={classes.titleBox}>Choose stage:</div>

@@ -1,7 +1,6 @@
 import React, { createRef, useCallback, useState } from 'react'
 import classes from './updateRoster.module.css'
 import { toJpeg, toPng } from 'html-to-image'
-import logo from '../../../logo.svg'
 import UpdateRosterResult from './PictureResult_v2/updateRosterResult'
 import { useGetPlayersQuery, useGetTeamsQuery } from '../../store/api/apiSlice'
 import PlayerSelector from '../UI/PlayerSelector/playerSelector'
@@ -95,9 +94,6 @@ const UpdateRoster = () => {
 	return (
 		<div className={classes.wrapperMenu}>
 			<div className={classes.menu}>
-				<div className={classes.wrapperLogo}>
-					<img src={logo} alt="logo" />
-				</div>
 			</div>
 			<div>
 				<div className={classes.addPlayers}>

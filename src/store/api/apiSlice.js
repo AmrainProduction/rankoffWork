@@ -1,10 +1,66 @@
 import {createApi, fetchBaseQuery} from "@reduxjs/toolkit/query/react";
 import {URL} from '../../URL'
+import {adminAuthHeaders} from '../../Function/adminAuth'
 
 export const apiSlice = createApi({
     reducerPath: 'api',
     baseQuery: fetchBaseQuery({baseUrl: URL}),
     endpoints: (build) => ({
+        /*-------------- Администраторы --------------*/
+        adminLogin: build.mutation({
+            query: (body) => ({url: `admin/login`, method: 'POST', body, headers: {Accept: 'application/json'}}),
+        }),
+        adminMe: build.query({
+            query: () => ({url: `admin/me`, headers: adminAuthHeaders()}),
+            keepUnusedDataFor: 0,
+        }),
+        adminLogout: build.mutation({
+            query: () => ({url: `admin/logout`, method: 'POST', headers: adminAuthHeaders()}),
+        }),
+        adminChangePassword: build.mutation({
+            query: (body) => ({url: `admin/password`, method: 'POST', body, headers: adminAuthHeaders()}),
+        }),
+        getAdmins: build.query({
+            query: () => ({url: `admin/admins`, headers: adminAuthHeaders()}),
+            keepUnusedDataFor: 0,
+        }),
+        getAdminAudit: build.query({
+            query: (params) => ({url: `admin/audit`, params, headers: adminAuthHeaders()}),
+            keepUnusedDataFor: 0,
+        }),
+        createAdminShortMatches: build.mutation({
+            query: (body) => ({url: `admin/short-matches`, method: 'POST', body, headers: adminAuthHeaders()}),
+        }),
+        updateAdminRoster: build.mutation({
+            query: ({teamId, players}) => ({url: `admin/teams/${teamId}/roster`, method: 'POST', body: {players}, headers: adminAuthHeaders()}),
+        }),
+        deleteAdminShortMatch: build.mutation({
+            query: ({id, withMaps}) => ({url: `admin/short-matches/${id}`, method: 'DELETE', body: {with_maps: !!withMaps}, headers: adminAuthHeaders()}),
+        }),
+        createAdminTournamentTeams: build.mutation({
+            query: (body) => ({url: `admin/tournament-teams`, method: 'POST', body, headers: adminAuthHeaders()}),
+        }),
+        updateAdminTournamentTeamResults: build.mutation({
+            query: (body) => ({url: `admin/tournament-teams/results`, method: 'POST', body, headers: adminAuthHeaders()}),
+        }),
+        deleteAdminTournamentTeam: build.mutation({
+            query: ({id}) => ({url: `admin/tournament-teams/${id}`, method: 'DELETE', headers: adminAuthHeaders()}),
+        }),
+        runAdminFunction: build.mutation({
+            query: ({name, ...body}) => ({url: `admin/functions/${name}`, method: 'POST', body, headers: adminAuthHeaders()}),
+        }),
+        saveAdminEntity: build.mutation({
+            query: ({entity, id, body}) => ({url: `admin/${entity}${id !== null && id !== undefined ? `/${id}` : ''}`, method: 'POST', body, headers: adminAuthHeaders()}),
+        }),
+        deleteAdminEntity: build.mutation({
+            query: ({entity, id}) => ({url: `admin/${entity}/${id}`, method: 'DELETE', headers: adminAuthHeaders()}),
+        }),
+        createAdmin: build.mutation({
+            query: (body) => ({url: `admin/admins`, method: 'POST', body, headers: adminAuthHeaders()}),
+        }),
+        updateAdmin: build.mutation({
+            query: ({id, ...body}) => ({url: `admin/admins/${id}`, method: 'POST', body, headers: adminAuthHeaders()}),
+        }),
         getShortMatchesLast: build.query({
             query: () => `shortMatch/last`,
         }),
@@ -137,6 +193,36 @@ export const apiSlice = createApi({
         getFooterLinks: build.query({
             query: () => `footerLinks`,
         }),
+        // Управление голосованиями (нужно право polls)
+        createAdminPoll: build.mutation({
+            query: (body) => ({url: `admin/polls`, method: 'POST', body, headers: adminAuthHeaders()}),
+        }),
+        updateAdminPoll: build.mutation({
+            query: ({id, ...body}) => ({url: `admin/polls/${id}`, method: 'POST', body, headers: adminAuthHeaders()}),
+        }),
+        deleteAdminPoll: build.mutation({
+            query: ({id}) => ({url: `admin/polls/${id}`, method: 'DELETE', headers: adminAuthHeaders()}),
+        }),
+        getAdminPollResults: build.query({
+            query: ({id}) => ({url: `admin/polls/${id}/results`, headers: adminAuthHeaders()}),
+            keepUnusedDataFor: 0,
+        }),
+        // Внесение карт матча (право data или tournament_matches)
+        createAdminMatch: build.mutation({
+            query: (body) => ({url: `admin/matches`, method: 'POST', body, headers: adminAuthHeaders()}),
+        }),
+        updateAdminMatch: build.mutation({
+            query: ({id, ...body}) => ({url: `admin/matches/${id}`, method: 'POST', body, headers: adminAuthHeaders()}),
+        }),
+        // Голосования (админка): всегда свежие данные
+        getPolls: build.query({
+            query: () => `polls`,
+            keepUnusedDataFor: 0,
+        }),
+        getPoll: build.query({
+            query: ({id}) => `polls/${id}`,
+            keepUnusedDataFor: 0,
+        }),
     })
 })
 
@@ -185,5 +271,30 @@ export const {
     useGetTeamsTournamentsByNameQuery,
     useGetTeamsTournamentsByNameTeamQuery,
     useGetFooterLinksQuery,
+    useGetPollsQuery,
+    useGetPollQuery,
+    useAdminLoginMutation,
+    useAdminMeQuery,
+    useAdminLogoutMutation,
+    useAdminChangePasswordMutation,
+    useGetAdminsQuery,
+    useSaveAdminEntityMutation,
+    useDeleteAdminEntityMutation,
+    useRunAdminFunctionMutation,
+    useCreateAdminTournamentTeamsMutation,
+    useUpdateAdminTournamentTeamResultsMutation,
+    useDeleteAdminTournamentTeamMutation,
+    useDeleteAdminShortMatchMutation,
+    useUpdateAdminRosterMutation,
+    useCreateAdminShortMatchesMutation,
+    useGetAdminAuditQuery,
+    useCreateAdminMutation,
+    useUpdateAdminMutation,
+    useCreateAdminMatchMutation,
+    useUpdateAdminMatchMutation,
+    useCreateAdminPollMutation,
+    useUpdateAdminPollMutation,
+    useDeleteAdminPollMutation,
+    useLazyGetAdminPollResultsQuery,
 } = apiSlice;
 

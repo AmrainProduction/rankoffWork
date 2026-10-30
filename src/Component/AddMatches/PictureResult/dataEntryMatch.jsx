@@ -1,13 +1,38 @@
-import React, { createRef, useCallback, useEffect, useState } from 'react'
+import React, { useRef, useCallback, useState } from 'react'
 import classes from './dataEntryMatch.module.css'
-import { useGetMatchesByNameQuery, useGetPlayersQuery, useGetShortMatchByNameQuery, useGetShortMatchQuery, useGetTeamsQuery } from '../../../store/api/apiSlice'
-import PictureResult2 from '../../MatchPicture2/PictureResult/pictureResult2'
-import toSQLCommandAddMatch from './toSQLCommandAddMatch'
+import { useCreateAdminMatchMutation, useGetMatchesByNameQuery, useGetPlayersQuery, useGetShortMatchByNameQuery, useGetTeamsQuery, useUpdateAdminMatchMutation } from '../../../store/api/apiSlice'
+import { matchApiError, toMatchPayload } from '../matchPayload'
+// import PictureResult2 from '../../MatchPicture2/PictureResult/pictureResult2'
+import PictureResult2 from '../../NewDesign2025_2_0/MatchResult/PictureResult/pictureResult2'
 import { toJpeg } from 'html-to-image'
-import toSQLCommandUpdateShortMatch from './toSQLCommandUpdateShortMatch'
 import Impact from '../../Formulas/impact'
 import Rating from '../../Formulas/rating'
 import PlayerSelector from '../../UI/PlayerSelector/playerSelector'
+
+// Значение считается заполненным, если оно не пустое и (для чисел) конечное — ловит NaN и Infinity
+const isFilled = (value) => {
+	if (value === null || value === undefined || value === '') return false
+	if (typeof value === 'number' && !Number.isFinite(value)) return false
+	return true
+}
+
+const PLAYER_KEYS = ['t1p1', 't1p2', 't1p3', 't1p4', 't1p5', 't2p1', 't2p2', 't2p3', 't2p4', 't2p5']
+
+// Пустая форма: счёт по половинам + ник/K/A/D для каждого из 10 игроков
+const initialMatchInfo = {
+	half1_team1: '',
+	half1_team2: '',
+	half2_team1: '',
+	half2_team2: '',
+	...Object.fromEntries(
+		PLAYER_KEYS.flatMap((p) => [
+			[p, ''],
+			[`${p}_k`, ''],
+			[`${p}_a`, ''],
+			[`${p}_d`, ''],
+		]),
+	),
+}
 
 const DataEntryMatch = (props) => {
 	const name = props.match_id
@@ -16,6 +41,11 @@ const DataEntryMatch = (props) => {
 	const teams = useGetTeamsQuery()
 	const shortMatches = useGetShortMatchByNameQuery({ name })
 	const currentMatch = useGetMatchesByNameQuery({ name })
+	const [createMatch, createState] = useCreateAdminMatchMutation()
+	const [updateMatch, updateState] = useUpdateAdminMatchMutation()
+	const [savedMessage, setSavedMessage] = useState('')
+	const isSaving = createState.isLoading || updateState.isLoading
+	const saveError = matchApiError(createState.error || updateState.error)
 
 	const [player11, setPlayer11] = useState(null)
 	const [player12, setPlayer12] = useState(null)
@@ -28,9 +58,7 @@ const DataEntryMatch = (props) => {
 	const [player24, setPlayer24] = useState(null)
 	const [player25, setPlayer25] = useState(null)
 
-	let resultData = []
-
-	const ref = createRef(null)
+	const ref = useRef(null)
 
 	const onButtonClick = useCallback(() => {
 		if (ref.current === null) {
@@ -47,22 +75,11 @@ const DataEntryMatch = (props) => {
 			.catch((err) => {
 				console.log(err)
 			})
-	}, [ref])
+	}, [name])
 
-	const [choiceMap, setChoiceMap] = useState(null)
+	const [choiceMap, setChoiceMap] = useState('')
 	const [selectedSide, setSelectedSide] = useState('')
 	const [pickMap, setPickMap] = useState('')
-
-	// проверка на то, что получаемый после ввода данных о матче массив заполнен полностью
-	const [isValidData, setIsValidData] = useState(false)
-
-	useEffect(() => {
-		const isDataValid = resultData?.every((item) => {
-			return Object.values(item).every((value) => value !== null && value !== '' && value !== 'NaN')
-		})
-
-		setIsValidData(isDataValid)
-	}, [resultData])
 
 	// Обработчик для изменения значения
 	const handlePickMap = (event) => {
@@ -75,133 +92,83 @@ const DataEntryMatch = (props) => {
 	}
 
 	// Обработчик полей ввода инфы о матче
-	const [matchInfo, setMatchInfo] = useState({
-		half1_team1: '',
-		half1_team2: '',
-		half2_team1: '',
-		half2_team2: '',
-		t1p1: '',
-		t1p2: '',
-		t1p3: '',
-		t1p4: '',
-		t1p5: '',
-		t2p1: '',
-		t2p2: '',
-		t2p3: '',
-		t2p4: '',
-		t2p5: '',
-		t1p1_id: '',
-		t1p2_id: '',
-		t1p3_id: '',
-		t1p4_id: '',
-		t1p5_id: '',
-		t2p1_id: '',
-		t2p2_id: '',
-		t2p3_id: '',
-		t2p4_id: '',
-		t2p5_id: '',
-		t1p1_logo: '',
-		t1p2_logo: '',
-		t1p3_logo: '',
-		t1p4_logo: '',
-		t1p5_logo: '',
-		t2p1_logo: '',
-		t2p2_logo: '',
-		t2p3_logo: '',
-		t2p4_logo: '',
-		t2p5_logo: '',
-		t1p1_kd: '',
-		t1p2_kd: '',
-		t1p3_kd: '',
-		t1p4_kd: '',
-		t1p5_kd: '',
-		t2p1_kd: '',
-		t2p2_kd: '',
-		t2p3_kd: '',
-		t2p4_kd: '',
-		t2p5_kd: '',
-		t1p1_k: '',
-		t1p2_k: '',
-		t1p3_k: '',
-		t1p4_k: '',
-		t1p5_k: '',
-		t2p1_k: '',
-		t2p2_k: '',
-		t2p3_k: '',
-		t2p4_k: '',
-		t2p5_k: '',
-		t1p1_a: '',
-		t1p2_a: '',
-		t1p3_a: '',
-		t1p4_a: '',
-		t1p5_a: '',
-		t2p1_a: '',
-		t2p2_a: '',
-		t2p3_a: '',
-		t2p4_a: '',
-		t2p5_a: '',
-		t1p1_d: '',
-		t1p2_d: '',
-		t1p3_d: '',
-		t1p4_d: '',
-		t1p5_d: '',
-		t2p1_d: '',
-		t2p2_d: '',
-		t2p3_d: '',
-		t2p4_d: '',
-		t2p5_d: '',
-		t1p1_impact: '',
-		t1p2_impact: '',
-		t1p3_impact: '',
-		t1p4_impact: '',
-		t1p5_impact: '',
-		t2p1_impact: '',
-		t2p2_impact: '',
-		t2p3_impact: '',
-		t2p4_impact: '',
-		t2p5_impact: '',
-		t1p1_rating: '',
-		t1p2_rating: '',
-		t1p3_rating: '',
-		t1p4_rating: '',
-		t1p5_rating: '',
-		t2p1_rating: '',
-		t2p2_rating: '',
-		t2p3_rating: '',
-		t2p4_rating: '',
-		t2p5_rating: '',
-	})
+	const [matchInfo, setMatchInfo] = useState(initialMatchInfo)
 
 	// Универсальный обработчик изменения значений полей инфы о матче
 	const handleChangeInfoMatch = (event) => {
 		const { name, value } = event.target
-		// Обновляем только изменённое поле
-		setMatchInfo({
-			...matchInfo,
+		// Функциональное обновление — всегда работаем с актуальным стейтом
+		setMatchInfo((prev) => ({
+			...prev,
 			[name]: value,
+		}))
+	}
+
+	// id редактируемой карты из таблицы matches; null — режим добавления новой карты
+	const [editingId, setEditingId] = useState(null)
+
+	const playerSetters = [setPlayer11, setPlayer12, setPlayer13, setPlayer14, setPlayer15, setPlayer21, setPlayer22, setPlayer23, setPlayer24, setPlayer25]
+
+	const resetForm = () => {
+		setEditingId(null)
+		setMatchInfo(initialMatchInfo)
+		setChoiceMap('')
+		setPickMap('')
+		setSelectedSide('')
+		playerSetters.forEach((setPlayer) => setPlayer(null))
+	}
+
+	// Заполняем форму данными уже вбитой карты
+	const startEdit = (row) => {
+		setEditingId(row.id)
+		setChoiceMap(row.map ?? '')
+		setPickMap(row.map_pick ?? '')
+		setSelectedSide(row.start_side_team1 ?? '')
+
+		const info = {
+			half1_team1: String(row.half1_team1 ?? ''),
+			half1_team2: String(row.half1_team2 ?? ''),
+			// В поле Score вводится итоговый счёт карты
+			half2_team1: String(row.total_r_team1 ?? ''),
+			half2_team2: String(row.total_r_team2 ?? ''),
+		}
+		PLAYER_KEYS.forEach((p) => {
+			info[p] = row[p] ?? ''
+			info[`${p}_k`] = String(row[`${p}_k`] ?? '')
+			info[`${p}_a`] = String(row[`${p}_a`] ?? '')
+			info[`${p}_d`] = String(row[`${p}_d`] ?? '')
+		})
+		setMatchInfo(info)
+
+		PLAYER_KEYS.forEach((p, i) => {
+			const player = players.data?.find((pl) => String(pl.player_id) === String(row[`${p}_id`]))
+			playerSetters[i](player ?? null)
 		})
 	}
 
 	if (players.data && players.data.length > 0 && teams.data && teams.data.length > 0 && shortMatches.data && shortMatches.data.length > 0) {
-		let team1Data = teams.data.find((team) => team.team_id === shortMatches.data[0].team1_id)
-		let team2Data = teams.data.find((team) => team.team_id === shortMatches.data[0].team2_id)
+		const team1Data = teams.data.find((team) => team.team_id === shortMatches.data[0].team1_id)
+		const team2Data = teams.data.find((team) => team.team_id === shortMatches.data[0].team2_id)
 
-		let t1p1Data = players.data.find((player) => player.nickname === (matchInfo.t1p1 ? matchInfo.t1p1 : (matchInfo.t1p1 = team1Data.player_1)))
-		let t1p2Data = players.data.find((player) => player.nickname === (matchInfo.t1p2 ? matchInfo.t1p2 : (matchInfo.t1p2 = team1Data.player_2)))
-		let t1p3Data = players.data.find((player) => player.nickname === (matchInfo.t1p3 ? matchInfo.t1p3 : (matchInfo.t1p3 = team1Data.player_3)))
-		let t1p4Data = players.data.find((player) => player.nickname === (matchInfo.t1p4 ? matchInfo.t1p4 : (matchInfo.t1p4 = team1Data.player_4)))
-		let t1p5Data = players.data.find((player) => player.nickname === (matchInfo.t1p5 ? matchInfo.t1p5 : (matchInfo.t1p5 = team1Data.player_5)))
-		let t2p1Data = players.data.find((player) => player.nickname === (matchInfo.t2p1 ? matchInfo.t2p1 : (matchInfo.t2p1 = team2Data.player_1)))
-		let t2p2Data = players.data.find((player) => player.nickname === (matchInfo.t2p2 ? matchInfo.t2p2 : (matchInfo.t2p2 = team2Data.player_2)))
-		let t2p3Data = players.data.find((player) => player.nickname === (matchInfo.t2p3 ? matchInfo.t2p3 : (matchInfo.t2p3 = team2Data.player_3)))
-		let t2p4Data = players.data.find((player) => player.nickname === (matchInfo.t2p4 ? matchInfo.t2p4 : (matchInfo.t2p4 = team2Data.player_4)))
-		let t2p5Data = players.data.find((player) => player.nickname === (matchInfo.t2p5 ? matchInfo.t2p5 : (matchInfo.t2p5 = team2Data.player_5)))
+		// Ник по умолчанию берём из состава команды, стейт при этом не мутируем
+		const findPlayer = (nickname) => players.data.find((player) => player.nickname === nickname)
 
-		let allK = +matchInfo.t1p1_k + +matchInfo.t1p2_k + +matchInfo.t1p3_k + +matchInfo.t1p4_k + +matchInfo.t1p5_k + +matchInfo.t2p1_k + +matchInfo.t2p2_k + +matchInfo.t2p3_k + +matchInfo.t2p4_k + +matchInfo.t2p5_k
-		let allA = +matchInfo.t1p1_a + +matchInfo.t1p2_a + +matchInfo.t1p3_a + +matchInfo.t1p4_a + +matchInfo.t1p5_a + +matchInfo.t2p1_a + +matchInfo.t2p2_a + +matchInfo.t2p3_a + +matchInfo.t2p4_a + +matchInfo.t2p5_a
-		let allRounds = +matchInfo.half1_team1 + (+matchInfo.half2_team1 - +matchInfo.half1_team1) + (+matchInfo.half1_team2 + (+matchInfo.half2_team2 - +matchInfo.half1_team2))
+		const t1p1Data = findPlayer(matchInfo.t1p1 || team1Data?.player_1)
+		const t1p2Data = findPlayer(matchInfo.t1p2 || team1Data?.player_2)
+		const t1p3Data = findPlayer(matchInfo.t1p3 || team1Data?.player_3)
+		const t1p4Data = findPlayer(matchInfo.t1p4 || team1Data?.player_4)
+		const t1p5Data = findPlayer(matchInfo.t1p5 || team1Data?.player_5)
+		const t2p1Data = findPlayer(matchInfo.t2p1 || team2Data?.player_1)
+		const t2p2Data = findPlayer(matchInfo.t2p2 || team2Data?.player_2)
+		const t2p3Data = findPlayer(matchInfo.t2p3 || team2Data?.player_3)
+		const t2p4Data = findPlayer(matchInfo.t2p4 || team2Data?.player_4)
+		const t2p5Data = findPlayer(matchInfo.t2p5 || team2Data?.player_5)
 
-		resultData = [
+		const allK = +matchInfo.t1p1_k + +matchInfo.t1p2_k + +matchInfo.t1p3_k + +matchInfo.t1p4_k + +matchInfo.t1p5_k + +matchInfo.t2p1_k + +matchInfo.t2p2_k + +matchInfo.t2p3_k + +matchInfo.t2p4_k + +matchInfo.t2p5_k
+		const allA = +matchInfo.t1p1_a + +matchInfo.t1p2_a + +matchInfo.t1p3_a + +matchInfo.t1p4_a + +matchInfo.t1p5_a + +matchInfo.t2p1_a + +matchInfo.t2p2_a + +matchInfo.t2p3_a + +matchInfo.t2p4_a + +matchInfo.t2p5_a
+		const allRounds = +matchInfo.half1_team1 + (+matchInfo.half2_team1 - +matchInfo.half1_team1) + (+matchInfo.half1_team2 + (+matchInfo.half2_team2 - +matchInfo.half1_team2))
+
+		const resultData = [
 			{
 				name_tour_for_sort: shortMatches.data[0].name_tour_sort,
 				name_match_for_sort: shortMatches.data[0].name_match_for_sort,
@@ -216,12 +183,12 @@ const DataEntryMatch = (props) => {
 				team2_id: shortMatches.data[0].team2_id,
 				team1_logo: shortMatches.data[0].logo_t1,
 				team2_logo: shortMatches.data[0].logo_t2,
-				total_r_team1: +matchInfo.half1_team1 + (+matchInfo.half2_team1 - matchInfo.half1_team1),
-				total_r_team2: +matchInfo.half1_team2 + (+matchInfo.half2_team2 - matchInfo.half1_team2),
+				total_r_team1: +matchInfo.half1_team1 + (+matchInfo.half2_team1 - +matchInfo.half1_team1),
+				total_r_team2: +matchInfo.half1_team2 + (+matchInfo.half2_team2 - +matchInfo.half1_team2),
 				half1_team1: +matchInfo.half1_team1,
 				half1_team2: +matchInfo.half1_team2,
-				half2_team1: +matchInfo.half2_team1 - matchInfo.half1_team1,
-				half2_team2: +matchInfo.half2_team2 - matchInfo.half1_team2,
+				half2_team1: +matchInfo.half2_team1 - +matchInfo.half1_team1,
+				half2_team2: +matchInfo.half2_team2 - +matchInfo.half1_team2,
 				start_side_team1: selectedSide,
 				start_side_team2: selectedSide === 'CT' ? 'T' : 'CT',
 				t1p1: player11?.nickname,
@@ -317,129 +284,80 @@ const DataEntryMatch = (props) => {
 			},
 		]
 
-		const copyToClipboard = () => {
-			const textToCopy = resultData.length > 0 ? toSQLCommandAddMatch(resultData) + toSQLCommandUpdateShortMatch(name, resultData, currentMatch.data) : ''
+		// Проверка, что все данные матча заполнены корректно (считается прямо в рендере, без useEffect)
+		const isValidData = resultData.every((item) => Object.values(item).every(isFilled))
+		const invalidKeys = Object.entries(resultData[0])
+			.filter(([, v]) => !isFilled(v))
+			.map(([k, v]) => `${k}: ${String(v)}`)
 
-			if (navigator.clipboard && navigator.clipboard.writeText) {
-				// Попытка использовать API Clipboard
-				navigator.clipboard.writeText(textToCopy).then(
-					() => {
-						console.log('Copy good')
-					},
-					() => {
-						console.log('Fail copy')
-					}
-				)
-			} else {
-				// Альтернативный способ для iOS и старых браузеров
-				const textArea = document.createElement('textarea')
-				textArea.value = textToCopy
-				// Прячем текстовое поле из видимости
-				textArea.style.position = 'absolute'
-				textArea.style.left = '-9999px'
-				document.body.appendChild(textArea)
-				textArea.select()
-				try {
-					document.execCommand('copy') // Используем устаревший метод
-					console.log('Copy good')
-				} catch (err) {
-					console.log('Fail copy')
-				}
-				document.body.removeChild(textArea) // Удаляем текстовое поле после копирования
-			}
+		// После сохранения новой карты очищаем счёт и статистику, а выбранных игроков оставляем: на следующей карте состав обычно тот же
+		const resetStats = () => {
+			const cleared = {}
+			;['t1p1', 't1p2', 't1p3', 't1p4', 't1p5', 't2p1', 't2p2', 't2p3', 't2p4', 't2p5'].forEach((p) => {
+				cleared[`${p}_k`] = ''
+				cleared[`${p}_a`] = ''
+				cleared[`${p}_d`] = ''
+			})
+			setMatchInfo((prev) => ({ ...prev, ...cleared, half1_team1: '', half1_team2: '', half2_team1: '', half2_team2: '' }))
+			setChoiceMap('')
+			setPickMap('')
+			setSelectedSide('')
 		}
+
+		// Отправка карты на сервер: новая или правка уже внесённой (editingId)
+		const saveMap = async () => {
+			setSavedMessage('')
+			createState.reset()
+			updateState.reset()
+			const payload = toMatchPayload(resultData[0])
+			try {
+				if (editingId !== null) {
+					await updateMatch({ id: editingId, ...payload }).unwrap()
+				} else {
+					await createMatch(payload).unwrap()
+				}
+				setSavedMessage(editingId !== null ? 'Map updated' : 'Map saved')
+				if (editingId !== null) resetForm()
+				else resetStats()
+				currentMatch.refetch()
+				shortMatches.refetch()
+			} catch {}
+		}
+
+		const maps = ['Sandstone', 'Breeze', 'Rust', 'Province', 'Sakura', 'Dune', 'Zone7', 'Hanami', 'Prison']
 
 		return (
 			<div className={classes.wrapperAddMatches}>
+				<div className={classes.wrapperEditMaps}>
+					<div className={classes.editModeTitle}>Current mode: {editingId !== null ? `Editing map #${editingId}` : 'Entering a new map'}</div>
+					<div className={classes.editMapsList}>
+						{(currentMatch.data ?? []).map((row) => (
+							<div key={row.id} className={`${classes.editMapItem} ${row.id === editingId ? classes.editMapItemActive : ''}`} onClick={() => startEdit(row)}>
+								{row.map} {row.total_r_team1}:{row.total_r_team2}
+							</div>
+						))}
+						{editingId !== null && (
+							<div className={classes.editMapItem} onClick={resetForm}>
+								+ New map
+							</div>
+						)}
+					</div>
+				</div>
 				<div className={classes.selectMap}>
-					<div
-						className={classes.map}
-						onClick={() => {
-							setChoiceMap('Sandstone')
-						}}>
-						<div className={classes.mapImage}>
-							<img src={`/images/LogoMaps/Sandstone.jpg`} alt="" />
+					{maps.map((mapName) => (
+						<div
+							key={mapName}
+							className={classes.map}
+							onClick={() => {
+								setChoiceMap(mapName)
+							}}>
+							<div className={classes.mapImage}>
+								<img src={`/images/LogoMaps/${mapName}.jpg`} alt="" />
+							</div>
+							<div className={classes.mapName}>{mapName}</div>
+							<div className={classes.hoverMap}></div>
 						</div>
-						<div className={classes.mapName}>{'Sandstone'}</div>
-						<div className={classes.hoverMap}></div>
-					</div>
-					<div
-						className={classes.map}
-						onClick={() => {
-							setChoiceMap('Breeze')
-						}}>
-						<div className={classes.mapImage}>
-							<img src={`/images/LogoMaps/Breeze.jpg`} alt="" />
-						</div>
-						<div className={classes.mapName}>{'Breeze'}</div>
-						<div className={classes.hoverMap}></div>
-					</div>
-					<div
-						className={classes.map}
-						onClick={() => {
-							setChoiceMap('Rust')
-						}}>
-						<div className={classes.mapImage}>
-							<img src={`/images/LogoMaps/Rust.jpg`} alt="" />
-						</div>
-						<div className={classes.mapName}>{'Rust'}</div>
-						<div className={classes.hoverMap}></div>
-					</div>
-					<div
-						className={classes.map}
-						onClick={() => {
-							setChoiceMap('Province')
-						}}>
-						<div className={classes.mapImage}>
-							<img src={`/images/LogoMaps/Province.jpg`} alt="" />
-						</div>
-						<div className={classes.mapName}>{'Province'}</div>
-						<div className={classes.hoverMap}></div>
-					</div>
-					<div
-						className={classes.map}
-						onClick={() => {
-							setChoiceMap('Sakura')
-						}}>
-						<div className={classes.mapImage}>
-							<img src={`/images/LogoMaps/Sakura.jpg`} alt="" />
-						</div>
-						<div className={classes.mapName}>{'Sakura'}</div>
-						<div className={classes.hoverMap}></div>
-					</div>
-					<div
-						className={classes.map}
-						onClick={() => {
-							setChoiceMap('Dune')
-						}}>
-						<div className={classes.mapImage}>
-							<img src={`/images/LogoMaps/Dune.jpg`} alt="" />
-						</div>
-						<div className={classes.mapName}>{'Dune'}</div>
-						<div className={classes.hoverMap}></div>
-					</div>
-					<div
-						className={classes.map}
-						onClick={() => {
-							setChoiceMap('Zone7')
-						}}>
-						<div className={classes.mapImage}>
-							<img src={`/images/LogoMaps/Zone7.jpg`} alt="" />
-						</div>
-						<div className={classes.mapName}>{'Zone7'}</div>
-						<div className={classes.hoverMap}></div>
-					</div>
-					<div
-						className={classes.map}
-						onClick={() => {
-							setChoiceMap('Hanami')
-						}}>
-						<div className={classes.mapImage}>
-							<img src={`/images/LogoMaps/Hanami.jpg`} alt="" />
-						</div>
-						<div className={classes.mapName}>{'Hanami'}</div>
-						<div className={classes.hoverMap}></div>
-					</div>
+					))}
 				</div>
 				<div className={classes.infoMatch}>
 					<div className={classes.wrapperInputData}>
@@ -471,7 +389,7 @@ const DataEntryMatch = (props) => {
 					</div>
 					<div className={classes.wrapperInputData}>
 						<div className={classes.labelInput}>Map:</div>
-						<input type="text" className={classes.inputEntryData} value={choiceMap} />
+						<input type="text" className={classes.inputEntryData} value={choiceMap} readOnly />
 					</div>
 					<div className={classes.wrapperInputData}>
 						<div className={classes.labelInput}>
@@ -504,13 +422,15 @@ const DataEntryMatch = (props) => {
 				</div>
 				{isValidData ? (
 					<div className={classes.wrapperCopyButton}>
-						<div className={classes.copyButton} onClick={copyToClipboard}>
-							Enter
+						<div className={classes.copyButton} onClick={isSaving ? undefined : saveMap} style={isSaving ? { opacity: 0.5 } : undefined}>
+							{isSaving ? 'Saving...' : editingId !== null ? 'Update' : 'Enter'}
 						</div>
 					</div>
 				) : (
 					''
 				)}
+				{saveError && <p style={{ color: '#ea2f2f' }}>{saveError}</p>}
+				{savedMessage && !saveError && <p style={{ color: '#33ff00' }}>{savedMessage}</p>}
 				<div className={classes.wrapperDataPlayersMatch}>
 					<div className={classes.wrapperTitleCells}>
 						<div className={classes.titleCell}>Players</div>
@@ -519,52 +439,52 @@ const DataEntryMatch = (props) => {
 						<div className={classes.titleCell}>D</div>
 					</div>
 					<div className={classes.dataPlayersMatch}>
-						<PlayerSelector onSelect={setPlayer11} defaultPlayerValue={t1p1Data.player_id} />
+						<PlayerSelector key={`${editingId ?? 'new'}-11`} onSelect={setPlayer11} defaultPlayerValue={t1p1Data?.player_id} />
 						<input type="number" className={classes.inputEntryData} name="t1p1_k" value={matchInfo.t1p1_k} onChange={handleChangeInfoMatch} autoComplete="off" />
 						<input type="number" className={classes.inputEntryData} name="t1p1_a" value={matchInfo.t1p1_a} onChange={handleChangeInfoMatch} autoComplete="off" />
 						<input type="number" className={classes.inputEntryData} name="t1p1_d" value={matchInfo.t1p1_d} onChange={handleChangeInfoMatch} autoComplete="off" />
 
-						<PlayerSelector onSelect={setPlayer12} defaultPlayerValue={t1p2Data.player_id} />
+						<PlayerSelector key={`${editingId ?? 'new'}-12`} onSelect={setPlayer12} defaultPlayerValue={t1p2Data?.player_id} />
 						<input type="number" className={classes.inputEntryData} name="t1p2_k" value={matchInfo.t1p2_k} onChange={handleChangeInfoMatch} autoComplete="off" />
 						<input type="number" className={classes.inputEntryData} name="t1p2_a" value={matchInfo.t1p2_a} onChange={handleChangeInfoMatch} autoComplete="off" />
 						<input type="number" className={classes.inputEntryData} name="t1p2_d" value={matchInfo.t1p2_d} onChange={handleChangeInfoMatch} autoComplete="off" />
 
-						<PlayerSelector onSelect={setPlayer13} defaultPlayerValue={t1p3Data.player_id} />
+						<PlayerSelector key={`${editingId ?? 'new'}-13`} onSelect={setPlayer13} defaultPlayerValue={t1p3Data?.player_id} />
 						<input type="number" className={classes.inputEntryData} name="t1p3_k" value={matchInfo.t1p3_k} onChange={handleChangeInfoMatch} autoComplete="off" />
 						<input type="number" className={classes.inputEntryData} name="t1p3_a" value={matchInfo.t1p3_a} onChange={handleChangeInfoMatch} autoComplete="off" />
 						<input type="number" className={classes.inputEntryData} name="t1p3_d" value={matchInfo.t1p3_d} onChange={handleChangeInfoMatch} autoComplete="off" />
 
-						<PlayerSelector onSelect={setPlayer14} defaultPlayerValue={t1p4Data.player_id} />
+						<PlayerSelector key={`${editingId ?? 'new'}-14`} onSelect={setPlayer14} defaultPlayerValue={t1p4Data?.player_id} />
 						<input type="number" className={classes.inputEntryData} name="t1p4_k" value={matchInfo.t1p4_k} onChange={handleChangeInfoMatch} autoComplete="off" />
 						<input type="number" className={classes.inputEntryData} name="t1p4_a" value={matchInfo.t1p4_a} onChange={handleChangeInfoMatch} autoComplete="off" />
 						<input type="number" className={classes.inputEntryData} name="t1p4_d" value={matchInfo.t1p4_d} onChange={handleChangeInfoMatch} autoComplete="off" />
 
-						<PlayerSelector onSelect={setPlayer15} defaultPlayerValue={t1p5Data.player_id} />
+						<PlayerSelector key={`${editingId ?? 'new'}-15`} onSelect={setPlayer15} defaultPlayerValue={t1p5Data?.player_id} />
 						<input type="number" className={classes.inputEntryData} name="t1p5_k" value={matchInfo.t1p5_k} onChange={handleChangeInfoMatch} autoComplete="off" />
 						<input type="number" className={classes.inputEntryData} name="t1p5_a" value={matchInfo.t1p5_a} onChange={handleChangeInfoMatch} autoComplete="off" />
 						<input type="number" className={classes.inputEntryData} name="t1p5_d" value={matchInfo.t1p5_d} onChange={handleChangeInfoMatch} autoComplete="off" />
 
-						<PlayerSelector onSelect={setPlayer21} defaultPlayerValue={t2p1Data.player_id} />
+						<PlayerSelector key={`${editingId ?? 'new'}-21`} onSelect={setPlayer21} defaultPlayerValue={t2p1Data?.player_id} />
 						<input type="number" className={classes.inputEntryData} name="t2p1_k" value={matchInfo.t2p1_k} onChange={handleChangeInfoMatch} autoComplete="off" />
 						<input type="number" className={classes.inputEntryData} name="t2p1_a" value={matchInfo.t2p1_a} onChange={handleChangeInfoMatch} autoComplete="off" />
 						<input type="number" className={classes.inputEntryData} name="t2p1_d" value={matchInfo.t2p1_d} onChange={handleChangeInfoMatch} autoComplete="off" />
 
-						<PlayerSelector onSelect={setPlayer22} defaultPlayerValue={t2p2Data.player_id} />
+						<PlayerSelector key={`${editingId ?? 'new'}-22`} onSelect={setPlayer22} defaultPlayerValue={t2p2Data?.player_id} />
 						<input type="number" className={classes.inputEntryData} name="t2p2_k" value={matchInfo.t2p2_k} onChange={handleChangeInfoMatch} autoComplete="off" />
 						<input type="number" className={classes.inputEntryData} name="t2p2_a" value={matchInfo.t2p2_a} onChange={handleChangeInfoMatch} autoComplete="off" />
 						<input type="number" className={classes.inputEntryData} name="t2p2_d" value={matchInfo.t2p2_d} onChange={handleChangeInfoMatch} autoComplete="off" />
 
-						<PlayerSelector onSelect={setPlayer23} defaultPlayerValue={t2p3Data.player_id} />
+						<PlayerSelector key={`${editingId ?? 'new'}-23`} onSelect={setPlayer23} defaultPlayerValue={t2p3Data?.player_id} />
 						<input type="number" className={classes.inputEntryData} name="t2p3_k" value={matchInfo.t2p3_k} onChange={handleChangeInfoMatch} autoComplete="off" />
 						<input type="number" className={classes.inputEntryData} name="t2p3_a" value={matchInfo.t2p3_a} onChange={handleChangeInfoMatch} autoComplete="off" />
 						<input type="number" className={classes.inputEntryData} name="t2p3_d" value={matchInfo.t2p3_d} onChange={handleChangeInfoMatch} autoComplete="off" />
 
-						<PlayerSelector onSelect={setPlayer24} defaultPlayerValue={t2p4Data.player_id} />
+						<PlayerSelector key={`${editingId ?? 'new'}-24`} onSelect={setPlayer24} defaultPlayerValue={t2p4Data?.player_id} />
 						<input type="number" className={classes.inputEntryData} name="t2p4_k" value={matchInfo.t2p4_k} onChange={handleChangeInfoMatch} autoComplete="off" />
 						<input type="number" className={classes.inputEntryData} name="t2p4_a" value={matchInfo.t2p4_a} onChange={handleChangeInfoMatch} autoComplete="off" />
 						<input type="number" className={classes.inputEntryData} name="t2p4_d" value={matchInfo.t2p4_d} onChange={handleChangeInfoMatch} autoComplete="off" />
 
-						<PlayerSelector onSelect={setPlayer25} defaultPlayerValue={t2p5Data.player_id} />
+						<PlayerSelector key={`${editingId ?? 'new'}-25`} onSelect={setPlayer25} defaultPlayerValue={t2p5Data?.player_id} />
 						<input type="number" className={classes.inputEntryData} name="t2p5_k" value={matchInfo.t2p5_k} onChange={handleChangeInfoMatch} autoComplete="off" />
 						<input type="number" className={classes.inputEntryData} name="t2p5_a" value={matchInfo.t2p5_a} onChange={handleChangeInfoMatch} autoComplete="off" />
 						<input type="number" className={classes.inputEntryData} name="t2p5_d" value={matchInfo.t2p5_d} onChange={handleChangeInfoMatch} autoComplete="off" />
@@ -582,11 +502,14 @@ const DataEntryMatch = (props) => {
 						</div>
 					</>
 				) : (
-					<p>Entry data!</p>
+					<p>Entry data! Missing: {invalidKeys.join(', ')}</p>
 				)}
 			</div>
 		)
 	}
+
+	// Пока данные грузятся — явно ничего не рендерим
+	return null
 }
 
 export default DataEntryMatch

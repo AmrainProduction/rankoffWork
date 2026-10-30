@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="_Слой_1" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 500 500">
+  <!-- Generator: Adobe Illustrator 29.5.0, SVG Export Plug-In . SVG Version: 2.1.0 Build 137)  -->
+  <defs>
+    <style>
+      .st0 {
+        fill: #fff;
+      }
+
+      .st1 {
+        opacity: 0;
+      }
+    </style>
+  </defs>
+  <rect class="st1" width="500" height="500"/>
+  <g>
+    <g>
+      <polygon class="st0" points="352 85.9 257.8 139.5 257.8 54.6 352 85.9"/>
+      <path class="st0" d="M412.6,229.4l65.8-67.3-66.5,15.6v-43l-49.4-41.8-104.7,60v57.8l104.4-60v51.1l-104.4,59.8v153l42.6,30.8-1.1-101.1,120.8,77h56.1l-62.7-40.6-.9-151.2h0ZM363.6,321.6l-55-31.8,55-31.4v63.1h0Z"/>
+    </g>
+    <g>
+      <polygon class="st0" points="148 85.9 242.2 139.5 242.2 54.6 148 85.9"/>
+      <path class="st0" d="M86.5,380.6l-62.7,40.6h56.1l120.8-77-1.1,101.1,42.6-30.8v-153l-104.4-59.8v-51.1l104.4,60v-57.8l-104.7-60-49.4,41.8v43l-66.5-15.6,65.8,67.3-.9,151.2h0ZM136.4,258.5l55,31.4-55,31.8v-63.1h0Z"/>
+    </g>
+  </g>
+</svg>

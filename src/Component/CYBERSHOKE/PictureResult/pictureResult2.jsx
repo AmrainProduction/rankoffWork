@@ -574,7 +574,7 @@ const PictureResult2 = (props) => {
 						<div className={classes.logoRankoff}>
 							<img src={`/images/CYBERSHOKE/Rankoff.svg`} alt="/" />
 						</div>
-						<div className={classes.linkRankoff}>RANKOFF.RU</div>
+						<div className={classes.linkRankoff}>RANKOFF.ORG</div>
 					</div>
 				</div>
 				<div className={classes.mainSections}>

@@ -1,0 +1,233 @@
+.card {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	width: 100%;
+	max-width: 420px;
+	margin: 60px auto;
+	padding: 20px;
+	box-sizing: border-box;
+	background: var(--componentBlockColor);
+	color: var(--textColor);
+	border-radius: 0.5vw;
+}
+
+.wide {
+	max-width: 900px;
+}
+
+/* Карточка внутри каркаса админки: на всю ширину области контента, без центрирования */
+.page {
+	max-width: none;
+	margin: 0 0 10px;
+}
+
+.title {
+	font-size: 1.3em;
+	font-weight: 800;
+}
+
+.hint {
+	color: var(--textPlaceholderColor);
+}
+
+.input {
+	width: 100%;
+	box-sizing: border-box;
+	padding: 8px 10px;
+	border: 1px solid var(--componentBlockColorHover);
+	border-radius: 4px;
+	background: var(--mainLightBlack);
+	color: var(--textColor);
+	font: inherit;
+}
+
+.btn {
+	min-height: 36px;
+	padding: 0 16px;
+	border: none;
+	border-radius: 4px;
+	background: var(--buttonColor);
+	color: white;
+	font: inherit;
+	cursor: pointer;
+	transition: background 0.3s;
+}
+
+.btn:hover:not(:disabled) {
+	background: var(--buttonColorHover);
+}
+
+.btn:disabled {
+	opacity: 0.4;
+	cursor: not-allowed;
+}
+
+.btnDark {
+	min-height: 30px;
+	padding: 0 12px;
+	border: none;
+	border-radius: 4px;
+	background: var(--buttonDark);
+	color: var(--textColor);
+	font: inherit;
+	cursor: pointer;
+}
+
+.btnDark:hover {
+	background: var(--componentBlockColorHover);
+}
+
+.error {
+	color: var(--textColorRed);
+}
+
+.ok {
+	color: var(--textColorGreen);
+}
+
+.link {
+	color: var(--textPlaceholderColor);
+	text-decoration: underline;
+	cursor: pointer;
+}
+
+.row {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 10px;
+}
+
+.table {
+	width: 100%;
+	border-collapse: collapse;
+}
+
+.table th,
+.table td {
+	padding: 8px 6px;
+	text-align: left;
+	border-bottom: 1px solid var(--componentLightBlockColor);
+	vertical-align: middle;
+}
+
+.checks {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 6px 16px;
+}
+
+.checks label {
+	display: flex;
+	align-items: center;
+	gap: 6px;
+	cursor: pointer;
+}
+
+.blocked {
+	opacity: 0.5;
+}
+
+.secret {
+	padding: 10px;
+	border: 1px dashed var(--yellowStatsColor);
+	border-radius: 4px;
+	word-break: break-all;
+	user-select: all;
+}
+
+.filters {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: flex-end;
+	gap: 10px;
+}
+
+.filters label {
+	display: flex;
+	flex-direction: column;
+	gap: 4px;
+	font-size: 0.85em;
+	color: var(--textPlaceholderColor);
+}
+
+.filters .input {
+	width: auto;
+	min-width: 140px;
+}
+
+.logList {
+	display: flex;
+	flex-direction: column;
+}
+
+.logItem {
+	padding: 10px 6px;
+	border-bottom: 1px solid var(--componentLightBlockColor);
+}
+
+.logHead {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: baseline;
+	gap: 4px 12px;
+	cursor: pointer;
+}
+
+.logTime {
+	color: var(--textPlaceholderColor);
+	white-space: nowrap;
+	font-variant-numeric: tabular-nums;
+}
+
+.logWho {
+	font-weight: 800;
+}
+
+.logSummary {
+	flex: 1 1 300px;
+}
+
+.tag {
+	padding: 1px 8px;
+	border-radius: 10px;
+	font-size: 0.8em;
+	background: var(--buttonDark);
+	white-space: nowrap;
+}
+
+.tagWarn {
+	background: var(--textColorRed);
+	color: white;
+}
+
+.tagOk {
+	background: var(--textColorGreen);
+	color: white;
+}
+
+.logDetails {
+	margin-top: 8px;
+	padding: 10px;
+	border-radius: 4px;
+	background: var(--mainLightBlack);
+	display: flex;
+	flex-direction: column;
+	gap: 6px;
+	word-break: break-word;
+}
+
+.from {
+	color: var(--textColorRed);
+}
+
+.to {
+	color: var(--textColorGreen);
+}
+
+.pager {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+}

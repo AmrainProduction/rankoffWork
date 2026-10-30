@@ -7,7 +7,6 @@ import {
     useGetShortMatchQuery
 } from "../../store/api/apiSlice";
 import PictureResultNoobs2 from "./PictureResult/pictureResultNoobs2";
-import logo from "../../logo.svg";
 
 
 const ResultMatchNoobs = () => {
@@ -56,9 +55,6 @@ const ResultMatchNoobs = () => {
     return (
         <>
             <div className={classes.wrapperMenu}>
-                <div className={classes.wrapperLogo}>
-                    <img src={logo} alt="logo"/>
-                </div>
                 <div className={classes.menu}>
                     <div className={classes.wrapperListMatches}>
                         <div className={classes.titleBox}>Выбор карты:</div>

@@ -2,7 +2,6 @@ import React, {createRef, useCallback, useState} from 'react';
 import classes from './rankingTeams.module.css'
 import {toJpeg, toPng} from 'html-to-image';
 import {useGetRankingTeamsQuery, useGetTournamentsQuery} from "../../store/api/apiSlice";
-import logo from "../../logo.svg";
 import RankingTeamsResult from "./PictureResult/rankingTeamsResult";
 
 const RankingTeams = () => {
@@ -52,9 +51,6 @@ const RankingTeams = () => {
     return (
         <>
             <div className={classes.wrapperMenu}>
-                <div className={classes.wrapperLogo}>
-                    <img src={logo} alt="logo"/>
-                </div>
                 <div className={classes.menu}>
                     <div className={classes.wrapperListMatches}>
                         <div className={classes.titleBox}>Выбор турнира:</div>

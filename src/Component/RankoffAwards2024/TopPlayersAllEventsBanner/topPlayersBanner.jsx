@@ -9,7 +9,6 @@ import {
 } from "../../../store/api/apiSlice";
 import {toPng} from "html-to-image";
 import classes from "../../MatchPicture2/matchPicture2.module.css";
-import logo from "../../../logo.svg";
 import PictureResult2 from "../../MatchPicture2/PictureResult/pictureResult2";
 import ResultBanner from "./resultBanner/resultBanner";
 import Kpr from "../../Formulas/kpr";
@@ -529,9 +528,6 @@ const TopPlayersBanner = () => {
     return (
         <>
             <div className={classes.wrapperMenu}>
-                <div className={classes.wrapperLogo}>
-                    <img src={logo} alt="logo"/>
-                </div>
                 <div className={classes.menu}>
                     <div className={classes.wrapperListMatches}>
                         <div className={classes.titleBox}>Позиция в топе:</div>

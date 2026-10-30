@@ -1,0 +1,317 @@
+@font-face {
+	font-family: 'Mazzard M';
+	src: url('../../../Fonts/Mazzard/MazzardM-SemiBold.ttf') format('truetype');
+	font-style: normal;
+	font-weight: 500;
+}
+
+.wrapperPage {
+	font-family: 'Mazzard M', sans-serif;
+	display: block;
+	width: 100%;
+	color: var(--textColor);
+}
+
+.wrapperTabs {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 10px;
+	width: 100%;
+	margin-bottom: 10px;
+	padding: 10px;
+	box-sizing: border-box;
+	background: var(--mainLightBlack);
+}
+
+.wrapperLogo {
+	display: flex;
+	align-items: center;
+	height: 60px;
+	margin-right: 10px;
+}
+
+.wrapperLogo img {
+	height: 100%;
+	width: auto;
+	object-fit: contain;
+}
+
+.tab {
+	padding: 10px 20px;
+	border-radius: 0.5vw;
+	background: var(--buttonDark);
+	cursor: pointer;
+	transition: all 0.3s;
+}
+
+.tab:hover {
+	background: var(--componentBlockColorHover);
+}
+
+.tabActive {
+	background: var(--buttonColor);
+	color: white;
+}
+
+.wrapperMenu {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: stretch;
+	gap: 16px;
+	width: 100%;
+	margin-bottom: 10px;
+	padding: 10px;
+	box-sizing: border-box;
+	background: var(--mainLightBlack);
+}
+
+.wrapperList {
+	display: flex;
+	flex-direction: column;
+	flex: 2 1 280px;
+	min-width: 0;
+}
+
+.wrapperInfo {
+	display: flex;
+	flex-direction: column;
+	flex: 1 1 220px;
+	min-width: 0;
+}
+
+.wrapperBody {
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+	padding: 0 1vw 20px;
+}
+
+.titleBox {
+	width: 100%;
+	padding: 1% 0;
+	color: var(--textColor);
+}
+
+.infoText {
+	min-height: 1.5em;
+	padding-bottom: 5px;
+	word-break: break-word;
+}
+
+.inputData {
+	width: 100%;
+	min-width: 0;
+	box-sizing: border-box;
+}
+
+.list {
+	display: block;
+	overflow-y: scroll;
+	width: 100%;
+	height: 140px;
+	margin-top: 5px;
+	border-radius: 0.5vw;
+	background: var(--componentBlockColor);
+	color: white;
+}
+
+.item {
+	margin-bottom: 2px;
+	padding: 5px;
+	background: var(--componentLightBlockColor);
+	cursor: pointer;
+	transition: all 0.5s;
+	word-break: break-all;
+}
+
+.item:hover {
+	background: var(--componentBlockColorHover);
+}
+
+.fields {
+	display: grid;
+	grid-template-columns: 2fr 3fr 1fr 1fr;
+	gap: 10px;
+}
+
+.field {
+	min-width: 0;
+}
+
+.optionsBlock {
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+}
+
+.pickerRow {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: flex-end;
+	gap: 10px;
+}
+
+.pickerRow > :first-child {
+	flex: 1 1 260px;
+	min-width: 0;
+}
+
+.chips {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 6px;
+}
+
+.chip {
+	display: flex;
+	align-items: center;
+	gap: 6px;
+	padding: 3px 4px 3px 8px;
+	border-radius: 4px;
+	background: var(--componentLightBlockColor);
+}
+
+.chip img {
+	width: 24px;
+	height: 24px;
+	object-fit: contain;
+}
+
+.chip small {
+	opacity: 0.6;
+}
+
+.chipRemoved {
+	background: var(--textColorDarkRed);
+	text-decoration: line-through;
+}
+
+.chipBtn {
+	padding: 0 8px;
+	border-radius: 3px;
+	background: var(--buttonDark);
+	cursor: pointer;
+}
+
+.chipBtn:hover {
+	background: var(--buttonColor);
+}
+
+.btnSmall {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	min-height: 36px;
+	padding: 0 16px;
+	border-radius: 0.5vw;
+	background: var(--buttonColor);
+	color: white;
+	cursor: pointer;
+	white-space: nowrap;
+}
+
+.btnSmall:hover {
+	background: var(--buttonColorHover);
+}
+
+.btnDisabled {
+	opacity: 0.4;
+	cursor: not-allowed;
+}
+
+.sqlBlock {
+	margin-top: 8px;
+	padding-top: 10px;
+	border-top: 1px solid var(--componentLightBlockColor);
+}
+
+.resultsHeader {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	align-items: center;
+	gap: 10px;
+	margin-bottom: 6px;
+}
+
+.sectionTitle {
+	font-size: 1.2em;
+}
+
+.sqlPreview {
+	display: block;
+	width: 100%;
+	min-height: 150px;
+	box-sizing: border-box;
+	font-family: monospace;
+	font-size: 12px;
+}
+
+.warning {
+	padding-bottom: 4px;
+	color: #c24f4f;
+}
+
+.link {
+	color: var(--textPlaceholderColor);
+	text-decoration: underline;
+	cursor: pointer;
+}
+
+.link:hover {
+	color: var(--textColor);
+}
+
+@media (max-width: 1000px) {
+	.fields {
+		grid-template-columns: 1fr 1fr;
+	}
+}
+
+@media (max-width: 600px) {
+	.fields {
+		grid-template-columns: 1fr;
+	}
+
+	.wrapperList,
+	.wrapperInfo {
+		flex: 1 1 100%;
+	}
+}
+
+.actions {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 8px;
+}
+
+/* Выпадающий список в стиле полей ввода страницы (см. input в index.css) */
+.select {
+	appearance: none;
+	-webkit-appearance: none;
+	padding: 0.5rem 2.2rem 0.5rem 1rem;
+	border: 0.14rem solid var(--componentLightBlockColor);
+	border-radius: 0.5rem;
+	background-color: var(--componentLightBlockColor);
+	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%236e7279' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+	background-repeat: no-repeat;
+	background-position: right 1rem center;
+	color: var(--textColor);
+	font-family: inherit;
+	font-size: inherit;
+	outline: none;
+	cursor: pointer;
+	color-scheme: dark;
+	transition: ease-in-out 0.1s;
+}
+
+.select:hover,
+.select:focus {
+	border-color: var(--componentBlockColorHover);
+}
+
+.select option {
+	background: var(--componentLightBlockColor);
+	color: var(--textColor);
+}
