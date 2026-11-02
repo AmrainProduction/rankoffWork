@@ -6,6 +6,7 @@ export const toMatchPayload = (row) => ({
 	name_match_for_sort: row.name_match_for_sort,
 	map: row.map,
 	map_pick: row.map_pick,
+	link_match: row.link_match,
 	start_side_team1: row.start_side_team1,
 	half1_team1: row.half1_team1,
 	half1_team2: row.half1_team2,

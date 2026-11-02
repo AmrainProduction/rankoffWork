@@ -133,13 +133,18 @@
 	left: 10px;
 	bottom: 10px;
 	z-index: 50;
-	padding: 6px 10px;
+	padding: 8px 14px;
 	border: 0;
 	border-radius: 6px;
-	background: var(--componentBlockColor);
-	color: var(--textColor);
+	background: var(--buttonColor);
+	color: #fff;
+	font-weight: 600;
 	cursor: pointer;
-	opacity: 0.85;
+	box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+.toggle:hover {
+	background: var(--buttonColorHover);
 }
 
 .toggleOpen {
@@ -161,17 +166,26 @@
 
 .hideBtn {
 	cursor: pointer;
-	background: none;
+	background: var(--buttonColor);
 	border: 0;
-	padding: 0;
-	text-align: left;
-	color: var(--textColor);
-	text-decoration: underline;
+	border-radius: 6px;
+	padding: 8px 14px;
+	text-align: center;
+	color: #fff;
+	font-weight: 600;
 	font-size: 0.9em;
+}
+
+.hideBtn:hover {
+	background: var(--buttonColorHover);
 }
 
 @media (max-width: 800px) {
 	.contentShifted {
 		margin-left: 0;
+	}
+
+	.content {
+		padding: 6px;
 	}
 }

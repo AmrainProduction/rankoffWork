@@ -50,6 +50,8 @@ export const ADMIN_MENU = [
 		title: 'Administration',
 		items: [
 			{ label: 'ADMINS', path: '/a/ADMINS' },
+			{ label: 'USERS', path: '/a/USERS' },
+			{ label: 'STATS', path: '/a/STATS' },
 			{ label: 'LOGS', path: '/a/LOGS' },
 		],
 	},

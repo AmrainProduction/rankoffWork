@@ -34,6 +34,9 @@ export const apiSlice = createApi({
         updateAdminRoster: build.mutation({
             query: ({teamId, players}) => ({url: `admin/teams/${teamId}/roster`, method: 'POST', body: {players}, headers: adminAuthHeaders()}),
         }),
+        updateAdminShortMatch: build.mutation({
+            query: ({id, ...body}) => ({url: `admin/short-matches/${id}`, method: 'POST', body, headers: adminAuthHeaders()}),
+        }),
         deleteAdminShortMatch: build.mutation({
             query: ({id, withMaps}) => ({url: `admin/short-matches/${id}`, method: 'DELETE', body: {with_maps: !!withMaps}, headers: adminAuthHeaders()}),
         }),
@@ -48,6 +51,38 @@ export const apiSlice = createApi({
         }),
         runAdminFunction: build.mutation({
             query: ({name, ...body}) => ({url: `admin/functions/${name}`, method: 'POST', body, headers: adminAuthHeaders()}),
+        }),
+        getAdminSiteStats: build.query({
+            query: () => ({url: `admin/site-stats`, headers: adminAuthHeaders()}),
+            keepUnusedDataFor: 0,
+        }),
+        getAdminSiteStatsHistory: build.query({
+            query: (range) => ({url: `admin/site-stats/history`, params: {range}, headers: adminAuthHeaders()}),
+            keepUnusedDataFor: 0,
+        }),
+        getAdminUsers: build.query({
+            query: (params) => ({url: `admin/users`, params, headers: adminAuthHeaders()}),
+            keepUnusedDataFor: 0,
+        }),
+        getAdminUser: build.query({
+            query: (id) => ({url: `admin/users/${id}`, headers: adminAuthHeaders()}),
+            keepUnusedDataFor: 0,
+        }),
+        adminUserAction: build.mutation({
+            query: ({id, name, body}) => ({url: `admin/users/${id}/${name}`, method: 'POST', body, headers: adminAuthHeaders()}),
+        }),
+        deleteAdminUser: build.mutation({
+            query: (id) => ({url: `admin/users/${id}`, method: 'DELETE', headers: adminAuthHeaders()}),
+        }),
+        getAdminUserPrefixes: build.query({
+            query: () => ({url: `admin/user-prefixes`, headers: adminAuthHeaders()}),
+            keepUnusedDataFor: 0,
+        }),
+        saveAdminUserPrefix: build.mutation({
+            query: ({id, body}) => ({url: `admin/user-prefixes${id ? `/${id}` : ''}`, method: 'POST', body, headers: adminAuthHeaders()}),
+        }),
+        deleteAdminUserPrefix: build.mutation({
+            query: (id) => ({url: `admin/user-prefixes/${id}`, method: 'DELETE', headers: adminAuthHeaders()}),
         }),
         saveAdminEntity: build.mutation({
             query: ({entity, id, body}) => ({url: `admin/${entity}${id !== null && id !== undefined ? `/${id}` : ''}`, method: 'POST', body, headers: adminAuthHeaders()}),
@@ -211,6 +246,9 @@ export const apiSlice = createApi({
         createAdminMatch: build.mutation({
             query: (body) => ({url: `admin/matches`, method: 'POST', body, headers: adminAuthHeaders()}),
         }),
+        deleteAdminMatch: build.mutation({
+            query: (id) => ({url: `admin/matches/${id}`, method: 'DELETE', headers: adminAuthHeaders()}),
+        }),
         updateAdminMatch: build.mutation({
             query: ({id, ...body}) => ({url: `admin/matches/${id}`, method: 'POST', body, headers: adminAuthHeaders()}),
         }),
@@ -279,11 +317,21 @@ export const {
     useAdminChangePasswordMutation,
     useGetAdminsQuery,
     useSaveAdminEntityMutation,
+    useGetAdminSiteStatsQuery,
+    useGetAdminSiteStatsHistoryQuery,
+    useGetAdminUsersQuery,
+    useGetAdminUserQuery,
+    useAdminUserActionMutation,
+    useDeleteAdminUserMutation,
+    useGetAdminUserPrefixesQuery,
+    useSaveAdminUserPrefixMutation,
+    useDeleteAdminUserPrefixMutation,
     useDeleteAdminEntityMutation,
     useRunAdminFunctionMutation,
     useCreateAdminTournamentTeamsMutation,
     useUpdateAdminTournamentTeamResultsMutation,
     useDeleteAdminTournamentTeamMutation,
+    useUpdateAdminShortMatchMutation,
     useDeleteAdminShortMatchMutation,
     useUpdateAdminRosterMutation,
     useCreateAdminShortMatchesMutation,
@@ -291,6 +339,7 @@ export const {
     useCreateAdminMutation,
     useUpdateAdminMutation,
     useCreateAdminMatchMutation,
+    useDeleteAdminMatchMutation,
     useUpdateAdminMatchMutation,
     useCreateAdminPollMutation,
     useUpdateAdminPollMutation,

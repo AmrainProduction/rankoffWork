@@ -1,0 +1,119 @@
+.page {
+	width: 100%;
+	max-width: 1100px;
+	margin: 0 auto;
+	padding: 0.5rem;
+	color: white;
+}
+
+.cards {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+	gap: 0.5rem;
+	margin-bottom: 1rem;
+}
+
+.card {
+	padding: 0.7rem 0.9rem;
+	border-radius: 0.5rem;
+	background: var(--componentLightBlockColor);
+}
+
+.cardTitle {
+	color: #aaa;
+}
+
+.cardValue {
+	font-size: 2em;
+	font-weight: 800;
+	line-height: 1.2;
+}
+
+.cardHint {
+	color: #8f8fa3;
+	font-size: 0.9em;
+}
+
+.sectionTitle {
+	margin: 0.5rem 0;
+	font-size: 1.1em;
+	font-weight: 800;
+}
+
+.tableWrap {
+	overflow-x: auto;
+	margin-bottom: 1rem;
+	border-radius: 0.5rem;
+	background: var(--componentLightBlockColor);
+}
+
+.table {
+	width: 100%;
+	border-collapse: collapse;
+}
+
+.table th,
+.table td {
+	padding: 0.4rem 0.8rem;
+	text-align: right;
+	border-bottom: 1px solid #ffffff14;
+}
+
+.table th:first-child,
+.table td:first-child {
+	text-align: left;
+}
+
+.table th {
+	color: #aaa;
+	font-weight: 600;
+}
+
+.path {
+	font-family: monospace;
+	word-break: break-all;
+}
+
+.ranges {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.4rem;
+}
+
+.rangeBtn {
+	padding: 0.3rem 0.8rem;
+	border: 1px solid #444;
+	border-radius: 0.4rem;
+	background: var(--mainLightBlack);
+	color: white;
+	cursor: pointer;
+}
+
+.rangeActive {
+	border-color: #4aa3ff;
+	background: #24415e;
+}
+
+.hint {
+	margin: 0.4rem 0;
+	color: #8f8fa3;
+	font-size: 0.9em;
+}
+
+.chartBox {
+	margin-bottom: 1rem;
+	padding: 0.6rem;
+	border-radius: 0.5rem;
+	background: var(--componentLightBlockColor);
+}
+
+.chartTitle {
+	margin-bottom: 0.4rem;
+	font-weight: 800;
+}
+
+.empty {
+	padding: 1rem;
+	color: #8f8fa3;
+	text-align: center;
+}

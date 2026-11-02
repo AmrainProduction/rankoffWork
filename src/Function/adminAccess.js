@@ -30,7 +30,7 @@ const PAGE_PERMISSIONS = {
 	// Внесение карт для внешних админов турниров: подходит и право на карты, и право на назначенные турниры
 	'/a/TOURNAMENT_MATCHES': ['maps', 'tournament_matches'],
 }
-const SUPER = ['/a/ADMINS', '/a/LOGS', '/a/FUNCTIONS']
+const SUPER = ['/a/ADMINS', '/a/LOGS', '/a/FUNCTIONS', '/a/USERS', '/a/STATS']
 const ANY = ['/a/ACCOUNT']
 
 // 'data' целиком включает эти права (как Admin::DATA_PERMISSIONS на сервере)

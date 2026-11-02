@@ -13,7 +13,8 @@ const MatchPicture2 = () => {
 	const [date, setDate] = useState([])
 
 	let name = choiceMatch
-	const listMapMatch = useGetMatchesByNameQuery({ name })
+	// Пока матч не выбран, запрос не нужен (иначе уходит matches/teams/ с пустым именем)
+	const listMapMatch = useGetMatchesByNameQuery({ name }, { skip: !name })
 
 	let matchesID = []
 	let necessaryMatchesID = []
@@ -40,15 +41,27 @@ const MatchPicture2 = () => {
 		let res = `${year}-${month}-${day}`
 
 		setDate(res)
-		setChoiceMatch([])
+		setChoiceMatch('')
 	}
 
 	//--------------------------------HTML to IMG def-------------------------------------------------
 
 	const ref = useRef(null)
 
+	const [downloadError, setDownloadError] = useState('')
+
 	const onButtonClick = useCallback(() => {
-		if (ref.current === null) {
+		setDownloadError('')
+		if (ref.current === null || !choiceMatch) {
+			setDownloadError('Choose a match first')
+			return
+		}
+
+		// Картинка, которая не загрузилась (на сервере нет файла: вместо него приходит страница сайта), ломает сохранение без внятной ошибки.
+		// Перед сохранением находим такие картинки и показываем их адреса
+		const broken = [...ref.current.querySelectorAll('img')].filter((img) => img.complete && img.naturalWidth === 0).map((img) => img.getAttribute('src'))
+		if (broken.length > 0) {
+			setDownloadError(`Missing images: ${[...new Set(broken)].join(', ')}`)
 			return
 		}
 
@@ -61,6 +74,7 @@ const MatchPicture2 = () => {
 			})
 			.catch((err) => {
 				console.log(err)
+				setDownloadError('Could not render the banner, see the browser console')
 			})
 	}, [choiceMatch])
 
@@ -143,6 +157,7 @@ const MatchPicture2 = () => {
 							Download
 						</button>
 					</div>
+					{downloadError && <div style={{ color: '#bd5d5d', padding: '6px 0', wordBreak: 'break-all' }}>{downloadError}</div>}
 				</div>
 			</div>
 			<div ref={ref}>{choiceMatch.length > 0 ? <PictureResult2 name={choiceMatch} map={choiceMap} /> : ''}</div>

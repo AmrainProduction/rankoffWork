@@ -1,6 +1,7 @@
 import React, { useRef, useCallback, useState } from 'react'
+import { useOutletContext } from 'react-router-dom'
 import classes from './dataEntryMatch.module.css'
-import { useCreateAdminMatchMutation, useGetMatchesByNameQuery, useGetPlayersQuery, useGetShortMatchByNameQuery, useGetTeamsQuery, useUpdateAdminMatchMutation } from '../../../store/api/apiSlice'
+import { useCreateAdminMatchMutation, useDeleteAdminMatchMutation, useGetMatchesByNameQuery, useGetPlayersQuery, useGetShortMatchByNameQuery, useGetTeamsQuery, useUpdateAdminMatchMutation } from '../../../store/api/apiSlice'
 import { matchApiError, toMatchPayload } from '../matchPayload'
 // import PictureResult2 from '../../MatchPicture2/PictureResult/pictureResult2'
 import PictureResult2 from '../../NewDesign2025_2_0/MatchResult/PictureResult/pictureResult2'
@@ -43,6 +44,8 @@ const DataEntryMatch = (props) => {
 	const currentMatch = useGetMatchesByNameQuery({ name })
 	const [createMatch, createState] = useCreateAdminMatchMutation()
 	const [updateMatch, updateState] = useUpdateAdminMatchMutation()
+	const [deleteMatch] = useDeleteAdminMatchMutation()
+	const { admin } = useOutletContext() ?? {}
 	const [savedMessage, setSavedMessage] = useState('')
 	const isSaving = createState.isLoading || updateState.isLoading
 	const saveError = matchApiError(createState.error || updateState.error)
@@ -80,6 +83,8 @@ const DataEntryMatch = (props) => {
 	const [choiceMap, setChoiceMap] = useState('')
 	const [selectedSide, setSelectedSide] = useState('')
 	const [pickMap, setPickMap] = useState('')
+	// Ссылка на видео карты; пустая — используется ссылка матча из short_matches
+	const [mapLink, setMapLink] = useState('')
 
 	// Обработчик для изменения значения
 	const handlePickMap = (event) => {
@@ -114,6 +119,7 @@ const DataEntryMatch = (props) => {
 		setMatchInfo(initialMatchInfo)
 		setChoiceMap('')
 		setPickMap('')
+		setMapLink('')
 		setSelectedSide('')
 		playerSetters.forEach((setPlayer) => setPlayer(null))
 	}
@@ -123,6 +129,7 @@ const DataEntryMatch = (props) => {
 		setEditingId(row.id)
 		setChoiceMap(row.map ?? '')
 		setPickMap(row.map_pick ?? '')
+		setMapLink(row.link_match ?? '')
 		setSelectedSide(row.start_side_team1 ?? '')
 
 		const info = {
@@ -174,7 +181,7 @@ const DataEntryMatch = (props) => {
 				name_match_for_sort: shortMatches.data[0].name_match_for_sort,
 				name_tour: shortMatches.data[0].name_tour,
 				db_date_match: shortMatches.data[0].date_match,
-				link_match: shortMatches.data[0].link_match,
+				link_match: mapLink.trim() || shortMatches.data[0].link_match,
 				map: choiceMap,
 				map_pick: pickMap,
 				team1: shortMatches.data[0].team1,
@@ -301,6 +308,7 @@ const DataEntryMatch = (props) => {
 			setMatchInfo((prev) => ({ ...prev, ...cleared, half1_team1: '', half1_team2: '', half2_team1: '', half2_team2: '' }))
 			setChoiceMap('')
 			setPickMap('')
+			setMapLink('')
 			setSelectedSide('')
 		}
 
@@ -326,8 +334,43 @@ const DataEntryMatch = (props) => {
 
 		const maps = ['Sandstone', 'Breeze', 'Rust', 'Province', 'Sakura', 'Dune', 'Zone7', 'Hanami', 'Prison']
 
+		// Удаление карты (только суперадмин; сервер проверяет это отдельно). Рейтинги и статистика не пересчитываются
+		const handleDeleteMap = async () => {
+			if (editingId === null) return
+			if (!window.confirm(`Delete map ${choiceMap} (#${editingId})? Ratings and stats are not recalculated.`)) return
+			try {
+				await deleteMatch(editingId).unwrap()
+				resetForm()
+				setSavedMessage('Map deleted')
+				currentMatch.refetch()
+			} catch (error) {
+				window.alert(matchApiError(error))
+			}
+		}
+
+		// Числовые поля: колесо мыши не меняет значение, а стрелки переключают между полями K / A / D (в таблице игроков по 3 поля в строке)
+		const handleNumberWheel = (e) => {
+			if (e.target instanceof HTMLInputElement && e.target.type === 'number') e.target.blur()
+		}
+		const handleNumberKeyDown = (e) => {
+			const el = e.target
+			if (!(el instanceof HTMLInputElement) || el.type !== 'number') return
+			const step = { ArrowLeft: -1, ArrowRight: 1, ArrowUp: -3, ArrowDown: 3 }[e.key]
+			if (step === undefined) return
+			// Встроенный шаг значения стрелками вверх/вниз отключаем везде
+			e.preventDefault()
+			const grid = el.closest(`.${classes.wrapperDataPlayersMatch}`)
+			if (!grid) return
+			const fields = [...grid.querySelectorAll('input[type="number"]')]
+			const next = fields[fields.indexOf(el) + step]
+			if (next) {
+				next.focus()
+				next.select()
+			}
+		}
+
 		return (
-			<div className={classes.wrapperAddMatches}>
+			<div className={classes.wrapperAddMatches} onWheel={handleNumberWheel} onKeyDown={handleNumberKeyDown}>
 				<div className={classes.wrapperEditMaps}>
 					<div className={classes.editModeTitle}>Current mode: {editingId !== null ? `Editing map #${editingId}` : 'Entering a new map'}</div>
 					<div className={classes.editMapsList}>
@@ -339,6 +382,11 @@ const DataEntryMatch = (props) => {
 						{editingId !== null && (
 							<div className={classes.editMapItem} onClick={resetForm}>
 								+ New map
+							</div>
+						)}
+						{editingId !== null && admin?.is_super && (
+							<div className={classes.editMapItem} style={{ color: '#bd5d5d' }} onClick={handleDeleteMap}>
+								Delete this map
 							</div>
 						)}
 					</div>
@@ -390,6 +438,10 @@ const DataEntryMatch = (props) => {
 					<div className={classes.wrapperInputData}>
 						<div className={classes.labelInput}>Map:</div>
 						<input type="text" className={classes.inputEntryData} value={choiceMap} readOnly />
+					</div>
+					<div className={`${classes.wrapperInputData} ${classes.wrapperLink}`}>
+						<div className={classes.labelInput}>Map link:</div>
+						<input type="text" className={classes.inputEntryData} placeholder="Optional, defaults to match link" autoComplete="off" value={mapLink} onChange={(event) => setMapLink(event.target.value)} />
 					</div>
 					<div className={classes.wrapperInputData}>
 						<div className={classes.labelInput}>

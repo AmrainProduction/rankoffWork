@@ -129,3 +129,17 @@
 	/*  padding: 80px 5px 5px 5px;*/
 	/*}*/
 }
+
+/* Цвета баннеров (строки таблиц на картинках). Основная тема по умолчанию, тема мажора включается в index.js (BANNER_THEME) */
+:root {
+	--titleRowDark: #4e0922;
+	--rowDark: #781236;
+	--rowLight: #b00745;
+}
+
+/* FOR MAJOR 2026 */
+:root[data-banner-theme='major'] {
+	--titleRowDark: #0f0f20;
+	--rowDark: #181739;
+	--rowLight: #23224b;
+}

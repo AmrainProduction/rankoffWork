@@ -46,15 +46,6 @@
 }
 
 :local(.wrapperTopResult) {
-	/* FOR MAJOR 2026  */
-	/* --titleRowDark: #0f0f20;
-	--rowDark: #181739;
-	--rowLight: #23224b; */
-
-	--titleRowDark: #4e0922;
-	--rowDark: #781236;
-	--rowLight: #b00745;
-
 	--red: #ff181899;
 	--green: #00db0099;
 	--yellow: #ff961599;

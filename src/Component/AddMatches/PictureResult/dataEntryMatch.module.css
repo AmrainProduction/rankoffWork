@@ -134,6 +134,18 @@ input[type='number'] {
 	background: var(--componentBlockColor);
 }
 
+/* Без стрелок-счётчиков у числовых полей */
+.inputEntryData[type='number'] {
+	-moz-appearance: textfield;
+	appearance: textfield;
+}
+
+.inputEntryData[type='number']::-webkit-outer-spin-button,
+.inputEntryData[type='number']::-webkit-inner-spin-button {
+	-webkit-appearance: none;
+	margin: 0;
+}
+
 .wrapperDataPlayersMatch {
 	display: grid;
 	justify-content: start;
@@ -248,4 +260,9 @@ input[type='number'] {
 
 .editMapItemActive {
 	background: var(--buttonColor);
+}
+
+.wrapperLink {
+	max-width: 280px;
+	min-width: 200px;
 }

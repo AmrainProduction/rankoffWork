@@ -21,13 +21,13 @@ export const WhoWinPredict = (dataMatch, team) => {
 						return '#ff1818'
 					}
 				} else {
-					return '#781236'
+					return 'var(--rowDark)'
 				}
 			}
 		} else {
-			return '#781236'
+			return 'var(--rowDark)'
 		}
 	} else {
-		return '#781236'
+		return 'var(--rowDark)'
 	}
 }

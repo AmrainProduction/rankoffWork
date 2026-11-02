@@ -46,10 +46,7 @@
 }
 
 :local(.wrapperTopResult) {
-	--titleRowDark: #4e0922;
-	--rowDark: #781236;
-	--rowLight: #b00745;
-	--titleRowDarkShadow: #4e0922;
+	--titleRowDarkShadow: var(--titleRowDark);
 
 	--red: #ff181899;
 	--green: #00db0099;

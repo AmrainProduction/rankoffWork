@@ -49,6 +49,8 @@ import AdminsPage from './Component/AdminAccess/adminsPage'
 import AccountPage from './Component/AdminAccess/accountPage'
 import AuditLogPage from './Component/AdminAccess/auditLogPage'
 import AdminHome from './Component/AdminAccess/adminHome'
+import UsersPage from './Component/AdminUsers/usersPage'
+import SiteStatsPage from './Component/AdminStats/siteStatsPage'
 import { PlayersPage, TeamsPage, TournamentsPage } from './Component/AdminEntities/entityPages'
 import PollsAdmin from './Component/NewDesign2025_2_0/PollsAdmin/pollsAdmin'
 import {
@@ -113,6 +115,8 @@ const router = createBrowserRouter(
 				<Route path="a/ADMINS" element={<AdminsPage />} />
 				<Route path="a/ACCOUNT" element={<AccountPage />} />
 				<Route path="a/LOGS" element={<AuditLogPage />} />
+				<Route path="a/USERS" element={<UsersPage />} />
+				<Route path="a/STATS" element={<SiteStatsPage />} />
 				<Route path="a/PLAYERS" element={<PlayersPage />} />
 				<Route path="a/TEAMS" element={<TeamsPage />} />
 				<Route path="a/TOURNAMENTS" element={<TournamentsPage />} />

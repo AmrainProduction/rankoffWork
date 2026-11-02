@@ -3,6 +3,7 @@ import { useOutletContext } from 'react-router-dom'
 import classes from './adminAccess.module.css'
 import { useCreateAdminMutation, useGetAdminsQuery, useGetTournamentsQuery, useUpdateAdminMutation } from '../../store/api/apiSlice'
 import { PERMISSION_LABELS } from '../../Function/adminAccess'
+import SearchSelect from '../UI/SearchSelect/searchSelect'
 
 const errorMessage = (error) => error?.data?.message || 'Something went wrong, try again'
 
@@ -43,12 +44,9 @@ const TournamentsEditor = ({ value, onChange, options }) => {
 				{value.length === 0 && <span className={classes.hint}>none yet</span>}
 			</div>
 			<div className={classes.row} style={{ marginTop: 6 }}>
-				<input className={classes.input} style={{ maxWidth: 280 }} list="tournaments-list" value={text} onChange={(e) => setText(e.target.value)} placeholder="Start typing a tournament" autoComplete="off" />
-				<datalist id="tournaments-list">
-					{options.map((t) => (
-						<option key={t} value={t} />
-					))}
-				</datalist>
+				<div style={{ width: 280 }}>
+					<SearchSelect items={options} value={text} getKey={(t) => t} getLabel={(t) => t} onSelect={(t) => setText(t ?? '')} placeholder="Start typing a tournament" />
+				</div>
 				<button type="button" className={classes.btnDark} onClick={add} disabled={!known}>
 					Add
 				</button>

@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react'
 import { useOutletContext } from 'react-router-dom'
 import classes from './addShortMatches.module.css'
-import { useCreateAdminShortMatchesMutation, useDeleteAdminShortMatchMutation, useGetShortMatchesByTournamentQuery, useGetTournamentsQuery } from '../../../store/api/apiSlice'
+import { useCreateAdminShortMatchesMutation, useDeleteAdminShortMatchMutation, useUpdateAdminShortMatchMutation, useGetShortMatchesByTournamentQuery, useGetTournamentsQuery } from '../../../store/api/apiSlice'
 import TeamSelector from '../../UI/TeamSelector/teamSelector'
 
 // Дата турнира -> 'YYYY-MM-DD' (если пришёл ISO с временем — берём локальную дату, чтобы не съехать на день)
@@ -34,6 +34,9 @@ const AddShortMatches = () => {
 	const { admin } = useOutletContext()
 	const [deleteMatch] = useDeleteAdminShortMatchMutation()
 	const [deleteStatus, setDeleteStatus] = useState(null)
+	const [updateMatch, { isLoading: isUpdating }] = useUpdateAdminShortMatchMutation()
+	const [editId, setEditId] = useState(null)
+	const [editForm, setEditForm] = useState(null)
 
 	const tourMatches = useGetShortMatchesByTournamentQuery({ name: tour?.name_tour_sort }, { skip: !tour, refetchOnMountOrArgChange: true })
 
@@ -94,11 +97,7 @@ const AddShortMatches = () => {
 
 	const isSlotFilled = (slot) => slot.team1 && slot.team2 && slot.format && slot.stage.trim() && /^\d{4}-\d{2}-\d{2}$/.test(slot.date) && /^\d{2}:\d{2}/.test(slot.time)
 
-	const isReady =
-		tour &&
-		slots.length > 0 &&
-		slots.every(isSlotFilled) &&
-		slots.every((slot, i) => !getError(slot, names[i]))
+	const isReady = tour && slots.length > 0 && slots.every(isSlotFilled) && slots.every((slot, i) => !getError(slot, names[i]))
 
 	// Удаление матча (только суперадмин). Если по матчу внесены карты, сервер просит подтверждение и удаляет их вместе с матчем
 	const handleDelete = async (match) => {
@@ -123,6 +122,29 @@ const AddShortMatches = () => {
 		}
 		setDeleteStatus({ ok: true, text: `Deleted: ${label}` })
 		tourMatches.refetch()
+	}
+
+	const startEdit = (m) => {
+		setEditId(m.id)
+		setEditForm({ format: m.format || 'BO3', stage: m.name_stage || '', date: toDate(m.date_match), time: String(m.time_match || '').slice(0, 5), link: m.link_match || '' })
+		setDeleteStatus(null)
+	}
+
+	const saveEdit = async () => {
+		if (!editForm || isUpdating) return
+		if (!editForm.stage.trim() || !/^\d{4}-\d{2}-\d{2}$/.test(editForm.date) || !/^\d{2}:\d{2}/.test(editForm.time)) {
+			setDeleteStatus({ ok: false, text: 'Fill in stage, date and time' })
+			return
+		}
+		try {
+			await updateMatch({ id: editId, format: editForm.format, stage: editForm.stage.trim(), date: editForm.date, time: editForm.time.slice(0, 5), link: editForm.link.trim() || null }).unwrap()
+			setDeleteStatus({ ok: true, text: 'Match saved' })
+			setEditId(null)
+			setEditForm(null)
+			tourMatches.refetch()
+		} catch (error) {
+			setDeleteStatus({ ok: false, text: error?.data?.message || 'Failed to save the match' })
+		}
 	}
 
 	const submit = async () => {
@@ -152,7 +174,6 @@ const AddShortMatches = () => {
 	return (
 		<div className={classes.wrapperPage}>
 			<div className={classes.wrapperMenu}>
-
 				<div className={classes.wrapperList}>
 					<div className={classes.titleBox}>Tournament:</div>
 					<input type="text" placeholder="Search" value={tourFilter} onChange={(e) => setTourFilter(e.target.value)} className={classes.inputData} />
@@ -176,7 +197,11 @@ const AddShortMatches = () => {
 				<div className={`${classes.btnEnter} ${isReady && !isSaving ? '' : classes.btnDisabled}`} onClick={submit}>
 					{isSaving ? 'Saving...' : 'Create'}
 				</div>
-				{status && <div className={classes.infoText} style={{ color: status.ok ? '#7db489' : '#bd5d5d' }}>{status.text}</div>}
+				{status && (
+					<div className={classes.infoText} style={{ color: status.ok ? '#7db489' : '#bd5d5d' }}>
+						{status.text}
+					</div>
+				)}
 			</div>
 
 			<div className={classes.wrapperMatches}>
@@ -225,19 +250,61 @@ const AddShortMatches = () => {
 						</div>
 					)
 				})}
-				{admin?.is_super && tour && (tourMatches.data ?? []).length > 0 && (
+				{tour && (tourMatches.data ?? []).length > 0 && (
 					<div className={classes.match} style={{ flexDirection: 'column', alignItems: 'stretch' }}>
-						<div className={classes.titleBox}>Tournament matches (delete, super admin only):</div>
+						<div className={classes.titleBox}>Tournament matches (edit{admin?.is_super ? ' / delete' : ''}):</div>
 						{deleteStatus && <div style={{ color: deleteStatus.ok ? '#7db489' : '#bd5d5d' }}>{deleteStatus.text}</div>}
 						{(tourMatches.data ?? []).map((m) => (
-							<div key={m.id} className={classes.matchFooter} style={{ justifyContent: 'space-between' }}>
-								<span className={classes.matchName}>
-									{m.name_match_for_sort} — {m.name_stage}
-								</span>
-								<span className={classes.warning} style={{ cursor: 'pointer' }} onClick={() => handleDelete(m)}>
-									Delete
-								</span>
-							</div>
+							<React.Fragment key={m.id}>
+								<div className={classes.matchFooter} style={{ justifyContent: 'space-between', paddingLeft: 0 }}>
+									<span className={classes.matchName}>
+										{m.name_match_for_sort} — {m.name_stage} — {m.format} — {toDate(m.date_match)} {String(m.time_match || '').slice(0, 5)}
+									</span>
+									<span style={{ display: 'flex', gap: 14 }}>
+										<span style={{ cursor: 'pointer', textDecoration: 'underline' }} onClick={() => (editId === m.id ? setEditId(null) : startEdit(m))}>
+											{editId === m.id ? 'Cancel' : 'Edit'}
+										</span>
+										{admin?.is_super && (
+											<span className={classes.warning} style={{ cursor: 'pointer' }} onClick={() => handleDelete(m)}>
+												Delete
+											</span>
+										)}
+									</span>
+								</div>
+								{editId === m.id && editForm && (
+									<div className={classes.match}>
+										<div className={`${classes.field} ${classes.fieldFormat}`}>
+											<div className={classes.titleBox}>Format</div>
+											<select value={editForm.format} onChange={(e) => setEditForm({ ...editForm, format: e.target.value })} className={classes.inputData}>
+												{FORMATS.map((f) => (
+													<option key={f} value={f}>
+														{f}
+													</option>
+												))}
+											</select>
+										</div>
+										<div className={`${classes.field} ${classes.fieldStage}`}>
+											<div className={classes.titleBox}>Stage</div>
+											<input type="text" list="matchStages" value={editForm.stage} onChange={(e) => setEditForm({ ...editForm, stage: e.target.value })} className={classes.inputData} />
+										</div>
+										<div className={`${classes.field} ${classes.fieldDate}`}>
+											<div className={classes.titleBox}>Date</div>
+											<input type="date" value={editForm.date} onChange={(e) => setEditForm({ ...editForm, date: e.target.value })} className={classes.inputData} />
+										</div>
+										<div className={`${classes.field} ${classes.fieldTime}`}>
+											<div className={classes.titleBox}>Time (MSK)</div>
+											<input type="time" value={editForm.time} onChange={(e) => setEditForm({ ...editForm, time: e.target.value })} className={classes.inputData} />
+										</div>
+										<div className={`${classes.field} ${classes.fieldLink}`}>
+											<div className={classes.titleBox}>Link</div>
+											<input type="text" placeholder="https://" value={editForm.link} onChange={(e) => setEditForm({ ...editForm, link: e.target.value })} className={classes.inputData} />
+										</div>
+										<div className={`${classes.btnEnter} ${isUpdating ? classes.btnDisabled : ''}`} style={{ minHeight: 40, flex: '0 1 140px' }} onClick={saveEdit}>
+											{isUpdating ? 'Saving...' : 'Save'}
+										</div>
+									</div>
+								)}
+							</React.Fragment>
 						))}
 					</div>
 				)}
@@ -247,7 +314,6 @@ const AddShortMatches = () => {
 					))}
 				</datalist>
 			</div>
-
 		</div>
 	)
 }

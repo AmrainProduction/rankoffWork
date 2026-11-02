@@ -70,6 +70,19 @@
 	box-sizing: border-box;
 }
 
+/* Выпадающий список в стиле остальных полей ввода (глобально стилизован только input) */
+select.inputData {
+	background: var(--componentLightBlockColor);
+	color: var(--textPlaceholderColor);
+	border: 0.14rem solid var(--componentLightBlockColor);
+	border-radius: 0.5rem;
+	padding: 0.5rem 1rem;
+	outline: none;
+	font-family: inherit;
+	font-size: inherit;
+	cursor: pointer;
+}
+
 .list {
 	display: block;
 	overflow-y: scroll;
@@ -150,6 +163,24 @@
 }
 
 .field > div {
+	margin: 0;
+}
+
+/* Одинаковая высота подписей и полей: подписи фиксированной высоты (у селектора команды свой titleBox), поля по 40px */
+.field [class*='titleBox'] {
+	height: 22px;
+	line-height: 22px;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+.field input,
+.field select {
+	height: 40px;
+	box-sizing: border-box;
+	padding-top: 0;
+	padding-bottom: 0;
+	width: 100%;
 	margin: 0;
 }
 

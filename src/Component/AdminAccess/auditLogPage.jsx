@@ -16,6 +16,8 @@ const ACTIONS = [
 	{ value: 'player', label: 'Players' },
 	{ value: 'team', label: 'Teams' },
 	{ value: 'tournament', label: 'Tournaments' },
+	{ value: 'user', label: 'Users' },
+	{ value: 'user_prefix', label: 'User prefixes' },
 	{ value: 'roster', label: 'Team rosters' },
 	{ value: 'short_match', label: 'Tournament matches' },
 ]
@@ -48,11 +50,23 @@ const ACTION_LABELS = {
 	'tournament.create': ['Tournament created'],
 	'tournament.update': ['Tournament edited'],
 	'tournament.delete': ['Tournament deleted', 'warn'],
+	'user.block': ['User blocked', 'warn'],
+	'user.unblock': ['User unblocked'],
+	'user.hide': ['Profile made private'],
+	'user.reset': ['User data reset'],
+	'user.profile': ['User profile edited'],
+	'user.prefix': ['User prefix changed'],
+	'user.delete': ['User deleted', 'warn'],
+	'user_prefix.create': ['Prefix created'],
+	'user_prefix.update': ['Prefix edited'],
+	'user_prefix.delete': ['Prefix deleted', 'warn'],
 	'roster.update': ['Roster updated'],
 	'short_match.delete': ['Match deleted', 'warn'],
+	'short_match.update': ['Match edited'],
 	'short_match.create': ['Matches created'],
 	'match.create': ['Map entered'],
 	'match.update': ['Map edited'],
+	'match.delete': ['Map deleted', 'warn'],
 }
 
 const formatTime = (value) => {
@@ -106,6 +120,12 @@ const DETAIL_LABELS = {
 	reason: 'Reason',
 	failed_attempts: 'Failed attempts in a row',
 	until: 'Locked until',
+	cleared: 'Cleared',
+	prefix: 'Prefix',
+	handle: 'Handle',
+	label: 'Label',
+	color: 'Color',
+	users_affected: 'Users affected',
 	other_sessions_closed: 'Other sessions closed',
 }
 
