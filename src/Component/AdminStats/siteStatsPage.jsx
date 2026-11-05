@@ -1,6 +1,7 @@
 import React, { useMemo, useState } from 'react'
 import { CartesianGrid, Legend, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts'
 import classes from './siteStatsPage.module.css'
+import RefreshButton from '../AdminAccess/refreshButton'
 import { useGetAdminSiteStatsHistoryQuery, useGetAdminSiteStatsQuery } from '../../store/api/apiSlice'
 
 const REFRESH_MS = 15000
@@ -24,6 +25,19 @@ const formatFull = (iso) => {
 	const d = new Date(iso)
 	return `${pad(d.getDate())}.${pad(d.getMonth() + 1)}.${d.getFullYear()} ${pad(d.getHours())}:${pad(d.getMinutes())}`
 }
+
+// Сколько секунд или минут назад пользователь был активен (относительно времени ответа сервера)
+const secondsAgo = (iso, now) => {
+	const sec = Math.max(0, Math.round((new Date(now) - new Date(iso)) / 1000))
+	return sec < 60 ? `${sec} s ago` : `${Math.floor(sec / 60)} min ago`
+}
+
+const UserPhoto = ({ user }) =>
+	user.photo_url ? (
+		<img className={classes.userPhoto} src={user.photo_url} alt="" referrerPolicy="no-referrer" />
+	) : (
+		<span className={classes.userPhoto}>{(user.name || '?').slice(0, 1).toUpperCase()}</span>
+	)
 
 const Card = ({ title, value, hint }) => (
 	<div className={classes.card}>
@@ -69,11 +83,62 @@ const SiteStatsPage = () => {
 
 	return (
 		<div className={classes.page}>
+			<div style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: 8 }}>
+				<RefreshButton
+					onClick={() => {
+						stats.refetch()
+						history.refetch()
+					}}
+					spinning={stats.isFetching || history.isFetching}
+				/>
+			</div>
 			<div className={classes.cards}>
 				<Card title="Online now" value={data?.online} hint="active in the last 2 minutes" />
 				<Card title="Registered online" value={data?.online_registered} hint={data ? `${data.online_guests} guests` : undefined} />
 				<Card title="Registered users" value={data?.total_users} />
 				<Card title="Users with match predictions" value={data?.predictors} hint={data && data.total_users ? `${Math.round((data.predictors / data.total_users) * 100)}% of registered` : undefined} />
+			</div>
+
+			<div className={classes.sectionTitle}>Users online now{data ? ` (${data.online_users?.length ?? 0})` : ''}</div>
+			<div className={classes.tableWrap}>
+				<table className={classes.table}>
+					<thead>
+						<tr>
+							<th>User</th>
+							<th>Telegram</th>
+							<th>Page</th>
+							<th>Last activity</th>
+							<th>Tabs</th>
+						</tr>
+					</thead>
+					<tbody>
+						{(data?.online_users ?? []).map((u) => (
+							<tr key={u.id}>
+								<td>
+									<span className={classes.userCell}>
+										<UserPhoto user={u} />
+										<span>
+											{u.name || `user #${u.id}`}
+											{u.handle && <span className={classes.userHandle}> @{u.handle}</span>}
+											{u.blocked && <span className={classes.userBlocked}> blocked</span>}
+										</span>
+									</span>
+								</td>
+								<td>{u.username ? `@${u.username}` : '—'}</td>
+								<td className={classes.path}>{u.path}</td>
+								<td>{secondsAgo(u.last_seen, data.updated_at)}</td>
+								<td>{u.tabs}</td>
+							</tr>
+						))}
+						{data && (data.online_users ?? []).length === 0 && (
+							<tr>
+								<td colSpan={5} className={classes.empty}>
+									No registered users online right now
+								</td>
+							</tr>
+						)}
+					</tbody>
+				</table>
 			</div>
 
 			<div className={classes.sectionTitle}>Top pages (unique visitors in the last 24 hours)</div>
@@ -98,6 +163,33 @@ const SiteStatsPage = () => {
 							<tr>
 								<td colSpan={3} className={classes.empty}>
 									No visits recorded yet
+								</td>
+							</tr>
+						)}
+					</tbody>
+				</table>
+			</div>
+
+			<div className={classes.sectionTitle}>Top exact pages (unique visitors in the last 24 hours)</div>
+			<div className={classes.tableWrap}>
+				<table className={classes.table}>
+					<thead>
+						<tr>
+							<th>Page</th>
+							<th>Visitors, 24h</th>
+						</tr>
+					</thead>
+					<tbody>
+						{(data?.top_exact_pages ?? []).map((p) => (
+							<tr key={p.path}>
+								<td className={classes.path}>{p.path}</td>
+								<td>{p.visitors_24h}</td>
+							</tr>
+						))}
+						{data && (data.top_exact_pages ?? []).length === 0 && (
+							<tr>
+								<td colSpan={2} className={classes.empty}>
+									No data yet (run exact_paths.sql, then wait for visits)
 								</td>
 							</tr>
 						)}

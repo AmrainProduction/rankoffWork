@@ -87,9 +87,9 @@ const SearchSelect = ({ label, items = [], value, getKey, getLabel, matches, ren
 				autoComplete="off"
 			/>
 			{isOpen && filtered.length > 0 && (
-				<div className={classes.dropdownMenu}>
+				<div className={classes.dropdownMenu} style={{ maxHeight: 'min(360px, 55vh)', zIndex: 1000, padding: '4px 0', boxSizing: 'border-box' }}>
 					{filtered.map((item, index) => (
-						<div key={getKey(item)} className={classes.dropdownMenuItem} onMouseDown={(e) => e.preventDefault()} onClick={() => select(item)} style={{ background: highlighted === index ? 'var(--componentBlockColorHover)' : '' }}>
+						<div key={getKey(item)} className={classes.dropdownMenuItem} onMouseDown={(e) => e.preventDefault()} onClick={() => select(item)} style={{ padding: '9px 14px', background: highlighted === index ? 'var(--componentBlockColorHover)' : '' }}>
 							{renderItem ? renderItem(item) : getLabel(item)}
 						</div>
 					))}

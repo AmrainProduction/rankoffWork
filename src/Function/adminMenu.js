@@ -17,6 +17,7 @@ export const ADMIN_MENU = [
 			{ label: 'ADD_SHORT_MATCHES', path: '/a/ADD_SHORT_MATCHES' },
 			{ label: 'ADD_TEAMS_TOUR', path: '/a/ADD_TEAMS_TOUR' },
 			{ label: 'UPDATE_ROSTER', path: '/a/UPDATE_ROSTER' },
+			{ label: 'TOURNAMENT_ROSTERS', path: '/a/TOURNAMENT_ROSTERS' },
 			{ label: 'POLLS', path: '/a/POLLS' },
 		],
 	},
@@ -41,6 +42,11 @@ export const ADMIN_MENU = [
 		],
 	},
 	{
+		id: 'analytics',
+		title: 'Analytics',
+		items: [{ label: 'CONTEXT', path: '/a/CONTEXT' }],
+	},
+	{
 		id: 'functions',
 		title: 'Functions',
 		items: [{ label: 'FUNCTIONS', path: '/a/FUNCTIONS' }],
@@ -53,6 +59,7 @@ export const ADMIN_MENU = [
 			{ label: 'USERS', path: '/a/USERS' },
 			{ label: 'STATS', path: '/a/STATS' },
 			{ label: 'LOGS', path: '/a/LOGS' },
+			{ label: 'USER_LOGS', path: '/a/USER_LOGS' },
 		],
 	},
 ]

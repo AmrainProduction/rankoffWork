@@ -117,3 +117,29 @@
 	color: #8f8fa3;
 	text-align: center;
 }
+
+.userCell {
+	display: inline-flex;
+	align-items: center;
+	gap: 8px;
+}
+
+.userPhoto {
+	display: inline-flex;
+	flex: none;
+	align-items: center;
+	justify-content: center;
+	width: 28px;
+	height: 28px;
+	border-radius: 50%;
+	object-fit: cover;
+	background: var(--buttonDark);
+}
+
+.userHandle {
+	color: var(--textPlaceholderColor);
+}
+
+.userBlocked {
+	color: var(--textColorRed);
+}

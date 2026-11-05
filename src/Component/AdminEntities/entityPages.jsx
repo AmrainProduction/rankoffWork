@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo, useState } from 'react'
 import { useOutletContext } from 'react-router-dom'
 import classes from '../AdminAccess/adminAccess.module.css'
+import RefreshButton from '../AdminAccess/refreshButton'
 import {
 	useDeleteAdminEntityMutation,
 	useGetPlayersQuery,
@@ -114,7 +115,7 @@ const Field = ({ field, value, onChange }) => (
 const EntityPage = ({ entity, query }) => {
 	const cfg = ENTITIES[entity]
 	const { admin } = useOutletContext()
-	const { data, isLoading, refetch } = query({}, { refetchOnMountOrArgChange: true })
+	const { data, isLoading, isFetching, refetch } = query({}, { refetchOnMountOrArgChange: true })
 	const [save, { isLoading: saving }] = useSaveAdminEntityMutation()
 	const [remove, { isLoading: removing }] = useDeleteAdminEntityMutation()
 
@@ -210,6 +211,7 @@ const EntityPage = ({ entity, query }) => {
 				<button type="button" className={classes.btnDark} onClick={() => open('new')}>
 					Create {cfg.single}
 				</button>
+				<RefreshButton onClick={refetch} spinning={isFetching} />
 			</div>
 
 			{isLoading && <div className={classes.hint}>Loading...</div>}

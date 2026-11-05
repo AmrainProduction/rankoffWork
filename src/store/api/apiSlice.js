@@ -28,6 +28,17 @@ export const apiSlice = createApi({
             query: (params) => ({url: `admin/audit`, params, headers: adminAuthHeaders()}),
             keepUnusedDataFor: 0,
         }),
+        getAdminTournamentRosters: build.query({
+            query: (tour) => ({url: `admin/tournament-rosters/${encodeURIComponent(tour)}`, headers: adminAuthHeaders()}),
+            keepUnusedDataFor: 0,
+        }),
+        saveAdminTournamentRoster: build.mutation({
+            query: ({tour, teamId, rows}) => ({url: `admin/tournament-rosters/${encodeURIComponent(tour)}/${teamId}`, method: 'PUT', body: {rows}, headers: adminAuthHeaders()}),
+        }),
+        getAdminUserLogs: build.query({
+            query: (params) => ({url: `admin/user-logs`, params, headers: adminAuthHeaders()}),
+            keepUnusedDataFor: 0,
+        }),
         createAdminShortMatches: build.mutation({
             query: (body) => ({url: `admin/short-matches`, method: 'POST', body, headers: adminAuthHeaders()}),
         }),
@@ -51,6 +62,12 @@ export const apiSlice = createApi({
         }),
         runAdminFunction: build.mutation({
             query: ({name, ...body}) => ({url: `admin/functions/${name}`, method: 'POST', body, headers: adminAuthHeaders()}),
+        }),
+        getStatsExplorerOptions: build.query({
+            query: () => ({url: `admin/stats-explorer/options`, headers: adminAuthHeaders()}),
+        }),
+        runStatsExplorer: build.mutation({
+            query: (body) => ({url: `admin/stats-explorer`, method: 'POST', body, headers: adminAuthHeaders()}),
         }),
         getAdminSiteStats: build.query({
             query: () => ({url: `admin/site-stats`, headers: adminAuthHeaders()}),
@@ -265,6 +282,8 @@ export const apiSlice = createApi({
 })
 
 export const {
+    useGetStatsExplorerOptionsQuery,
+    useRunStatsExplorerMutation,
     useGetTournamentByNameQuery,
     useGetShortMatchesLastQuery,
     useGetShortMatchesTeamByNameQuery,
@@ -336,6 +355,9 @@ export const {
     useUpdateAdminRosterMutation,
     useCreateAdminShortMatchesMutation,
     useGetAdminAuditQuery,
+    useGetAdminUserLogsQuery,
+    useGetAdminTournamentRostersQuery,
+    useSaveAdminTournamentRosterMutation,
     useCreateAdminMutation,
     useUpdateAdminMutation,
     useCreateAdminMatchMutation,

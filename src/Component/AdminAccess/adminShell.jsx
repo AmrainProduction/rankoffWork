@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { Link, NavLink, useLocation } from 'react-router-dom'
 import classes from './adminShell.module.css'
 import logo from '../../logo.svg'
@@ -56,6 +56,27 @@ const AdminShell = ({ admin, logout, children }) => {
 		writeStorage(STORAGE_SECTIONS, next)
 	}
 
+	// Меню скрывается после выбора пункта и по нажатию вне его (кроме кнопки Menu / Hide menu). Автоскрытие не запоминается:
+	// в localStorage пишется только выбор кнопкой, чтобы после обновления страницы меню не пропадало само
+	const sideRef = useRef(null)
+	const toggleRef = useRef(null)
+	const closeSide = () => setOpen(false)
+
+	useEffect(() => {
+		if (!open) return undefined
+		const onOutside = (event) => {
+			const target = event.target
+			if (sideRef.current?.contains(target) || toggleRef.current?.contains(target)) return
+			setOpen(false)
+		}
+		document.addEventListener('mousedown', onOutside)
+		document.addEventListener('touchstart', onOutside)
+		return () => {
+			document.removeEventListener('mousedown', onOutside)
+			document.removeEventListener('touchstart', onOutside)
+		}
+	}, [open])
+
 	const toggleSide = () => {
 		setOpen(!open)
 		writeStorage(STORAGE_OPEN, !open)
@@ -64,8 +85,8 @@ const AdminShell = ({ admin, logout, children }) => {
 	return (
 		<div className={classes.shell}>
 			{open && (
-				<aside className={classes.side}>
-					<Link to="/a" className={classes.brand}>
+				<aside className={classes.side} ref={sideRef}>
+					<Link to="/a" className={classes.brand} onClick={closeSide}>
 						<img src={logo} alt="Rankoff Work" />
 					</Link>
 					<nav className={classes.nav}>
@@ -77,7 +98,7 @@ const AdminShell = ({ admin, logout, children }) => {
 							</div>
 							{isOpen(section) &&
 								section.items.map((item) => (
-									<NavLink key={item.path} to={item.path} className={({ isActive }) => `${classes.link} ${isActive ? classes.active : ''}`}>
+									<NavLink key={item.path} to={item.path} onClick={closeSide} className={({ isActive }) => `${classes.link} ${isActive ? classes.active : ''}`}>
 										{item.label}
 									</NavLink>
 								))}
@@ -85,7 +106,7 @@ const AdminShell = ({ admin, logout, children }) => {
 					))}
 					</nav>
 					<div className={classes.footer}>
-						<NavLink to="/a/ACCOUNT" className={({ isActive }) => `${classes.link} ${isActive ? classes.active : ''}`}>
+						<NavLink to="/a/ACCOUNT" onClick={closeSide} className={({ isActive }) => `${classes.link} ${isActive ? classes.active : ''}`}>
 							ACCOUNT
 						</NavLink>
 						<div className={classes.who}>{admin.name || admin.login}</div>
@@ -100,7 +121,7 @@ const AdminShell = ({ admin, logout, children }) => {
 				</aside>
 			)}
 			<div className={`${classes.content} ${open ? classes.contentShifted : ''}`}>{children}</div>
-			<button type="button" className={`${classes.toggle} ${open ? classes.toggleOpen : ''}`} onClick={toggleSide}>
+			<button type="button" ref={toggleRef} className={`${classes.toggle} ${open ? classes.toggleOpen : ''}`} onClick={toggleSide}>
 				{open ? 'Hide menu' : 'Menu'}
 			</button>
 		</div>

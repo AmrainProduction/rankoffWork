@@ -41,6 +41,7 @@ import EmojiEvents from './Component/EmojiEvents/emojiEvents'
 import ComparePlayers from './Component/NewDesign2025_2_0/ComparePlayers/comparePlayers'
 // import ComparePlayers from './Component/NewDesign2025/ComparePlayers/comparePlayers'
 import UpdateRoster from './Component/NewDesign2025/UpdateRoster/updateRoster'
+import TournamentRostersPage from './Component/AdminRosters/tournamentRostersPage'
 import AddTeamsTour from './Component/NewDesign2025_2_0/AddTeamsTour/addTeamsTour'
 import AddShortMatches from './Component/NewDesign2025_2_0/AddShortMatches/addShortMatches'
 import RCLMatchResult from './Component/NewDesign2025_2_0/RCLMatchResult/RCLMatchResult'
@@ -48,9 +49,11 @@ import RequireAdmin from './Component/AdminAccess/requireAdmin'
 import AdminsPage from './Component/AdminAccess/adminsPage'
 import AccountPage from './Component/AdminAccess/accountPage'
 import AuditLogPage from './Component/AdminAccess/auditLogPage'
+import UserLogsPage from './Component/AdminAccess/userLogsPage'
 import AdminHome from './Component/AdminAccess/adminHome'
 import UsersPage from './Component/AdminUsers/usersPage'
 import SiteStatsPage from './Component/AdminStats/siteStatsPage'
+import ContextPage from './Component/AdminContext/contextPage'
 import { PlayersPage, TeamsPage, TournamentsPage } from './Component/AdminEntities/entityPages'
 import PollsAdmin from './Component/NewDesign2025_2_0/PollsAdmin/pollsAdmin'
 import {
@@ -94,6 +97,7 @@ const router = createBrowserRouter(
 				<Route path="a/ADDMATCHES" element={<AddMatches />} />
 				<Route path="a/TOURNAMENT_MATCHES" element={<AddMatchesForClient />} />
 				<Route path="a/UPDATE_ROSTER" element={<UpdateRoster />} />
+				<Route path="a/TOURNAMENT_ROSTERS" element={<TournamentRostersPage />} />
 				<Route path="a/ADD_TEAMS_TOUR" element={<AddTeamsTour />} />
 				<Route path="a/ADD_SHORT_MATCHES" element={<AddShortMatches />} />
 				<Route path="a/RCL/MATCHES_STATS" element={<RCLMatchResult />} />
@@ -115,8 +119,10 @@ const router = createBrowserRouter(
 				<Route path="a/ADMINS" element={<AdminsPage />} />
 				<Route path="a/ACCOUNT" element={<AccountPage />} />
 				<Route path="a/LOGS" element={<AuditLogPage />} />
+				<Route path="a/USER_LOGS" element={<UserLogsPage />} />
 				<Route path="a/USERS" element={<UsersPage />} />
 				<Route path="a/STATS" element={<SiteStatsPage />} />
+				<Route path="a/CONTEXT" element={<ContextPage />} />
 				<Route path="a/PLAYERS" element={<PlayersPage />} />
 				<Route path="a/TEAMS" element={<TeamsPage />} />
 				<Route path="a/TOURNAMENTS" element={<TournamentsPage />} />

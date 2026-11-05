@@ -1,0 +1,97 @@
+/* Единая высота всех полей и кнопок в заявке */
+.grid {
+	--ctl-h: 40px;
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(420px, 1fr));
+	gap: 12px;
+	align-items: start;
+}
+
+.team {
+	margin: 0;
+	max-width: none;
+}
+
+.head {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	min-height: var(--ctl-h);
+}
+
+.head img {
+	height: 28px;
+	width: auto;
+}
+
+.rowLine {
+	display: grid;
+	grid-template-columns: 150px minmax(0, 1fr) var(--ctl-h);
+	gap: 8px;
+	align-items: stretch;
+}
+
+.coachName {
+	grid-column: 2 / 4;
+}
+
+.select,
+.field input,
+.coachName,
+.removeBtn,
+.actions button {
+	height: var(--ctl-h);
+	min-height: var(--ctl-h);
+	max-height: var(--ctl-h);
+	box-sizing: border-box;
+	margin: 0;
+	padding-top: 0;
+	padding-bottom: 0;
+	font-size: 1em;
+	line-height: normal;
+	border-radius: 4px;
+}
+
+.field {
+	min-width: 0;
+}
+
+.field input {
+	width: 100%;
+	padding-left: 10px;
+	padding-right: 10px;
+	border: 1px solid var(--componentBlockColorHover);
+	background: var(--mainLightBlack);
+	color: var(--textColor);
+	font-family: inherit;
+}
+
+.removeBtn {
+	width: var(--ctl-h);
+	padding: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.name {
+	min-width: 0;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.actions {
+	display: grid;
+	grid-template-columns: repeat(3, minmax(0, 1fr));
+	gap: 8px;
+}
+
+.actions button {
+	width: 100%;
+	padding-left: 8px;
+	padding-right: 8px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}

@@ -1,0 +1,286 @@
+.panel {
+	display: flex;
+	flex-direction: column;
+	gap: 14px;
+	padding: 12px;
+	border: 1px solid var(--componentLightBlockColor);
+	border-radius: 6px;
+}
+
+.panelTitle {
+	font-weight: 700;
+}
+
+.grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+	gap: 12px;
+}
+
+.chips {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 6px;
+	margin-top: 6px;
+}
+
+.chip {
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+	padding: 3px 4px 3px 9px;
+	border-radius: 14px;
+	background: var(--componentLightBlockColor);
+	font-size: 0.9em;
+}
+
+.chipX {
+	width: 20px;
+	height: 20px;
+	border: none;
+	border-radius: 50%;
+	background: transparent;
+	color: var(--textColor);
+	cursor: pointer;
+	line-height: 1;
+}
+
+.chipX:hover {
+	background: var(--componentBlockColorHover);
+}
+
+.mapChips {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 6px;
+}
+
+.mapChip {
+	padding: 5px 10px;
+	border: 1px solid var(--componentBlockColorHover);
+	border-radius: 4px;
+	background: transparent;
+	color: var(--textColor);
+	font: inherit;
+	cursor: pointer;
+}
+
+.mapChipOn {
+	background: var(--buttonColor);
+	border-color: var(--buttonColor);
+	color: #fff;
+}
+
+.label {
+	margin-bottom: 4px;
+	font-size: 0.85em;
+	color: var(--textPlaceholderColor);
+}
+
+.result {
+	display: flex;
+	flex-direction: column;
+	gap: 14px;
+	margin-top: 16px;
+	padding: 12px;
+	border: 1px solid var(--componentLightBlockColor);
+	border-radius: 6px;
+}
+
+.resultHead {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: baseline;
+	gap: 10px;
+}
+
+.resultName {
+	font-size: 1.3em;
+	font-weight: 800;
+}
+
+.badge {
+	padding: 1px 8px;
+	border-radius: 10px;
+	background: var(--componentLightBlockColor);
+	font-size: 0.8em;
+}
+
+.warn {
+	color: var(--yellowStatsColor);
+}
+
+.tiles {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+	gap: 8px;
+}
+
+.tile {
+	padding: 8px 10px;
+	border-radius: 6px;
+	background: var(--componentLightBlockColor);
+}
+
+.tileTitle {
+	font-weight: 700;
+	font-size: 0.8em;
+	color: var(--textPlaceholderColor);
+}
+
+.tileValue {
+	font-size: 1.4em;
+	font-weight: 700;
+}
+
+.tileHint {
+	font-size: 0.8em;
+	color: var(--textPlaceholderColor);
+}
+
+.tableWrap {
+	overflow-x: auto;
+}
+
+.sortable {
+	cursor: pointer;
+	user-select: none;
+	white-space: nowrap;
+}
+
+.num {
+	text-align: center !important;
+	white-space: nowrap;
+}
+
+.win {
+	color: var(--textColorGreen);
+}
+
+.loss {
+	color: var(--textColorRed);
+}
+
+.thumbLogo {
+	flex: none;
+	width: auto;
+	object-fit: contain;
+}
+
+.thumbPlayer {
+	flex: none;
+	object-fit: cover;
+	object-position: center top;
+	border-radius: 50%;
+}
+
+.option {
+	display: inline-flex;
+	align-items: center;
+	gap: 8px;
+}
+
+.section {
+	border: 1px solid var(--componentBlockColorHover);
+	border-radius: 6px;
+	overflow: hidden;
+}
+
+.sectionHead {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	width: 100%;
+	padding: 9px 12px;
+	border: none;
+	background: var(--componentLightBlockColor);
+	border-left: 4px solid var(--buttonColor);
+	color: var(--textColor);
+	font: inherit;
+	text-align: left;
+	cursor: pointer;
+}
+
+.sectionHead:hover {
+	background: var(--componentBlockColorHover);
+}
+
+.sectionName {
+	font-weight: 700;
+	text-transform: uppercase;
+	letter-spacing: 0.04em;
+	font-size: 0.9em;
+}
+
+.sectionCount {
+	padding: 0 8px;
+	border-radius: 10px;
+	background: var(--mainLightBlack);
+	font-size: 0.8em;
+}
+
+.sectionArrow {
+	margin-left: auto;
+	font-size: 0.7em;
+	color: var(--textPlaceholderColor);
+}
+
+.sectionBody {
+	padding: 10px 12px;
+}
+
+/* Заголовки таблиц ярче */
+.tableWrap table th {
+	background: var(--buttonColor);
+	color: #fff;
+	border-bottom: none;
+}
+
+.tableWrap table th.sortable:hover {
+	background: var(--buttonColorHover);
+}
+
+/* Цветовая индикация показателей (цвета как в профиле игрока на сайте) */
+.tone {
+	display: inline-block;
+	min-width: 52px;
+	padding: 2px 8px;
+	border-radius: 4px;
+	text-align: center;
+	color: #fff;
+}
+
+.tone_red,
+.tile_red {
+	background: #854141;
+}
+
+.tone_yellow,
+.tile_yellow {
+	background: #a29747;
+}
+
+.tone_green,
+.tile_green {
+	background: #528347;
+}
+
+.tile_red .tileTitle,
+.tile_yellow .tileTitle,
+.tile_green .tileTitle,
+.tile_red .tileHint,
+.tile_yellow .tileHint,
+.tile_green .tileHint {
+	color: rgba(255, 255, 255, 0.8);
+}
+
+.tile_red,
+.tile_yellow,
+.tile_green {
+	color: #fff;
+}
+
+/* Кнопки в одном ряду одной высоты */
+.actionBtn {
+	min-height: 36px;
+}

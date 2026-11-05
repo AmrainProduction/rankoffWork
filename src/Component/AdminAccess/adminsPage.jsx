@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { useOutletContext } from 'react-router-dom'
 import classes from './adminAccess.module.css'
+import RefreshButton from './refreshButton'
 import { useCreateAdminMutation, useGetAdminsQuery, useGetTournamentsQuery, useUpdateAdminMutation } from '../../store/api/apiSlice'
 import { PERMISSION_LABELS } from '../../Function/adminAccess'
 import SearchSelect from '../UI/SearchSelect/searchSelect'
@@ -58,7 +59,7 @@ const TournamentsEditor = ({ value, onChange, options }) => {
 // Управление администраторами (только суперадмин): создание, права по разделам, блокировка, сброс пароля
 const AdminsPage = () => {
 	const { admin: me } = useOutletContext()
-	const { data, isLoading, isError, refetch } = useGetAdminsQuery()
+	const { data, isLoading, isError, isFetching, refetch } = useGetAdminsQuery()
 	const [createAdmin, { isLoading: isCreating, error: createError, reset: resetCreate }] = useCreateAdminMutation()
 	const [updateAdmin, { error: updateError, reset: resetUpdate }] = useUpdateAdminMutation()
 	const listTours = useGetTournamentsQuery()
@@ -109,7 +110,10 @@ const AdminsPage = () => {
 
 	return (
 		<div className={`${classes.card} ${classes.page}`}>
-			<div className={classes.title}>Administrators</div>
+			<div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+				<div className={classes.title}>Administrators</div>
+				<RefreshButton onClick={refetch} spinning={isFetching} />
+			</div>
 
 			{secret && (
 				<div>

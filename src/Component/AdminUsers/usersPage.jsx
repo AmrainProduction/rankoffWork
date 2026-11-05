@@ -3,6 +3,7 @@ import { countries } from 'country-flags-svg'
 import SearchSelect from '../UI/SearchSelect/searchSelect'
 import CountryFlagPlayer from '../../Function/countryFlagPlayer'
 import classes from '../AdminAccess/adminAccess.module.css'
+import RefreshButton from '../AdminAccess/refreshButton'
 import {
 	useAdminUserActionMutation,
 	useDeleteAdminUserMutation,
@@ -17,6 +18,10 @@ import {
 
 const SITE = 'https://rankoff.org'
 const errorMessage = (error) => error?.data?.message || 'Something went wrong, try again'
+// Last online: сервер отдаёт UTC (ISO Z), показываем в часовом поясе админа
+const formatSeen = (iso) =>
+	iso ? new Date(iso).toLocaleString('sv-SE', { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit' }) : '—'
+
 const formatTime = (value) => (value ? String(value).replace('T', ' ').slice(0, 16) : '—')
 
 const STATUSES = [
@@ -218,6 +223,10 @@ const UserCard = ({ id, prefixes, onChanged, onClose }) => {
 						<td>{formatTime(user.last_login_at)}</td>
 					</tr>
 					<tr>
+						<td>Last online</td>
+						<td>{user.is_online ? <span style={{ color: '#2ea043', fontWeight: 700 }}>online now</span> : formatSeen(user.last_seen_at)}</td>
+					</tr>
+					<tr>
 						<td>Public consent</td>
 						<td>{formatTime(user.public_consent_at)}</td>
 					</tr>
@@ -230,8 +239,28 @@ const UserCard = ({ id, prefixes, onChanged, onClose }) => {
 						<td>{user.favorite_team?.name_team || '—'}</td>
 					</tr>
 					<tr>
+						<td>Champion awards</td>
+						<td>
+							{(user.champion_awards ?? []).length === 0
+								? '—'
+								: user.champion_awards.map((a) => (
+										<div key={a.name_tour_sort}>
+											{a.tour_name || a.name_tour_sort}: {a.team}
+											{a.voters_percent !== null ? ` (${a.voters_percent}% of voters)` : ''}
+										</div>
+									))}
+						</td>
+					</tr>
+					<tr>
 						<td>Linked player (is this player)</td>
 						<td>{user.linked_player?.nickname || '—'}</td>
+					</tr>
+					<tr>
+						<td>Activity score (30 days)</td>
+						<td>
+							<b>{user.activity?.score ?? 0}</b> = 3 x {user.activity?.days ?? 0} active days + 2 x {user.activity?.predictions ?? 0} predictions + {user.activity?.minutes ?? 0} min on site / 20
+							{user.activity?.last_day ? ` (last active ${user.activity.last_day})` : ''}
+						</td>
 					</tr>
 				</tbody>
 			</table>
@@ -500,9 +529,18 @@ const UsersPage = () => {
 	const [filters, setFilters] = useState({ q: '', status: 'all' })
 	const [applied, setApplied] = useState({ q: '', status: 'all' })
 	const [page, setPage] = useState(1)
+	// Сортировка таблицы: поле и направление уходят на сервер (сортируется весь список, а не одна страница)
+	const [sort, setSort] = useState({ by: 'id', dir: 'desc' })
+	const toggleSort = (by) => {
+		setSort((prev) => (prev.by === by ? { by, dir: prev.dir === 'asc' ? 'desc' : 'asc' } : { by, dir: by === 'name' || by === 'telegram' ? 'asc' : 'desc' }))
+		setPage(1)
+		setSelected(null)
+	}
+	const sortMark = (by) => (sort.by === by ? (sort.dir === 'asc' ? ' ▲' : ' ▼') : '')
+	const sortTh = { cursor: 'pointer', userSelect: 'none', whiteSpace: 'nowrap' }
 	const [selected, setSelected] = useState(null)
 
-	const { data, isFetching, isError, refetch } = useGetAdminUsersQuery({ ...applied, page }, { refetchOnMountOrArgChange: true })
+	const { data, isFetching, isError, refetch } = useGetAdminUsersQuery({ ...applied, sort: sort.by, dir: sort.dir, page }, { refetchOnMountOrArgChange: true })
 	const prefixesQuery = useGetAdminUserPrefixesQuery(undefined, { refetchOnMountOrArgChange: true })
 	const prefixes = prefixesQuery.data ?? []
 
@@ -555,6 +593,7 @@ const UsersPage = () => {
 						<button className={classes.btn} type="submit">
 							Show
 						</button>
+						<RefreshButton onClick={refetch} spinning={isFetching} />
 					</form>
 
 					{isError && <div className={classes.error}>Failed to load users</div>}
@@ -566,13 +605,31 @@ const UsersPage = () => {
 									<thead>
 										<tr>
 											<th></th>
-											<th>Name</th>
+											<th style={sortTh} onClick={() => toggleSort('name')}>
+												Name{sortMark('name')}
+											</th>
 											<th>Profile</th>
-											<th className={classes.hideMobile}>Telegram</th>
-											<th>Votes</th>
-											<th className={classes.hideMobile}>Registered</th>
-											<th className={classes.hideMobile}>Last sign-in</th>
-											<th>Status</th>
+											<th className={classes.hideMobile} style={sortTh} onClick={() => toggleSort('telegram')}>
+												Telegram{sortMark('telegram')}
+											</th>
+											<th style={sortTh} onClick={() => toggleSort('votes')}>
+												Votes{sortMark('votes')}
+											</th>
+											<th style={sortTh} onClick={() => toggleSort('activity')}>
+												Activity{sortMark('activity')}
+											</th>
+											<th className={classes.hideMobile} style={sortTh} onClick={() => toggleSort('registered')}>
+												Registered{sortMark('registered')}
+											</th>
+											<th className={classes.hideMobile} style={sortTh} onClick={() => toggleSort('last_login')}>
+												Last sign-in{sortMark('last_login')}
+											</th>
+											<th style={sortTh} onClick={() => toggleSort('last_seen')}>
+												Last online{sortMark('last_seen')}
+											</th>
+											<th style={sortTh} onClick={() => toggleSort('status')}>
+												Status{sortMark('status')}
+											</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -594,13 +651,17 @@ const UsersPage = () => {
 													</td>
 													<td className={classes.hideMobile}>{u.username ? `@${u.username}` : '—'}</td>
 													<td>{u.votes_count}</td>
+													<td>{u.activity?.score ?? 0}</td>
 													<td className={classes.hideMobile}>{formatTime(u.created_at)}</td>
 													<td className={classes.hideMobile}>{formatTime(u.last_login_at)}</td>
+													<td style={{ whiteSpace: 'nowrap' }}>
+														{u.is_online ? <span style={{ color: '#2ea043', fontWeight: 700 }}>online now</span> : formatSeen(u.last_seen_at)}
+													</td>
 													<td>{u.blocked_at ? 'blocked' : u.is_public ? 'public' : 'private'}</td>
 												</tr>
 												{selected === u.id && (
 													<tr>
-														<td colSpan={8}>
+														<td colSpan={10}>
 															<UserCard id={u.id} prefixes={prefixes} onChanged={refetch} onClose={() => setSelected(null)} />
 														</td>
 													</tr>

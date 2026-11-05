@@ -12,6 +12,7 @@ export const PERMISSION_LABELS = {
 	tournament_teams: 'Data: tournament teams',
 	rosters: 'Data: team rosters',
 	rcl: 'Data: RCL match stats',
+	stats: 'Context (player and team stats explorer)',
 	banners: 'Banners and tops',
 	tournament_matches: 'Match entry for assigned tournaments only',
 }
@@ -26,11 +27,13 @@ const PAGE_PERMISSIONS = {
 	'/a/ADD_SHORT_MATCHES': 'short_matches',
 	'/a/ADD_TEAMS_TOUR': 'tournament_teams',
 	'/a/UPDATE_ROSTER': 'rosters',
+	'/a/TOURNAMENT_ROSTERS': 'rosters',
 	'/a/RCL/MATCHES_STATS': 'rcl',
+	'/a/CONTEXT': 'stats',
 	// Внесение карт для внешних админов турниров: подходит и право на карты, и право на назначенные турниры
 	'/a/TOURNAMENT_MATCHES': ['maps', 'tournament_matches'],
 }
-const SUPER = ['/a/ADMINS', '/a/LOGS', '/a/FUNCTIONS', '/a/USERS', '/a/STATS']
+const SUPER = ['/a/ADMINS', '/a/LOGS', '/a/USER_LOGS', '/a/FUNCTIONS', '/a/USERS', '/a/STATS']
 const ANY = ['/a/ACCOUNT']
 
 // 'data' целиком включает эти права (как Admin::DATA_PERMISSIONS на сервере)

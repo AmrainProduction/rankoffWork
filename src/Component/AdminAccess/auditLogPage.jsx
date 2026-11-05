@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import classes from './adminAccess.module.css'
 import { useGetAdminAuditQuery } from '../../store/api/apiSlice'
+import RefreshButton from './refreshButton'
 
 // Группы действий для фильтра: значение — префикс action на сервере (AdminAudit::log)
 const ACTIONS = [
@@ -285,6 +286,7 @@ const AuditLogPage = () => {
 				<button className={classes.btnDark} type="button" onClick={reset}>
 					Reset
 				</button>
+				<RefreshButton onClick={refetch} spinning={isFetching} />
 			</form>
 
 			{isError && (
@@ -298,9 +300,7 @@ const AuditLogPage = () => {
 
 			{data && (
 				<>
-					<div className={classes.hint}>
-						Entries: {data.total}. Times are Moscow time. Click an entry to see details.
-					</div>
+					<div className={classes.hint}>Entries: {data.total}. Times are Moscow time. Click an entry to see details.</div>
 					<div className={classes.logList} style={{ opacity: isFetching ? 0.5 : 1 }}>
 						{data.items.length === 0 && <div className={classes.hint}>No entries found</div>}
 						{data.items.map((item) => {
