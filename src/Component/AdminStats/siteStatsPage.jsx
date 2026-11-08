@@ -2,6 +2,7 @@ import React, { useMemo, useState } from 'react'
 import { CartesianGrid, Legend, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts'
 import classes from './siteStatsPage.module.css'
 import RefreshButton from '../AdminAccess/refreshButton'
+import { PrefixBadge } from '../AdminUsers/usersPage'
 import { useGetAdminSiteStatsHistoryQuery, useGetAdminSiteStatsQuery } from '../../store/api/apiSlice'
 
 const REFRESH_MS = 15000
@@ -118,7 +119,7 @@ const SiteStatsPage = () => {
 									<span className={classes.userCell}>
 										<UserPhoto user={u} />
 										<span>
-											{u.name || `user #${u.id}`}
+											{u.name || `user #${u.id}`} <PrefixBadge prefix={u.prefix} />
 											{u.handle && <span className={classes.userHandle}> @{u.handle}</span>}
 											{u.blocked && <span className={classes.userBlocked}> blocked</span>}
 										</span>

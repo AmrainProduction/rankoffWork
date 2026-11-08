@@ -7,11 +7,27 @@ import { PrefixBadge } from '../AdminUsers/usersPage'
 const WARN = ['login_blocked', 'account_delete']
 const OK = ['login']
 
-const formatTime = (value) => {
-	if (!value) return ''
+const pad = (n) => String(n).padStart(2, '0')
+
+// "2026-11-05 23:11:04" -> { day: '05.11.2026', time: '23:11:04' }
+const splitTime = (value) => {
+	if (!value) return { day: '', time: '' }
 	const [date, time] = String(value).replace('T', ' ').split(' ')
 	const [y, m, d] = date.split('-')
-	return `${d}.${m}.${y} ${(time ?? '').slice(0, 8)}`
+	return { day: `${pad(d)}.${pad(m)}.${y}`, time: (time ?? '').slice(0, 8) }
+}
+
+// "Name @handle (tg 123)" -> { name, handle, tg }
+const parseLabel = (label) => {
+	if (!label) return { name: 'Unknown user', handle: '', tg: '' }
+	const m = String(label).match(/^(.*?)\s*(?:@(\S+))?\s*\(tg\s*(\d+)\)$/)
+	if (!m) return { name: label, handle: '', tg: '' }
+	return { name: m[1].trim() || (m[2] ? `@${m[2]}` : `tg ${m[3]}`), handle: m[1].trim() ? m[2] || '' : '', tg: m[3] }
+}
+
+const humanKey = (k) => {
+	const t = String(k).replace(/_/g, ' ')
+	return t.charAt(0).toUpperCase() + t.slice(1)
 }
 
 const show = (v) => {
@@ -21,39 +37,85 @@ const show = (v) => {
 	return String(v)
 }
 
+// Telegram username ссылкой (t.me). Если username нет — показываем ID со ссылкой tg://user (открывается в приложении Telegram)
+const TgLink = ({ tg, username }) => {
+	if (!tg) return <span className={classes.hint}>—</span>
+	const href = username ? `https://t.me/${username}` : `tg://user?id=${tg}`
+	return (
+		<a className={classes.ulTg} href={href} target="_blank" rel="noreferrer" onClick={(e) => e.stopPropagation()} title={username ? `Open @${username} in Telegram` : 'No username: opens by ID in the Telegram app'}>
+			{username ? `@${username}` : `ID ${tg}`}
+		</a>
+	)
+}
+
+const Section = ({ title, children }) => (
+	<div className={classes.ulSection}>
+		<div className={classes.ulSectionTitle}>{title}</div>
+		{children}
+	</div>
+)
+
+const Row = ({ label, value }) => (
+	<div className={classes.ulRow}>
+		<span className={classes.ulLabel}>{label}</span>
+		<span className={classes.ulValue}>{show(value)}</span>
+	</div>
+)
+
 const Details = ({ item }) => {
 	const d = item.details ?? {}
 	const changes = Array.isArray(d.changes) ? d.changes : []
 	const rest = Object.entries(d).filter(([k]) => k !== 'changes')
+	const who = parseLabel(item.user_label)
+	const t = splitTime(item.created_at)
 
 	return (
-		<div className={classes.logDetails}>
-			{changes.length > 0 && (
-				<div>
-					<b>What changed:</b>
-					{changes.map((c) => (
-						<div key={c.field}>
-							{c.label}: <span className={classes.from}>{show(c.from)}</span> → <span className={classes.to}>{show(c.to)}</span>
+		<div className={classes.ulDetails}>
+			<Section title="What happened">
+				<Row label="Action" value={item.action_label} />
+				<Row label="Description" value={item.summary} />
+				<Row label="When" value={`${t.day} ${t.time} (Moscow)`} />
+				{rest.map(([k, v]) => (
+					<Row key={k} label={humanKey(k)} value={v} />
+				))}
+				{changes.length > 0 && (
+					<div className={classes.ulChanges}>
+						<div className={classes.ulChangesHead}>
+							<span>Field</span>
+							<span>Was</span>
+							<span>Became</span>
 						</div>
-					))}
+						{changes.map((c) => (
+							<div key={c.field} className={classes.ulChangesRow}>
+								<span>{c.label}</span>
+								<span className={classes.from}>{show(c.from)}</span>
+								<span className={classes.to}>{show(c.to)}</span>
+							</div>
+						))}
+					</div>
+				)}
+			</Section>
+
+			<Section title="Who">
+				<Row label="Name" value={who.name} />
+				<Row label="Username" value={who.handle ? `@${who.handle}` : null} />
+				<Row label="User ID" value={item.user_id} />
+				<div className={classes.ulRow}>
+					<span className={classes.ulLabel}>Telegram</span>
+					<span className={classes.ulValue}>
+						<TgLink tg={who.tg} username={item.tg_username} />
+					</span>
 				</div>
-			)}
-			{rest.map(([k, v]) => (
-				<div key={k}>
-					{k}: {show(v)}
-				</div>
-			))}
-			<div className={classes.hint}>
-				User ID: {show(item.user_id)} · IP: {show(item.ip)} · Request: {show(item.request)} · entry #{item.id}
-			</div>
-			<div className={classes.hint}>User agent: {show(item.user_agent)}</div>
-			{item.meta && (
-				<div className={classes.hint}>
-					{Object.entries(item.meta)
-						.map(([k, v]) => `${k}: ${v}`)
-						.join(' · ')}
-				</div>
-			)}
+				<Row label="Telegram ID" value={who.tg} />
+			</Section>
+
+			<Section title="Technical">
+				<Row label="IP" value={item.ip} />
+				<Row label="Request" value={item.request} />
+				<Row label="User agent" value={item.user_agent} />
+				{item.meta && Object.entries(item.meta).map(([k, v]) => <Row key={k} label={humanKey(k)} value={v} />)}
+				<Row label="Log entry" value={`#${item.id}`} />
+			</Section>
 		</div>
 	)
 }
@@ -142,21 +204,36 @@ const UserLogsPage = () => {
 
 			{data && (
 				<>
-					<div className={classes.logList} style={{ opacity: isFetching ? 0.5 : 1 }}>
+					<div className={classes.ulList} style={{ opacity: isFetching ? 0.5 : 1 }}>
 						{data.data.length === 0 && <div className={classes.hint}>No entries found</div>}
-						{data.data.map((item) => (
-							<div key={item.id} className={classes.logItem}>
-								<div className={classes.logHead} onClick={() => setOpen(open === item.id ? null : item.id)}>
-									<span className={classes.logTime}>{formatTime(item.created_at)}</span>
-									<span className={classes.logWho}>
-										{item.user_label || '—'} <PrefixBadge prefix={item.prefix} />
-									</span>
-									<span className={`${classes.tag} ${WARN.includes(item.action) ? classes.tagWarn : OK.includes(item.action) ? classes.tagOk : ''}`}>{item.action_label}</span>
-									<span className={classes.logSummary}>{item.summary}</span>
-								</div>
-								{open === item.id && <Details item={item} />}
-							</div>
-						))}
+						{data.data.map((item, i) => {
+							const t = splitTime(item.created_at)
+							const prev = i > 0 ? splitTime(data.data[i - 1].created_at).day : null
+							const who = parseLabel(item.user_label)
+							const tone = WARN.includes(item.action) ? classes.ulWarn : OK.includes(item.action) ? classes.ulOk : ''
+							return (
+								<React.Fragment key={item.id}>
+									{t.day !== prev && <div className={classes.ulDay}>{t.day}</div>}
+									<div className={`${classes.ulItem} ${open === item.id ? classes.ulItemOpen : ''}`}>
+										<div className={classes.ulHead} onClick={() => setOpen(open === item.id ? null : item.id)}>
+											<span className={classes.ulTime}>{t.time}</span>
+											<span className={classes.ulWho}>
+												<span className={classes.ulName}>{who.name}</span>
+												<PrefixBadge prefix={item.prefix} />
+												{who.handle && <span className={classes.hint}>@{who.handle}</span>}
+											</span>
+											<span className={classes.ulTgCell}>
+												<TgLink tg={who.tg} username={item.tg_username} />
+											</span>
+											<span className={`${classes.ulTag} ${tone}`}>{item.action_label}</span>
+											<span className={classes.ulSummary}>{item.summary}</span>
+											<span className={classes.ulArrow}>{open === item.id ? '▲' : '▼'}</span>
+										</div>
+										{open === item.id && <Details item={item} />}
+									</div>
+								</React.Fragment>
+							)
+						})}
 					</div>
 					<div className={classes.pager}>
 						<button className={classes.btnDark} disabled={page <= 1 || isFetching} onClick={() => setPage(page - 1)}>

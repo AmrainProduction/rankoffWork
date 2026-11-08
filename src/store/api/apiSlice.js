@@ -42,6 +42,55 @@ export const apiSlice = createApi({
         createAdminShortMatches: build.mutation({
             query: (body) => ({url: `admin/short-matches`, method: 'POST', body, headers: adminAuthHeaders()}),
         }),
+        getAdminStages: build.query({
+            query: (tour) => ({url: `admin/stages/${encodeURIComponent(tour)}`, headers: adminAuthHeaders()}),
+            keepUnusedDataFor: 0,
+        }),
+        createAdminStage: build.mutation({
+            query: (body) => ({url: `admin/stages`, method: 'POST', body, headers: adminAuthHeaders()}),
+        }),
+        deleteAdminStage: build.mutation({
+            query: (id) => ({url: `admin/stages/${id}`, method: 'DELETE', headers: adminAuthHeaders()}),
+        }),
+        setAdminStageGroupOrder: build.mutation({
+            query: ({id, ...body}) => ({url: `admin/stages/${id}/group-order`, method: 'POST', body, headers: adminAuthHeaders()}),
+        }),
+        updateAdminStageSettings: build.mutation({
+            query: ({id, ...body}) => ({url: `admin/stages/${id}/settings`, method: 'POST', body, headers: adminAuthHeaders()}),
+        }),
+        adminStageToPlayoff: build.mutation({
+            query: ({id, ...body}) => ({url: `admin/stages/${id}/to-playoff`, method: 'POST', body, headers: adminAuthHeaders()}),
+        }),
+        adminStageSwissNext: build.mutation({
+            query: ({id, ...body}) => ({url: `admin/stages/${id}/swiss-next`, method: 'POST', body, headers: adminAuthHeaders()}),
+        }),
+        linkAdminStageMatches: build.mutation({
+            query: (id) => ({url: `admin/stages/${id}/link-matches`, method: 'POST', headers: adminAuthHeaders()}),
+        }),
+        updateAdminStageSlot: build.mutation({
+            query: ({id, ...body}) => ({url: `admin/stage-slots/${id}`, method: 'POST', body, headers: adminAuthHeaders()}),
+        }),
+        setAdminStageSlotTeam: build.mutation({
+            query: ({id, ...body}) => ({url: `admin/stage-slots/${id}/team`, method: 'POST', body, headers: adminAuthHeaders()}),
+        }),
+        setAdminStageSlotWinner: build.mutation({
+            query: ({id, ...body}) => ({url: `admin/stage-slots/${id}/winner`, method: 'POST', body, headers: adminAuthHeaders()}),
+        }),
+        addAdminStageSlot: build.mutation({
+            query: ({id, ...body}) => ({url: `admin/stages/${id}/slots`, method: 'POST', body, headers: adminAuthHeaders()}),
+        }),
+        editAdminStageSlot: build.mutation({
+            query: ({id, ...body}) => ({url: `admin/stage-slots/${id}/edit`, method: 'POST', body, headers: adminAuthHeaders()}),
+        }),
+        deleteAdminStageSlot: build.mutation({
+            query: (id) => ({url: `admin/stage-slots/${id}`, method: 'DELETE', headers: adminAuthHeaders()}),
+        }),
+        unlinkAdminStageSlotMatch: build.mutation({
+            query: (id) => ({url: `admin/stage-slots/${id}/unlink-match`, method: 'POST', headers: adminAuthHeaders()}),
+        }),
+        createAdminStageSlotMatch: build.mutation({
+            query: (id) => ({url: `admin/stage-slots/${id}/create-match`, method: 'POST', headers: adminAuthHeaders()}),
+        }),
         updateAdminRoster: build.mutation({
             query: ({teamId, players}) => ({url: `admin/teams/${teamId}/roster`, method: 'POST', body: {players}, headers: adminAuthHeaders()}),
         }),
@@ -282,6 +331,9 @@ export const apiSlice = createApi({
 })
 
 export const {
+    useAddAdminStageSlotMutation,
+    useEditAdminStageSlotMutation,
+    useDeleteAdminStageSlotMutation,
     useGetStatsExplorerOptionsQuery,
     useRunStatsExplorerMutation,
     useGetTournamentByNameQuery,
@@ -354,6 +406,19 @@ export const {
     useDeleteAdminShortMatchMutation,
     useUpdateAdminRosterMutation,
     useCreateAdminShortMatchesMutation,
+    useGetAdminStagesQuery,
+    useCreateAdminStageMutation,
+    useDeleteAdminStageMutation,
+    useLinkAdminStageMatchesMutation,
+    useSetAdminStageGroupOrderMutation,
+    useUpdateAdminStageSettingsMutation,
+    useAdminStageToPlayoffMutation,
+    useAdminStageSwissNextMutation,
+    useUpdateAdminStageSlotMutation,
+    useSetAdminStageSlotTeamMutation,
+    useSetAdminStageSlotWinnerMutation,
+    useCreateAdminStageSlotMatchMutation,
+    useUnlinkAdminStageSlotMatchMutation,
     useGetAdminAuditQuery,
     useGetAdminUserLogsQuery,
     useGetAdminTournamentRostersQuery,

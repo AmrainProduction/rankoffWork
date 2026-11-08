@@ -377,3 +377,193 @@
 		transform: rotate(360deg);
 	}
 }
+
+/* ===== User activity log: простой список + раскрытая карточка ===== */
+.ulList {
+	display: flex;
+	flex-direction: column;
+}
+
+.ulDay {
+	margin-top: 12px;
+	padding: 4px 6px;
+	font-weight: 800;
+	color: var(--textPlaceholderColor);
+	border-bottom: 1px solid var(--componentLightBlockColor);
+}
+
+.ulItem {
+	border-bottom: 1px solid var(--componentLightBlockColor);
+}
+
+.ulItemOpen {
+	background: var(--mainLightBlack);
+	border-radius: 4px;
+}
+
+.ulHead {
+	display: grid;
+	grid-template-columns: 70px minmax(150px, 230px) minmax(110px, 160px) 150px minmax(0, 1fr) 16px;
+	align-items: center;
+	gap: 4px 12px;
+	padding: 9px 6px;
+	cursor: pointer;
+}
+
+.ulHead:hover {
+	background: var(--componentBlockColorHover);
+}
+
+.ulTime {
+	color: var(--textPlaceholderColor);
+	font-variant-numeric: tabular-nums;
+}
+
+.ulWho {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 2px 6px;
+	min-width: 0;
+}
+
+.ulName {
+	font-weight: 800;
+	word-break: break-word;
+}
+
+.ulTag {
+	justify-self: start;
+	padding: 2px 10px;
+	border-radius: 10px;
+	font-size: 0.85em;
+	background: var(--buttonDark);
+	white-space: nowrap;
+}
+
+.ulWarn {
+	background: var(--textColorRed);
+	color: white;
+}
+
+.ulOk {
+	background: var(--greenStatsColor);
+	color: white;
+}
+
+.ulSummary {
+	min-width: 0;
+	word-break: break-word;
+}
+
+.ulArrow {
+	font-size: 0.7em;
+	color: var(--textPlaceholderColor);
+}
+
+.ulDetails {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+	gap: 12px;
+	padding: 4px 10px 14px;
+}
+
+.ulSection {
+	display: flex;
+	flex-direction: column;
+	gap: 5px;
+	min-width: 0;
+	padding: 10px 12px;
+	border-radius: 4px;
+	background: var(--componentBlockColor);
+}
+
+.ulSectionTitle {
+	margin-bottom: 2px;
+	font-weight: 800;
+	color: var(--textPlaceholderColor);
+	text-transform: uppercase;
+	font-size: 0.8em;
+	letter-spacing: 0.04em;
+}
+
+.ulRow {
+	display: grid;
+	grid-template-columns: 100px minmax(0, 1fr);
+	gap: 8px;
+}
+
+.ulLabel {
+	color: var(--textPlaceholderColor);
+}
+
+.ulValue {
+	word-break: break-word;
+}
+
+.ulChanges {
+	display: flex;
+	flex-direction: column;
+	gap: 4px;
+	margin-top: 6px;
+	padding-top: 6px;
+	border-top: 1px solid var(--componentLightBlockColor);
+}
+
+.ulChangesHead,
+.ulChangesRow {
+	display: grid;
+	grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr);
+	gap: 8px;
+	word-break: break-word;
+}
+
+.ulChangesHead {
+	color: var(--textPlaceholderColor);
+	font-size: 0.85em;
+}
+
+@media (max-width: 768px) {
+	.ulHead {
+		grid-template-columns: 60px minmax(0, 1fr) auto 14px;
+		grid-template-areas:
+			'time who tag arrow'
+			'tg sum sum sum';
+		gap: 4px 8px;
+	}
+	.ulHead > :nth-child(1) {
+		grid-area: time;
+	}
+	.ulHead > :nth-child(2) {
+		grid-area: who;
+	}
+	.ulHead > :nth-child(3) {
+		grid-area: tg;
+	}
+	.ulHead > :nth-child(4) {
+		grid-area: tag;
+	}
+	.ulHead > :nth-child(5) {
+		grid-area: sum;
+	}
+	.ulHead > :nth-child(6) {
+		grid-area: arrow;
+	}
+	.ulRow {
+		grid-template-columns: 90px minmax(0, 1fr);
+	}
+}
+
+.ulTgCell {
+	min-width: 0;
+	word-break: break-all;
+}
+
+.ulTg {
+	color: var(--textColorBlue, #5aa7ff);
+	text-decoration: none;
+}
+
+.ulTg:hover {
+	text-decoration: underline;
+}

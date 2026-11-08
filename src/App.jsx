@@ -42,6 +42,7 @@ import ComparePlayers from './Component/NewDesign2025_2_0/ComparePlayers/compare
 // import ComparePlayers from './Component/NewDesign2025/ComparePlayers/comparePlayers'
 import UpdateRoster from './Component/NewDesign2025/UpdateRoster/updateRoster'
 import TournamentRostersPage from './Component/AdminRosters/tournamentRostersPage'
+import StagesPage from './Component/AdminStages/stagesPage'
 import AddTeamsTour from './Component/NewDesign2025_2_0/AddTeamsTour/addTeamsTour'
 import AddShortMatches from './Component/NewDesign2025_2_0/AddShortMatches/addShortMatches'
 import RCLMatchResult from './Component/NewDesign2025_2_0/RCLMatchResult/RCLMatchResult'
@@ -98,6 +99,7 @@ const router = createBrowserRouter(
 				<Route path="a/TOURNAMENT_MATCHES" element={<AddMatchesForClient />} />
 				<Route path="a/UPDATE_ROSTER" element={<UpdateRoster />} />
 				<Route path="a/TOURNAMENT_ROSTERS" element={<TournamentRostersPage />} />
+				<Route path="a/STAGES" element={<StagesPage />} />
 				<Route path="a/ADD_TEAMS_TOUR" element={<AddTeamsTour />} />
 				<Route path="a/ADD_SHORT_MATCHES" element={<AddShortMatches />} />
 				<Route path="a/RCL/MATCHES_STATS" element={<RCLMatchResult />} />

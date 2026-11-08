@@ -6,6 +6,17 @@ const hasMaps = (admin) => can(admin, 'maps')
 
 export const ADMIN_MENU = [
 	{
+		id: 'admin',
+		title: 'Administration',
+		items: [
+			{ label: 'ADMINS', path: '/a/ADMINS' },
+			{ label: 'USERS', path: '/a/USERS' },
+			{ label: 'STATS', path: '/a/STATS' },
+			{ label: 'LOGS', path: '/a/LOGS' },
+			{ label: 'USER_LOGS', path: '/a/USER_LOGS' },
+		],
+	},
+	{
 		id: 'data',
 		title: 'Data',
 		items: [
@@ -15,6 +26,7 @@ export const ADMIN_MENU = [
 			{ label: 'ADDMATCHES', path: '/a/ADDMATCHES' },
 			{ label: 'TOURNAMENT_MATCHES', path: '/a/TOURNAMENT_MATCHES', hideWhen: hasMaps },
 			{ label: 'ADD_SHORT_MATCHES', path: '/a/ADD_SHORT_MATCHES' },
+			{ label: 'STAGES', path: '/a/STAGES' },
 			{ label: 'ADD_TEAMS_TOUR', path: '/a/ADD_TEAMS_TOUR' },
 			{ label: 'UPDATE_ROSTER', path: '/a/UPDATE_ROSTER' },
 			{ label: 'TOURNAMENT_ROSTERS', path: '/a/TOURNAMENT_ROSTERS' },
@@ -50,16 +62,5 @@ export const ADMIN_MENU = [
 		id: 'functions',
 		title: 'Functions',
 		items: [{ label: 'FUNCTIONS', path: '/a/FUNCTIONS' }],
-	},
-	{
-		id: 'admin',
-		title: 'Administration',
-		items: [
-			{ label: 'ADMINS', path: '/a/ADMINS' },
-			{ label: 'USERS', path: '/a/USERS' },
-			{ label: 'STATS', path: '/a/STATS' },
-			{ label: 'LOGS', path: '/a/LOGS' },
-			{ label: 'USER_LOGS', path: '/a/USER_LOGS' },
-		],
 	},
 ]

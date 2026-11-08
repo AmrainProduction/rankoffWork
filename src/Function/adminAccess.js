@@ -25,6 +25,7 @@ const PAGE_PERMISSIONS = {
 	'/a/TOURNAMENTS': 'tournaments',
 	'/a/ADDMATCHES': 'maps',
 	'/a/ADD_SHORT_MATCHES': 'short_matches',
+	'/a/STAGES': 'short_matches',
 	'/a/ADD_TEAMS_TOUR': 'tournament_teams',
 	'/a/UPDATE_ROSTER': 'rosters',
 	'/a/TOURNAMENT_ROSTERS': 'rosters',
